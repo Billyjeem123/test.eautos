@@ -573,6 +573,7 @@ class ComposerStaticInitfe33f98a750b8c5a51b30c78bd3fab21
         'App\\Http\\Middleware\\showNavBar' => __DIR__ . '/../..' . '/app/Http/Middleware/showNavBar.php',
         'App\\Listeners\\ReportListner' => __DIR__ . '/../..' . '/app/Listeners/ReportListner.php',
         'App\\Models\\Auction' => __DIR__ . '/../..' . '/app/Models/Auction.php',
+        'App\\Models\\AuctionImages' => __DIR__ . '/../..' . '/app/Models/AuctionImages.php',
         'App\\Models\\Brand' => __DIR__ . '/../..' . '/app/Models/Brand.php',
         'App\\Models\\Category' => __DIR__ . '/../..' . '/app/Models/Category.php',
         'App\\Models\\Product' => __DIR__ . '/../..' . '/app/Models/Product.php',

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\Auction;
 use App\Models\User;
 use App\Models\Brand;
 use App\Models\Product;
@@ -294,5 +295,103 @@ private function validateRequest(Request $request)
      }
 
 
+
+    public function saveAuction(Request $request)
+    {
+        $validator = $this->validateAuctionRequest($request);
+
+
+        // Check if validation fails
+        if ($validator->fails()) {
+            return redirect()->back()->withInput()->withErrors(['error' => $validator->errors()->first()]); // Redirect back with input and error message
+        }
+
+        // Save category
+        $auction  = Auction::create([
+            'category_id' => $request->category_id,
+            'sub_category_id' => $request->sub_category_id,
+            'brand_id' => $request->brand_id,
+            'model' => $request->model,
+            'color' => $request->color,
+            'address' => $request->address,
+            'price' => $request->price,
+            'deed' => $request->deed  ? 1 : 0,
+            'car_receipt' => $request->car_receipt ? 1 : 0,
+            'car_docs' => $request->car_docs ? 1 : 0,
+            'mileage' => $request->mileage,
+            'desc' => $request->desc,
+            'user_id' => auth()->user()->id,
+            'cylinder' => $request->cylinder,
+            'starting_date' => $request->starting_date,
+            'ending_date' => $request->ending_date,
+            'car_name' => $request->car_name,
+            'is_approved' => auth()->user()->role === 'admin' ? 1 : 0,
+            'is_installemt' => $request->is_installemt ? 1 : 0
+
+        ]);
+
+        $imageUrls = $this->uploadImagesAndGetLinks($request);
+
+        foreach ($imageUrls as $imageUrl) {
+            $auction->images()->create([
+                'auction_id' => $auction->id,
+                'image' => $imageUrl,
+            ]);
+        }
+
+
+        // Return a success response
+        return redirect()->back()->with(['success' => 'The auction has been successfully uploaded and is now live.']);
+
+    }
+
+
+
+    private function validateAuctionRequest(Request $request): \Illuminate\Validation\Validator
+    {
+        // Set custom validation messages
+        $messages = [
+            'category_id.required' => 'The category field is required.',
+            'sub_category_id.required' => 'The sub-category field is required.',
+            'brand_id.required' => 'The brand field is required.',
+            'model.required' => 'The model field is required.',
+            'year.required' => 'The year field is required.',
+            'mileage.required' => 'The mileage field is required.',
+            'color.required' => 'The color field is required.',
+            'location.required' => 'The location field is required.',
+            'price.required' => 'The price field is required.',
+            'car_name.required' => 'The car name input is required',
+            'desc.required' => 'The description field is required.',
+            'images.required' => 'The images field is required.',
+            'images.array' => 'The images must be an array.',
+            'images.*.image' => 'Each image must be a valid image file.',
+            'starting_date.required' => 'Starting date is required',
+            'ending_date.required' => 'Ending date is required'
+        ];
+
+        // Validate request data with custom messages
+        $validator = Validator::make($request->all(), [
+            'category_id' => 'required',
+            'sub_category_id' => 'required',
+            'brand_id' => 'required',
+            'model' => 'required',
+            'year' => 'required',
+            'mileage' => 'required',
+            'color' => 'required',
+            'car_name' => 'required',
+            'location' => 'required',
+            'address' => 'required',
+            'price' => 'required',
+            'desc' => 'required',
+            'starting_date' => 'required',
+            'ending_date' => 'required',
+            'receipt' => 'nullable',
+            'document' => 'nullable',
+            'images' => 'required|array',
+            'images.*' => 'image',
+        ], $messages);
+
+        return $validator;
+    }
 
 }

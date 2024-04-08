@@ -33,6 +33,7 @@ return array(
     'App\\Http\\Middleware\\showNavBar' => $baseDir . '/app/Http/Middleware/showNavBar.php',
     'App\\Listeners\\ReportListner' => $baseDir . '/app/Listeners/ReportListner.php',
     'App\\Models\\Auction' => $baseDir . '/app/Models/Auction.php',
+    'App\\Models\\AuctionImages' => $baseDir . '/app/Models/AuctionImages.php',
     'App\\Models\\Brand' => $baseDir . '/app/Models/Brand.php',
     'App\\Models\\Category' => $baseDir . '/app/Models/Category.php',
     'App\\Models\\Product' => $baseDir . '/app/Models/Product.php',
