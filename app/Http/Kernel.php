@@ -67,5 +67,6 @@ class Kernel extends HttpKernel
         'admin' => \App\Http\Middleware\AdminOnlyMiddleware::class,
         'notify' =>  \App\Http\Middleware\AdminNotifications::class,
         'showNavBar' => \App\Http\Middleware\showNavBar::class,
+        'authRedirect' => \App\Http\Middleware\authRedirect::class,
     ];
 }

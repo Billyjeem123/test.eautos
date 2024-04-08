@@ -26,14 +26,14 @@ use Illuminate\Support\Facades\Route;
 
 ##Home routes
 
-Route::group(['middleware' => 'showNavBar'], function () {
+Route::group(['middleware' => ['showNavBar']], function () {
     Route::get('/', [HomeController::class, 'index'])->name('index');
     Route::get('/report', [ReportController::class, 'viewReport'])->name('report.show');
     Route::post('/report/user', [ReportController::class, 'store'])->name('report.create')->middleware('auth');
 
 
 
-    #Return interface of signup pages... Authetication routess
+    #Return interface of signup pages... Authentication routes
     Route::view('/register/dealer', 'home.signup.dealer')->name('dealer.register');
     Route::view('/register/service-provider', 'home.signup.provider')->name('service_provider.register');
     Route::view('/register/buyer', 'home.signup.user')->name('buyer.register');
