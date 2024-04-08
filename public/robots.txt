@@ -1,0 +1,35 @@
+User-agent: *
+Disallow:
+
+<ol class="px-1 m-0">
+    @forelse($categories as $category)
+    <li class="p-0 my-1">
+        <div class="d-flex justify-content-between">
+            <span class="">{{ $category->catname }}</span>
+            <span class="button-group">
+                <form action="{{ route('admin.category.delete', $category->id) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn-circle btn-sm btn-danger px-2"><i class="fa fa-trash"></i></button>
+                </form>
+                <button class="btn-circle btn-sm btn-success px-2 edit-btn" data-toggle="collapse"
+                    data-target="#collapse_{{ $category->id }}" data-category="{{ $category->catname }}" aria-expanded="false"><i class="far fa-edit"></i></button>
+            </span>
+        </div>
+        <div id="collapse_{{ $category->id }}" class="collapse col-12">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <form action="{{ route('admin.category.update', $category->id) }}" method="POST" class="edit-form">
+                    @csrf
+                    @method('PUT')
+                    <div class="form-group p-0 m-0 d-flex">
+                        <input type="text" name="catname" class="form-control bg-white edit-input" placeholder="Edit Category" value="{{ $category->catname }}">
+                        <button type="submit" class="btn-sm btn-primary"><i class="fa fa-check"></i></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </li>
+    @empty
+    <li class="p-0 my-1">No categories found.</li>
+    @endforelse
+</ol>
