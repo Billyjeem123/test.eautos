@@ -269,8 +269,13 @@ private function validateRequest(Request $request)
             $products->views += 1;
             $products->save();
 
+            // Retrieve 5 similar cars excluding the current product
+            $similarProducts = Product::where('id', '!=', $productId)
+                ->where('category_id', $products->category_id)
+                ->get();
+
             // Return the data to your view or do something else with it
-            return view('home.products.details', compact('categoryName', 'products', 'subcategories', 'sub_category_name', 'category'));
+            return view('home.products.details', compact('categoryName', 'similarProducts', 'products', 'subcategories', 'sub_category_name', 'category'));
         } catch (ModelNotFoundException $e) {
             // Handle the case where the product or subcategory is not found
             abort(404); // Return a 404 response
@@ -279,6 +284,14 @@ private function validateRequest(Request $request)
 
 
 
+     public  function createAuction(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
+     {
+
+         $brands = Brand::all();
+         $categories=  Category::all();
+
+         return view('admin.auction', ['brands' => $brands, 'categories' => $categories]);
+     }
 
 
 

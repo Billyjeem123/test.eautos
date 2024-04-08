@@ -45,7 +45,7 @@
             <h6 class="collapse-header">Post Option</h6>
             <a class="collapse-item" href="postProperty.html">Property</a>
             <a class="collapse-item" href="{{route('admin.vehicle')}}">Vehicle</a>
-            <a class="collapse-item" href="auction.html">Auction</a>
+            <a class="collapse-item" href="{{route('admin.auction')}}">Auction</a>
           </div>
         </div>
       </li>
@@ -156,7 +156,7 @@
             </li>
 
             <!-- Nav Item - Alerts -->
-           
+
             <li class="nav-item dropdown no-arrow mx-1">
               <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown"
                   aria-haspopup="true" aria-expanded="false">
@@ -181,14 +181,14 @@
                       </div>
                   </a>
               @endforeach
-              
+
                   <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
               </div>
           </li>
-          
+
 
             <!-- Nav Item - Messages -->
-          
+
 
             <div class="topbar-divider d-none d-sm-block"></div>
 
@@ -225,7 +225,7 @@
         <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
-        
+
          @yield('page.content')
         <!-- /.container-fluid -->
       </div>

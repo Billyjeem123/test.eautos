@@ -118,5 +118,15 @@ Route::prefix('admin')->middleware('auth', 'admin', 'notify')->group(function ()
 
 
 
+     #Aunction
+
+    Route::get('/live-auction/display', [ProductController::class, 'createAuction'])->name('admin.auction');
+    Route::post('/vehicle/create', [ProductController::class, 'store'])->name('admin.vehicle.create');
+    Route::delete('/vehicle/delete/{id}', [ProductController::class, 'deleteVehicle'])->name('admin.vehicle.delete');
+    Route::get('/get-subcategories/{categoryId}', [ProductController::class, 'getSubcategories'])->name('admin.vehicle.getSubcategories');
+
+
+
+
 
 });

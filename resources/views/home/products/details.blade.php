@@ -32,14 +32,16 @@
 <header class="hero">
     <div class="image-wrapper">
         <!-- Main image -->
-        <img src="{{ $products->images[0]['image'] }}" class="main-image" width="100%" alt="">
+        <img src="{{ $products->images[0]['image'] }}" class="main-image" style="width: 100%; height: auto; object-fit: cover;" alt="">
+
         <!-- Image navigation -->
         <div class="image-nav">
             @foreach($products->images as $image)
-                <img src="{{ $image['image'] }}" alt="">
+                <img src="{{ $image['image'] }}" class="nav-image" style="width: 100%; height: auto; object-fit: cover;" alt="">
             @endforeach
         </div>
     </div>
+
 
 </header>
 <!-- ---------------------------- -->
@@ -173,128 +175,42 @@
     <div class="similar container">
         <h3><span>Similar Cars</span> <a href="">See more</a></h3><br>
         <div class="card_group">
-            <div class="card">
-                <div class="card_img" style="background: url(/images/cars/Rectangle\ 16.png) no-repeat;"></div>
-                <div class="card_text">
-                    <h5>2014 Toyota Camry</h5>
-                    <small><em>Posted by: Perillo BNW - Joined 2 months ago</em></small>
-                    <div class="details">
-                        <ul>
-                            <li>New</li>
-                            <li>10 Cylinder</li>
-                            <li style="background-color: #F9E17A; border: none; color: #ffffff;">Yellow</li>
-                            <li>Fuel</li>
-                        </ul>
-                        <h5>₦ 930,000</h5>
-                        <p>Lagos Nigeria (11 miles)</p>
+
+            <div class="card_group">
+
+                @foreach ($similarProducts as $product)
+                    <div class="card">
+                        <a href="{{route('product.show', $product->id)}}" class="card_link">
+                            <div class="card_img" style="background: url('{{ $product->images[0]['image'] }}') no-repeat;"></div>
+                        </a>
+                        <div class="card_text">
+                            <h5>{{ $product->car_name}}</h5>
+                            <small><em>Posted by: {{ $product->user->name}} - Joined {{$product->user->created_at->diffForHumans()}} </em></small>
+                            <div class="details">
+                                <ul>
+                                    <li>{{$product->subcategories->name}}</li>
+                                    <li>{{$product->cylinder}}</li>
+                                    <li style="background-color: {{ $product->color }}; border: none; color: #ffffff;">{{ $product->color }}</li>
+                                    <li>Fuel</li>
+                                </ul>
+                                <h5> ₦ {{ number_format($product->price,2) }}</h5>
+                                <p>{{ $product->location }} ({{ $product->mileage }})</p>
+                            </div>
+                        </div>
+                        <div class="card_footer">
+                            <h6>Compare</h6>
+                            <span>
+                <i class="fa-regular fa-heart"></i>
+                <i class="fa fa-share"></i>
+              </span>
+                        </div>
                     </div>
-                </div>
-                <div class="card_footer">
-                    <h6>Compare</h6>
-                    <span>
-              <i class="fa-regular fa-heart"></i>
-              <i class="fa fa-share"></i>
-            </span>
-                </div>
+                @endforeach
+
+
             </div>
-            <div class="card">
-                <div class="card_img"
-                     style="background: url(/images/cars/Optimized-dhiva-krishna-YApS6TjKJ9c-unsplash.jpg) no-repeat;"></div>
-                <div class="card_text">
-                    <h5>2014 Toyota Camry</h5>
-                    <small><em>Posted by: Perillo BNW - Joined 2 months ago</em></small>
-                    <div class="details">
-                        <ul>
-                            <li>New</li>
-                            <li>10 Cylinder</li>
-                            <li style="background-color: #717171; border: none; color: #ffffff;">Grey</li>
-                            <li>Fuel</li>
-                        </ul>
-                        <h5>₦ 930,000</h5>
-                        <p>Lagos Nigeria (11 miles)</p>
-                    </div>
-                </div>
-                <div class="card_footer">
-                    <h6>Compare</h6>
-                    <span>
-              <i class="fa-regular fa-heart"></i>
-              <i class="fa fa-share"></i>
-            </span>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card_img"
-                     style="background: url(/images/cars/Optimized-campbell-3ZUsNJhi_Ik-unsplash.jpg) no-repeat;"></div>
-                <div class="card_text">
-                    <h5>2010 Plant</h5>
-                    <small><em>Posted by: Perillo BNW - Joined 2 months ago</em></small>
-                    <div class="details">
-                        <ul>
-                            <li>New</li>
-                            <li>10 Cylinder</li>
-                            <li style="background-color: #000000; border: none; color: #ffffff;">Black</li>
-                            <li>Fuel</li>
-                        </ul>
-                        <h5>₦ 930,000</h5>
-                        <p>Lagos Nigeria (11 miles)</p>
-                    </div>
-                </div>
-                <div class="card_footer">
-                    <h6>Compare</h6>
-                    <span>
-              <i class="fa-regular fa-heart"></i>
-              <i class="fa fa-share"></i>
-            </span>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card_img" style="background: url(/images/cars/bmw.png) no-repeat;"></div>
-                <div class="card_text">
-                    <h5>2010 Plant</h5>
-                    <small><em>Posted by: Perillo BNW - Joined 2 months ago</em></small>
-                    <div class="details">
-                        <ul>
-                            <li>New</li>
-                            <li>10 Cylinder</li>
-                            <li style="background-color: #ffffff; border: none; color: #000000;">White</li>
-                            <li>Fuel</li>
-                        </ul>
-                        <h5>₦ 930,000</h5>
-                        <p>Lagos Nigeria (11 miles)</p>
-                    </div>
-                </div>
-                <div class="card_footer">
-                    <h6>Compare</h6>
-                    <span>
-              <i class="fa-regular fa-heart"></i>
-              <i class="fa fa-share"></i>
-            </span>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card_img" style="background: url(/images/cars/blue\ car.png) no-repeat;"></div>
-                <div class="card_text">
-                    <h5>2011 Nissan Rouge</h5>
-                    <small><em>Posted by: Perillo BNW - Joined 2 months ago</em></small>
-                    <div class="details">
-                        <ul>
-                            <li>Foreign Used</li>
-                            <li>8 Cylinder</li>
-                            <li style="background-color: #5696F3; border: none; color: #ffffff;">Blue</li>
-                            <li>Fuel</li>
-                        </ul>
-                        <h5>₦ 930,000</h5>
-                        <p>Lagos Nigeria (11 miles)</p>
-                    </div>
-                </div>
-                <div class="card_footer">
-                    <h6>Compare</h6>
-                    <span>
-              <i class="fa-regular fa-heart"></i>
-              <i class="fa fa-share"></i>
-            </span>
-                </div>
-            </div>
+
+
         </div>
     </div>
     <!-- ----------------------------------------------------- -->

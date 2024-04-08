@@ -26,12 +26,17 @@
 
 
 
+    <!-- Flatpickr CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+
+
 </head>
 
 <body id="page-top">
   <!-- Page Wrapper -->
   @include('admin.layouts.includes.sidebar')
-  
+
   <!-- End of Page Wrapper -->
 
   <!-- Scroll to Top Button-->
@@ -67,6 +72,7 @@
   <script src="/vendor/jquery/jquery.min.js"></script>
   <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
+
   <!-- Core plugin JavaScript-->
   <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
 
@@ -78,6 +84,23 @@
   <!-- Page level plugins -->
   <script src="/vendor/datatables/jquery.dataTables.min.js"></script>
   <script src="/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+
+  <!-- Flatpickr JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script>
+      flatpickr('#starting_date', {
+          enableTime: false,
+          dateFormat: "Y-m-d", // Format to match HTML date input format
+          placeholder: "Select starting date"
+      });
+
+      flatpickr('#ending_date', {
+          enableTime: false,
+          dateFormat: "Y-m-d", // Format to match HTML date input format
+          placeholder: "Select ending date"
+      });
+  </script>
 
   <!-- Page level custom scripts -->
   <script src="/js/demo/datatables-demo.js"></script>
