@@ -54,7 +54,7 @@
                 <span style="font-weight: bold; font-size: 18px; color: #394293;">₦ {{ number_format($products->price,2) }}</span>
             </p>
         </div>
-        <a href="">Car Page</a>
+        <a href=''>Car Page</a>
     </div>
     <!-- --------------------------------------------------- -->
     <section>

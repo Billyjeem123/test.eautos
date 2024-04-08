@@ -33,7 +33,6 @@ return new class extends Migration
             $table->string('desc');
             $table->string('starting_date');
             $table->string('ending_date');
-            $table->string('current_bids');
             $table->string('cylinder')->nullable();
             $table->integer('is_approved');
             $table->unsignedBigInteger('user_id');

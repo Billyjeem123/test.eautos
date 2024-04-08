@@ -29,8 +29,7 @@ class Auction extends Model
         'user_id',
         'car_name',
         'starting_date',
-        'ending_date',
-        'current_bids'
+        'ending_date'
     ];
 
 
@@ -48,7 +47,7 @@ class Auction extends Model
      */
     public function images(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasMany(Image::class, 'auction_id', 'id');
+        return $this->hasMany(AuctionImages::class, 'auction_id', 'id');
     }
 
     public function categories(): \Illuminate\Database\Eloquent\Relations\BelongsTo
