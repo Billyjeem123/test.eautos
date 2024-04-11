@@ -110,7 +110,7 @@
             <p><i class="fa fa-phone"></i>&nbsp; <span>{{$products->user->phone}}</span></p><br>
             <p><i class="fa fa-envelope"></i>&nbsp; <span>{{$products->user->email}}</span></p>
             <a>To Schedule Meeting &nbsp; <i class="fa fa-arrow-down"></i></a>
-            <form action="">
+            <form action=""  method="POST">
                 <input type="text" placeholder="Your Name" name="name">
                 <input type="text" placeholder="Your Email"  name="email">
                 <input type="text" placeholder="Your Phone Number" name="phone">

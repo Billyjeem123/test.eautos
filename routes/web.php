@@ -55,6 +55,8 @@ Route::group(['middleware' => ['showNavBar']], function () {
     Route::get('/get-products/{id}', [ProductController::class, 'getProductCategory'])->name('category.product');
     Route::get('/get-sub-categories-products/{category_name}', [ProductController::class, 'getSubProductCategory'])->name('get.sub.product');
     Route::get('/get-product-details/{id}', [ProductController::class, 'getProductDetails'])->name('product.show');
+    Route::post('/reach-out', [ProductController::class, 'reachOut'])->name('client.reachout');
+
     });
 });
 
@@ -107,6 +109,10 @@ Route::prefix('admin')->middleware('auth', 'admin', 'notify')->group(function ()
      Route::post('/vehicle/create', [ProductController::class, 'store'])->name('admin.vehicle.create');
      Route::delete('/vehicle/delete/{id}', [ProductController::class, 'deleteVehicle'])->name('admin.vehicle.delete');
      Route::get('/get-subcategories/{categoryId}', [ProductController::class, 'getSubcategories'])->name('admin.vehicle.getSubcategories');
+    Route::get('/get-vehicle/{id}', [ProductController::class, 'showProductRecords'])->name('admin.edit.product');
+    Route::put('/update-vehicle/{id}', [ProductController::class, 'updateProduct'])->name('admin.vehicle.update');
+
+
 
      #notification..
      Route::get('/read', [AdminController::class, 'markAsRead'])->name('mark_As_read');
@@ -127,6 +133,6 @@ Route::prefix('admin')->middleware('auth', 'admin', 'notify')->group(function ()
 
 
 
-
+    Route::view('/editlist', 'admin.edit-listing')->name('edit.listing');
 
 });

@@ -11,7 +11,7 @@
         <!-- Page Heading -->
         <h1 class="h3 mb-4 text-gray-800">Listing</h1>
         <div class="">
-        
+
         </div>
         <div class="table-responsive bg-gray-100 p-2 py-4">
           <table class="table" id="dataTable" width="100%" cellspacing="0">
@@ -49,7 +49,8 @@
                   </form>
 
                   <td>{{$product->created_at->diffForHumans()}}</td>
-                  <td><button class="btn btn-info btn-sm">View Details</button></td>
+                  <td><a class="btn btn-info btn-sm" href="{{ route('admin.edit.product', $product->id) }}">View Details</a></td>
+
 
                   <form action="{{ route('admin.product.delete', $product->id) }}" method="POST">
                     @csrf

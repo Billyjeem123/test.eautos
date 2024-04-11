@@ -26,6 +26,16 @@ class ProductController extends Controller
         return view('admin.vehicle', ['brands' => $brands, 'categories' => $categories]);
     }
 
+    public function showProductRecords($id): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
+    {
+
+        $brands = Brand::all();
+        $categories=  Category::all();
+        $product = Product::find($id);
+        return view('admin.edit-listing', ['brands' => $brands, 'categories' => $categories, 'product' => $product]);
+    }
+
+
 
     public function getSubcategories($categoryId) {
         // Logic to fetch subcategories based on the category ID
@@ -108,7 +118,7 @@ class ProductController extends Controller
  * @param \Illuminate\Http\Request $request
  * @return \Illuminate\Contracts\Validation\Validator
  */
-private function validateRequest(Request $request)
+private function validateRequest(Request $request): \Illuminate\Contracts\Validation\Validator
 {
     // Set custom validation messages
     $messages = [
@@ -393,5 +403,60 @@ private function validateRequest(Request $request)
 
         return $validator;
     }
+
+
+
+    public function updateProduct(Request $request)
+    {
+        $validator = $this->validateRequest($request);
+
+        // Check if validation fails
+        if ($validator->fails()) {
+            return redirect()->back()->withInput()->withErrors(['error' => $validator->errors()->first()]); // Redirect back with input and error message
+        }
+
+        // Fetch the existing product instance
+        $product = Product::findOrFail($request->product_id);
+
+        // Update product attributes
+        $product->category_id = $request->category_id;
+        $product->sub_category_id = $request->sub_category_id;
+        $product->brand_id = $request->brand_id;
+        $product->model = $request->model;
+        $product->color = $request->color;
+        $product->address = $request->address;
+        $product->location = $request->location;
+        $product->price = $request->price;
+        $product->deed = $request->deed ? 1 : 0;
+        $product->car_receipt = $request->car_receipt ? 1 : 0;
+        $product->car_docs = $request->car_docs ? 1 : 0;
+        $product->mileage = $request->mileage;
+        $product->desc = $request->desc;
+        $product->cylinder = $request->cylinder;
+        $product->car_name = $request->car_name;
+        $product->is_approved = auth()->user()->role === 'admin' ? 1 : 0;
+        $product->is_installemt = $request->is_installemt ? 1 : 0;
+
+        // Save the updated product
+        $product->save();
+
+        // Update or add images
+        $imageUrls = $this->uploadImagesAndGetLinks($request);
+        foreach ($imageUrls as $imageUrl) {
+            $product->images()->create([
+                'product_id' => $product->id,
+                'image' => $imageUrl,
+            ]);
+        }
+
+        // Return a success response
+        return redirect()->back()->with(['success' => 'Product updated successfully']);
+    }
+
+
+     public  function  reachOut()
+     {
+
+     }
 
 }

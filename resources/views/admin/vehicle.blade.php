@@ -28,7 +28,7 @@
           <option  selected>Select Category</option>
           @foreach ($categories as $item)
           <option value="{{$item->id}}">{{$item->catname}}</option>
-              
+
           @endforeach
 
         </select>
@@ -36,7 +36,7 @@
 
 
 
- 
+
       <div class="form-group col-md-6">
         <select id="subcategory" class="form-control bg-white" name="sub_category_id">
             <option selected disabled>Sub Category</option>
@@ -53,13 +53,13 @@
           <option  selected>Select Brand  </option>
           @foreach ($brands as $brand)
           <option value="{{$brand->id}}">{{$brand->name}}</option>
-              
+
           @endforeach
 
         </select>
 
 
-       
+
       </div>
       <div class="form-group col-md-5">
         <input type="text" class="form-control bg-white" placeholder="Model" id="year" name="model">
@@ -129,7 +129,7 @@
           <option value="Tungsten">Tungsten</option>
           <option value="Steel Blue">Steel Blue</option>
           <option value="Deep Purple">Deep Purple</option>
-              
+
 
         </select>
 
@@ -178,28 +178,23 @@
           <option>Zamfara</option>
           <option>Federal Capital Territory (FCT)</option>
       </select>
-      
+
       </div>
-      
-     
+
+
       <div class="form-group col-md-6">
         <input type="text" class="form-control bg-white" placeholder="Area" id="price" name="address">
       </div>
     </div>
     <h5 class="h5 mb-2">Pricing Details</h5>
     <div class="form-row mb-3">
-      <div class="form-group col-md-4">
+      <div class="form-group col-md-6">
         <input type="text" class="form-control bg-white" placeholder="Price" id="price" name="price">
       </div>
-      <div class="form-group col-md-4">
+      <div class="form-group col-md-6">
         <input type="text" class="form-control bg-white" placeholder="Car name" id="price" name="car_name">
       </div>
-      <div class="form-group col-md-4">
-        <select id="append" class="form-control bg-white">
-          <option selected>Append To</option>
-          <option>...</option>
-        </select>
-      </div>
+
     </div>
     <div class="form-check my-3">
       <input type="checkbox" class="form-check-input" id="installment" name="installment">
@@ -265,5 +260,5 @@
 </script>
 
 
-    
+
 @endsection
