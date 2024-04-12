@@ -217,16 +217,32 @@ private function validateRequest(Request $request): \Illuminate\Contracts\Valida
                 }])
                 ->where('category_id', $id);
 
+            $auctions = Auction::all()->take(5);
+
+
 
             // Execute the query to fetch products
             $products = $productsQuery->get();
             // Return the data to your view or do something else with it
-            return view('home.products.index', compact('category', 'subcategories', 'products', 'categoryName'));
+            return view('home.products.index', compact('category',  'auctions', 'subcategories', 'products', 'categoryName'));
         } catch (ModelNotFoundException $e) {
             // Handle the case where the category is not found
             abort(404); // Return a 404 response
         }
     }
+
+
+
+    public function getAuctionDates(): \Illuminate\Http\JsonResponse
+    {
+        // Select the starting_date and ending_date columns from the Auction model
+        $auctions = Auction::select('starting_date', 'ending_date', 'id')->get();
+
+        // Return the starting and ending dates as a JSON response
+        return response()->json($auctions);
+    }
+
+
 
 
 
@@ -456,7 +472,7 @@ private function validateRequest(Request $request): \Illuminate\Contracts\Valida
     }
 
 
-    public function reachOut(Request $request)
+    public function reachOut(Request $request): \Illuminate\Http\RedirectResponse
     {
          # Find the product
         $product = Product::find($request->productid);
@@ -483,6 +499,15 @@ private function validateRequest(Request $request): \Illuminate\Contracts\Valida
         return redirect()->back()->with(['success' => 'Message sent successfully']);
     }
 
+
+     public function getAuctionCars(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
+     {
+         $auctions = Auction::all();
+
+
+         return view('home.auction.index', ['auctions' => $auctions]);
+
+     }
 
 
 

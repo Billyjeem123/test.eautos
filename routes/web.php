@@ -56,7 +56,11 @@ Route::group(['middleware' => ['showNavBar']], function () {
     Route::get('/get-sub-categories-products/{category_name}', [ProductController::class, 'getSubProductCategory'])->name('get.sub.product');
     Route::get('/get-product-details/{id}', [ProductController::class, 'getProductDetails'])->name('product.show');
     Route::post('/reach-out', [ProductController::class, 'reachOut'])->name('client.reachout')->middleware('auth');
+    Route::get('/get-auction-dates', [ProductController::class, 'getAuctionDates'])->name('getDateDynamically');
 
+
+    #auction routes....
+        Route::get('/get-auction', [ProductController::class, 'getAuctionCars'])->name('get.auction.cars');
     });
 });
 

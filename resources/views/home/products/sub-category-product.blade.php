@@ -163,7 +163,7 @@
                     </div>
                 </div>
             </div>
-            <a href="auction.html" class="see_all">See All</a>
+            <a href="{{route('get.auction.cars')}}" class="see_all">See All</a>
 
         </aside>
         <div class="latest">

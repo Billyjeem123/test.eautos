@@ -40,35 +40,46 @@
             <h3>Live Auction</h3>
             <div class="card_group">
 
-                <div class="card">
-                    <div class="time">
-                        <p>
-                            <strong>Days</strong><br>
-                            <span>50</span>
-                        </p>
-                        <p>
-                            <strong>Hours</strong><br>
-                            <span>20</span>
-                        </p>
-                        <p>
-                            <strong>Minutes</strong><br>
-                            <span>12</span>
-                        </p>
+                @forelse($auctions as $auction)
+                    <div class="card">
+
+                        <div id="auction-timers">
+                            <!-- Countdown timer for each auction will be dynamically generated here -->
+                        </div>
+                        <div class="time">
+                            <p>
+                                <strong>Days</strong><br>
+                                <span id="days">50</span>
+                            </p>
+                            <p>
+                                <strong>Hours</strong><br>
+                                <span id="hours">4</span>
+                            </p>
+                            <p>
+                                <strong>Minutes</strong><br>
+                                <span id="minutes">31</span>
+                            </p>
+                        </div>
+
+                        <div class="details">
+                            <h5>{{ $auction->car_name }}</h5> <!-- Assuming $item has a 'title' property -->
+                            <p class="location">{{ $auction->location }}</p> <!-- Assuming $item has a 'location' property -->
+                            <p class="bid_price"> Starting bid: <span> ₦ {{ number_format($auction->price, 2) }}</span></p> <!-- Assuming $item has a 'starting_bid' property -->
+                        </div>
+                        <div class="card_footer">
+                            <span><i class="fa fa-circle"></i></span>
+                            <p>Live</p>
+                        </div>
                     </div>
-                    <div class="details">
-                        <h5>2014 Toyota Camry</h5>
-                        <p class="location">Lagos Nigeria</p>
-                        <p class="bid_price">Starting bid: <span>₦ 930,000</span></p>
-                    </div>
-                    <div class="card_footer">
-                        <span><i class="fa fa-circle"></i></span>
-                        <p>Live</p>
-                    </div>
-                </div>
+                @empty
+                    <p>No result found</p>
+                @endforelse
+
             </div>
-            <a href="auction.html" class="see_all">See All</a>
+            <a href="{{route('get.auction.cars')}}" class="see_all">See All</a>
 
         </aside>
+
 
 
 
@@ -157,6 +168,7 @@
 </main>
 
 @include('home.includes.footer')
+
 <script>
     $(document).ready(function () {
         state = true;
