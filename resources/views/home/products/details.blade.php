@@ -110,11 +110,13 @@
             <p><i class="fa fa-phone"></i>&nbsp; <span>{{$products->user->phone}}</span></p><br>
             <p><i class="fa fa-envelope"></i>&nbsp; <span>{{$products->user->email}}</span></p>
             <a>To Schedule Meeting &nbsp; <i class="fa fa-arrow-down"></i></a>
-            <form action=""  method="POST">
-                <input type="text" placeholder="Your Name" name="name">
-                <input type="text" placeholder="Your Email"  name="email">
-                <input type="text" placeholder="Your Phone Number" name="phone">
-                <textarea name="" id="" cols="30" rows="6" placeholder="I'm interested in buying............"></textarea>
+            <form action="{{route('client.reachout')}}"  method="POST">
+                @csrf
+                <input type="text" placeholder="Your Name" name="name"  required>
+                <input type="text" placeholder="Your Email"  name="email" required>
+                <input type="text" placeholder="Your Phone Number" name="phone" required>
+                <input type="hidden"  name="productid"  value="{{$products->id}}">
+                <textarea name="message" id="" cols="30" rows="6" placeholder="I'm interested in buying............" required></textarea>
                 <button type="submit">Send Email</button>
             </form>
 

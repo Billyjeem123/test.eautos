@@ -58,4 +58,12 @@ class User extends Authenticatable
     {
         return $this->hasMany(Product::class);
     }
+
+    /**
+     * Get the  messages associated with the user.
+     */
+    public function messages()
+    {
+        return $this->hasMany(Message::class);
+    }
 }

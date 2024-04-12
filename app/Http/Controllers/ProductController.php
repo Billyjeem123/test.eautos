@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 
+use App\Events\ReachOut;
 use App\Models\Auction;
+use App\Models\Message;
 use App\Models\User;
 use App\Models\Brand;
 use App\Models\Product;
@@ -454,9 +456,35 @@ private function validateRequest(Request $request): \Illuminate\Contracts\Valida
     }
 
 
-     public  function  reachOut()
-     {
+    public function reachOut(Request $request)
+    {
+         # Find the product
+        $product = Product::find($request->productid);
 
-     }
+        #  Ensure the product exists
+        if (!$product) {
+            return redirect()->back()->with(['error' => 'Product not found']);
+        }
+
+        // Create a new message
+        Message::create([
+            'sender_id' => auth()->user()->id,
+            'receiver_id' => $product->user->id,
+            'message' => $request->message,
+            'phone_number' => $request->phone
+        ]);
+
+        $senderMail = $product->user->id;
+        $receiverMail = auth()->user()->id;
+
+
+        event(new ReachOut($senderMail, $receiverMail));
+
+        return redirect()->back()->with(['success' => 'Message sent successfully']);
+    }
+
+
+
+
 
 }

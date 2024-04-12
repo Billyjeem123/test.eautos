@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Events\ReachOut;
 use App\Events\ReportEvent;
+use App\Listeners\ReachOutListner;
 use App\Listeners\ReportListner;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Auth\Events\Registered;
@@ -23,6 +25,10 @@ class EventServiceProvider extends ServiceProvider
 
         ReportEvent::class => [
             ReportListner::class
+        ],
+
+        ReachOut::class => [
+            ReachOutListner::class
         ]
     ];
 

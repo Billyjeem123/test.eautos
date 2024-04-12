@@ -55,7 +55,7 @@ Route::group(['middleware' => ['showNavBar']], function () {
     Route::get('/get-products/{id}', [ProductController::class, 'getProductCategory'])->name('category.product');
     Route::get('/get-sub-categories-products/{category_name}', [ProductController::class, 'getSubProductCategory'])->name('get.sub.product');
     Route::get('/get-product-details/{id}', [ProductController::class, 'getProductDetails'])->name('product.show');
-    Route::post('/reach-out', [ProductController::class, 'reachOut'])->name('client.reachout');
+    Route::post('/reach-out', [ProductController::class, 'reachOut'])->name('client.reachout')->middleware('auth');
 
     });
 });
