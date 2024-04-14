@@ -168,7 +168,8 @@ private function validateRequest(Request $request): \Illuminate\Contracts\Valida
 
 // The Product model has a belongsTo relationship defined with the Category model, indicating that a product belongs to a single category.
 
-    public function indexAll(){
+    public function indexAll(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
+    {
 
 
         $products  = Product::with('brand', 'images', 'categories')->get();
@@ -271,8 +272,11 @@ private function validateRequest(Request $request): \Illuminate\Contracts\Valida
                 })
                 ->get();
 
+
+            $auctions = Auction::all()->take(5);
+
             // Return the data to your view
-            return view('home.products.sub-category-product', compact('subcategories',  'sub_category_name', 'categoryName', 'products'));
+            return view('home.products.sub-category-product', compact('subcategories', 'auctions',  'sub_category_name', 'categoryName', 'products'));
         } catch (ModelNotFoundException $e) {
             // Handle the case where the subcategory is not found
             abort(404); // Return a 404 response
@@ -507,12 +511,20 @@ private function validateRequest(Request $request): \Illuminate\Contracts\Valida
 
      public function getAuctionCars(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
      {
-         $auctions = Auction::all();
+         $auctions = Auction::with('user', 'images')->get();
+
+//          echo "<pre>";
+//          echo json_encode($auctions, JSON_PRETTY_PRINT);
+//          echo "</pre>";
+//
+//          exit;
 
 
          return view('home.auction.index', ['auctions' => $auctions]);
 
      }
+
+
 
     public function comment(Request $request): \Illuminate\Http\RedirectResponse
     {
