@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 
+use App\Events\CommentEvent;
 use App\Events\ReachOut;
 use App\Models\Auction;
+use App\Models\Comment;
 use App\Models\Message;
 use App\Models\User;
 use App\Models\Brand;
@@ -303,8 +305,11 @@ private function validateRequest(Request $request): \Illuminate\Contracts\Valida
                 ->where('category_id', $products->category_id)
                 ->get();
 
+            $comments = Comment::with('user')->where('post_id', $products->id)->get();
+
+
             // Return the data to your view or do something else with it
-            return view('home.products.details', compact('categoryName', 'similarProducts', 'products', 'subcategories', 'sub_category_name', 'category'));
+            return view('home.products.details', compact('categoryName', 'comments', 'similarProducts', 'products', 'subcategories', 'sub_category_name', 'category'));
         } catch (ModelNotFoundException $e) {
             // Handle the case where the product or subcategory is not found
             abort(404); // Return a 404 response
@@ -508,6 +513,41 @@ private function validateRequest(Request $request): \Illuminate\Contracts\Valida
          return view('home.auction.index', ['auctions' => $auctions]);
 
      }
+
+    public function comment(Request $request): \Illuminate\Http\RedirectResponse
+    {
+        // Validate the request data
+        $validatedData = $request->validate([
+            'comment' => 'required|string|max:255', // Adjust validation rules as needed
+            'post_id' => 'required'
+        ]);
+
+        try {
+            // Create a new comment using mass assignment
+            $comment = Comment::create([
+                'user_id' => auth()->user()->id,
+                'comment' => $validatedData['comment'],
+                'post_id' => $validatedData['post_id']
+            ]);
+
+            $post = Product::find($validatedData['post_id']);
+
+            $ownermail = $comment->user->email;
+            $title = "Your product named '$post->car_name' has received a comment.";
+
+
+            event(new CommentEvent($ownermail, $title));
+
+            // Return success response
+            return redirect()->back()->with(['success' => 'Comment posted successfully']);
+        } catch (\Exception $e) {
+            // Log the error or handle it appropriately
+            // For now, we'll redirect back with an error message
+            return redirect()->back()->with(['error' => 'Failed to post comment. Please try again later.']);
+        }
+    }
+
+
 
 
 

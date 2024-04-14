@@ -61,6 +61,11 @@ Route::group(['middleware' => ['showNavBar']], function () {
 
     #auction routes....
         Route::get('/get-auction', [ProductController::class, 'getAuctionCars'])->name('get.auction.cars');
+
+        #comment routes....
+
+        Route::post('/post-a-comment', [ProductController::class, 'comment'])->name('post.comment')->middleware('auth');
+
     });
 });
 

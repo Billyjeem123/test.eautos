@@ -8,6 +8,39 @@
     <link rel="stylesheet" href="/home/css/vehicleDetails.css">
     <link rel="stylesheet" href="/home/assets/fontawesome/css/all.min.css">
 
+    <style>
+        .comment-section {
+            margin-top: 20px;
+        }
+
+        .comment-section h4 {
+            margin-bottom: 10px;
+        }
+
+        .comment-section textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            resize: vertical;
+            margin-bottom: 10px;
+        }
+
+        .comment-section button {
+            background-color: #394293;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .comment-section button:hover {
+            background-color: #0056b3;
+        }
+
+    </style>
+
 </head>
 
 <body>
@@ -68,7 +101,7 @@
                 <hr>
                 <li><strong>Property Status</strong> <span>For Sale</span></li>
                 <hr>
-{{--                <li><strong>Car ID</strong> <span>EP3456</span></li>--}}
+                {{--                <li><strong>Car ID</strong> <span>EP3456</span></li>--}}
                 <li>
                     <strong>Car Document</strong>
                     <span>{{ $products->car_docs == 1 ? "YES" : "NO" }}</span>
@@ -127,50 +160,36 @@
     <div class="reviews container">
         <h3>Reviews</h3>
         <div class="card_group">
+            @forelse ($comments as $comment)
             <div class="card">
                 <div class="card_header">
-                    <strong>B</strong>
-                    <small>Blessing Lainus</small>
+                    <strong>{{ substr($comment->user->name, 0, 1) }}
+                    </strong>
+                    <small>{{$comment->user->name}}</small>
                 </div>
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas nisi natus quasi, alias laboriosam ex?</p>
+                <p>{{$comment->comment}}</p>
             </div>
-            <div class="card">
-                <div class="card_header">
-                    <strong>B</strong>
-                    <small>Blessing Lainus</small>
+
+            @empty
+                <div class="card" style="text-align: center;" >
+                    <p>No comments available at the moment.</p>
                 </div>
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas nisi natus quasi, alias laboriosam ex?</p>
-            </div>
-            <div class="card">
-                <div class="card_header">
-                    <strong>B</strong>
-                    <small>Blessing Lainus</small>
-                </div>
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas nisi natus quasi, alias laboriosam ex?</p>
-            </div>
-            <div class="card">
-                <div class="card_header">
-                    <strong>B</strong>
-                    <small>Blessing Lainus</small>
-                </div>
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas nisi natus quasi, alias laboriosam ex?</p>
-            </div>
-            <div class="card">
-                <div class="card_header">
-                    <strong>B</strong>
-                    <small>Blessing Lainus</small>
-                </div>
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas nisi natus quasi, alias laboriosam ex?</p>
-            </div>
-            <div class="card">
-                <div class="card_header">
-                    <strong>B</strong>
-                    <small>Blessing Lainus</small>
-                </div>
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas nisi natus quasi, alias laboriosam ex?</p>
-            </div>
+            @endforelse
+
         </div>
-        <a href="">Post a Comment</a>
+
+        <!-- Add a textarea for commenting -->
+        <div class="comment-section">
+            <h4>Leave a Comment</h4>
+            <form action="{{route('post.comment')}}" method="post" >
+                @csrf
+                <input type="hidden" name="post_id" value="{{$products->id}}">
+                <textarea name="comment" id="comment" placeholder="Write your comment here..." rows="4" required></textarea>
+                <button type="submit">Post Comment</button>
+            </form>
+
+        </div>
+
     </div>
     <!-- --------------------------------------------------- -->
     <!-- ----------------------------------------- -->
