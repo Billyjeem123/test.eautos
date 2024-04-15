@@ -125,7 +125,7 @@
         <h3>Make a Request</h3>
         <p>Lorem ipsum dolor, Corporis aliquid consequatur aspernatur at iure
           voluptas vero inventore similique officiis quia?</p>
-        <a href="request.html" target="_blank">Request</a>
+        <a href="{{route('request.show')}}" target="_blank">Request</a>
       </span>
     </div>
 

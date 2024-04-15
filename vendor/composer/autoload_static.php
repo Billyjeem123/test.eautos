@@ -547,6 +547,7 @@ class ComposerStaticInitfe33f98a750b8c5a51b30c78bd3fab21
 
     public static $classMap = array (
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
+        'App\\Events\\CommentEvent' => __DIR__ . '/../..' . '/app/Events/CommentEvent.php',
         'App\\Events\\ReachOut' => __DIR__ . '/../..' . '/app/Events/ReachOut.php',
         'App\\Events\\ReportEvent' => __DIR__ . '/../..' . '/app/Events/ReportEvent.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
@@ -573,6 +574,7 @@ class ComposerStaticInitfe33f98a750b8c5a51b30c78bd3fab21
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Http\\Middleware\\authRedirect' => __DIR__ . '/../..' . '/app/Http/Middleware/authRedirect.php',
         'App\\Http\\Middleware\\showNavBar' => __DIR__ . '/../..' . '/app/Http/Middleware/showNavBar.php',
+        'App\\Listeners\\CommentListner' => __DIR__ . '/../..' . '/app/Listeners/CommentListner.php',
         'App\\Listeners\\ReachOutListner' => __DIR__ . '/../..' . '/app/Listeners/ReachOutListner.php',
         'App\\Listeners\\ReportListner' => __DIR__ . '/../..' . '/app/Listeners/ReportListner.php',
         'App\\Models\\Auction' => __DIR__ . '/../..' . '/app/Models/Auction.php',
@@ -583,8 +585,10 @@ class ComposerStaticInitfe33f98a750b8c5a51b30c78bd3fab21
         'App\\Models\\Message' => __DIR__ . '/../..' . '/app/Models/Message.php',
         'App\\Models\\Product' => __DIR__ . '/../..' . '/app/Models/Product.php',
         'App\\Models\\Report' => __DIR__ . '/../..' . '/app/Models/Report.php',
+        'App\\Models\\RequestCar' => __DIR__ . '/../..' . '/app/Models/RequestCar.php',
         'App\\Models\\SubCategory' => __DIR__ . '/../..' . '/app/Models/SubCategory.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
+        'App\\Notifications\\CommentNotification' => __DIR__ . '/../..' . '/app/Notifications/CommentNotification.php',
         'App\\Notifications\\ReachOut' => __DIR__ . '/../..' . '/app/Notifications/ReachOut.php',
         'App\\Notifications\\ReportOffender' => __DIR__ . '/../..' . '/app/Notifications/ReportOffender.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',

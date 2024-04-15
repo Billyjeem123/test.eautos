@@ -32,6 +32,12 @@ Route::group(['middleware' => ['showNavBar']], function () {
     Route::post('/report/user', [ReportController::class, 'store'])->name('report.create')->middleware('auth');
 
 
+    #request car
+
+    Route::get('/request-a-car', [ReportController::class, 'viewRequest'])->name('request.show');
+    Route::post('/request/user', [ReportController::class, 'saveCarRequest'])->name('save-request')->middleware('auth');
+
+
 
     #Return interface of signup pages... Authentication routes
     Route::view('/register/dealer', 'home.signup.dealer')->name('dealer.register');

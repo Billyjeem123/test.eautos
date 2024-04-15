@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
+    'App\\Events\\CommentEvent' => $baseDir . '/app/Events/CommentEvent.php',
     'App\\Events\\ReachOut' => $baseDir . '/app/Events/ReachOut.php',
     'App\\Events\\ReportEvent' => $baseDir . '/app/Events/ReportEvent.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
@@ -33,6 +34,7 @@ return array(
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
     'App\\Http\\Middleware\\authRedirect' => $baseDir . '/app/Http/Middleware/authRedirect.php',
     'App\\Http\\Middleware\\showNavBar' => $baseDir . '/app/Http/Middleware/showNavBar.php',
+    'App\\Listeners\\CommentListner' => $baseDir . '/app/Listeners/CommentListner.php',
     'App\\Listeners\\ReachOutListner' => $baseDir . '/app/Listeners/ReachOutListner.php',
     'App\\Listeners\\ReportListner' => $baseDir . '/app/Listeners/ReportListner.php',
     'App\\Models\\Auction' => $baseDir . '/app/Models/Auction.php',
@@ -43,8 +45,10 @@ return array(
     'App\\Models\\Message' => $baseDir . '/app/Models/Message.php',
     'App\\Models\\Product' => $baseDir . '/app/Models/Product.php',
     'App\\Models\\Report' => $baseDir . '/app/Models/Report.php',
+    'App\\Models\\RequestCar' => $baseDir . '/app/Models/RequestCar.php',
     'App\\Models\\SubCategory' => $baseDir . '/app/Models/SubCategory.php',
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',
+    'App\\Notifications\\CommentNotification' => $baseDir . '/app/Notifications/CommentNotification.php',
     'App\\Notifications\\ReachOut' => $baseDir . '/app/Notifications/ReachOut.php',
     'App\\Notifications\\ReportOffender' => $baseDir . '/app/Notifications/ReportOffender.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',

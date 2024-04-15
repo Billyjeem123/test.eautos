@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Events\ReportEvent;
 use App\Models\Report;
+use App\Models\RequestCar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -12,6 +13,12 @@ class ReportController extends Controller
     //
     public function viewReport(){
         return view('home.report.report');
+
+    }
+
+
+    public function viewRequest(){
+        return view('home.report.request');
 
     }
 
@@ -88,6 +95,32 @@ private function validateRequest(Request $request)
         $Report = Report::findOrFail($id);
         $Report->delete();
         return redirect()->back()->with('success', 'Record deleted successfully');
+    }
+
+
+
+    public function saveCarRequest(Request $request): \Illuminate\Http\RedirectResponse
+    {
+
+        // Create and save the report
+        $report = new RequestCar();
+        $report->brand = $request->input('brand');
+        $report->model = $request->input('model');
+        $report->budget = $request->input('budget');
+        $report->body = $request->input('body');
+        $report->country = $request->input('country');
+        $report->phone = $request->input('phone_number');
+        $report->user_id = auth()->user()->id;
+        $report->save();
+
+        $mail = 'billy@gmail.com';
+        $messages = 'You have a new car request';
+
+        event(new ReportEvent($mail, $messages));
+
+        // Redirect back with success message
+        return redirect()->back()->with('success', 'Your request has been submitted successfully. You will be notified upon any updates.');
+
     }
 
 }
