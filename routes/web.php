@@ -36,7 +36,7 @@ Route::group(['middleware' => ['showNavBar']], function () {
 
     Route::get('/request-a-car', [ReportController::class, 'viewRequest'])->name('request.show');
     Route::post('/request/user', [ReportController::class, 'saveCarRequest'])->name('save-request')->middleware('auth');
-
+    Route::get('/search-asset', [ProductController::class, 'searchProduct'])->name('search');
 
 
     #Return interface of signup pages... Authentication routes

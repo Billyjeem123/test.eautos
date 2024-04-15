@@ -26,7 +26,8 @@ class Product extends Model
         'is_installemt',
         'is_approved',
         'user_id',
-        'car_name'
+        'car_name',
+        'cylinder'
     ];
 
      /**

@@ -194,7 +194,7 @@
     <!-- --------------------------------------------------- -->
     <!-- ----------------------------------------- -->
     <div class="similar container">
-        <h3><span>Similar Cars</span> <a href="">See more</a></h3><br>
+        <h3><span>Similar {{$categoryName}}</span> <a href="">See more</a></h3><br>
         <div class="card_group">
 
             <div class="card_group">

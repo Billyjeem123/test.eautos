@@ -41,7 +41,8 @@ class ProductController extends Controller
 
 
 
-    public function getSubcategories($categoryId) {
+    public function getSubcategories($categoryId): \Illuminate\Http\JsonResponse
+    {
         // Logic to fetch subcategories based on the category ID
         $subcategories = SubCategory::where('category_id', $categoryId)->pluck('name', 'id');
         return response()->json($subcategories);
@@ -559,6 +560,42 @@ private function validateRequest(Request $request): \Illuminate\Contracts\Valida
         }
     }
 
+        public function searchProduct(Request $request): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
+        {
+            // Retrieve inputs from the form
+            $brand_id = $request->input('brand_id');
+            $min_price = $request->input('min_price');
+            $max_price = $request->input('max_price');
+
+
+            // Start with a base query
+            $query = Product::query();
+
+            // Add conditions based on inputs
+            if ($brand_id) {
+                $query->where('brand_id', $brand_id);
+            }
+
+            // Add price range condition if both min and max prices are provided
+            if ($min_price && $max_price) {
+                $query->whereBetween('price', [$min_price, $max_price]);
+            } else {
+                // If only one of min or max price is provided, adjust the condition accordingly
+                $query->when($min_price, function ($query) use ($min_price) {
+                    return $query->where('price', '>=', $min_price);
+                })->when($max_price, function ($query) use ($max_price) {
+                    return $query->where('price', '<=', $max_price);
+                });
+            }
+
+            // Execute the query and fetch the results
+            $products = $query->get();
+
+            $auctions = Auction::all()->take(5);
+
+            // Return the search results to the view
+            return view('home.products.search', compact('products', 'auctions'));
+        }
 
 
 

@@ -79,10 +79,9 @@
 
         </aside>
         <div class="latest">
-            <h3>Our Latest Cars</h3>
+            <h3>Our Latest {{ Str::singular($categoryName) }}</h3>
 
             <div class="card_group">
-
 
                 @foreach ($products as $product)
                     <div class="card">
