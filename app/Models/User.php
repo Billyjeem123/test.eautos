@@ -74,4 +74,13 @@ class User extends Authenticatable
     {
         return $this->hasMany(Comment::class, 'user_id');
     }
+
+
+    /**
+     * Get the  requested-cars  associated with the user.
+     */
+    public function carrequests(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(RequestCar::class);
+    }
 }

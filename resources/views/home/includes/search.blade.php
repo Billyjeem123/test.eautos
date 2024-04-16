@@ -15,11 +15,11 @@
 
                 <div class="select_wrapper">
                     <label for="model"><i class="fa fa-angle-down"></i></label>
-                    <select name="model" id="model">
-                        <option value="" selected disabled>Enter Model</option>
-                        <option value="">C-class</option>
-                        <option value="">E-class</option>
-                        <option value="">AMG</option>
+                    <select name="category_id" id="model">
+                        <option selected>Select Category</option>
+                        @foreach ($categories as $category)
+                            <option value="{{ $category->id }}">{{ $category->catname }}</option>
+                        @endforeach
                     </select>
                 </div>
 

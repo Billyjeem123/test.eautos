@@ -12,8 +12,16 @@ class RequestCar extends Model
     protected  $table= "request_car";
 
     protected $fillable = [
-        'brand', 'model', 'budget', 'body', 'country', 'user_id',  'phone',
+        'brand', 'model', 'budget', 'body', 'country', 'user_id',  'phone', 'user_name',
     ];
+
+    /**
+     * Get the user that owns the product.
+     */
+    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 
 
 }

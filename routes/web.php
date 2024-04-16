@@ -34,9 +34,14 @@ Route::group(['middleware' => ['showNavBar']], function () {
 
     #request car
 
-    Route::get('/request-a-car', [ReportController::class, 'viewRequest'])->name('request.show');
+    Route::get('/request-a-car', [ReportController::class, 'viewRequest'])->name('request.show')->middleware('auth');
     Route::post('/request/user', [ReportController::class, 'saveCarRequest'])->name('save-request')->middleware('auth');
     Route::get('/search-asset', [ProductController::class, 'searchProduct'])->name('search');
+
+
+
+    #value a car
+    Route::view('/value-car', 'home.value.index')->name('value.vehicle');
 
 
     #Return interface of signup pages... Authentication routes
@@ -135,6 +140,12 @@ Route::prefix('admin')->middleware('auth', 'admin', 'notify')->group(function ()
      #reports view all reports
      Route::get('/reports/all', [ReportController::class, 'viewAllReports'])->name('view.reports');
      Route::delete('/reports/delete/{id}', [ReportController::class, 'delete'])->name('admin.reports.delete');
+
+
+
+    #requests view all requests
+    Route::get('/requests/all', [ReportController::class, 'viewAllRequests'])->name('view.requests');
+    Route::delete('/requests/delete/{id}', [ReportController::class, 'deleteRequests'])->name('admin.requests.delete');
 
 
 

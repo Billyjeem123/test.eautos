@@ -90,10 +90,28 @@ private function validateRequest(Request $request)
 
 
     }
+
+
+    public function viewAllRequests(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
+    {
+
+        $requests  = RequestCar::all();
+        return view('admin.requests', ['requests' => $requests]);
+
+
+    }
     public function delete($id)
     {
         $Report = Report::findOrFail($id);
         $Report->delete();
+        return redirect()->back()->with('success', 'Record deleted successfully');
+    }
+
+
+    public function deleteRequests($id): \Illuminate\Http\RedirectResponse
+    {
+        $requests = RequestCar::findOrFail($id);
+        $requests->delete();
         return redirect()->back()->with('success', 'Record deleted successfully');
     }
 
@@ -111,6 +129,7 @@ private function validateRequest(Request $request)
         $report->country = $request->input('country');
         $report->phone = $request->input('phone_number');
         $report->user_id = auth()->user()->id;
+        $report->user_name = auth()->user()->name;
         $report->save();
 
         $mail = 'billy@gmail.com';

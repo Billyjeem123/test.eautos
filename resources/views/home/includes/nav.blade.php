@@ -19,14 +19,20 @@
                            class="{{ isset($categoryName) && $categoryName == $category->catname ? 'active' : '' }}
 ">
                         {{ $category->catname }}
+
+
                     </a>
                 </li>
+
+
             @endif
         @endforeach
 
 
         <li><a href="javascript:void(0)">Car Service</a></li>
       <li><a href="javascript:void(0)">Scrapyard</a></li>
+            <li><a href="{{route('value.vehicle')}}">Value Asset</a></li>
+{{--            <li><a href="{{route('value.vehicle')}}">Value Asset</a></li>--}}
     </ul>
     <span class="nav_form">
       <a href="{{route('register')}}" target="_blank" class="signUp">Sign Up</a>

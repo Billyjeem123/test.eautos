@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('country');
             $table->string('phone');
             $table->unsignedBigInteger('user_id');
+            $table->string('user_name');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });

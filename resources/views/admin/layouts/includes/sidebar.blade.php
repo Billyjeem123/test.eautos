@@ -56,7 +56,22 @@
       </li>
 
 
-      <li class="nav-item">
+        <li class="nav-item">
+            <a class="nav-link" href="{{  route('view.reports')}}">
+                <i class="far fa-fw fa-file"></i>
+                <span>Reports</span></a>
+        </li>
+
+
+        <li class="nav-item">
+            <a class="nav-link" href="{{  route('view.requests')}}">
+                <i class="far fa-fw fa-file"></i>
+                <span>Car Requests</span></a>
+        </li>
+
+
+
+        <li class="nav-item">
         <a class="nav-link" href="{{route('admin.users.all')}}">
           <i class="fas fa-fw fa-list"></i>
           <span>My Users</span></a>
@@ -89,11 +104,8 @@
           <i class="fas fa-fw fa-file"></i>
           <span>Sold History</span></a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{{  route('view.reports')}}">
-          <i class="far fa-fw fa-file"></i>
-          <span>Reports</span></a>
-      </li>
+
+
 
 
       <!-- Divider -->
