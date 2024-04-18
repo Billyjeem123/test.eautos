@@ -13,6 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('value_asset_docs');
         Schema::create('value_asset_docs', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('value_asset_id');
@@ -30,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('value_asset_docs');
     }
 };

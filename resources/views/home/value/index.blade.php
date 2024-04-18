@@ -141,7 +141,7 @@
                 <input type="checkbox" id="agree" style="cursor: pointer;" required>
                 <label for="agree" style="text-decoration: underline; font-weight: bold; font-size: 12px; cursor: pointer;">Agree to Terms and Conditions</label>
             </div>
-            <button >Submit</button>
+            <button type="submit">Submit</button>
         </form>
 </main>
 
