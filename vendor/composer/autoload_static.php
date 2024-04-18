@@ -588,6 +588,8 @@ class ComposerStaticInitfe33f98a750b8c5a51b30c78bd3fab21
         'App\\Models\\RequestCar' => __DIR__ . '/../..' . '/app/Models/RequestCar.php',
         'App\\Models\\SubCategory' => __DIR__ . '/../..' . '/app/Models/SubCategory.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
+        'App\\Models\\ValueAsset' => __DIR__ . '/../..' . '/app/Models/ValueAsset.php',
+        'App\\Models\\ValueDocs' => __DIR__ . '/../..' . '/app/Models/ValueDocs.php',
         'App\\Notifications\\CommentNotification' => __DIR__ . '/../..' . '/app/Notifications/CommentNotification.php',
         'App\\Notifications\\ReachOut' => __DIR__ . '/../..' . '/app/Notifications/ReachOut.php',
         'App\\Notifications\\ReportOffender' => __DIR__ . '/../..' . '/app/Notifications/ReportOffender.php',

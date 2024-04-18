@@ -30,14 +30,13 @@
                 <tbody>
                 @foreach($requests as $request)
                     <tr>
-                        <td>{{$report->brand}}</td>
-                        <td>{{$report->model}}</td>
-                        <td>{{$report->user_name}}</td>
-                        <td>{{$report->phone}}</td>
-                        <td>{{number_format($report->budget,2)}}</td>
-                        <td>{{$report->country}}</td>
-                        <td>{{$report->created_at->diffForHumans()}}</td>
-                        <form action="{{ route('admin.requests.delete', $report->id) }}" method="POST">
+                        <td>{{$request->brand}}</td>
+                        <td>{{$request->model}}</td>
+                        <td>{{$request->user_name}}</td>
+                        <td>{{$request->phone}}</td>
+                        <td>{{number_format($request->budget,2)}}</td>
+                        <td>{{$request->country}}</td>
+                        <td>{{$request->created_at->diffForHumans()}}</td>
                             @csrf
                             @method('DELETE')
                             <td><button type="submit" class="btn btn-danger">Delete</button></td>

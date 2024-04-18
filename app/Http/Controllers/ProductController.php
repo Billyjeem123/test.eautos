@@ -13,8 +13,11 @@ use App\Models\Brand;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\SubCategory;
+use App\Models\ValueAsset;
+use App\Models\ValueDocs;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use JetBrains\PhpStorm\NoReturn;
@@ -560,44 +563,117 @@ private function validateRequest(Request $request): \Illuminate\Contracts\Valida
         }
     }
 
-        public function searchProduct(Request $request): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
-        {
-            // Retrieve inputs from the form
-            $brand_id = $request->input('brand_id');
-            $min_price = $request->input('min_price');
-            $max_price = $request->input('max_price');
+    public function searchProduct(Request $request): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
+    {
+        // Retrieve inputs from the form
+        $brand_id = $request->input('brand_id');
+        $category_id = $request->input('category_id');
+        $min_price = $request->input('min_price');
+        $max_price = $request->input('max_price');
+
+        // Start with a base query
+        $query = Product::query();
+
+        // Add conditions based on inputs
+        if ($brand_id) {
+            $query->where('brand_id', $brand_id);
+        }
+
+        // Add conditions based on inputs
+        if ($category_id) {
+            $query->where('category_id', $category_id);
+        }
+
+        // Add price range condition if both min and max prices are provided
+        if ($min_price && $max_price) {
+            $query->whereBetween('price', [$min_price, $max_price]);
+        } else {
+            // If only one of min or max price is provided, adjust the condition accordingly
+            $query->when($min_price, function ($query) use ($min_price) {
+                return $query->where('price', '>=', $min_price);
+            })->when($max_price, function ($query) use ($max_price) {
+                return $query->where('price', '<=', $max_price);
+            });
+        }
+
+        // Execute the query and fetch the results
+//        $products = $query->get();
+        $products = $query->with('subcategories')->get();
+
+        // Fetch 5 auctions for display
+        $auctions = Auction::all()->take(5);
 
 
-            // Start with a base query
-            $query = Product::query();
 
-            // Add conditions based on inputs
-            if ($brand_id) {
-                $query->where('brand_id', $brand_id);
+        // Return the search results to the view
+        return view('home.products.search', compact('products', 'auctions'));
+    }
+
+     public  function  valueAsset(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
+     {
+
+          $brands = Brand::all();
+
+         return view('home.value.index', compact('brands'));
+     }
+
+
+    public function saveValuedAsset(Request $request): \Illuminate\Http\RedirectResponse
+    {
+        $saveAsset = ValueAsset::create([
+            'user_id' => auth()->user()->id,
+            'model' => $request->model,
+            'color' => $request->color,
+            'mileage' => $request->mileage,
+            'engine_type' => $request->engine_type,
+            'desc' => $request->desc,
+            'brand' => $request->brand,
+            'asset_type' => $request->selected_car_type
+        ]);
+
+        $uploadDocsAndGetLinks = $this->uploadDocsAndGetLinks($request);
+        foreach ($uploadDocsAndGetLinks as $docsUrl) {
+            ValueDocs::create([
+                'value_asset_id' => $saveAsset->id,
+                'type' => 'Docs',
+                'docs' => $docsUrl,
+            ]);
+        }
+
+        $uploadImagesAndGetLinks = $this->uploadImagesAndGetLinks($request);
+        foreach ($uploadImagesAndGetLinks as $imageUrl) {
+            ValueDocs::create([
+                'value_asset_id' => $saveAsset->id,
+                'type' => 'Images',
+                'images' => $imageUrl,
+            ]);
+        }
+
+        return redirect()->back()->with(['success' => 'Record received. You shall be notified upon reviewal.']);
+    }
+
+
+
+
+
+    public function uploadDocsAndGetLinks($request): array
+    {
+        $imageUrls = [];
+
+        if ($request->hasFile('legalDocs')) {
+            foreach ($request->file('legalDocs') as $image) {
+                $imageName = time() . '_' . $image->getClientOriginalName(); // Generate a unique name for the image
+                $imagePath = $image->storeAs('public/uploads', $imageName);
+                $imageUrl = asset('storage/uploads/' . $imageName);
+                $imageUrls[] = $imageUrl;
             }
-
-            // Add price range condition if both min and max prices are provided
-            if ($min_price && $max_price) {
-                $query->whereBetween('price', [$min_price, $max_price]);
-            } else {
-                // If only one of min or max price is provided, adjust the condition accordingly
-                $query->when($min_price, function ($query) use ($min_price) {
-                    return $query->where('price', '>=', $min_price);
-                })->when($max_price, function ($query) use ($max_price) {
-                    return $query->where('price', '<=', $max_price);
-                });
-            }
-
-            // Execute the query and fetch the results
-            $products = $query->get();
-
-            $auctions = Auction::all()->take(5);
-
-            // Return the search results to the view
-            return view('home.products.search', compact('products', 'auctions'));
+        } else {
+            // Handle case where no images were uploaded
         }
 
 
+        return $imageUrls;
+    }
 
 
 

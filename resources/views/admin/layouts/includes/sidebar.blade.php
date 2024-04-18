@@ -69,6 +69,15 @@
                 <span>Car Requests</span></a>
         </li>
 
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('evaluate.all')}}">
+                <i class="far fa-fw fa-file"></i>
+                <span>Asset Evaluation</span>
+            </a>
+        </li>
+
+
+
 
 
         <li class="nav-item">

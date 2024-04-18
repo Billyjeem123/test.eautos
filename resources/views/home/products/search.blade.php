@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Products</title>
+    <title>Search Result</title>
     <link rel="stylesheet" href="/home/css/cars.css">
     <link rel="stylesheet" href="/home/assets/fontawesome/css/all.css">
 </head>
@@ -64,29 +64,38 @@
 
         </aside>
         <div class="latest">
-            <h3>Search Cars</h3>
 
             <div class="card_group">
-                <div class="card">
-
-                    <div class="card_img"
-                         style="background: url(/home/images/cars/Optimized-joshua-koblin-eqW1MPinEV4-unsplash.jpg) no-repeat;">
-                    </div>
-                    <div class="card_text">
-                        <h5>2014 Toyota Camry</h5>
-                        <div class="details">
-                            <p class="location">Lagos Nigeria (11 miles)</p>
-                            <p class="bid_price">Current bid: <span>₦ 930,000</span></p>
-                            <ul>
-                                <li>New</li>
-                                <li>10 Cylinder</li>
-                                <li style="background-color: red; border: none; color: #ffffff;">Red</li>
-                                <li>Fuel</li>
-                            </ul>
+                @forelse ($products as $product)
+                    <div class="card">
+                        <a href="{{ route('product.show', $product->id) }}" class="card_link">
+                            <div class="card_img" style="background: url('{{ $product->images[0]['image'] }}') no-repeat;"></div>
+                        </a>
+                        <div class="card_text">
+                            <h5>{{ $product->car_name }}</h5>
+                            <small><em>Posted by: {{ $product->user->name }} - Posted  {{ $product->created_at->diffForHumans() }}</em></small>
+                            <div class="details">
+                                <ul>
+                                    <li>{{ $product->subcategories->name }}</li>
+                                    <li>{{ $product->cylinder }}</li>
+                                    <li style="background-color: {{ $product->color }}; border: none; color: #ffffff;">{{ $product->color }}</li>
+                                    <li>Fuel</li>
+                                </ul>
+                                <h5>₦ {{ number_format($product->price, 2) }}</h5>
+                                <p>{{ $product->location }} ({{ $product->mileage }})</p>
+                            </div>
+                        </div>
+                        <div class="card_footer">
+                            <h6>Compare</h6>
+                            <span>
+                <i class="fa-regular fa-heart"></i>
+                <i class="fa fa-share"></i>
+            </span>
                         </div>
                     </div>
-
-                </div>
+                @empty
+                    <p>No records available at the moment.</p>
+                @endforelse
 
 
 

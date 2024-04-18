@@ -48,6 +48,8 @@ return array(
     'App\\Models\\RequestCar' => $baseDir . '/app/Models/RequestCar.php',
     'App\\Models\\SubCategory' => $baseDir . '/app/Models/SubCategory.php',
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',
+    'App\\Models\\ValueAsset' => $baseDir . '/app/Models/ValueAsset.php',
+    'App\\Models\\ValueDocs' => $baseDir . '/app/Models/ValueDocs.php',
     'App\\Notifications\\CommentNotification' => $baseDir . '/app/Notifications/CommentNotification.php',
     'App\\Notifications\\ReachOut' => $baseDir . '/app/Notifications/ReachOut.php',
     'App\\Notifications\\ReportOffender' => $baseDir . '/app/Notifications/ReportOffender.php',

@@ -40,8 +40,7 @@ Route::group(['middleware' => ['showNavBar']], function () {
 
 
 
-    #value a car
-    Route::view('/value-car', 'home.value.index')->name('value.vehicle');
+
 
 
     #Return interface of signup pages... Authentication routes
@@ -69,6 +68,11 @@ Route::group(['middleware' => ['showNavBar']], function () {
     Route::post('/reach-out', [ProductController::class, 'reachOut'])->name('client.reachout')->middleware('auth');
     Route::get('/get-auction-dates', [ProductController::class, 'getAuctionDates'])->name('getDateDynamically');
 
+
+        #value asset
+
+        Route::get('/value-asset', [ProductController::class, 'valueAsset'])->name('value.vehicle');
+        Route::post('/value-asset', [ProductController::class, 'saveValuedAsset'])->name('value.asset')->middleware('auth');
 
     #auction routes....
         Route::get('/get-auction', [ProductController::class, 'getAuctionCars'])->name('get.auction.cars');
@@ -160,5 +164,7 @@ Route::prefix('admin')->middleware('auth', 'admin', 'notify')->group(function ()
 
 
     Route::view('/editlist', 'admin.edit-listing')->name('edit.listing');
+    Route::get('/evaluate-all', [AdminController::class, 'getEvaluations'])->name('evaluate.all');
+
 
 });

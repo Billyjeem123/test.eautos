@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\ValueAsset;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Notifications\DatabaseNotification;
@@ -63,7 +64,7 @@ class AdminController extends Controller
     return view('admin.login');
  }
 
- public function markAsRead()
+    public function markAsRead()
 {
     // Get the authenticated user
     $user = Auth::user();
@@ -74,6 +75,23 @@ class AdminController extends Controller
     // Optionally, you can redirect the user back or to another page
     return redirect()->back()->with('success', 'Notification marked as read.');
 }
+
+
+    public  function getEvaluations(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
+    {
+
+
+
+        $valueAssets = ValueAsset::getValueAssetsWithDocsAndImages();
+
+         echo "<pre>";
+         echo json_encode($valueAssets, JSON_PRETTY_PRINT);
+         echo "</pre>";
+
+//        return view('admin.asset-evaluation', ['valueAssets' => $valueAssets]);
+
+
+    }
 }
 
 

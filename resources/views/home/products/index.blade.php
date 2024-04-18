@@ -22,7 +22,7 @@
         @endforeach
 
         <li><a href="">Sell A {{ Str::singular($categoryName) }}</a></li>
-        <li><a href="">Value My {{ Str::singular($categoryName) }}</a></li>
+        <li><a href="{{route('value.vehicle')}}">Value My {{ Str::singular($categoryName) }}</a></li>
         <li><a href="auction.html">Auction</a></li>
         <li><a href="parts.html">{{ Str::singular($categoryName) }} Parts</a></li>
         <li><a href="stolenCars.html">Stolen {{ Str::singular($categoryName) }}</a></li>
@@ -88,34 +88,36 @@
 
             <div class="card_group">
 
-                @foreach ($products as $product)
-                <div class="card">
-                    <a href="{{route('product.show', $product->id)}}" class="card_link">
-                        <div class="card_img" style="background: url('{{ $product->images[0]['image'] }}') no-repeat;"></div>
-                    </a>
-                    <div class="card_text">
-                        <h5>{{ $product->car_name}}</h5>
-                        <small><em>Posted by: {{ $product->user->name}} - Joined {{$product->user->created_at->diffForHumans()}} </em></small>
-                        <div class="details">
-                            <ul>
-                                <li>{{$product->subcategories->name}}</li>
-                                <li>{{$product->cylinder}}</li>
-                                <li style="background-color: {{ $product->color }}; border: none; color: #ffffff;">{{ $product->color }}</li>
-                                <li>Fuel</li>
-                            </ul>
-                            <h5> ₦ {{ number_format($product->price,2) }}</h5>
-                            <p>{{ $product->location }} ({{ $product->mileage }})</p>
+                @forelse ($products as $product)
+                    <div class="card">
+                        <a href="{{ route('product.show', $product->id) }}" class="card_link">
+                            <div class="card_img" style="background: url('{{ $product->images[0]['image'] }}') no-repeat;"></div>
+                        </a>
+                        <div class="card_text">
+                            <h5>{{ $product->car_name }}</h5>
+                            <small><em>Posted by: {{ $product->user->name }} - Posted  {{ $product->created_at->diffForHumans() }}</em></small>
+                            <div class="details">
+                                <ul>
+                                    <li>{{ $product->subcategories->name }}</li>
+                                    <li>{{ $product->cylinder }}</li>
+                                    <li style="background-color: {{ $product->color }}; border: none; color: #ffffff;">{{ $product->color }}</li>
+                                    <li>Fuel</li>
+                                </ul>
+                                <h5>₦ {{ number_format($product->price, 2) }}</h5>
+                                <p>{{ $product->location }} ({{ $product->mileage }})</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="card_footer">
-                        <h6>Compare</h6>
-                        <span>
+                        <div class="card_footer">
+                            <h6>Compare</h6>
+                            <span>
                 <i class="fa-regular fa-heart"></i>
                 <i class="fa fa-share"></i>
-              </span>
+            </span>
+                        </div>
                     </div>
-                </div>
-                @endforeach
+                @empty
+                    <p>No records available at the moment.</p>
+                @endforelse
 
 
             </div>
