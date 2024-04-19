@@ -12,4 +12,9 @@ class ValueDocs extends Model
     protected $table = 'value_asset_docs';
 
     protected $fillable = ['value_asset_id', 'file_name', 'type'];
+
+    public function valueAsset()
+    {
+        return $this->belongsTo(ValueAsset::class);
+    }
 }

@@ -1,241 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Products</title>
-    <link rel="stylesheet" href="/home/css/cars.css">
-    <link rel="stylesheet" href="/home/assets/fontawesome/css/all.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Value Asset</title>
+    <link rel="stylesheet" href="/home/css/value.css" />
 </head>
 
 <body>
-
 @include('home.includes.nav')
-
 <div class="car_type_nav">
     <ul>
         <li class="option">Menu <i class="fa fa-angle-down"></i></li>
         <li><a href="{{route('index')}}">Home</a></li>
-        @foreach($subcategories as $subcategory)
-            <li><a href="{{route('get.sub.product', urlencode($subcategory))}}" class="{{ $categoryName == $subcategory ? 'active' : '' }}"  >{{$subcategory}}</a></li>
-        @endforeach
 
-        <li><a href="">Sell A {{ Str::singular($categoryName) }}</a></li>
-        <li><a href="">Value My {{ Str::singular($categoryName) }}</a></li>
+        <li>
+            <a href="{{ route('value.vehicle') }}" class="{{ request()->routeIs('value.vehicle') ? 'active' : '' }}">Value Asset</a>
+        </li>
+        <li><a href="sell.html">Sell A Car</a></li>
         <li><a href="auction.html">Auction</a></li>
-        <li><a href="parts.html">{{ Str::singular($categoryName) }} Parts</a></li>
-        <li><a href="stolenCars.html">Stolen {{ Str::singular($categoryName) }}</a></li>
+        <li><a href="parts.html">Car Parts</a></li>
+        <li><a href="stolenCars.html">Stolen Cars</a></li>
         <li><a href="blacklist.html">Blacklist</a></li>
     </ul>
 </div>
-@include('home.includes.search')
+<header class="hero">
+    <h1>Get Your <span>Values Worth</span></h1>
+</header>
+<!-- ---------------------------- -->
 <main>
-    <section>
-        <div class="aside_hide">Live Auction</div>
-
-
-        <aside class="aside">
-            <div class="close_aside">Close</div>
-            <h3>Live Auction</h3>
-            <div class="card_group">
-
-                @forelse($auctions as $auction)
-                    <div class="card">
-
-                        <div id="auction-timers">
-                            <!-- Countdown timer for each auction will be dynamically generated here -->
-                        </div>
-
-
-                        <div class="details">
-                            <h5>{{ $auction->car_name }}</h5> <!-- Assuming $item has a 'title' property -->
-                            <p class="location">{{ $auction->location }}</p> <!-- Assuming $item has a 'location' property -->
-                            <p class="bid_price"> Starting bid: <span> ₦ {{ number_format($auction->price, 2) }}</span></p> <!-- Assuming $item has a 'starting_bid' property -->
-                        </div>
-                        <div class="card_footer">
-                            <span><i class="fa fa-circle"></i></span>
-                            <p>Live</p>
-                        </div>
-                    </div>
-                @empty
-                    <p>No result found</p>
-                @endforelse
-
-            </div>
-            <a href="auction.html" class="see_all">See All</a>
-
-        </aside>
-
-        <script >
-            function updateCountdownTimers() {
-                var xhr = new XMLHttpRequest();
-                xhr.onreadystatechange = function() {
-                    if (xhr.readyState === XMLHttpRequest.DONE) {
-                        if (xhr.status === 200) {
-                            var response = JSON.parse(xhr.responseText);
-                            if (response.length > 0) {
-                                response.forEach(function(auction) {
-                                    var startingDate = new Date(auction.starting_date);
-                                    createTimerElement(startingDate, auction.id); // Pass auction ID to createTimerElement function
-                                });
-                            } else {
-                                console.error('No auction dates found.');
-                            }
-                        } else {
-                            console.error('Error fetching auction dates:', xhr.statusText);
-                        }
-                    }
-                };
-                xhr.open('GET', '{{ route('getDateDynamically') }}');
-                xhr.send();
-            }
-
-            function createTimerElement(startingDate, auctionId) {
-                var now = new Date();
-                var timeRemaining = startingDate - now;
-
-                var days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
-                var hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                var minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
-
-                // Create HTML elements for the countdown timer for the auction with the specified ID
-                var timerHtml = `
-        <div class="time">
-            <p>
-                <strong>Days</strong><br>
-                <span id="days-${auctionId}">${days}</span>
-            </p>
-            <p>
-                <strong>Hours</strong><br>
-                <span id="hours-${auctionId}">${hours}</span>
-            </p>
-            <p>
-                <strong>Minutes</strong><br>
-                <span id="minutes-${auctionId}">${minutes}</span>
-            </p>
-        </div>
-    `;
-
-                // Append the timer HTML to the container
-                document.getElementById('auction-timers').innerHTML += timerHtml;
-            }
-
-            // Call the function initially and set interval to keep updating
-            updateCountdownTimers();
-            setInterval(updateCountdownTimers, 1000); // Update every second
-
-        </script>
-
-
-        <div class="latest">
-            <h3>Our Latest {{$categoryName}}</h3>
-
-            <div class="card_group">
-
-                @foreach ($products as $product)
-                <div class="card">
-                    <a href="{{route('product.show', $product->id)}}" class="card_link">
-                        <div class="card_img" style="background: url('{{ $product->images[0]['image'] }}') no-repeat;"></div>
-                    </a>
-                    <div class="card_text">
-                        <h5>{{ $product->car_name}}</h5>
-                        <small><em>Posted by: {{ $product->user->name}} - Joined {{$product->user->created_at->diffForHumans()}} </em></small>
-                        <div class="details">
-                            <ul>
-                                <li>{{$product->subcategories->name}}</li>
-                                <li>{{$product->cylinder}}</li>
-                                <li style="background-color: {{ $product->color }}; border: none; color: #ffffff;">{{ $product->color }}</li>
-                                <li>Fuel</li>
-                            </ul>
-                            <h5> ₦ {{ number_format($product->price,2) }}</h5>
-                            <p>{{ $product->location }} ({{ $product->mileage }})</p>
-                        </div>
-                    </div>
-                    <div class="card_footer">
-                        <h6>Compare</h6>
-                        <span>
-                <i class="fa-regular fa-heart"></i>
-                <i class="fa fa-share"></i>
-              </span>
-                    </div>
-                </div>
-                @endforeach
-
-
-            </div>
-        </div>
-    </section>
-    <!-- ---------------------------------- -->
-    <!-- ---------------------------------- -->
-    <div class="verification">
-        <div class="card_group">
-            <div class="card">
-                <p>Land Verification, <br> Regularization on E-Property</p>
-                <a href="">Read More</a>
-            </div>
-            <div class="card"></div>
-        </div>
-    </div>
-    <!-- ----------------------------------- -->
-    <!-- ----------------------------------- -->
-    <div class="car_dealers container">
-        <h3>Dealers Near You</h3>
-        <div class="card_group">
-
-            @foreach($getDealers as $dealer)
-                <div class="card">
-                    <div class="card_img" style="background: url('/home/images/brands/Optimized-taras-chernus--Y8-NNDqiRM-unsplash.jpg') no-repeat;"></div>
-                    <div class="details">
-                        <h5>{{ $dealer}}</h5>
-                        <span><strong>100%</strong> Verified</span>
-                        <p class="progress"><i class="fa fa-check"></i></p>
-                    </div>
-                </div>
-            @endforeach
-
-        </div>
-
-    </div>
-    <!-- --------------------------------------------- -->
-    <!-- MEET DEALERS -->
-    <!-- --------------------------------------------- -->
-    <div class="meet_dealers">
-        <ul class="card_group">
-            <li class="card"><a href="../dealers.html">Car Dealers</a></li>
-            <li class="card">
-                <p>Meet with Different Car Dealers, who will help get your desired property, with little to no agent fee added
-                </p>
+    <div class="main-nav">
+        <h3>Select Car Type</h3>
+        <ul>
+            <li style="margin-bottom: 5px;margin-right: 5px;">
+                <input type="radio" id="new" name="car_type" value="New" style="margin-right: 5px;" required>
+                <label for="new">New</label>
             </li>
-            <li class="card"><img src="/home/images/Rectangle 247.png" alt=""></li>
+            <li style="margin-bottom: 5px;margin-right: 5px;">
+                <input type="radio" id="foreign" name="car_type" value="Foreign" style="margin-right: 5px;">
+                <label for="foreign">Foreign</label>
+            </li>
+            <li style="margin-bottom: 5px;margin-right: 5px;">
+                <input type="radio" id="locally_used" name="car_type" value="Locally Used" style="margin-right: 5px;">
+                <label for="locally_used">Locally Used</label>
+            </li>
         </ul>
     </div>
+
+
+
+    <script>
+        // Get all radio buttons with name "car_type"
+        const radioButtons = document.querySelectorAll('input[name="car_type"]');
+
+        // Add event listener to each radio button
+        radioButtons.forEach(radioButton => {
+            radioButton.addEventListener('change', function() {
+                // Get the value of the selected radio button
+                const selectedValue = this.value;
+
+                // Set the value of the text input to the selected value
+                document.getElementById('selected_car_type').value = selectedValue;
+            });
+        });
+    </script>
+
+
+
+
+    <!-- ----------------------------------------------------- -->
+        <form action="{{route('value.asset')}}"  method="POST"  enctype="multipart/form-data">
+            @csrf
+            <h3>Upload Display Image</h3>
+            <div class="form-control-file">
+                <label for="file">Choose a file</label>
+                <input type="file"  name="images[]" multiple id="file" />
+            </div>
+            <h3>Car Information</h3>
+            <div class="form-group">
+                <div class="form-control">
+                    <label for="brand">Brand</label>
+                    <select name="brand" id="brand">
+                        <option value="" selected disabled>Select Car Brand</option>
+                        @foreach($brands as $brand)
+                            <option value="{{ $brand->name }}" {{ old('brand') == $brand->name ? 'selected' : '' }}>
+                                {{ $brand->name }}
+                            </option>
+                        @endforeach
+                    </select>
+
+                </div>
+                <div class="form-control">
+                    <label for="model">Model</label>
+                    <input type="text" name="model" placeholder="Enter Model" class="form-group" style="width: 300px; border-radius: 5px" required value="{{ old('model') }}">
+
+                </div>
+                <div class="form-control">
+                    <label for="color">Color</label>
+                    <input type="text" name="color"  placeholder="Enter Car Color" class="form-group" style="width: 300px;border-radius: 5px" required>
+                </div>
+                <div class="form-control">
+                    <label for="color">Mileage</label>
+                    <input type="text" name="mileage"  placeholder="Enter Mileage" class="form-group" style="width: 300px;border-radius: 5px" required>
+                </div>
+                <div class="form-control">
+                    <label for="color">Engine Type</label>
+                    <input type="text" name="engine_type"  placeholder="Enter Type" class="form-group" style="width: 300px;border-radius: 5px" required>
+                </div>
+            </div>
+            <h3>More of Car Image</h3>
+            <div class="form-control-file">
+                <label for="file">
+                    <i class="fa fa-plus-circle" style="font-size: 20px;"></i><br>
+                    Add More Images</label>
+                <input type="file"  name="additional_images[]" multiple id="file" />
+            </div>
+
+            <h3>Legal Information</h3>
+            <div class="form-group">
+                <div class="form-control">
+                    <label for="tender">Legal Tender</label>
+                    <div><input type="text" id="tender" placeholder="Legal Tender">
+                        <input type="file" name="legalDocs[]" accept=".pdf,.doc,.docx" required multiple>
+
+                    </div>
+                </div>
+    {{--            <div class="form-control">--}}
+    {{--                <label for="tender">Legal Tender</label>--}}
+    {{--                <div><input type="text" id="tender" placeholder="Legal Tender">--}}
+    {{--                    <input type="file">--}}
+    {{--                </div>--}}
+    {{--            </div>--}}
+            </div>
+            <input type="hidden" id="selected_car_type" name="selected_car_type" value="" readonly>
+            <div class="form-control">
+                <label for="">Description</label>
+                <textarea name="desc" id="" cols="30" rows="10" required></textarea>
+            </div><br><br>
+            <div class="form-control agree" style="flex-direction: row; gap: 2px !important;">
+                <input type="checkbox" id="agree" style="cursor: pointer;" required>
+                <label for="agree" style="text-decoration: underline; font-weight: bold; font-size: 12px; cursor: pointer;">Agree to Terms and Conditions</label>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
 </main>
 
 @include('home.includes.footer')
 
 <script>
     $(document).ready(function () {
-        state = true;
-        $(".aside_hide").on("click", function () {
-            if (state) {
-                $(".aside").css({
-                    display: "block",
-                    "z-index": "999",
-                });
-                $(".aside_hide").css("display", "none");
-            }
-        });
-
-        $(".close_aside").on("click", function () {
-            if ($(state)) {
-                $(".aside").css({
-                    display: "none",
-                });
-                $(".aside_hide").css("display", "flex");
-            }
-        });
-
         // -------------------------------------
         $height = $(".car_type_nav").height() + $(".navbar").height();
         $(window).scroll(function () {
@@ -251,11 +164,10 @@
                     position: "normal",
                     top: "normal",
                 });
+                $("header").css("padding-top", "5rem");
             }
         });
     });
-
 </script>
 </body>
-
 </html>

@@ -11,6 +11,7 @@
 
 <body>
 
+
    @include('home.includes.nav')
 
    @include('home.includes.search')
@@ -151,7 +152,7 @@
   <!-- -------------------------------------------------- -->
 
   <div class="latest container">
-    <h3>Our Latest Vehicles</h3>
+    <h3>Our Latest Products</h3>
     <div class="card_group">
       @foreach ($products as $product)
       <div class="card">

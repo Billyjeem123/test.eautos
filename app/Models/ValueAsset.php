@@ -16,19 +16,11 @@ class ValueAsset extends Model
 
 
 
-    public static function getValueAssetsWithDocsAndImages()
-    {
-        return DB::table('value_asset')
-            ->select('value_asset.*', 'value_asset_docs.docs', 'value_asset_images.images')
-            ->leftJoin('value_asset_docs', 'value_asset.id', '=', 'value_asset_docs.value_asset_id')
-            ->leftJoin('value_asset_images', 'value_asset.id', '=', 'value_asset_images.value_asset_id')
-            ->whereIn('value_asset.id', function ($query) {
-                $query->select('id')
-                    ->from('value_asset')
-                    ->distinct();
-            })
-            ->get();
-    }
+
+     public function  asset_docs(): \Illuminate\Database\Eloquent\Relations\HasMany
+     {
+    return $this->hasMany(ValueDocs::class);
+}
 
 
 

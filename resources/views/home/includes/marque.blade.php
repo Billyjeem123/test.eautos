@@ -29,14 +29,14 @@
           "
         >
             <img
-                src="/home/images/countries/United Kingdom (GB).png"
+                src="images/countries/United Kingdom (GB).png"
                 width="20px"
                 alt=""
             />&nbsp;<span style="color: #ffffff">EUR</span>
             <span style="color: #21ca07">1.00</span>
             &nbsp;
             <img
-                src="/home/images/countries/Nigeria (NG).png"
+                src="images/countries/Nigeria (NG).png"
                 width="20px"
                 alt=""
             />&nbsp;<span style="color: #ffffff">NGN</span>
@@ -56,14 +56,14 @@
           "
         >
             <img
-                src="/home/images/countries/India (IN).png"
+                src="images/countries/India (IN).png"
                 width="20px"
                 alt=""
             />&nbsp;<span style="color: #ffffff">INR</span>
             <span style="color: #21ca07">1.00</span>
             &nbsp;
             <img
-                src="i/home/mages/countries/Nigeria (NG).png"
+                src="images/countries/Nigeria (NG).png"
                 width="20px"
                 alt=""
             />&nbsp;<span style="color: #ffffff">NGN</span>
@@ -83,14 +83,14 @@
           "
         >
             <img
-                src="/home/images/countries/China (CN).png"
+                src="images/countries/China (CN).png"
                 width="20px"
                 alt=""
             />&nbsp;<span style="color: #ffffff">CHI</span>
             <span style="color: #21ca07">1.00</span>
             &nbsp;
             <img
-                src="/home/images/countries/Nigeria (NG).png"
+                src="images/countries/Nigeria (NG).png"
                 width="20px"
                 alt=""
             />&nbsp;<span style="color: #ffffff">NGN</span>
@@ -110,14 +110,14 @@
           "
         >
             <img
-                src="/home/images/countries/South Africa (ZA).png"
+                src="images/countries/South Africa (ZA).png"
                 width="20px"
                 alt=""
             />&nbsp;<span style="color: #ffffff">SHR</span>
             <span style="color: #21ca07">1.00</span>
             &nbsp;
             <img
-                src="/home/images/countries/Nigeria (NG).png"
+                src="images/countries/Nigeria (NG).png"
                 width="20px"
                 alt=""
             />&nbsp;<span style="color: #ffffff">NGN</span>
@@ -137,14 +137,14 @@
           "
         >
             <img
-                src="/home/images/countries/Japan (JP).png"
+                src="images/countries/Japan (JP).png"
                 width="20px"
                 alt=""
             />&nbsp;<span style="color: #ffffff">JPN</span>
             <span style="color: #21ca07">1.00</span>
             &nbsp;
             <img
-                src="/home/images/countries/Nigeria (NG).png"
+                src="images/countries/Nigeria (NG).png"
                 width="20px"
                 alt=""
             />&nbsp;<span style="color: #ffffff">NGN</span>
@@ -164,14 +164,14 @@
           "
         >
             <img
-                src="/home/images/countries/Ghana (GH).png"
+                src="images/countries/Ghana (GH).png"
                 width="20px"
                 alt=""
             />&nbsp;<span style="color: #ffffff">GHN</span>
             <span style="color: #21ca07">1.00</span>
             &nbsp;
             <img
-                src="/home/images/countries/Nigeria (NG).png"
+                src="images/countries/Nigeria (NG).png"
                 width="20px"
                 alt=""
             />&nbsp;<span style="color: #ffffff">NGN</span>
@@ -179,42 +179,3 @@
         </li>
     </ul>
 </marquee>
-
-<nav class="navbar">
-    <a href="{{route('index')}}" class="logo">Logo</a>
-    <ul>
-        @foreach($categories as $category)
-            @if($category->subcategories->count() > 0)
-                <li>
-                    <a href="{{ route('category.product', $category->id) }}"
-                           class="{{ isset($categoryName) && $categoryName == $category->catname ? 'active' : '' }}
-">
-                        {{ $category->catname }}
-
-
-                    </a>
-                </li>
-
-            @endif
-        @endforeach
-
-
-
-        <li><a href="javascript:void(0)">Car Service</a></li>
-      <li><a href="{{route('scrapy-yard')}}">Scrapyard</a></li>
-            <li>
-                <a href="{{ route('value.vehicle') }}" class="{{ request()->routeIs('value.vehicle') ? 'active' : '' }}">Value Asset</a>
-            </li>
-
-            <li>
-                <a href="{{ route('parts') }}" class="{{ request()->routeIs('parts') ? 'active' : '' }}">Car Part</a>
-            </li>
-
-    </ul>
-    <span class="nav_form">
-      <a href="{{route('register')}}"  class="signUp">Sign Up</a>
-      <a href="{{route('login')}}" class="login" >Login</a>
-    </span>
-    <i class="fa fa-close" id="close_nav"></i>
-    <i class="fa fa-bars" id="open_nav"></i>
-  </nav>

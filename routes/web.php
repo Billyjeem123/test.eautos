@@ -72,7 +72,7 @@ Route::group(['middleware' => ['showNavBar']], function () {
         #value asset
 
         Route::get('/value-asset', [ProductController::class, 'valueAsset'])->name('value.vehicle');
-        Route::post('/value-asset', [ProductController::class, 'saveValuedAsset'])->name('value.asset')->middleware('auth');
+        Route::post('/value-asset', [ProductController::class, 'saveValuedAsset'])->name('value.asset');
 
     #auction routes....
         Route::get('/get-auction', [ProductController::class, 'getAuctionCars'])->name('get.auction.cars');
@@ -80,6 +80,13 @@ Route::group(['middleware' => ['showNavBar']], function () {
         #comment routes....
 
         Route::post('/post-a-comment', [ProductController::class, 'comment'])->name('post.comment')->middleware('auth');
+
+        #scrapy yards...
+
+        Route::view('/scrapy-yard', 'home.scarapy-yard')->name('scrapy-yard');
+        Route::view('/parts', 'home.parts')->name('parts');
+        Route::view('/stolen-cars', 'home.stolen-cars')->name('stolen');
+        Route::view('/blacklist', 'home.blacklist')->name('blacklist');
 
     });
 });

@@ -10,38 +10,31 @@
 </head>
 
 <body>
-<nav class="navbar">
-    <a href="{{route('index')}}" class="logo">Logo</a>
-    <ul>
-        <li><a href="index.html" class="active">Cars</a></li>
-        <li><a href="../vans/index.html">Vans</a></li>
-        <li><a href="../bikes/index.html">Bikes</a></li>
-        <li><a href="../trucks/index.html">Trucks</a></li>
-        <li><a href="../farm/index.html">Farm</a></li>
-        <li><a href="../plants/index.html">Plant</a></li>
-        <li><a href="../carService.html">Car Service</a></li>
-        <li><a href="../scrapeyard.html">Scrapyard</a></li>
-    </ul>
-    <span class="nav_form">
-      <a href="../signUp.html" target="_blank" class="signUp">Sign Up</a>
-      <a href="../login.html" class="login" target="_blank">Login</a>
-    </span>
-    <i class="fa fa-close" id="close_nav"></i>
-    <i class="fa fa-bars" id="open_nav"></i>
-</nav>
+@include('home.includes.nav')
 <div class="car_type_nav">
     <ul>
         <li class="option">Menu <i class="fa fa-angle-down"></i></li>
-        <li><a href="../index.html">Home</a></li>
-        <li><a href="index.html">New Cars</a></li>
-        <li><a href="foreignUsed.html">Foreign Used</a></li>
-        <li><a href="locallyUsed.html">Locally Used</a></li>
+        <li><a href="{{route('index')}}">Home</a></li>
+
+        <li>
+            <a href="{{ route('value.vehicle') }}" class="{{ request()->routeIs('value.vehicle') ? 'active' : '' }}">Value Asset</a>
+        </li>
         <li><a href="sell.html">Sell A Car</a></li>
-        <li><a href="value.html">Value My Car</a></li>
-        <li><a href="auction.html" class="active">Auction</a></li>
-        <li><a href="parts.html">Car Parts</a></li>
-        <li><a href="stolenCars.html">Stolen Cars</a></li>
-        <li><a href="blacklist.html">Blacklist</a></li>
+
+        <li>
+            <a href="{{ route('get.auction.cars') }}" class="{{ request()->routeIs('get.auction.cars') ? 'active' : '' }}">Auction</a>
+        </li>
+
+
+        <li>
+            <a href="{{ route('parts') }}" class="{{ request()->routeIs('parts') ? 'active' : '' }}">Car Part</a>
+        </li>
+        <li>
+            <a href="{{ route('stolen') }}" class="{{ request()->routeIs('stolen') ? 'active' : '' }}">Stolen Cars</a>
+        </li>
+        <li>
+            <a href="{{ route('blacklist') }}" class="{{ request()->routeIs('blacklist') ? 'active' : '' }}">BlackList</a>
+        </li>
     </ul>
 </div>
 <header class="hero">

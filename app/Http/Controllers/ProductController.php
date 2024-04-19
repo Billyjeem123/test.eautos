@@ -618,39 +618,43 @@ private function validateRequest(Request $request): \Illuminate\Contracts\Valida
      }
 
 
-    public function saveValuedAsset(Request $request): \Illuminate\Http\RedirectResponse
-    {
-        $saveAsset = ValueAsset::create([
-            'user_id' => auth()->user()->id,
-            'model' => $request->model,
-            'color' => $request->color,
-            'mileage' => $request->mileage,
-            'engine_type' => $request->engine_type,
-            'desc' => $request->desc,
-            'brand' => $request->brand,
-            'asset_type' => $request->selected_car_type
-        ]);
+        public function saveValuedAsset(Request $request): \Illuminate\Http\RedirectResponse
+        {
 
-        $uploadDocsAndGetLinks = $this->uploadDocsAndGetLinks($request);
-        foreach ($uploadDocsAndGetLinks as $docsUrl) {
-            ValueDocs::create([
-                'value_asset_id' => $saveAsset->id,
-                'type' => 'Docs',
-                'docs' => $docsUrl,
+
+            $saveAsset = ValueAsset::create([
+                'user_id' => auth()->user()->id,
+                'model' => $request->model,
+                'color' => $request->color,
+                'mileage' => $request->mileage,
+                'engine_type' => $request->engine_type,
+                'desc' => $request->desc,
+                'brand' => $request->brand,
+                'asset_type' => $request->selected_car_type
             ]);
-        }
 
-        $uploadImagesAndGetLinks = $this->uploadImagesAndGetLinks($request);
-        foreach ($uploadImagesAndGetLinks as $imageUrl) {
-            ValueDocs::create([
-                'value_asset_id' => $saveAsset->id,
-                'type' => 'Images',
-                'images' => $imageUrl,
-            ]);
-        }
 
-        return redirect()->back()->with(['success' => 'Record received. You shall be notified upon reviewal.']);
-    }
+
+            $uploadImagesAndGetLinks = $this->uploadImagesAndGetLinks($request);
+            foreach ($uploadImagesAndGetLinks as $imageUrl) {
+                ValueDocs::create([
+                    'value_asset_id' => $saveAsset->id,
+                    'type' => 'Images',
+                    'file_name' => $imageUrl,
+                ]);
+            }
+
+            $uploadDocsAndGetLinks = $this->uploadDocsAndGetLinks($request);
+            foreach ($uploadDocsAndGetLinks as $docsUrl) {
+                ValueDocs::create([
+                    'value_asset_id' => $saveAsset->id,
+                    'type' => 'Docs',
+                    'file_name' => $docsUrl,
+                ]);
+            }
+
+            return redirect()->back()->with(['success' => 'Record received. You shall be notified upon reviewal.']);
+        }
 
 
 
@@ -658,22 +662,22 @@ private function validateRequest(Request $request): \Illuminate\Contracts\Valida
 
     public function uploadDocsAndGetLinks($request): array
     {
-        $imageUrls = [];
+        $fileUrls = [];
 
         if ($request->hasFile('legalDocs')) {
-            foreach ($request->file('legalDocs') as $image) {
-                $imageName = time() . '_' . $image->getClientOriginalName(); // Generate a unique name for the image
-                $imagePath = $image->storeAs('public/uploads', $imageName);
-                $imageUrl = asset('storage/uploads/' . $imageName);
-                $imageUrls[] = $imageUrl;
+            foreach ($request->file('legalDocs') as $file) {
+                $fileName = time() . '_' . $file->getClientOriginalName(); // Generate a unique name for the file
+                $filePath = $file->storeAs('public/uploads', $fileName);
+                $fileUrl = asset('storage/uploads/' . $filePath);
+                $fileUrls[] = $fileUrl;
             }
         } else {
-            // Handle case where no images were uploaded
+            // Handle case where no files were uploaded
         }
 
-
-        return $imageUrls;
+        return $fileUrls;
     }
+
 
 
 

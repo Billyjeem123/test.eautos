@@ -82,13 +82,8 @@ class AdminController extends Controller
 
 
 
-        $valueAssets = ValueAsset::getValueAssetsWithDocsAndImages();
-
-         echo "<pre>";
-         echo json_encode($valueAssets, JSON_PRETTY_PRINT);
-         echo "</pre>";
-
-//        return view('admin.asset-evaluation', ['valueAssets' => $valueAssets]);
+   $allAsset = ValueAsset::with('asset_docs')->get();
+        return view('admin.asset-evaluation', ['allAsset' => $allAsset]);
 
 
     }

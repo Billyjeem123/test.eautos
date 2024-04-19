@@ -22,24 +22,23 @@
                     <th>Engine Type</th>
                     <th>Credentials</th>
                     <th>Date Posted</th>
-                    <th>Status</th>
+{{--                    <th>Status</th>--}}
                     <th>Delete</th>
 
 
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($valueAssets as $valuedAsset)
+                @foreach($allAsset as $valuedAsset)
                     <tr>
-                        <td>{{$valuedAsset->user_id}}</td>
-                        <td>{{$valuedAsset->asset_type}}</td>
+                        <td>{{ $valuedAsset->asset_type . " Car" }}</td>
                         <td>{{$valuedAsset->brand}}</td>
                         <td>{{$valuedAsset->model}}</td>
                         <td>{{$valuedAsset->color}}</td>
                         <td>{{$valuedAsset->mileage}}</td>
                         <td>{{$valuedAsset->engine_type}}</td>
+                        <td><a href="" class="btn btn-info">Credentials</a></td>
                         <td>{{$valuedAsset->created_at}}</td>
-                        <td><a href="" class="btn btn-info">View Credentials</a></td>
                         <form action="{{ route('admin.users.delete', $valuedAsset->id) }}" method="POST">
                             @csrf
                             @method('DELETE')

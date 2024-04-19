@@ -56,10 +56,18 @@
 
         <li><a href="">Sell A {{ Str::singular($categoryName) }}</a></li>
         <li><a href="{{route('value.vehicle')}}">Value My {{ Str::singular($categoryName) }}</a></li>
-        <li><a href="auction.html">Auction</a></li>
-        <li><a href="parts.html">{{ Str::singular($categoryName) }} Parts</a></li>
-        <li><a href="stolenCars.html">Stolen {{ Str::singular($categoryName) }}</a></li>
-        <li><a href="blacklist.html">Blacklist</a></li>
+        <li>
+            <a href="{{ route('get.auction.cars') }}" class="{{ request()->routeIs('get.auction.cars') ? 'active' : '' }}">Auction</a>
+        </li>
+
+        <li><a href="{{route('parts')}}">{{ Str::singular($categoryName) }} Parts</a></li>
+        <li>
+            <a href="{{ route('stolen') }}" class="{{ request()->routeIs('stolen') ? 'active' : '' }}">Stolen {{ Str::singular($categoryName) }}</a>
+        </li>
+
+        <li>
+            <a href="{{ route('blacklist') }}" class="{{ request()->routeIs('blacklist') ? 'active' : '' }}">BlackList</a>
+        </li>
     </ul>
 </div>
 <header class="hero">
