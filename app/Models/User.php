@@ -28,7 +28,12 @@ class User extends Authenticatable
         'is_active',
         'experience',
         'bussiness_name',
-        'phone'
+        'phone',
+        'profile_image',
+        'state',
+        'business_state'.
+        'bussiness_location',
+        'organisation_services'
     ];
 
     /**
@@ -83,4 +88,31 @@ class User extends Authenticatable
     {
         return $this->hasMany(RequestCar::class);
     }
+
+    public function profileCompletionPercentage(): float|int
+    {
+        // Define the required fields for the profile
+        $requiredFields = [
+            'name', 'email', 'phone', 'state', 'experience', 'business_name',
+            'about', 'image'
+        ];
+
+        // Initialize the total completion score
+        $totalCompletionScore = 0;
+
+        // Calculate the total completion score
+        foreach ($requiredFields as $field) {
+            if ($this->$field) {
+                // Each filled field contributes a weight of 15 to the total completion score
+                $totalCompletionScore += 15;
+            }
+        }
+
+        // Calculate the profile completion percentage
+        $totalPossibleScore = count($requiredFields) * 15;
+        $completionPercentage = ($totalCompletionScore / $totalPossibleScore) * 100;
+
+        return $completionPercentage;
+    }
+
 }

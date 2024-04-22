@@ -68,5 +68,6 @@ class Kernel extends HttpKernel
         'notify' =>  \App\Http\Middleware\AdminNotifications::class,
         'showNavBar' => \App\Http\Middleware\showNavBar::class,
         'authRedirect' => \App\Http\Middleware\authRedirect::class,
+        'profile.complete' => \App\Http\Middleware\profileComleted::class
     ];
 }

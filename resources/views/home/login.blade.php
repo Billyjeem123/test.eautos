@@ -24,7 +24,7 @@
                 <input type="text" placeholder="User/ Email" name="email">
                 <input type="password" placeholder="Password" name="password">
                 <span><a href="" class="f_p">Forget Password</a>
-            <a href="" class="f_p">Create new account</a></span><br>
+            <a href="{{ route('register') }}" class="f_p">Create new account</a></span><br>
                 <button id="login" type="submit">Login</button>
             </form>
         </div>

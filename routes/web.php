@@ -87,6 +87,12 @@ Route::group(['middleware' => ['showNavBar']], function () {
         Route::view('/parts', 'home.parts')->name('parts');
         Route::view('/stolen-cars', 'home.stolen-cars')->name('stolen');
         Route::view('/blacklist', 'home.blacklist')->name('blacklist');
+        Route::view('/sell-a-car', 'home.sell-a-car')->name('sell');
+
+
+        #usserProfile
+        Route::get('/user/profile/{userId}', [UserController::class, 'showProfile'])->name('user.profile');
+
 
     });
 });
@@ -136,7 +142,7 @@ Route::prefix('admin')->middleware('auth', 'admin', 'notify')->group(function ()
      Route::delete('/brands/delete/{id}', [BrandController::class, 'deleteBrand'])->name('admin.brand.delete');
 
 
-     Route::get('/vehicle', [ProductController::class, 'index'])->name('admin.vehicle');
+     Route::get('/vehicle', [ProductController::class, 'index'])->name('admin.vehicle')->middleware('profile.complete');
      Route::post('/vehicle/create', [ProductController::class, 'store'])->name('admin.vehicle.create');
      Route::delete('/vehicle/delete/{id}', [ProductController::class, 'deleteVehicle'])->name('admin.vehicle.delete');
      Route::get('/get-subcategories/{categoryId}', [ProductController::class, 'getSubcategories'])->name('admin.vehicle.getSubcategories');
@@ -168,6 +174,8 @@ Route::prefix('admin')->middleware('auth', 'admin', 'notify')->group(function ()
 //    Route::delete('/vehicle/delete/{id}', [ProductController::class, 'deleteVehicle'])->name('admin.vehicle.delete');
 //    Route::get('/get-subcategories/{categoryId}', [ProductController::class, 'getSubcategories'])->name('admin.vehicle.getSubcategories');
 
+    Route::view('/incomplete', 'admin.profile-incomplete')->name('profile.incomplete');
+    Route::get('/user/profile', [UserController::class, 'ShowDashboardProfile'])->name('admin.profile');
 
 
     Route::view('/editlist', 'admin.edit-listing')->name('edit.listing');

@@ -146,8 +146,9 @@
             } else {
                 $(".car_type_nav").css({
                     position: "normal",
-                    top: "normal",
+                    top: "inherit",
                 });
+                $(".hero").css("padding-top", "5rem");
             }
         });
     });

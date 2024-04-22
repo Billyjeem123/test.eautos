@@ -54,7 +54,12 @@
             <li><a href="{{route('get.sub.product', urlencode($subcategory))}}" class="{{ $sub_category_name == $subcategory ? 'active' : '' }}"  >{{$subcategory}}</a></li>
         @endforeach
 
-        <li><a href="">Sell A {{ Str::singular($categoryName) }}</a></li>
+
+
+        <li>
+            <a href="{{ route('sell') }}" class="{{ request()->routeIs('sell') ? 'active' : '' }}">Sell A {{ Str::singular($categoryName) }}</a>
+        </li>
+
         <li><a href="{{route('value.vehicle')}}">Value My {{ Str::singular($categoryName) }}</a></li>
         <li>
             <a href="{{ route('get.auction.cars') }}" class="{{ request()->routeIs('get.auction.cars') ? 'active' : '' }}">Auction</a>
@@ -278,7 +283,7 @@
             } else {
                 $(".car_type_nav").css({
                     position: "normal",
-                    top: "normal",
+                    top: "inherit",
                 });
                 $("header").css("padding-top", "4rem");
             }

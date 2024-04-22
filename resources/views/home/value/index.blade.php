@@ -17,11 +17,25 @@
         <li>
             <a href="{{ route('value.vehicle') }}" class="{{ request()->routeIs('value.vehicle') ? 'active' : '' }}">Value Asset</a>
         </li>
-        <li><a href="sell.html">Sell A Car</a></li>
-        <li><a href="auction.html">Auction</a></li>
-        <li><a href="{{route('parts')}}">Car Parts</a></li>
-        <li><a href="stolenCars.html">Stolen Cars</a></li>
-        <li><a href="blacklist.html">Blacklist</a></li>
+
+
+        <li>
+            <a href="{{ route('sell') }}" class="{{ request()->routeIs('sell') ? 'active' : '' }}">Sell A Car</a>
+        </li>
+
+
+        <li>
+            <a href="{{ route('get.auction.cars') }}" class="{{ request()->routeIs('get.auction.cars') ? 'active' : '' }}">Auction</a>
+        </li>
+        <li>
+            <a href="{{ route('parts') }}" class="{{ request()->routeIs('parts') ? 'active' : '' }}">Car Part</a>
+        </li>
+        <li>
+            <a href="{{ route('stolen') }}" class="{{ request()->routeIs('stolen') ? 'active' : '' }}">Stolen Cars</a>
+        </li>
+        <li>
+            <a href="{{ route('blacklist') }}" class="{{ request()->routeIs('blacklist') ? 'active' : '' }}">BlackList</a>
+        </li>
     </ul>
 </div>
 <header class="hero">
@@ -169,7 +183,7 @@
             } else {
                 $(".car_type_nav").css({
                     position: "normal",
-                    top: "normal",
+                    top: "inherit",
                 });
                 $("header").css("padding-top", "5rem");
             }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -98,5 +99,40 @@ public function toggleBlockUsers($id)
     // Optionally, you can return a response or redirect to a different page
     return redirect()->back()->with('success', 'User added successfully');
 }
+
+    public function showProfile($userid)
+    {
+        // Find the user profile
+        $profile = User::find($userid);
+
+        // Check if the user profile exists
+        if (!$profile) {
+            abort(404); // Or handle the case where the user does not exist
+        }
+
+        // Count the total cars uploaded by the dealer
+        $carsCount = Product::where('user_id', $userid)->count();
+
+        return view('home.profile', ['profile' => $profile, 'carsCount' => $carsCount]);
+    }
+
+
+
+    public function ShowDashboardProfile()
+    {
+        // Find the user profile
+        $profileid = auth()->user()->id;
+
+        // Check if the user profile exists
+        if (!$profileid) {
+            abort(404); // Or handle the case where the user does not exist
+        }
+
+        $profile  = User::find($profileid);
+
+        return view('admin.profile', ['profile' => $profile]);
+    }
+
+
 
 }

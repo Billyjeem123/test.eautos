@@ -19,7 +19,14 @@
         <li>
             <a href="{{ route('value.vehicle') }}" class="{{ request()->routeIs('value.vehicle') ? 'active' : '' }}">Value Asset</a>
         </li>
-        <li><a href="sell.html">Sell A Car</a></li>
+
+
+        <li>
+            <a href="{{ route('sell') }}" class="{{ request()->routeIs('sell') ? 'active' : '' }}">Sell A Car</a>
+        </li>
+
+
+
 
         <li>
             <a href="{{ route('get.auction.cars') }}" class="{{ request()->routeIs('get.auction.cars') ? 'active' : '' }}">Auction</a>
@@ -239,20 +246,26 @@
 
         // -------------------------------------
         $height = $(".car_type_nav").height() + $(".navbar").height();
-        $(window).scroll(function () {
-            if ($(window).scrollTop() > $height) {
-                $(".car_type_nav").css({
-                    position: "fixed",
-                    top: "3.9rem",
-                    left: "0",
-                    "z-index": "9999",
-                });
-            } else {
-                $(".car_type_nav").css({
-                    position: "normal",
-                    top: "normal",
-                });
-            }
+        $(document).ready(function () {
+            // -------------------------------------
+            $height = $(".car_type_nav").height() + $(".navbar").height();
+            $(window).scroll(function () {
+                if ($(window).scrollTop() > $height) {
+                    $(".car_type_nav").css({
+                        position: "fixed",
+                        top: "3.9rem",
+                        left: "0",
+                        "z-index": "999",
+                    });
+                } else {
+                    $(".car_type_nav").css({
+                        position: "normal",
+                        top: "inherit",
+                        "z-index": "999",
+                    });
+                    $(".hero").css("padding-top", "5rem");
+                }
+            });
         });
     });
 

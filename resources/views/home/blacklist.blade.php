@@ -19,7 +19,13 @@
         <li>
             <a href="{{ route('value.vehicle') }}" class="{{ request()->routeIs('value.vehicle') ? 'active' : '' }}">Value Asset</a>
         </li>
-        <li><a href="sell.html">Sell A Car</a></li>
+
+
+        <li>
+            <a href="{{ route('sell') }}" class="{{ request()->routeIs('sell') ? 'active' : '' }}">Sell A Car</a>
+        </li>
+
+
         <li>
             <a href="{{ route('get.auction.cars') }}" class="{{ request()->routeIs('get.auction.cars') ? 'active' : '' }}">Auction</a>
         </li>
@@ -496,9 +502,10 @@
             } else {
                 $(".car_type_nav").css({
                     position: "normal",
-                    top: "normal",
+                    top: "inherit",
                     "z-index": "999",
                 });
+                $(".hero").css("padding-top", "5rem");
             }
         });
     });

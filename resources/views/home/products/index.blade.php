@@ -21,7 +21,13 @@
             <li><a href="{{route('get.sub.product', urlencode($subcategory))}}" class="{{ $categoryName == $subcategory ? 'active' : '' }}"  >{{$subcategory}}</a></li>
         @endforeach
 
-        <li><a href="">Sell A {{ Str::singular($categoryName) }}</a></li>
+
+
+        <li>
+            <a href="{{ route('sell') }}" class="{{ request()->routeIs('sell') ? 'active' : '' }}">Sell A {{ Str::singular($categoryName) }}</a>
+        </li>
+
+
         <li><a href="{{route('value.vehicle')}}">Value My {{ Str::singular($categoryName) }}</a></li>
         <li>
             <a href="{{ route('get.auction.cars') }}" class="{{ request()->routeIs('get.auction.cars') ? 'active' : '' }}">Auction</a>
@@ -97,8 +103,14 @@
                 @forelse ($products as $product)
                     <div class="card">
                         <a href="{{ route('product.show', $product->id) }}" class="card_link">
+                            <div class="card_img" style="width: 100%; display: flex;justify-content: space-between; align-items: start; height: 30px; padding: 5px;">
+                                <a href="{{route('user.profile', $product->user->id )}}" class="card_img_icon" style="text-decoration: none; color: #000; background-color: #ffffff; border-radius: 50%; padding: 5px; display: flex; justify-content: center; align-items: center; font-size: 12px;"><i class="far fa-user"></i></a>
+                            </div>
                             <div class="card_img" style="background: url('{{ $product->images[0]['image'] }}') no-repeat;"></div>
                         </a>
+
+
+
                         <div class="card_text">
                             <h5>{{ $product->car_name }}</h5>
                             <small><em>Posted by: {{ $product->user->name }} - Posted  {{ $product->created_at->diffForHumans() }}</em></small>
@@ -207,13 +219,15 @@
                     position: "fixed",
                     top: "3.9rem",
                     left: "0",
-                    "z-index": "9999",
+                    "z-index": "999",
                 });
             } else {
                 $(".car_type_nav").css({
                     position: "normal",
-                    top: "normal",
+                    top: "inherit",
+                    "z-index": "999",
                 });
+                $(".hero").css("padding-top", "5rem");
             }
         });
     });

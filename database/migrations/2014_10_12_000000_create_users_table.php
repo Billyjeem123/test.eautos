@@ -18,6 +18,9 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
              $table->string('role');
+             $table->string('image');
+             $table->longText('about');
+            $table->string('state');
              $table->integer('is_active');
              $table->string('experience')->nullable(); // Specify that 'experience' column can be nullable
              $table->string('bussiness_name')->nullable(); // Specify that 'experience' column can be nullable
