@@ -31,10 +31,7 @@
             </div><br>
             <div class="abt">
                 <h5>About Us</h5>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur, temporibus accusantium repellat
-                    natus
-                    debitis minima amet maiores perspiciatis vero repudiandae nihil adipisci libero a nesciunt provident aliquid
-                    totam molestias distinctio.</p>
+                <p>{{$profile->about}}</p>
             </div><br>
             <span class="share"><i class="fa fa-share"></i>&nbsp;&nbsp; <strong>Share</strong></span><br>
             <div class="card_footer">

@@ -12,8 +12,6 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    public mixed $bussiness_name;
-
 
     /**
      * The attributes that are mass assignable.
@@ -27,14 +25,16 @@ class User extends Authenticatable
         'role',
         'is_active',
         'experience',
-        'bussiness_name',
+        'business_name',
         'phone',
         'profile_image',
-        'state',
+        'country',
         'business_state'.
-        'bussiness_location',
+        'business_location',
         'organisation_services'
     ];
+
+//    public ?string $business_name = null;
 
     /**
      * The attributes that should be hidden for serialization.
@@ -89,12 +89,14 @@ class User extends Authenticatable
         return $this->hasMany(RequestCar::class);
     }
 
+
+
     public function profileCompletionPercentage(): float|int
     {
         // Define the required fields for the profile
         $requiredFields = [
             'name', 'email', 'phone', 'state', 'experience', 'business_name',
-            'about', 'image'
+            'about', 'image', 'business_state', 'business_location'
         ];
 
         // Initialize the total completion score
@@ -103,16 +105,24 @@ class User extends Authenticatable
         // Calculate the total completion score
         foreach ($requiredFields as $field) {
             if ($this->$field) {
-                // Each filled field contributes a weight of 15 to the total completion score
-                $totalCompletionScore += 15;
+                // Each filled field contributes a weight of 10 to the total completion score
+                $totalCompletionScore += 10;
             }
         }
 
         // Calculate the profile completion percentage
-        $totalPossibleScore = count($requiredFields) * 15;
-        $completionPercentage = ($totalCompletionScore / $totalPossibleScore) * 100;
+        $totalPossibleScore = count($requiredFields) * 10;
+        return ($totalCompletionScore / $totalPossibleScore) * 100;
+    }
 
-        return $completionPercentage;
+
+
+    /**
+     * Get the business services associated with the user.
+     */
+    public function businessServices(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(BussinessService::class);
     }
 
 }

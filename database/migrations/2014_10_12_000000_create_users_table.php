@@ -24,6 +24,11 @@ return new class extends Migration
              $table->integer('is_active');
              $table->string('experience')->nullable(); // Specify that 'experience' column can be nullable
              $table->string('bussiness_name')->nullable(); // Specify that 'experience' column can be nullable
+
+            $table->string('business_state')->nullable(); // Specify that 'experience' column can be nullable
+            $table->string('bussiness_location')->nullable(); // Specify that 'experience' column can be nullable
+            $table->string('organisation_services')->nullable(); // Specify that 'experience' column can be nullable
+
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

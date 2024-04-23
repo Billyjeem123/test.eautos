@@ -181,5 +181,7 @@ Route::prefix('admin')->middleware('auth', 'admin', 'notify')->group(function ()
     Route::view('/editlist', 'admin.edit-listing')->name('edit.listing');
     Route::get('/evaluate-all', [AdminController::class, 'getEvaluations'])->name('evaluate.all');
 
+    Route::post('/update-profile', [UserController::class, 'updateProfile'])->name('update.profile');
+
 
 });

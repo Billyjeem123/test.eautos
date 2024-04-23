@@ -33,6 +33,7 @@ return array(
     'App\\Http\\Middleware\\ValidateSignature' => $baseDir . '/app/Http/Middleware/ValidateSignature.php',
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
     'App\\Http\\Middleware\\authRedirect' => $baseDir . '/app/Http/Middleware/authRedirect.php',
+    'App\\Http\\Middleware\\profileComleted' => $baseDir . '/app/Http/Middleware/profileComleted.php',
     'App\\Http\\Middleware\\showNavBar' => $baseDir . '/app/Http/Middleware/showNavBar.php',
     'App\\Listeners\\CommentListner' => $baseDir . '/app/Listeners/CommentListner.php',
     'App\\Listeners\\ReachOutListner' => $baseDir . '/app/Listeners/ReachOutListner.php',

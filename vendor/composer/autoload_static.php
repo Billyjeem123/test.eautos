@@ -573,6 +573,7 @@ class ComposerStaticInitfe33f98a750b8c5a51b30c78bd3fab21
         'App\\Http\\Middleware\\ValidateSignature' => __DIR__ . '/../..' . '/app/Http/Middleware/ValidateSignature.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Http\\Middleware\\authRedirect' => __DIR__ . '/../..' . '/app/Http/Middleware/authRedirect.php',
+        'App\\Http\\Middleware\\profileComleted' => __DIR__ . '/../..' . '/app/Http/Middleware/profileComleted.php',
         'App\\Http\\Middleware\\showNavBar' => __DIR__ . '/../..' . '/app/Http/Middleware/showNavBar.php',
         'App\\Listeners\\CommentListner' => __DIR__ . '/../..' . '/app/Listeners/CommentListner.php',
         'App\\Listeners\\ReachOutListner' => __DIR__ . '/../..' . '/app/Listeners/ReachOutListner.php',
