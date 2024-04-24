@@ -9,7 +9,7 @@
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        <h1 class="h3 mb-4 text-gray-800">List Of Reported Items</h1>
+        <h1 class="h3 mb-4 text-gray-800">List Of Reported Vendors</h1>
 
         <div class="table-responsive bg-gray-100 p-2 py-4">
           <table class="table" id="dataTable" width="100%" cellspacing="0">

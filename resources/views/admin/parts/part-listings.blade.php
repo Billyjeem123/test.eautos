@@ -17,42 +17,42 @@
             <table class="table" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                 <tr>
-                    <th>Category</th>
-                    <th>Model</th>
+                    <th>Part Name</th>
                     <th>Price</th>
-                    <th>Views</th>
-                    <th>Active</th>
-                    <th>Approve</th>
+                    <th>Location</th>
+                    <th>User Fullname</th>
+                    <th>Approval</th>
                     <th>Date Created</th>
-                    <th>View Info</th>
+                    <th>View Image</th>
                     <th>Delete</th>
 
 
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($products as $product)
+                @foreach($parts as $part)
                     <tr>
-                        <td>{{$product->categories->catname}}</td>
-                        <td>{{$product->model}}</td>
-                        <td>₦{{ number_format($product->price, 2) }}</td>
-                        <td>{{$product->views}}</td>
-                        <td>{{ $product->is_approved === 1 ? 'Approved' : ($product->is_approved === 2 ? 'Deactivated' : 'Pending') }}</td>
+                        <td>{{$parts->part_name}}</td>
+                        <td>₦{{ number_format($parts->price, 2) }}</td>
+                        <td>{{$parts->location}}</td>
+                        <td>{{$parts->user->name}}</td>
+                        <td>{{ $parts->active === 1 ? 'Approved' : ($product->is_approved === 2 ? '' : 'Pending') }}</td>
+                        <td>{{$parts->created_at->diffForHumans()}}</td>
+                        <td><a class="btn btn-info">View Image</a></td>
                         <form action="{{ route('admin.product.activate', $product->id) }}" method="POST">
                             @csrf
                             @method('PUT')
                             <td>
                                 <button type="submit" class="btn btn-info btn-sm">
-                                    {{ $product->is_approved === 1 ? 'Deactivate'  : 'Activate' }}
+                                    {{ $parts->is_approved === 1 ? 'Deactivate'  : 'Activate' }}
                                 </button>
                             </td>
                         </form>
 
-                        <td>{{$product->created_at->diffForHumans()}}</td>
-                        <td><a class="btn btn-info btn-sm" href="{{ route('admin.edit.product', $product->id) }}">View Details</a></td>
+                        <td><a class="btn btn-info btn-sm" href="{{ route('admin.edit.product', $parts->id) }}">View Details</a></td>
 
 
-                        <form action="{{ route('admin.product.delete', $product->id) }}" method="POST">
+                        <form action="{{ route('admin.parts.delete', $parts->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
                             <td><button type="submit" class="btn btn-danger btn-sm">Delete</button></td>

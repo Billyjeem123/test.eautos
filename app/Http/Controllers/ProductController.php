@@ -33,6 +33,8 @@ class ProductController extends Controller
         return view('admin.vehicle', ['brands' => $brands, 'categories' => $categories]);
     }
 
+
+
     public function showProductRecords($id): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
     {
 

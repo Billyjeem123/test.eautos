@@ -104,6 +104,7 @@ public function toggleBlockUsers($id)
     public function showProfile($userid)
     {
         // Find the user profile
+
         $profile = User::find($userid);
 
         // Check if the user profile exists

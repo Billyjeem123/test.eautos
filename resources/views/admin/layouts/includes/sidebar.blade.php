@@ -18,6 +18,11 @@
           <i class="fas fa-fw fa-qrcode"></i>
           <span>Dashboard</span></a>
       </li>
+
+
+
+
+
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#add" aria-expanded="true"
           aria-controls="add">
@@ -27,53 +32,115 @@
         <div id="add" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Add New</h6>
-            <a class="collapse-item" href="{{route('admin.category')}}">Category</a>
-            <a class="collapse-item" href="{{route('admin.users')}}">User</a>
             <a class="collapse-item" href="{{route('admin.brands')}}">Brand</a>
 
           </div>
         </div>
       </li>
+
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities102"
+               aria-expanded="true" aria-controls="collapseUtilities102">
+                <i class="fas fa-folder"></i>
+
+                <span>Category</span>
+            </a>
+            <div id="collapseUtilities102" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Post Option</h6>
+                    <a class="collapse-item" href="{{route('admin.category')}}">Upload Category</a>
+                </div>
+            </div>
+        </li>
+
+
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities101"
+               aria-expanded="true" aria-controls="collapseUtilities101">
+                <i class="fas fa-car-side"></i>
+
+                <span>Post Vehicle</span>
+            </a>
+            <div id="collapseUtilities101" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Post Option</h6>
+                    <a class="collapse-item" href="{{route('admin.vehicle')}}">Post A Vehicle</a>
+                    <a class="collapse-item" href="{{route('admin.product.all')}}">Vehicle Listings</a>
+                </div>
+            </div>
+        </li>
+
+
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
           aria-expanded="true" aria-controls="collapseUtilities">
-          <i class="fas fa-fw fa-share"></i>
-          <span>Post</span>
+            <i class="fas fa-gavel"></i>
+
+            <span>Auction Asset</span>
         </a>
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Post Option</h6>
-{{--            <a class="collapse-item" href="postProperty.html">Property</a>--}}
-            <a class="collapse-item" href="{{route('admin.vehicle')}}">Post A Vehicle</a>
-            <a class="collapse-item" href="{{route('admin.auction')}}">Auction Vehicles</a>
+            <a class="collapse-item" href="{{route('admin.auction')}}">Auction Asset</a>
+            <a class="collapse-item" href="{{route('admin.auction')}}">View Listings</a>
           </div>
         </div>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{{route('admin.product.all')}}">
-          <i class="fas fa-fw fa-list"></i>
-          <span>My Listing</span></a>
-      </li>
+
+
 
 
         <li class="nav-item">
-            <a class="nav-link" href="{{  route('view.reports')}}">
-                <i class="far fa-fw fa-file"></i>
-                <span>Reports</span></a>
-        </li>
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities103"
+               aria-expanded="true" aria-controls="collapseUtilities103">
+                <i class="fas fa-user-circle"></i>
 
-
-        <li class="nav-item">
-            <a class="nav-link" href="{{  route('view.requests')}}">
-                <i class="far fa-fw fa-file"></i>
-                <span>Car Requests</span></a>
-        </li>
-
-        <li class="nav-item">
-            <a class="nav-link" href="{{ route('evaluate.all')}}">
-                <i class="far fa-fw fa-file"></i>
-                <span>Asset Evaluation</span>
+                <span>Users</span>
             </a>
+            <div id="collapseUtilities103" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Post Option</h6>
+                    <a class="collapse-item" href="{{route('admin.users')}}">Create User</a>
+                    <a class="collapse-item" href="{{route('admin.users.all')}}">View Users</a>
+                </div>
+            </div>
+        </li>
+
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities105"
+               aria-expanded="true" aria-controls="collapseUtilities105">
+                <i class="fas fa-hand-holding"></i>
+                <span>Service Requests</span>
+            </a>
+            <div id="collapseUtilities105" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Post Option</h6>
+                    <a class="collapse-item" href="{{route('view.reports')}}">User-Reported Vendors</a>
+                    <a class="collapse-item" href="{{route('view.requests')}}">Car Requests</a>
+                    <a class="collapse-item" href="{{route('evaluate.all')}}">Asset Evaluation</a>
+                </div>
+            </div>
+        </li>
+
+
+
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities106"
+               aria-expanded="true" aria-controls="collapseUtilities106">
+                <i class="fas fa-cogs"></i>
+                <span>Part</span>
+            </a>
+            <div id="collapseUtilities106" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Post Option</h6>
+                    <a class="collapse-item" href="{{route('admin.parts')}}">Upload Car Parts</a>
+                    <a class="collapse-item" href="{{route('admin.parts.all')}}">Part Listings</a>
+                </div>
+            </div>
         </li>
 
 
@@ -81,17 +148,12 @@
 
 
         <li class="nav-item">
-        <a class="nav-link" href="{{route('admin.users.all')}}">
-          <i class="fas fa-fw fa-list"></i>
-          <span>My Users</span></a>
-      </li>
-
-
-      <li class="nav-item">
-        <a class="nav-link" href="profile.html">
+        <a class="nav-link" href="{{route('admin.profile')}}">
           <i class="fas fa-fw fa-user-circle"></i>
           <span>Profile</span></a>
       </li>
+
+
       <li class="nav-item">
         <a class="nav-link" href="message.html">
           <i class="fas fa-fw fa-envelope"></i>

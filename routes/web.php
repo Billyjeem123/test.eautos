@@ -94,6 +94,7 @@ Route::group(['middleware' => ['showNavBar']], function () {
         Route::get('/user/profile/{userId}', [UserController::class, 'showProfile'])->name('user.profile');
 
 
+
     });
 });
 
@@ -182,6 +183,10 @@ Route::prefix('admin')->middleware('auth', 'admin', 'notify')->group(function ()
     Route::get('/evaluate-all', [AdminController::class, 'getEvaluations'])->name('evaluate.all');
 
     Route::post('/update-profile', [UserController::class, 'updateProfile'])->name('update.profile');
+    Route::get('/part', [\App\Http\Controllers\PartController::class, 'createParts'])->name('admin.parts');
+    Route::post('/part', [\App\Http\Controllers\PartController::class, 'store'])->name('savePart');
+    Route::get('/get-part', [\App\Http\Controllers\PartController::class, 'getAllParts'])->name('admin.parts.all');
+    Route::delete('/get-part/{id)', [\App\Http\Controllers\PartController::class, 'deletePart'])->name('admin.parts.delete');
 
 
 });

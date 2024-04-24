@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Product;
+use App\Models\Report;
+use App\Models\RequestCar;
+use App\Models\User;
 use App\Models\ValueAsset;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,8 +20,17 @@ class AdminController extends Controller
         $user = Auth::user();
     $unreadNotificationsCount = $user->unreadNotifications()->count();
     $notifications = $user->unreadNotifications;
+    $usersCount = User::all()->count();
+     $productCount = Product::all()->count();
+     $caseReport = Report::all()->count();
+     $carRequest =  RequestCar::all()->count();
+     $valueAsset = ValueAsset::all()->count();
+     $category = Category::all()->count();
 
-        return view('admin.index', ['unreadNotificationsCount' => $unreadNotificationsCount, 'notifications' => $notifications]);
+        return view('admin.index', ['unreadNotificationsCount' => $unreadNotificationsCount,
+            'usersCount' => $usersCount, 'productCount' => $productCount, 'caseReport' => $caseReport,
+            'carRequest' => $carRequest, 'valueAsset' => $valueAsset, 'category' => $category,
+            'notifications' => $notifications]);
     }
 
 

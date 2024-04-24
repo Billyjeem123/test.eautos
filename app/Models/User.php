@@ -125,4 +125,12 @@ class User extends Authenticatable
         return $this->hasMany(BussinessService::class);
     }
 
+
+    /**
+     * Get the part  associated with the user.
+     */
+    public function parts()
+    {
+        return $this->hasMany(Part::class);
+    }
 }
