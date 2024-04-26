@@ -16,12 +16,14 @@ return new class extends Migration
         Schema::create('car_part', function (Blueprint $table) {
             $table->id();
             $table->string('image');
+            $table->unsignedInteger('part_category_id');
             $table->string('part_name');
             $table->string('price');
             $table->string('location');
             $table->unsignedInteger('user_id');
             $table->integer('active')->default('0');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('part_category_id')->references('id')->on('car_part_categories')->onDelete('cascade');
             $table->timestamps();
         });
     }

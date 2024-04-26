@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PartController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\UserController;
@@ -183,10 +184,15 @@ Route::prefix('admin')->middleware('auth', 'admin', 'notify')->group(function ()
     Route::get('/evaluate-all', [AdminController::class, 'getEvaluations'])->name('evaluate.all');
 
     Route::post('/update-profile', [UserController::class, 'updateProfile'])->name('update.profile');
-    Route::get('/part', [\App\Http\Controllers\PartController::class, 'createParts'])->name('admin.parts');
+    Route::get('/part', [PartController::class, 'createParts'])->name('admin.parts');
     Route::post('/part', [\App\Http\Controllers\PartController::class, 'store'])->name('savePart');
     Route::get('/get-part', [\App\Http\Controllers\PartController::class, 'getAllParts'])->name('admin.parts.all');
     Route::delete('/get-part/{id)', [\App\Http\Controllers\PartController::class, 'deletePart'])->name('admin.parts.delete');
+    Route::get('/category-part-all', [PartController::class, 'allPartCategory'])->name('admin.parts.carpartcategory');
+    Route::post('/category-part', [\App\Http\Controllers\PartController::class, 'createPartcategory'])->name('admin.parts.category');
+    Route::delete('/category-delete', [\App\Http\Controllers\PartController::class, 'deletePartCategory'])->name('admin.parts.delete');
 
+    Route::get('/parts/{id}/approve', [PartController::class, 'approvePart'])->name('parts.approve');
+    Route::get('/parts/{id}/unapprove', [PartController::class, 'unapprovePart'])->name('parts.unapprove');
 
 });

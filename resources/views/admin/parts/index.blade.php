@@ -16,7 +16,20 @@
         <form class="p-3" method="POST"   enctype="multipart/form-data"  action="{{route('savePart')}}">
             @csrf
 
+
             <div class="form-row mb-6">
+                <div class="form-group col-md-12">
+                    <select id="state" class="form-control bg-white" name="part_category_id" required>
+                        <option selected disabled>Select Category</option>
+                    @foreach($partcategories as $categories)
+
+                            <option value="{{$categories->id}}">{{$categories->part_category}}</option>
+
+                        @endforeach
+
+                    </select>
+
+                </div>
                 <div class="form-group col-md-12">
                     <input type="text" class="form-control bg-white" placeholder="Enter Name" id=""  name="part_name" required>
                 </div>

@@ -137,6 +137,7 @@
             <div id="collapseUtilities106" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Post Option</h6>
+                    <a class="collapse-item" href="{{route('admin.parts.carpartcategory')}}">Part Categories</a>
                     <a class="collapse-item" href="{{route('admin.parts')}}">Upload Car Parts</a>
                     <a class="collapse-item" href="{{route('admin.parts.all')}}">Part Listings</a>
                 </div>

@@ -3,9 +3,11 @@
 namespace App\Providers;
 
 use App\Events\CommentEvent;
+use App\Events\ManagePartEvent;
 use App\Events\ReachOut;
 use App\Events\ReportEvent;
 use App\Listeners\CommentListner;
+use App\Listeners\ManageEventListener;
 use App\Listeners\ReachOutListner;
 use App\Listeners\ReportListner;
 use Illuminate\Support\Facades\Event;
@@ -34,7 +36,10 @@ class EventServiceProvider extends ServiceProvider
         ],
          CommentEvent::class =>[
            CommentListner::class
-         ]
+         ],
+        ManagePartEvent::class=>[
+            ManageEventListener::class
+        ]
     ];
 
     /**
