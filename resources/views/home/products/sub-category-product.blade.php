@@ -97,6 +97,7 @@
 
                 @foreach ($products as $product)
                     <div class="card">
+
                         <a href="{{route('product.show', $product->id)}}" class="card_link">
                             <div class="card_img" style="background: url('{{ $product->images[0]['image'] }}') no-repeat;"></div>
                         </a>

@@ -106,7 +106,10 @@
                             <div class="card_img" style="width: 100%; display: flex;justify-content: space-between; align-items: start; height: 30px; padding: 5px;">
                                 <a href="{{route('user.profile', $product->user->id )}}" class="card_img_icon" style="text-decoration: none; color: #000; background-color: #ffffff; border-radius: 50%; padding: 5px; display: flex; justify-content: center; align-items: center; font-size: 12px;"><i class="far fa-user"></i></a>
                             </div>
-                            <div class="card_img" style="background: url('{{ $product->images[0]['image'] }}') no-repeat;"></div>
+                            <a href="{{ route('product.show', $product->id) }}">
+                                <div class="card_img" style="background: url('{{ $product->images[0]['image'] }}') no-repeat;"></div>
+                            </a>
+
                         </a>
 
 

@@ -10,7 +10,7 @@ class Part extends Model
     use HasFactory;
 
     protected $fillable = [
-        'part_name', 'image', 'location', 'user_id', 'price', 'part_category_id', 'active'
+        'part_name', 'image', 'location', 'user_id', 'price', 'part_category_id', 'active', 'description'
     ];
 
     protected  $table  = 'car_part';

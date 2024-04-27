@@ -1,4 +1,5 @@
-<header class="hero">
+<header class="hero" style="background: linear-gradient(#000088, #000088),
+    url(/home/images/cars/landing.jpg);">
 
     <div class="form_group">
         <form action="{{ route('search') }}" method="GET">

@@ -34,6 +34,7 @@ class PartController extends Controller
             'location' => $request->location,
             'user_id' => auth()->user()->id,
             'active' => $role,
+            'description' => $request->description
         ]);
 
         // Return a success response
@@ -101,18 +102,19 @@ class PartController extends Controller
 
     }
 
-
-
-
     public function approvePart($id)
     {
         $part = Part::findOrFail($id);
         $part->active = $part->active === 1 ? 0 : 1;
         $part->save();
 
-        $title = "Car part item approved successfully";
+        if($part->users->role != 'admin'){
+            $title = "Dear User, Your Car Part listing Name:'$part->part_name was unapproved";
 
-        event(new ManagePartEvent($part->users->email, $title));
+            event(new ManagePartEvent($part->users->email, $title));
+
+        }
+
 
         return redirect()->back()->with('success', 'Part status updated successfully.');
     }
@@ -123,9 +125,39 @@ class PartController extends Controller
         $part->active = $part->active === 0 ? 1 : 0;
         $part->save();
 
+        if($part->users->role != 'admin') {
+
+            $title = "Congrats, Your Car Part listing Name: '$part->part_name' has been approved";
+
+            event(new ManagePartEvent($part->users->email, $title));
+        }
+
+
         return redirect()->back()->with('success', 'Part status updated successfully.');
     }
 
+
+
+    public  function  getPartView()
+    {
+
+            $parts = Part::with('partcategories')->get();
+
+            $partCategories = CarPartCategory::all();
+
+        return view('home.part.index', compact('parts', 'partCategories'));
+    }
+
+    public function viewPartDetails($id){
+
+
+        $part = Part::with('partcategories', 'users')->find($id);
+        $parts = Part::with('partcategories', 'users')->get();
+
+        return view('home.part.view-part', compact('part'));
+
+
+    }
 
 }
 

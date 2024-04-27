@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('location');
             $table->unsignedInteger('user_id');
             $table->integer('active')->default('0');
+            $table->string('description');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('part_category_id')->references('id')->on('car_part_categories')->onDelete('cascade');
             $table->timestamps();

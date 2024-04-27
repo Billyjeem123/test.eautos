@@ -31,7 +31,7 @@
 
                 </div>
                 <div class="form-group col-md-12">
-                    <input type="text" class="form-control bg-white" placeholder="Enter Name" id=""  name="part_name" required>
+                    <input type="text" class="form-control bg-white" placeholder="Enter Name or Title" id=""  name="part_name" required>
                 </div>
                 <div class="form-group col-md-12">
                     <input type="text" class="form-control bg-white" placeholder="Enter Price" name="price" required>
@@ -86,6 +86,11 @@
 
                 <div class="form-group col-md-12">
                     <input type="file" class="form-control bg-white" placeholder="Area" id="price" name="image" required>
+                </div>
+
+
+                <div class="form-group col-md-12">
+                    <textarea  id="" cols="30" rows="10" name="description" placeholder="Enter Part Description" class="form-control" required></textarea>
                 </div>
             </div>
 

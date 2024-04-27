@@ -85,10 +85,14 @@ Route::group(['middleware' => ['showNavBar']], function () {
         #scrapy yards...
 
         Route::view('/scrapy-yard', 'home.scarapy-yard')->name('scrapy-yard');
-        Route::view('/parts', 'home.parts')->name('parts');
+//        Route::view('/parts', 'home.parts')->name('parts');
         Route::view('/stolen-cars', 'home.stolen-cars')->name('stolen');
         Route::view('/blacklist', 'home.blacklist')->name('blacklist');
         Route::view('/sell-a-car', 'home.sell-a-car')->name('sell');
+
+        Route::get('/part/all', [PartController::class, 'getPartView'])->name('parts');
+        Route::get('/view-part/{id?}', [PartController::class, 'viewPartDetails'])->name('view.parts');
+
 
 
         #usserProfile
@@ -190,7 +194,7 @@ Route::prefix('admin')->middleware('auth', 'admin', 'notify')->group(function ()
     Route::delete('/get-part/{id)', [\App\Http\Controllers\PartController::class, 'deletePart'])->name('admin.parts.delete');
     Route::get('/category-part-all', [PartController::class, 'allPartCategory'])->name('admin.parts.carpartcategory');
     Route::post('/category-part', [\App\Http\Controllers\PartController::class, 'createPartcategory'])->name('admin.parts.category');
-    Route::delete('/category-delete', [\App\Http\Controllers\PartController::class, 'deletePartCategory'])->name('admin.parts.delete');
+    Route::delete('/category-delete/{id}', [\App\Http\Controllers\PartController::class, 'deletePartCategory'])->name('admin.parts.delete');
 
     Route::get('/parts/{id}/approve', [PartController::class, 'approvePart'])->name('parts.approve');
     Route::get('/parts/{id}/unapprove', [PartController::class, 'unapprovePart'])->name('parts.unapprove');

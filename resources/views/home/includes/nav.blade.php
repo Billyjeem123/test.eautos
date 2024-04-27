@@ -215,6 +215,23 @@
       <a href="{{route('register')}}"  class="signUp">Sign Up</a>
       <a href="{{route('login')}}" class="login" >Login</a>
     </span>
+    <style>
+        #profile li{
+            padding: 0;
+            margin: 0;
+        }
+        #profile ul li a{
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+    <span class="profile" id="profile">
+        <ul style="display: flex; flex-direction: column;
+        justify-content: start; align-items: start;">
+            <li><a href="#">Logout</a></li>
+            <li><a href="#">Dashboard</a></li>
+        </ul>
+    </span>
     <i class="fa fa-close" id="close_nav"></i>
     <i class="fa fa-bars" id="open_nav"></i>
   </nav>

@@ -40,7 +40,7 @@
                         <td>{{ $partcategory->part_category }}</td>
                         <td>
                             <!-- Add delete button -->
-                            <form action="{{ route('admin.brand.delete', $partcategory->id) }}" method="POST">
+                            <form action="{{ route('admin.parts.delete', $partcategory->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-sm btn-danger">Delete</button>
