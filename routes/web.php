@@ -81,7 +81,7 @@ Route::group(['middleware' => ['showNavBar']], function () {
         #comment routes....
 
         Route::post('/post-a-comment', [ProductController::class, 'comment'])->name('post.comment')->middleware('auth');
-
+        Route::post('/post-a-bussiness-review', [ProductController::class, 'bussinessReview'])->name('post.reviews')->middleware('auth');
         #scrapy yards...
 
         Route::view('/scrapy-yard', 'home.scarapy-yard')->name('scrapy-yard');
@@ -109,6 +109,8 @@ Route::group(['middleware' => ['showNavBar']], function () {
 Route::post('/admin/login', [AdminController::class, 'login'])->name('process.login');
 Route::get('/admin/login', [AdminController::class, 'showlogin'])->name('admin.login');
 Route::get('/logout', [AdminController::class, 'logout'])->name('process.logout');
+
+Route::get('/user/logout', [ProductController::class, 'userLogout'])->name('user.logout');
 
 Route::prefix('admin')->middleware('auth', 'admin', 'notify')->group(function () {
 

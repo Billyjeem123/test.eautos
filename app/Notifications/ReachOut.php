@@ -16,12 +16,10 @@ class ReachOut extends Notification
      *
      * @return void
      */
-    public  mixed $senderMail;
     public mixed $receiverMail;
 
-    public function __construct($senderMail, $receiverMail)
+    public function __construct($receiverMail)
     {
-        $this->senderMail  = $senderMail;
         $this->receiverMail  = $receiverMail;
     }
 

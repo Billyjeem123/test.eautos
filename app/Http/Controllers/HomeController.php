@@ -19,7 +19,7 @@ class HomeController extends Controller
 
         $brands = Brand::all();
 
-        $getDealers = User::where('role', 'dealer')->take(5)->select('name', 'image')->get();
+        $getDealers = User::where('role', 'dealer')->take(5)->select('name', 'image', 'id')->get();
 
 
         $products  = Product::with('brand', 'images', 'categories')->get();

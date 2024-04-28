@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BussinessReview;
 use App\Models\BussinessService;
 use App\Models\Product;
 use App\Models\User;
@@ -109,6 +110,8 @@ public function toggleBlockUsers($id)
 
         $bussiness_service = BussinessService::where('user_id', $userid)->get();
 
+        $reviews = BussinessReview::with('user')->where('bussiness_id', $userid)->get();
+
         // Check if the user profile exists
         if (!$profile) {
             abort(404); // Or handle the case where the user does not exist
@@ -117,7 +120,7 @@ public function toggleBlockUsers($id)
         // Count the total cars uploaded by the dealer
         $carsCount = Product::where('user_id', $userid)->count();
 
-        return view('home.profile', ['profile' => $profile, 'carsCount' => $carsCount , 'bussiness_service' => $bussiness_service]);
+        return view('home.profile', ['profile' => $profile, 'reviews' => $reviews,  'carsCount' => $carsCount , 'bussiness_service' => $bussiness_service]);
     }
 
 

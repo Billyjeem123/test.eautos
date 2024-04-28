@@ -133,4 +133,12 @@ class User extends Authenticatable
     {
         return $this->hasMany(Part::class, );
     }
+
+    /**
+     * Get the  comments associated with the user.
+     */
+    public function bussiness_reviews(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(BussinessReview::class, 'user_id');
+    }
 }

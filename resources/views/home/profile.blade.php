@@ -6,7 +6,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile</title>
     <link rel="stylesheet" href="/home/css/provider.css">
-    <link rel="stylesheet" href="/home/assets/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <style>
+        .comment-section {
+            margin-top: 20px;
+        }
+
+        .comment-section h4 {
+            margin-bottom: 10px;
+        }
+
+        .comment-section textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            resize: vertical;
+            margin-bottom: 10px;
+        }
+
+        .comment-section button {
+            background-color: #394293;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .comment-section button:hover {
+            background-color: #0056b3;
+        }
+
+    </style>
 </head>
 
 <body>
@@ -92,53 +125,44 @@
     </div>
     <!-- ----------------------------------------- -->
     <!-- ----------------------------------------- -->
+
     <div class="reviews container">
         <h3>Reviews</h3>
         <div class="card_group">
-            <div class="card">
-                <div class="card_header">
-                    <strong>B</strong>
-                    <small>Blessing Lainus</small>
+            @forelse ($reviews as $review)
+                <div class="card">
+                    <div class="card_header">
+                        <strong>{{ substr($review->user->name, 0, 1) }}
+                        </strong>
+                        <small>{{$review->user->name}}</small>
+                    </div>
+                    <p>{{$review->reviews}}</p>
                 </div>
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas nisi natus quasi, alias laboriosam ex?</p>
-            </div>
-            <div class="card">
-                <div class="card_header">
-                    <strong>B</strong>
-                    <small>Blessing Lainus</small>
+
+            @empty
+                <div class="card" style="text-align: center;" >
+                    <p>No Review available at the moment.</p>
                 </div>
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas nisi natus quasi, alias laboriosam ex?</p>
-            </div>
-            <div class="card">
-                <div class="card_header">
-                    <strong>B</strong>
-                    <small>Blessing Lainus</small>
-                </div>
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas nisi natus quasi, alias laboriosam ex?</p>
-            </div>
-            <div class="card">
-                <div class="card_header">
-                    <strong>B</strong>
-                    <small>Blessing Lainus</small>
-                </div>
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas nisi natus quasi, alias laboriosam ex?</p>
-            </div>
-            <div class="card">
-                <div class="card_header">
-                    <strong>B</strong>
-                    <small>Blessing Lainus</small>
-                </div>
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas nisi natus quasi, alias laboriosam ex?</p>
-            </div>
-            <div class="card">
-                <div class="card_header">
-                    <strong>B</strong>
-                    <small>Blessing Lainus</small>
-                </div>
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas nisi natus quasi, alias laboriosam ex?</p>
-            </div>
+            @endforelse
+
         </div>
-        <a href="">Post a Comment</a>
+
+        <!-- Add a textarea for commenting -->
+        <div class="comment-section">
+            <h4>Leave a Review</h4>
+            <form action="{{route('post.reviews')}}" method="post" >
+                @csrf
+                <input type="hidden" name="bussiness_id" value="{{$profile->id}}">
+                <textarea name="reviews" id="reviews" placeholder="Write your reviews here..." rows="4" required></textarea>
+                @auth
+                    <button type="submit">Post Review</button>
+                @else
+                    <a href="{{ route('login') }}">Login to Review</a>
+                @endauth
+            </form>
+
+        </div>
+
     </div>
 
     <!-- ----------------------------------- -->

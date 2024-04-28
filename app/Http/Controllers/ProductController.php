@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Events\CommentEvent;
 use App\Events\ReachOut;
 use App\Models\Auction;
+use App\Models\BussinessReview;
 use App\Models\Comment;
 use App\Models\Message;
 use App\Models\User;
@@ -17,6 +18,7 @@ use App\Models\ValueAsset;
 use App\Models\ValueDocs;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -31,6 +33,14 @@ class ProductController extends Controller
         $categories=  Category::all();
 
         return view('admin.vehicle', ['brands' => $brands, 'categories' => $categories]);
+    }
+
+
+    public  function userLogout()
+    {
+        Auth::logout();
+
+        return redirect()->route('index');
     }
 
 
@@ -506,11 +516,10 @@ private function validateRequest(Request $request): \Illuminate\Contracts\Valida
             'phone_number' => $request->phone
         ]);
 
-        $senderMail = $product->user->id;
-        $receiverMail = auth()->user()->id;
+        $receiverMail = $product->user->email;
 
 
-        event(new ReachOut($senderMail, $receiverMail));
+        event(new ReachOut($receiverMail));
 
         return redirect()->back()->with(['success' => 'Message sent successfully']);
     }
@@ -563,6 +572,39 @@ private function validateRequest(Request $request): \Illuminate\Contracts\Valida
             // Log the error or handle it appropriately
             // For now, we'll redirect back with an error message
             return redirect()->back()->with(['error' => 'Failed to post comment. Please try again later.']);
+        }
+    }
+
+
+
+    public function bussinessReview(Request $request): \Illuminate\Http\RedirectResponse
+    {
+        // Validate the request data
+        $validatedData = $request->validate([
+            'reviews' => 'required|string|max:255', // Adjust validation rules as needed
+            'bussiness_id' => 'required'
+        ]);
+
+        try {
+            // Create a new comment using mass assignment
+            $review = BussinessReview::create([
+                'reviewer_id' => auth()->user()->id,
+                'reviews' => $validatedData['reviews'],
+                'bussiness_id' => $validatedData['bussiness_id']
+            ]);
+
+            $ownermail = $review->user->email;
+            $title = "Your profile has received a review.";
+
+
+            event(new CommentEvent($ownermail, $title));
+
+            // Return success response
+            return redirect()->back()->with(['success' => 'Review posted successfully']);
+        } catch (\Exception $e) {
+            // Log the error or handle it appropriately
+            // For now, we'll redirect back with an error message
+            return redirect()->back()->with(['error' => 'Failed to post review. Please try again later.']);
         }
     }
 

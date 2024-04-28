@@ -29,6 +29,6 @@ class ReachOutListner
     public function handle(ReachOut $event)
     {
         $admin = User::where('email', $event->receiverMail)->first();
-        $admin->notify(new \App\Notifications\ReachOut($event->senderMail, $event->receiverMail));
+        $admin->notify(new \App\Notifications\ReachOut($event->receiverMail));
     }
 }

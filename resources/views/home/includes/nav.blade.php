@@ -286,7 +286,7 @@
             <i class="fa fa-user-circle"></i>
         </span>
         <ul>
-            <li><a href="#">Logout</a></li>
+            <li><a href="{{route('user.logout')}}">Logout</a></li>
             <li><a href="#">Dashboard</a></li>
         </ul>
     </span>

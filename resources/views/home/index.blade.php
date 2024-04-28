@@ -190,8 +190,9 @@
 
             @foreach($getDealers as $dealer)
                 <div class="card">
-{{--                    <div class="card_img" style="background: url('/home/images/brands/Optimized-taras-chernus--Y8-NNDqiRM-unsplash.jpg') no-repeat;"></div>--}}
-                    <div class="card_img" style="background: url('{{ !empty($dealer->image) ? $dealer->image : '/images/profile.svg' }}') no-repeat;"></div>
+                    <a href="{{route('user.profile', $dealer->id)}}">
+                        <div class="card_img" style="background: url('{{ !empty($dealer->image) ? $dealer->image : '/images/profile.svg' }}') no-repeat;"></div>
+                    </a>
                     <div class="details">
                         <h5>{{ $dealer->name}}</h5>
                         <span><strong>100%</strong> Verified</span>

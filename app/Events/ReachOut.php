@@ -14,7 +14,6 @@ class ReachOut
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public  mixed $senderMail;
     public mixed $receiverMail;
 
     /**
@@ -22,9 +21,8 @@ class ReachOut
      *
      * @return void
      */
-    public function __construct($senderMail, $receiverMail)
+    public function __construct($receiverMail)
     {
-        $this->senderMail  = $senderMail;
         $this->receiverMail  = $receiverMail;
     }
 
