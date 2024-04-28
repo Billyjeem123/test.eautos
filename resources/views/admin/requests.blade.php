@@ -17,10 +17,8 @@
                 <tr>
                     <th>Brand</th>
                     <th>Model</th>
-                    <th>User FullName</th>
-                    <th>Phone Number</th>
-                    <th>Budget</th>
-                    <th>Country</th>
+                    <th>Report Status</th>
+                    <th>View Details</th>
                     <th>Date Reported</th>
                     <th>Delete</th>
 
@@ -32,10 +30,8 @@
                     <tr>
                         <td>{{$request->brand}}</td>
                         <td>{{$request->model}}</td>
-                        <td>{{$request->user_name}}</td>
-                        <td>{{$request->phone}}</td>
-                        <td>{{number_format($request->budget,2)}}</td>
-                        <td>{{$request->country}}</td>
+                        <td><p>{{$request->is_viewed === 0 ? "Pending" : "Seen"}}</p></td>
+                        <td><a href="{{route('admin.requests.details', $request->id)}}" class="btn btn-info btn-sm">View Complaint</a></td>
                         <td>{{$request->created_at->diffForHumans()}}</td>
                             @csrf
                             @method('DELETE')

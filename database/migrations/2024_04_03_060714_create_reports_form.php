@@ -14,13 +14,14 @@ return new class extends Migration
     public function up()
     {
         Schema::create('reports', function (Blueprint $table) {
-            
+
             $table->id();
             $table->string('name_of_offender');
             $table->string('bussines_name');
             $table->string('offernder_location');
             $table->string('complaint');
-            $table->string('reporter_name'); 
+            $table->string('reporter_name');
+            $table->string('is_viewed');
             $table->string('country');
             $table->unsignedBigInteger('user_id');
             $table->string('reporter_phone');

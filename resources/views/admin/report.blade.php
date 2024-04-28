@@ -16,8 +16,9 @@
             <thead>
               <tr>
                 <th>Name Of Offender</th>
-                <th>Bussiness Name</th>
-                <th>Reporter Name</th>
+                <th>Offender Bussiness Name</th>
+                <th>Report Staus</th>
+                  <th>View Details</th>
                 <th>Date Reported</th>
                 <th>Delete</th>
 
@@ -29,7 +30,8 @@
               <tr>
                   <td>{{$report->name_of_offender}}</td>
                   <td>{{$report->bussines_name}}</td>
-                  <td>{{$report->reporter_name}}</td>
+                  <td><p>{{$report->is_viewed === 0 ? "Pending" : "Seen"}}</p></td>
+                  <td><a href="{{route('admin.complaint.details', $report->id)}}" class="btn btn-info btn-sm">View Complaint</a></td>
                   <td>{{$report->created_at->diffForHumans()}}</td>
                   <form action="{{ route('admin.reports.delete', $report->id) }}" method="POST">
                     @csrf

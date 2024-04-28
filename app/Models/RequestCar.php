@@ -12,7 +12,7 @@ class RequestCar extends Model
     protected  $table= "request_car";
 
     protected $fillable = [
-        'brand', 'model', 'budget', 'body', 'country', 'user_id',  'phone', 'user_name',
+        'brand', 'model', 'budget', 'body', 'country', 'user_id',  'phone', 'user_name', 'is_viewed'
     ];
 
     /**

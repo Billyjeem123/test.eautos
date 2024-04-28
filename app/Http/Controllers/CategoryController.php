@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Validator;
 
 class CategoryController extends Controller
 {
-    
+
 
     public function index(){
 
@@ -17,7 +17,7 @@ class CategoryController extends Controller
 
         return view('admin.category', ['categories' => $categories]);
     }
-     
+
 
 
     public function storeCategory(Request $request)
@@ -30,7 +30,7 @@ class CategoryController extends Controller
         'max' => 'The :attribute must not be greater than :max characters.',
         'unique' => 'The :attribute has already been taken.',
     ];
-    
+
     // Validate request data with custom messages
     $validator = Validator::make($request->all(), [
         'catname' => 'required|string|max:255|unique:categories,catname',
@@ -40,10 +40,12 @@ class CategoryController extends Controller
         return redirect()->back()->withInput()->withErrors(['error' => $validator->errors()->first()]); // Redirect back with input and error message
         // return redirect()->back()->with(['error' => 'Category created successfully']);
     }
-    
+
+    $imageUrl = $this->uploadImageAndGetLink($request);
+
 
     // Save category
-    $category = Category::create(['catname' => $request->catname]);
+    $category = Category::create(['catname' => $request->catname,  'cat_image' => $imageUrl,]);
 
     // Return a success response
     return redirect()->back()->with(['success' => 'Category created successfully']);
@@ -51,12 +53,19 @@ class CategoryController extends Controller
 
 
 
-public function update(Request $request, $id)
-{
-    $category = Category::findOrFail($id);
-    $category->update(['catname' => $request->catname]);
-    return redirect()->back()->with('success', 'Category updated successfully');
-}
+    public function update(Request $request, $id)
+    {
+        $category = Category::findOrFail($id);
+        $category->catname = $request->input('catname');
+        if ($request->hasFile('image')) {
+            $imageUrl = $this->uploadImageAndGetLink($request);
+            $category->cat_image = $imageUrl;
+        }
+        $category->save();
+
+        return redirect()->back()->with('success', 'Category updated successfully');
+    }
+
 
 public function delete($id)
 {
@@ -98,6 +107,21 @@ public function deleteSubcategory($id)
     $category->delete();
     return redirect()->back()->with('success', 'Record deleted successfully');
 }
+
+
+        public function uploadImageAndGetLink($request): ?string
+        {
+            if ($request->hasFile('image')) {
+                $image = $request->file('image');
+                $imageName = time() . '_' . $image->getClientOriginalName(); // Generate a unique name for the image
+                $imagePath = $image->storeAs('public/uploads', $imageName);
+                $imageUrl = asset('storage/uploads/' . $imageName);
+                return $imageUrl;
+            } else {
+                // Handle case where no image was uploaded
+                return null;
+            }
+        }
 
 
 

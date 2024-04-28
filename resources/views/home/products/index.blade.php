@@ -18,26 +18,30 @@
         <li class="option">Menu <i class="fa fa-angle-down"></i></li>
         <li><a href="{{route('index')}}">Home</a></li>
         @foreach($subcategories as $subcategory)
-            <li><a href="{{route('get.sub.product', urlencode($subcategory))}}" class="{{ $categoryName == $subcategory ? 'active' : '' }}"  >{{$subcategory}}</a></li>
+            <li><a href="{{route('get.sub.product', urlencode($subcategory))}}"
+                   class="{{ $categoryName == $subcategory ? 'active' : '' }}">{{$subcategory}}</a></li>
         @endforeach
 
 
-
         <li>
-            <a href="{{ route('sell') }}" class="{{ request()->routeIs('sell') ? 'active' : '' }}">Sell A {{ Str::singular($categoryName) }}</a>
+            <a href="{{ route('sell') }}" class="{{ request()->routeIs('sell') ? 'active' : '' }}">Sell
+                A {{ Str::singular($categoryName) }}</a>
         </li>
 
 
         <li><a href="{{route('value.vehicle')}}">Value My {{ Str::singular($categoryName) }}</a></li>
         <li>
-            <a href="{{ route('get.auction.cars') }}" class="{{ request()->routeIs('get.auction.cars') ? 'active' : '' }}">Auction</a>
+            <a href="{{ route('get.auction.cars') }}"
+               class="{{ request()->routeIs('get.auction.cars') ? 'active' : '' }}">Auction</a>
         </li>
         <li><a href="{{route('parts')}}">{{ Str::singular($categoryName) }} Parts</a></li>
         <li>
-            <a href="{{ route('stolen') }}" class="{{ request()->routeIs('stolen') ? 'active' : '' }}">Stolen {{ Str::singular($categoryName) }}</a>
+            <a href="{{ route('stolen') }}"
+               class="{{ request()->routeIs('stolen') ? 'active' : '' }}">Stolen {{ Str::singular($categoryName) }}</a>
         </li>
         <li>
-            <a href="{{ route('blacklist') }}" class="{{ request()->routeIs('blacklist') ? 'active' : '' }}">BlackList</a>
+            <a href="{{ route('blacklist') }}"
+               class="{{ request()->routeIs('blacklist') ? 'active' : '' }}">BlackList</a>
         </li>
     </ul>
 </div>
@@ -75,8 +79,10 @@
 
                         <div class="details">
                             <h5>{{ $auction->car_name }}</h5> <!-- Assuming $item has a 'title' property -->
-                            <p class="location">{{ $auction->location }}</p> <!-- Assuming $item has a 'location' property -->
-                            <p class="bid_price"> Starting bid: <span> ₦ {{ number_format($auction->price, 2) }}</span></p> <!-- Assuming $item has a 'starting_bid' property -->
+                            <p class="location">{{ $auction->location }}</p>
+                            <!-- Assuming $item has a 'location' property -->
+                            <p class="bid_price"> Starting bid: <span> ₦ {{ number_format($auction->price, 2) }}</span>
+                            </p> <!-- Assuming $item has a 'starting_bid' property -->
                         </div>
                         <div class="card_footer">
                             <span><i class="fa fa-circle"></i></span>
@@ -93,8 +99,6 @@
         </aside>
 
 
-
-
         <div class="latest">
             <h3>Our Latest {{$categoryName}}</h3>
 
@@ -103,20 +107,24 @@
                 @forelse ($products as $product)
                     <div class="card">
                         <a href="{{ route('product.show', $product->id) }}" class="card_link">
-                            <div class="card_img" style="width: 100%; display: flex;justify-content: space-between; align-items: start; height: 30px; padding: 5px;">
-                                <a href="{{route('user.profile', $product->user->id )}}" class="card_img_icon" style="text-decoration: none; color: #000; background-color: #ffffff; border-radius: 50%; padding: 5px; display: flex; justify-content: center; align-items: center; font-size: 12px;"><i class="far fa-user"></i></a>
+                            <div class="card_img"
+                                 style="width: 100%; display: flex;justify-content: space-between; align-items: start; height: 30px; padding: 5px;">
+                                <a href="{{route('user.profile', $product->user->id )}}" class="card_img_icon"
+                                   style="text-decoration: none; color: #000; background-color: #ffffff; border-radius: 50%; padding: 5px; display: flex; justify-content: center; align-items: center; font-size: 12px;"><i
+                                        class="far fa-user"></i></a>
                             </div>
                             <a href="{{ route('product.show', $product->id) }}">
-                                <div class="card_img" style="background: url('{{ $product->images[0]['image'] }}') no-repeat;"></div>
+                                <div class="card_img"
+                                     style="background: url('{{ $product->images[0]['image'] }}') no-repeat;"></div>
                             </a>
 
                         </a>
 
 
-
                         <div class="card_text">
                             <h5>{{ $product->car_name }}</h5>
-                            <small><em>Posted by: {{ $product->user->name }} - Posted  {{ $product->created_at->diffForHumans() }}</em></small>
+                            <small><em>Posted by: {{ $product->user->name }} -
+                                    Posted {{ $product->created_at->diffForHumans() }}</em></small>
                             <div class="details">
                                 <ul>
                                     <li>{{ $product->subcategories->name }}</li>
@@ -163,7 +171,8 @@
 
             @foreach($getDealers as $dealer)
                 <div class="card">
-                    <div class="card_img" style="background: url('/home/images/brands/Optimized-taras-chernus--Y8-NNDqiRM-unsplash.jpg') no-repeat;"></div>
+                    <div class="card_img"
+                         style="background: url('/home/images/brands/Optimized-taras-chernus--Y8-NNDqiRM-unsplash.jpg') no-repeat;"></div>
                     <div class="details">
                         <h5>{{ $dealer}}</h5>
                         <span><strong>100%</strong> Verified</span>
@@ -182,7 +191,8 @@
         <ul class="card_group">
             <li class="card"><a href="../dealers.html">Car Dealers</a></li>
             <li class="card">
-                <p>Meet with Different Car Dealers, who will help get your desired property, with little to no agent fee added
+                <p>Meet with Different Car Dealers, who will help get your desired property, with little to no agent fee
+                    added
                 </p>
             </li>
             <li class="card"><img src="/home/images/Rectangle 247.png" alt=""></li>

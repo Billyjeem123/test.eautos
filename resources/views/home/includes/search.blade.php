@@ -1,7 +1,6 @@
-<header class="hero" style="background: linear-gradient(#000088, #000088),
-    url(/home/images/cars/landing.jpg);">
+<header class="hero" style="background: url('{{ !empty($category->cat_image) || !empty($categoryImage) ? (empty($category->cat_image) ? $categoryImage : $category->cat_image) : '/home/images/cars/landing.jpg' }}') no-repeat center center / cover;">
 
-    <div class="form_group">
+<div class="form_group">
         <form action="{{ route('search') }}" method="GET">
             <div class="form_control">
                 <div class="select_wrapper">

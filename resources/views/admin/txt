@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile Completion Modal</title>
+    <title>Report  Details</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
@@ -11,23 +11,47 @@
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
-    <div class="modal-dialog modal-dialog-centered modal-lg"> <!-- Adjust modal size and centering -->
+    <div class="modal-dialog modal-dialog-centered modal-xl"> <!-- Adjust modal size to extra large and centering -->
         <div class="modal-content">
             <!-- Remove the modal header -->
-            <!-- <div class="modal-header">
+             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLabel">Profile Completion Required</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div> -->
+            </div>
+
             <div class="modal-body">
-                <h5 class="modal-title mb-4" id="exampleModalLabel">Profile Completion Required</h5>
-                <p>Your profile must be at least 80% complete before accessing this page.</p>
-                <p>Your current profile completion percentage is: <strong id="profilePercentage"></strong></p>
-                <p>Please update your profile to meet the requirement.</p>
+                <h5 class="modal-title mb-4" id="exampleModalLabel">Pr</h5>
+                <label >Name Of Offender</label>
+                <input type="text" class="form-control" value="{{$report->name_of_offender}}">
+
+                <label >Offeder Bussiness Name</label>
+                <input type="text" class="form-control" value="{{$report->bussiness_name}}">
+
+
+                <label >Offender Bussiness Location</label>
+                <input type="text" class="form-control" value="{{$report->offernder_location}}">
+
+
+                <label >Complaint</label>
+                <textarea name="" id="" cols="30" rows="10">{{$report->complaint}}</textarea>
+
+
+                <label >Reporter Name</label>
+                <input type="text" class="form-control" value="{{$report->name_of_offender}}">
+
+
+                <label >Reporter Phone Number</label>
+                <input type="text" class="form-control" value="{{$report->reporter_phone}}">
+
+                <label >Reporter Phone Email</label>
+                <input type="text" class="form-control" value="{{$report->reporter_phone}}">
+
+
             </div>
             <div class="modal-footer">
                 <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
                 <!-- Button to redirect to profile update page -->
-                <a href="{{route('admin.profile')}}" class="btn btn-primary">Update Profile</a>
+                <a href="{{route('admin.profile')}}" class="btn btn-primary">Back</a>
             </div>
         </div>
     </div>

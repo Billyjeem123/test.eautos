@@ -255,7 +255,6 @@ private function validateRequest(Request $request): \Illuminate\Contracts\Valida
 
 
 
-
     public function getSubProductCategory($sub_category_name)
     {
         try {
@@ -267,6 +266,7 @@ private function validateRequest(Request $request): \Illuminate\Contracts\Valida
 
             // Retrieve the category of the subcategory
             $categoryName = $subcategory->category->catname;
+            $categoryImage = $subcategory->category->cat_image;
 
             // Retrieve all subcategories related to the category
             $subcategories = SubCategory::where('category_id', $subcategory->category_id)->pluck('name', 'id');
@@ -276,13 +276,14 @@ private function validateRequest(Request $request): \Illuminate\Contracts\Valida
                 ->whereHas('subcategories', function ($query) use ($sub_category_name) {
                     $query->where('name', $sub_category_name);
                 })
-                ->get();
+                ->paginate(10); // Adjust the number of products per page as needed
 
 
-            $auctions = Auction::all()->take(5);
+            $auctions = Auction::latest()->take(5)->get();
+
 
             // Return the data to your view
-            return view('home.products.sub-category-product', compact('subcategories', 'auctions',  'sub_category_name', 'categoryName', 'products'));
+            return view('home.products.sub-category-product', compact('subcategories',  'categoryImage','auctions',  'sub_category_name', 'categoryName', 'products'));
         } catch (ModelNotFoundException $e) {
             // Handle the case where the subcategory is not found
             abort(404); // Return a 404 response

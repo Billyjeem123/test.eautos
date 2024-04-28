@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('budget');
             $table->string('body');
             $table->string('country');
+            $table->integer('is_viewed');
             $table->string('phone');
             $table->unsignedBigInteger('user_id');
             $table->string('user_name');

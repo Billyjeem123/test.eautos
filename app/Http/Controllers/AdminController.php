@@ -100,6 +100,27 @@ class AdminController extends Controller
 
 
     }
+
+
+    public  function reportComplaint($id)
+    {
+      $report =   Report::find($id);
+
+        $report->is_viewed = 1;
+        $report->save();
+
+        return view('admin.modal.report-modal', ['report' => $report]);
+    }
+
+
+    public  function careRequests($id)
+    {
+        $request =   RequestCar::find($id);
+        $request->is_viewed = 1;
+        $request->save();
+
+        return view('admin.modal.request-modal', ['request' => $request]);
+    }
 }
 
 

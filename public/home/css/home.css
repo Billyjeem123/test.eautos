@@ -93,6 +93,45 @@ html {
   border: 1px solid #394293;
   color: #ffffff;
 }
+#profile {
+  position: relative;
+  z-index: 99;
+  background-color: #fff;
+  min-width: 100px;
+}
+#profile ul {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 5px 0;
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 100%;
+  top: 1.2rem;
+  background-color: #394293;
+
+}
+#profile ul li a {
+  padding: 5px 10px !important;
+  margin: 0;
+  font-weight: lighter;
+  color: #ffffff;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  width: 100px !important;
+  font-size: 13px;
+  border-top: 1px solid #394293;
+}
+#profile a:hover {
+  background-color: #fff;
+  color: #394293;
+}
+#profile:hover ul {
+display: flex;
+}
 /* ------------------------------------------------------- */
 
 .hero {

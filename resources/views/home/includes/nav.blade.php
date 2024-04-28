@@ -211,27 +211,89 @@
             </li>
 
     </ul>
-    <span class="nav_form">
-      <a href="{{route('register')}}"  class="signUp">Sign Up</a>
-      <a href="{{route('login')}}" class="login" >Login</a>
-    </span>
+
     <style>
-        #profile li{
-            padding: 0;
-            margin: 0;
+        #profile {
+            position: relative;
+            z-index: 99;
+            /*background-color: #fff;*/
+            /*min-width: 100px;*/
         }
-        #profile ul li a{
-            padding: 0;
-            margin: 0;
+        #profile ul {
+            display: none;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 5px 0;
+            position: absolute;
+            left: 0;
+            right: 0;
+            width: 100%;
+            top: 1.2rem;
+            background-color: #fff;
+
         }
+        #profile ul li a {
+            padding: 5px 10px !important;
+            margin: 0;
+            font-weight: lighter;
+            color: #333;
+            display: flex !important;
+            justify-content: center;
+            align-items: center;
+            width: 100px !important;
+            font-size: 13px;
+            transition: background-color 0.3s;
+        }
+
+        #profile:hover ul {
+            display: block;
+        }
+        #profile:hover ul {
+            display: flex;
+        }
+        #profile ul li a:hover {
+            background-color: #f0f0f0;
+        }
+
     </style>
-    <span class="profile" id="profile">
-        <ul style="display: flex; flex-direction: column;
-        justify-content: start; align-items: start;">
+
+
+
+    @if (!auth()->check())
+        <span class="nav_form">
+        <a href="{{ route('register') }}" class="signUp">Sign Up</a>
+        <a href="{{ route('login') }}" class="login">Login</a>
+    </span>
+    @endif
+
+    <!--Profile Menu-->
+
+    <!--Profile Menu-->
+
+    @if (auth()->check())
+        <span class="profile" id="profile">
+        <span
+            style="
+                margin: auto;
+                font-size: 20px;
+                color: #394293;
+                text-align: center;
+                display: flex;
+                width: fit-content;
+            "
+        >
+            <i class="fa fa-user-circle"></i>
+        </span>
+        <ul>
             <li><a href="#">Logout</a></li>
             <li><a href="#">Dashboard</a></li>
         </ul>
     </span>
+    @endif
+
+
+
     <i class="fa fa-close" id="close_nav"></i>
     <i class="fa fa-bars" id="open_nav"></i>
   </nav>

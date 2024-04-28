@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Home Page</title>
   <link rel="stylesheet" href="/home/css/home.css">
-  <link rel="stylesheet" href="/home/assets/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 
 <body>
@@ -118,7 +118,7 @@
         <h3>Report a car Deal Scam</h3>
         <p>Lorem ipsum dolor, Corporis aliquid consequatur aspernatur at iure
           voluptas vero inventore similique officiis quia?</p>
-        <a href="{{route('report.show')}}" target="_blank">Report</a>
+        <a href="{{route('report.show')}}" >Report</a>
       </span>
     </div>
     <div class="request">
@@ -126,7 +126,7 @@
         <h3>Make a Request</h3>
         <p>Lorem ipsum dolor, Corporis aliquid consequatur aspernatur at iure
           voluptas vero inventore similique officiis quia?</p>
-        <a href="{{route('request.show')}}" target="_blank">Request</a>
+        <a href="{{route('request.show')}}" >Request</a>
       </span>
     </div>
 
@@ -190,9 +190,10 @@
 
             @foreach($getDealers as $dealer)
                 <div class="card">
-                    <div class="card_img" style="background: url('/home/images/brands/Optimized-taras-chernus--Y8-NNDqiRM-unsplash.jpg') no-repeat;"></div>
+{{--                    <div class="card_img" style="background: url('/home/images/brands/Optimized-taras-chernus--Y8-NNDqiRM-unsplash.jpg') no-repeat;"></div>--}}
+                    <div class="card_img" style="background: url('{{ !empty($dealer->image) ? $dealer->image : '/images/profile.svg' }}') no-repeat;"></div>
                     <div class="details">
-                        <h5>{{ $dealer}}</h5>
+                        <h5>{{ $dealer->name}}</h5>
                         <span><strong>100%</strong> Verified</span>
                         <p class="progress"><i class="fa fa-check"></i></p>
                     </div>
@@ -270,7 +271,7 @@
 
   <div class="meet_dealers">
     <ul class="card_group">
-      <li class="card"><a href="dealers.html">The Dealers</a></li>
+      <li class="card"><a href="">The Dealers</a></li>
       <li class="card">
         <p>Meet with Different Car Dealers, who will help get your desired property, with little to no agent fee added
         </p>

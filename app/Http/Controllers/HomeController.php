@@ -19,7 +19,8 @@ class HomeController extends Controller
 
         $brands = Brand::all();
 
-        $getDealers = User::where('role', 'dealer')->take(5)->pluck('name');
+        $getDealers = User::where('role', 'dealer')->take(5)->select('name', 'image')->get();
+
 
         $products  = Product::with('brand', 'images', 'categories')->get();
 
@@ -81,7 +82,7 @@ class HomeController extends Controller
             'name' => 'required|string|max:255',
             'phone' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
-            'business_name' => 'required|unique:users,bussiness_name',
+            'business_name' => 'required|unique:users,business_name',
             'pword' => 'required|string|min:6', // Adjust the minimum password length as needed
         ], $messages);
 
@@ -95,7 +96,7 @@ class HomeController extends Controller
         // Create a new user instance and populate it with the validated data
         $user = new User();
         $user->name = $request->name;
-        $user->bussiness_name = $request->business_name;
+        $user->business_name = $request->business_name;
         $user->experience = $request->experience;
         $user->email = $request->email;
         $user->phone = $request->phone;

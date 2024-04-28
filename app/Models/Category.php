@@ -9,7 +9,7 @@ class Category extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['catname'];
+    protected $fillable = ['catname', 'cat_image'];
 
     // A category ahs many subcatgories
 

@@ -198,5 +198,7 @@ Route::prefix('admin')->middleware('auth', 'admin', 'notify')->group(function ()
 
     Route::get('/parts/{id}/approve', [PartController::class, 'approvePart'])->name('parts.approve');
     Route::get('/parts/{id}/unapprove', [PartController::class, 'unapprovePart'])->name('parts.unapprove');
+    Route::get('/reports/complaints/{id}', [AdminController::class, 'reportComplaint'])->name('admin.complaint.details');
+    Route::get('/requests/details/{id}', [AdminController::class, 'careRequests'])->name('admin.requests.details');
 
 });

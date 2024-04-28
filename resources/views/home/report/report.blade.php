@@ -34,9 +34,14 @@
                 <input type="text" name="phone_number" placeholder="Phone Number">
                 <input type="text" name="email" placeholder="Email Address">
             </span>
-            <button type="submit">Send Report</button>
+            @if(auth()->check())
+                <button type="submit">Send Report</button>
+            @else
+                <button type="submit">Login to continue</button>
+            @endif
+
         </form>
-        
+
       </div>
     </div>
 

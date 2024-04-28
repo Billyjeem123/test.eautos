@@ -20,17 +20,23 @@
       <div class="row justify-content-between">
         <div class="col-lg-3 bg-gray-200 p-3 rounded mb-3">
           <h5 class="h4">Add Category</h5>
-          <form action="{{route('admin.category.create')}}" class="d-flex flex-column" method="POST">
+          <form action="{{route('admin.category.create')}}" class="d-flex flex-column" method="POST" enctype="multipart/form-data">
             <div class="form-row">
               @csrf
-              <div class="form-group col-md">
+                <div class="form-group col-md-12">
+                    <label> Upload Image Category</label>
+                    <input type="file" name="image" id="" class="" required>
+                </div>
+
+              <div class="form-group col-md-12">
+                  <label> Enter Category</label>
                 <input type="text" name="catname" class="form-control bg-white" placeholder="Input Category" id="title">
               </div>
             </div>
             <button type="submit" class="btn btn-primary ml-auto">Add</button>
           </form>
           <h5 class="h6 pt-3">List of Categories</h5>
-      
+
           <ol class="px-1 m-0">
             @forelse($categories as $category)
             <li class="p-0 my-1">
@@ -48,14 +54,18 @@
                 </div>
                 <div id="collapse_{{ $category->id }}" class="collapse col-12">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <form action="{{ route('admin.category.update', $category->id) }}" method="POST">
+                        <form action="{{ route('admin.category.update', $category->id) }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
-                            <div class="form-group p-0 m-0 d-flex">
+                            <div class="form-group">
                                 <input type="text" name="catname" class="form-control bg-white edit-input" placeholder="Edit Category">
-                                <button type="submit" class="btn-sm btn-primary"><i class="fa fa-check"></i></button>
                             </div>
+                            <div class="form-group">
+                                <input type="file" name="image" class="form-control bg-white edit-input">
+                            </div>
+                            <button type="submit" class="btn-sm btn-primary"><i class="fa fa-check"></i></button>
                         </form>
+
                     </div>
                 </div>
             </li>
@@ -63,7 +73,7 @@
             <li class="p-0 my-1">No categories found.</li>
             @endforelse
         </ol>
-        
+
         <script>
           // Populate input field with category name when edit button is clicked
           document.querySelectorAll('.edit-btn').forEach(function(editBtn) {
@@ -74,8 +84,8 @@
               });
           });
       </script>
-        
-        
+
+
         </div>
         <div class="col-lg-8 bg-gray-200 p-3 rounded mb-3">
           <h5 class="h4">Add Sub Category</h5>
@@ -89,7 +99,7 @@
                       <option>{{ $category->catname }}</option>
                   @endforeach
               </select>
-              
+
               </div>
               <div class="form-group col-md-6">
                 <input type="text" name="subcategory_name" class="form-control bg-white" placeholder="Input Sub Category" id="title">
@@ -102,7 +112,7 @@
               <!-- <thead> -->
 
               <!-- </thead> -->
-        
+
               <tbody>
                 @foreach($categories as $category)
                     @if($category->subcategories->isNotEmpty())
@@ -124,8 +134,8 @@
                     @endif
                 @endforeach
             </tbody>
-            
-            
+
+
             </table>
           </div>
         </div>
@@ -136,5 +146,5 @@
 
   </div>
   <!-- /.container-fluid -->
-    
+
 @endsection
