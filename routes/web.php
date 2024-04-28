@@ -97,6 +97,8 @@ Route::group(['middleware' => ['showNavBar']], function () {
 
         #usserProfile
         Route::get('/user/profile/{userId}', [UserController::class, 'showProfile'])->name('user.profile');
+//        Route::view('/dealers/all', 'home.dealer.index')->name('dealers.all');
+        Route::get('/dealers/all', [HomeController::class, 'getAllDealers'])->name('dealers.all');
 
 
 
@@ -200,5 +202,6 @@ Route::prefix('admin')->middleware('auth', 'admin', 'notify')->group(function ()
     Route::get('/parts/{id}/unapprove', [PartController::class, 'unapprovePart'])->name('parts.unapprove');
     Route::get('/reports/complaints/{id}', [AdminController::class, 'reportComplaint'])->name('admin.complaint.details');
     Route::get('/requests/details/{id}', [AdminController::class, 'careRequests'])->name('admin.requests.details');
+
 
 });

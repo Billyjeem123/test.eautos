@@ -182,6 +182,32 @@ class HomeController extends Controller
     }
 
 
+    public function getAllDealers()
+    {
+        // Get all dealers
+        $getDealers = User::where('role', 'dealer')->get();
+
+        // Initialize an array to store car counts for each dealer
+        $carCounts = [];
+
+        // Loop through each dealer
+        foreach ($getDealers as $dealer) {
+            // Get the car count for the current dealer
+            $carCount = Product::where('user_id', $dealer->id)->count();
+
+            // Store the car count in the array with the dealer's ID as the key
+            $carCounts[$dealer->id] = $carCount;
+        }
+//        echo "<pre>";
+//          echo json_encode($getDealers, JSON_PRETTY_PRINT);
+//          echo "</pre>";
+        // Pass the dealers and their car counts to the view
+        return view('home.dealer.index', [
+            'allDealers' => $getDealers,
+            'carCounts' => $carCounts,
+        ]);
+    }
+
 
 
 

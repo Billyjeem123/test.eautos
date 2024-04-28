@@ -165,21 +165,24 @@
     </div>
     <!-- ----------------------------------- -->
     <!-- ----------------------------------- -->
+
     <div class="car_dealers container">
         <h3>Dealers Near You</h3>
         <div class="card_group">
 
             @foreach($getDealers as $dealer)
                 <div class="card">
-                    <div class="card_img"
-                         style="background: url('/home/images/brands/Optimized-taras-chernus--Y8-NNDqiRM-unsplash.jpg') no-repeat;"></div>
+                    {{--                    <div class="card_img" style="background: url('/home/images/brands/Optimized-taras-chernus--Y8-NNDqiRM-unsplash.jpg') no-repeat;"></div>--}}
+                    <div class="card_img" style="background: url('{{ !empty($dealer->image) ? $dealer->image : '/images/profile.svg' }}') no-repeat;"></div>
                     <div class="details">
-                        <h5>{{ $dealer}}</h5>
+                        <h5>{{ $dealer->name}}</h5>
                         <span><strong>100%</strong> Verified</span>
                         <p class="progress"><i class="fa fa-check"></i></p>
                     </div>
                 </div>
             @endforeach
+
+
 
         </div>
 
@@ -189,7 +192,7 @@
     <!-- --------------------------------------------- -->
     <div class="meet_dealers">
         <ul class="card_group">
-            <li class="card"><a href="../dealers.html">Car Dealers</a></li>
+            <li class="card"><a href="{{route('dealers.all')}}">Car Dealers</a></li>
             <li class="card">
                 <p>Meet with Different Car Dealers, who will help get your desired property, with little to no agent fee
                     added

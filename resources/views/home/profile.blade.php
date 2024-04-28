@@ -42,26 +42,24 @@
 </header>
 <main>
     <!-- ---------------------------- -->
-    <div class="work-image">
-        <div class="/home/images">
-            <img src="/home/images/workers/Rectangle 1312.png" alt="">
-            <img src="/home/images/workers/Rectangle 131.png" alt="">
-            <img src="/home/images/workers/Rectangle 239.png" alt="">
-            <img src="/home/images/workers/Rectangle 131t.png" alt="">
-            <img src="/home/images/workers/Rectangle 1313.png" alt="">
-        </div>
-    </div>
+{{--    <div class="work-image">--}}
+{{--        <div class="/home/images">--}}
+{{--            <img src="/home/images/workers/Rectangle 1312.png" alt="">--}}
+{{--            <img src="/home/images/workers/Rectangle 131.png" alt="">--}}
+{{--            <img src="/home/images/workers/Rectangle 239.png" alt="">--}}
+{{--            <img src="/home/images/workers/Rectangle 131t.png" alt="">--}}
+{{--            <img src="/home/images/workers/Rectangle 1313.png" alt="">--}}
+{{--        </div>--}}
+{{--    </div>--}}
     <!-- ---------------------------- -->
     <div class="services">
         <h3>Our Services</h3>
         <ul>
-            <li><i class="fa-regular fa-circle-check"></i>&nbsp;&nbsp; Extended Warranties</li>
-            <li><i class="fa-regular fa-circle-check"></i>&nbsp;&nbsp; Home Delivery</li>
-            <li><i class="fa-regular fa-circle-check"></i>&nbsp;&nbsp; Car Buying</li>
-            <li><i class="fa-regular fa-circle-check"></i>&nbsp;&nbsp; Car Sourcing</li>
-            <li><i class="fa-regular fa-circle-check"></i>&nbsp;&nbsp; Live Video Viewing</li>
-            <li><i class="fa-regular fa-circle-check"></i>&nbsp;&nbsp; Extended Warranties</li>
-            <li><i class="fa-regular fa-circle-check"></i>&nbsp;&nbsp; Click and Collect</li>
+            @forelse($bussiness_service as $bussiness)
+                <li><i class="fa-regular fa-circle-check"></i>&nbsp;&nbsp; {{$bussiness->bussiness_name}}</li>
+            @empty
+                <li>No business services available at the moment.</li>
+            @endforelse
         </ul>
     </div>
     <!-- ------------------------------------------------------------ -->

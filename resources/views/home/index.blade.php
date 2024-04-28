@@ -208,7 +208,7 @@
   <!-- ----------------------------------------------------- -->
 
   <div class="short_video container">
-    <h3><span>Short Videos</span> <a href="shortvideos.html" target="_blank">See All</a></h3>
+    <h3><span>Short Videos</span> <a href="javascript:void(0)" >See All</a></h3>
     <div class="card_group">
       <div class="card" style="background: linear-gradient(#00000059, #00000059),
       url(/home/images/cars/Optimized-dima-panyukov-DwxlhTvC16Q-unsplash.jpg) no-repeat;">
@@ -271,7 +271,7 @@
 
   <div class="meet_dealers">
     <ul class="card_group">
-      <li class="card"><a href="">The Dealers</a></li>
+      <li class="card"><a href="{{route('dealers.all')}}">The Dealers</a></li>
       <li class="card">
         <p>Meet with Different Car Dealers, who will help get your desired property, with little to no agent fee added
         </p>
@@ -282,7 +282,7 @@
   <!-- ----------------------------------------------------- -->
 
   <div class="groups container">
-    <h3><span>Groups you may like</span> <a href="groupMembers.html" target="_blank">See more</a></h3>
+    <h3><span>Groups you may like</span> <a href="javascript:void(0)" target="_blank">See more</a></h3>
     <div class="card_group">
       <div class="card">
         <div class="card_img" style="background: url(/home/images/people/group\ of\ people.png) no-repeat;"></div>

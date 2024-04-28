@@ -23,7 +23,7 @@ class showNavBar
     {
         $categories = Category::all();
         $brands = Brand::all();
-        $getDealers = User::where('role', 'dealer')->take(5)->pluck('name');
+        $getDealers = User::where('role', 'dealer')->take(5)->select('name', 'image')->get();
         View::share([
             'categories' => $categories,
             'brands' => $brands,
