@@ -34,6 +34,7 @@
             <h6 class="collapse-header">Add New</h6>
             <a class="collapse-item" href="{{route('admin.brands')}}">Brand</a>
 
+
           </div>
         </div>
       </li>
@@ -71,6 +72,7 @@
                 </div>
             </div>
         </li>
+
 
 
       <li class="nav-item">
@@ -144,9 +146,20 @@
             </div>
         </li>
 
-
-
-
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities108"
+               aria-expanded="true" aria-controls="collapseUtilities108">
+                <i class="fas fa-ban"></i>
+                <span>Blacklist</span>
+            </a>
+            <div id="collapseUtilities108" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Post Option</h6>
+                    <a class="collapse-item" href="{{route('admin.stolen.car')}}">Upload Stolen Cars</a>
+                    <a class="collapse-item" href="{{route('admin.product.all')}}">View Stolen Listings</a>
+                </div>
+            </div>
+        </li>
 
         <li class="nav-item">
         <a class="nav-link" href="{{route('admin.profile')}}">
@@ -319,7 +332,7 @@
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Your Website 2021</span>
+            <span>Copyright &copy; Your Website {{ date('Y') }}</span>
           </div>
         </div>
       </footer>

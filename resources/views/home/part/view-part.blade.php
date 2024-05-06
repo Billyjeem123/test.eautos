@@ -76,15 +76,15 @@
 </header>
 <main>
     <!-- ---------------------------- -->
-    <div class="work-image">
-        <div class="/images">
-            <img src="..//images/workers/Rectangle 1312.png" alt="">
-            <img src="..//images/workers/Rectangle 131.png" alt="">
-            <img src="..//images/workers/Rectangle 239.png" alt="">
-            <img src="..//images/workers/Rectangle 131t.png" alt="">
-            <img src="..//images/workers/Rectangle 1313.png" alt="">
-        </div>
-    </div>
+{{--    <div class="work-image">--}}
+{{--        <div class="/images">--}}
+{{--            <img src="..//images/workers/Rectangle 1312.png" alt="">--}}
+{{--            <img src="..//images/workers/Rectangle 131.png" alt="">--}}
+{{--            <img src="..//images/workers/Rectangle 239.png" alt="">--}}
+{{--            <img src="..//images/workers/Rectangle 131t.png" alt="">--}}
+{{--            <img src="..//images/workers/Rectangle 1313.png" alt="">--}}
+{{--        </div>--}}
+{{--    </div>--}}
     <!-- ----------------------------------------- -->
     <!-- ----------------------------------------- -->
 
@@ -113,7 +113,7 @@
                     <p>
                         <span><i class="fa fa-check"></i></span> Verified
                     </p>
-                    <a href="partDetails.html">View</a>
+                    <a href="javascript:void(0)">View</a>
                 </div>
             </div>
         </div>

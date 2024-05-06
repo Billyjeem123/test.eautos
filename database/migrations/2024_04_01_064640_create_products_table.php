@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('model');
             $table->string('color');
             $table->string('address');
+            $table->string('is_viewed');
+
             $table->string('location');
             $table->decimal('price', 10, 2);
             $table->integer('views')->default(0);

@@ -24,8 +24,8 @@
     </div>
     <div class="form-row mb-3">
       <div class="form-group col-md-6">
-        <select id="category" class="form-control bg-white" name="category_id">
-          <option  selected>Select Category</option>
+        <select id="category" class="form-control bg-white" name="category_id" required>
+          <option  >Select Category</option>
           @foreach ($categories as $item)
           <option value="{{$item->id}}">{{$item->catname}}</option>
 
@@ -38,8 +38,8 @@
 
 
       <div class="form-group col-md-6">
-        <select id="subcategory" class="form-control bg-white" name="sub_category_id">
-            <option selected disabled>Sub Category</option>
+        <select id="subcategory" class="form-control bg-white" name="sub_category_id" required>
+            <option  disabled>Sub Category</option>
             <!-- Subcategory options will be populated dynamically -->
         </select>
     </div>
@@ -49,7 +49,7 @@
     <div class="form-row mb-3">
       <div class="form-group col-md-5">
 
-        <select id="brand" class="form-control bg-white" name="brand_id">
+        <select id="brand" class="form-control bg-white" name="brand_id" required>
           <option  selected>Select Brand  </option>
           @foreach ($brands as $brand)
           <option value="{{$brand->id}}">{{$brand->name}}</option>
@@ -62,21 +62,21 @@
 
       </div>
       <div class="form-group col-md-5">
-        <input type="text" class="form-control bg-white" placeholder="Model" id="year" name="model">
+        <input type="text" class="form-control bg-white" placeholder="Model" id="year" name="model" required>
       </div>
       <div class="form-group col-md-2">
-        <input type="text" class="form-control bg-white" placeholder="Year" id="year" name="year">
+        <input type="text" class="form-control bg-white" placeholder="Year" id="year" name="year" required>
       </div>
     </div>
     <div class="form-row mb-3">
       <div class="form-group col-md-4">
-        <input type="text" class="form-control bg-white" placeholder="Milage" id="milage"  name="mileage">
+        <input type="text" class="form-control bg-white" placeholder="Milage" id="milage"  name="mileage" required>
       </div>
       <div class="form-group col-md-3">
-        <input type="text" class="form-control bg-white" placeholder="Cylinders" name="cylinder">
+        <input type="text" class="form-control bg-white" placeholder="Cylinders" name="cylinder" required>
       </div>
       <div class="form-group col-md-5 d-flex">
-        <select id="color" class="form-control bg-white" name="color">
+        <select id="color" class="form-control bg-white" name="color" required>
           <option value=""  selected>Select color</option>
           <option value="Black">Black</option>
           <option value="White">White</option>
@@ -138,7 +138,7 @@
     <h5 class="h5 mb-2">Address Details</h5>
     <div class="form-row justify-content-between mb-3">
       <div class="form-group col-md-6">
-        <select id="state" class="form-control bg-white" name="location">
+        <select id="state" class="form-control bg-white" name="location" required>
           <option selected disabled>Select state</option>
           <option>Abia</option>
           <option>Adamawa</option>
@@ -183,16 +183,16 @@
 
 
       <div class="form-group col-md-6">
-        <input type="text" class="form-control bg-white" placeholder="Area" id="price" name="address">
+        <input type="text" class="form-control bg-white" placeholder="Area" id="price" name="address" required>
       </div>
     </div>
     <h5 class="h5 mb-2">Pricing Details</h5>
     <div class="form-row mb-3">
       <div class="form-group col-md-6">
-        <input type="text" class="form-control bg-white" placeholder="Price" id="price" name="price">
+        <input type="text" class="form-control bg-white" placeholder="Price" id="price" name="price" required>
       </div>
       <div class="form-group col-md-6">
-        <input type="text" class="form-control bg-white" placeholder="Car name" id="price" name="car_name">
+        <input type="text" class="form-control bg-white" placeholder="Car name" id="price" name="car_name" required>
       </div>
 
     </div>
@@ -218,10 +218,10 @@
     <h5 class="h5 mb-2">Description</h5>
     <div class="form-group mb-5">
       <textarea name="desc" class="form-control textarea bg-white" placeholder="Describe Your Property..."
-        id="about-organization" cols="30" rows="5"></textarea>
+        id="about-organization" cols="30" rows="5" required></textarea>
     </div>
     <div class="form-group">
-      <input type="file" name="images[]"  class="form-control p-5  border-0" id="businessImage" multiple>
+      <input type="file" name="images[]"  class="form-control p-5  border-0" id="businessImage" multiple required>
     </div>
     <div class="form-group d-flex justify-content-end">
       <button type="submit" class="btn border-primary text-primary m-2 px-sm-4">Save</button>

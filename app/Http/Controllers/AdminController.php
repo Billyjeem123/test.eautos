@@ -121,6 +121,22 @@ class AdminController extends Controller
 
         return view('admin.modal.request-modal', ['request' => $request]);
     }
+
+
+    public  function productDetails($id)
+    {
+        $product =   Product::with('categories', 'user', 'brand', 'images')->find($id);
+        $product->is_viewed = 1;
+        $product->save();
+
+//         echo "<pre>";
+//         echo json_encode($product, JSON_PRETTY_PRINT);
+//         echo "</pre>";
+
+        return view('admin.modal.product-modal', ['product' => $product]);
+    }
+
+
 }
 
 

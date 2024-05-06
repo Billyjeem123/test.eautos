@@ -166,61 +166,61 @@
     </div>
 
     <!-- ----------------------------------- -->
-    <div class="car_dealers container">
-        <h3>Other Service Provider Near you</h3>
-        <div class="card_group">
-            <a class="card" href="#">
-                <div class="card_img"
-                     style="background: url(/home/images/workers/Rectangle\ 131.png) no-repeat;"></div>
-                <div class="details">
-                    <h5>Panel Beater</h5>
-                    <span><strong>100%</strong> Verified</span>
-                    <p class="progress"><i class="fa fa-check"></i></p>
-                </div>
-            </a>
-            <a class="card" href="#">
-                <div class="card_img"
-                     style="background: url(/home/images/workers/Rectangle\ 1312.png) no-repeat;">
-                </div>
-                <div class="details">
-                    <h5>Mechanic</h5>
-                    <span><strong>100%</strong> Verified</span>
-                    <p class="progress"><i class="fa fa-check"></i></p>
-                </div>
-            </a>
-            <a class="card" href="#">
-                <div class="card_img"
-                     style="background: url(/home/images/workers/Rectangle\ 1313.png) no-repeat;">
-                </div>
-                <div class="details">
-                    <h5>Vulvanizer</h5>
-                    <span><strong>100%</strong> Verified</span>
-                    <p class="progress"><i class="fa fa-check"></i></p>
-                </div>
-            </a>
-            <a class="card" href="#">
-                <div class="card_img"
-                     style="background: url(/home/images/workers/Rectangle\ 239.png) no-repeat;">
-                </div>
-                <div class="details">
-                    <h5>Panel Beater</h5>
-                    <span><strong>100%</strong> Verified</span>
-                    <p class="progress"><i class="fa fa-check"></i></p>
-                </div>
-            </a>
-            <a class="card" href="#">
-                <div class="card_img"
-                     style="background: url(/home/images/workers/Rectangle\ 131t.png) no-repeat;">
-                </div>
-                <div class="details">
-                    <h5>Mechanic</h5>
-                    <span><strong>100%</strong> Verified</span>
-                    <p class="progress"><i class="fa fa-check"></i></p>
-                </div>
-            </a>
-        </div>
+{{--    <div class="car_dealers container">--}}
+{{--        <h3>Other Service Provider Near you</h3>--}}
+{{--        <div class="card_group">--}}
+{{--            <a class="card" href="#">--}}
+{{--                <div class="card_img"--}}
+{{--                     style="background: url(/home/images/workers/Rectangle\ 131.png) no-repeat;"></div>--}}
+{{--                <div class="details">--}}
+{{--                    <h5>Panel Beater</h5>--}}
+{{--                    <span><strong>100%</strong> Verified</span>--}}
+{{--                    <p class="progress"><i class="fa fa-check"></i></p>--}}
+{{--                </div>--}}
+{{--            </a>--}}
+{{--            <a class="card" href="#">--}}
+{{--                <div class="card_img"--}}
+{{--                     style="background: url(/home/images/workers/Rectangle\ 1312.png) no-repeat;">--}}
+{{--                </div>--}}
+{{--                <div class="details">--}}
+{{--                    <h5>Mechanic</h5>--}}
+{{--                    <span><strong>100%</strong> Verified</span>--}}
+{{--                    <p class="progress"><i class="fa fa-check"></i></p>--}}
+{{--                </div>--}}
+{{--            </a>--}}
+{{--            <a class="card" href="#">--}}
+{{--                <div class="card_img"--}}
+{{--                     style="background: url(/home/images/workers/Rectangle\ 1313.png) no-repeat;">--}}
+{{--                </div>--}}
+{{--                <div class="details">--}}
+{{--                    <h5>Vulvanizer</h5>--}}
+{{--                    <span><strong>100%</strong> Verified</span>--}}
+{{--                    <p class="progress"><i class="fa fa-check"></i></p>--}}
+{{--                </div>--}}
+{{--            </a>--}}
+{{--            <a class="card" href="#">--}}
+{{--                <div class="card_img"--}}
+{{--                     style="background: url(/home/images/workers/Rectangle\ 239.png) no-repeat;">--}}
+{{--                </div>--}}
+{{--                <div class="details">--}}
+{{--                    <h5>Panel Beater</h5>--}}
+{{--                    <span><strong>100%</strong> Verified</span>--}}
+{{--                    <p class="progress"><i class="fa fa-check"></i></p>--}}
+{{--                </div>--}}
+{{--            </a>--}}
+{{--            <a class="card" href="#">--}}
+{{--                <div class="card_img"--}}
+{{--                     style="background: url(/home/images/workers/Rectangle\ 131t.png) no-repeat;">--}}
+{{--                </div>--}}
+{{--                <div class="details">--}}
+{{--                    <h5>Mechanic</h5>--}}
+{{--                    <span><strong>100%</strong> Verified</span>--}}
+{{--                    <p class="progress"><i class="fa fa-check"></i></p>--}}
+{{--                </div>--}}
+{{--            </a>--}}
+{{--        </div>--}}
 
-    </div>
+{{--    </div>--}}
 
     <!-- ------------------------------------------- -->
 </main>

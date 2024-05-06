@@ -157,7 +157,7 @@
       @foreach ($products as $product)
       <div class="card">
           <a href="{{route('product.show', $product->id)}}" class="card_link">
-              <div class="card_img" style="background: url('{{ $product->images[0]['image'] }}') no-repeat;"></div>
+              <div class="card_img" style="background: url('{{ $product->images[1]['image'] }}') no-repeat;"></div>
           </a>
           <div class="card_text">
               <h5>{{ $product->car_name}}</h5>

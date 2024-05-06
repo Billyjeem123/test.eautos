@@ -27,7 +27,9 @@ class Product extends Model
         'is_approved',
         'user_id',
         'car_name',
-        'cylinder'
+        'cylinder',
+        'is_viewed'
+
     ];
 
      /**

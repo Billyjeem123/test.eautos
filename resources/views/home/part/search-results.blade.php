@@ -41,9 +41,9 @@
 </div>
 <header class="hero">
     <div class="form">
-        <form action="{{ route('part.search') }}" method="POST">
+        <form action=""   method="POST">
             @csrf
-            <input type="text" name="search" placeholder="e.g. Toyota Camry Engine" />
+            <input type="text" name="carpart" placeholder="e.g. Toyota Camry Engine" />
             <button id="search" type="submit">
                 <i class="fa fa-search"></i> <span>Search</span>
             </button>
@@ -52,12 +52,12 @@
 </header>
 <main>
     <ul class="part-nav">
-            @forelse ($partCategories as $partcategory)
-                <li><a href="">{{ $partcategory->part_category }}</a></li>
-            @empty
-                <!-- This will be displayed if $partcategories is empty -->
-                <p>Category not available at the moment</p>
-            @endforelse
+        @forelse ($partCategories as $partcategory)
+            <li><a href="">{{ $partcategory->part_category }}</a></li>
+        @empty
+            <!-- This will be displayed if $partcategories is empty -->
+            <p>Category not available at the moment</p>
+        @endforelse
     </ul>
     <!-- --------- -->
     <section>
@@ -83,37 +83,33 @@
 
         </aside>
         <aside class="aside2">
-            <h3><span>Car Part</span> <a href="#">See more</a></h3>
+            <h3><span>{{$searchFound}} search found</span> <a href="#">See more</a></h3>
             <div class="card-group">
 
-               @foreach($parts as $part)
+                @forelse ($parts as $part)
                     <div class="card">
-                        <div
-                            class="card-image"
-                            style="background: url('{{ $part->image }}');
-                             background-position: center !important;
-    background-size: cover !important;
-                            "
-                        >
+                        <div class="card-image" style="background: url('{{ $part->image }}'); background-position: center !important; background-size: cover !important;">
                             <span><i class="far fa-heart"></i></span>
                         </div>
                         <div class="details">
-                            <h5>{{$part->partcategories->part_category}}</h5>
+                            <h5>{{ $part->partcategories->part_category }}</h5>
                             <p>
-                                <span>₦ {{ number_format($part->price,2) }}</span>
+                                <span>₦ {{ number_format($part->price, 2) }}</span>
                                 <span>&dollar; 200,000</span>
                                 <span>&pound; 180,000</span>
                             </p>
-                            <strong><i class="fa fa-location-dot"></i>&nbsp; {{$part->location}}</strong>
+                            <strong><i class="fa fa-location-dot"></i>&nbsp; {{ $part->location }}</strong>
                         </div>
                         <div class="card-footer">
                             <p>
                                 <span><i class="fa fa-check"></i></span> Verified
                             </p>
-                            <a href="{{route('view.parts', $part->id)}}">View</a>
+                            <a href="{{ route('view.parts', $part->id) }}">View</a>
                         </div>
                     </div>
-               @endforeach
+                @empty
+                    <p>No search found.</p>
+                @endforelse
             </div>
         </aside>
 

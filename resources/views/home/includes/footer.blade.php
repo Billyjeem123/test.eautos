@@ -12,17 +12,30 @@
     <div class="card">
       <h6>Services</h6>
       <nav class="footer_nav">
-        <ul class="">
-          <li><a href="cars/index.html">Cars</a></li>
-          <li><a href="bikes/index.html">Bikes</a></li>
-          <li><a href="trucks/index.html">Trucks</a></li>
-          <li><a href="farm/index.html">Farms</a></li>
-          <li><a href="plants/index.html">Plants</a></li>
+          <ul>
+              @foreach($categories as $category)
+                  @if($category->subcategories->count() > 0)
+                      <li>
+                          <a href="{{ route('category.product', $category->id) }}"
+                             class="">
+                              {{ $category->catname }}
 
-          <li><a href="#!">Valuation</a></li>
+                          </a>
+                      </li>
 
-          <li><a href="#!">Blacklist</a></li>
-        </ul>
+                  @endif
+              @endforeach
+                  <li><a href="javascript:void(0)">Car Service</a></li>
+                  <li><a href="{{route('scrapy-yard')}}">Scrapyard</a></li>
+                  <li>
+                      <a href="{{ route('value.vehicle') }}" class="{{ request()->routeIs('value.vehicle') ? 'active' : '' }}">Value Asset</a>
+                  </li>
+
+                  <li>
+                      <a href="{{ route('parts') }}" class="{{ request()->routeIs('parts') ? 'active' : '' }}">Car Part</a>
+                  </li>
+
+          </ul>
         <ul class="">
           <li><a href="#!">Privacy Police</a></li>
           <li><a href="#!">Terms and Conditions</a></li>

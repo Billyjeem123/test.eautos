@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Brand;
+use App\Models\CarPartCategory;
 use App\Models\Category;
+use App\Models\Part;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -23,6 +25,10 @@ class HomeController extends Controller
 
 
         $products  = Product::with('brand', 'images', 'categories')->get();
+
+//                echo "<pre>";
+//          echo json_encode($products, JSON_PRETTY_PRINT);
+//          echo "</pre>";
 
         return view('home.index', ['brands' => $brands, 'products' => $products, 'getDealers' => $getDealers]);
     }
@@ -207,6 +213,26 @@ class HomeController extends Controller
             'carCounts' => $carCounts,
         ]);
     }
+
+
+    public function searchPart(Request $request)
+    {
+        $searchTerm = $request->input('search');
+
+        $parts = Part::where('part_name', 'LIKE', "%$searchTerm%")
+            ->orWhere('description', 'LIKE', "%$searchTerm%")
+            ->get();
+
+        $searchFound = $parts->count();
+
+        $partCategories= CarPartCategory::all();
+
+        // Process and return the search results as per your requirement
+
+        // For example, you can pass the $parts variable to a view
+        return view('home.part.search-results', ['parts' => $parts, 'partCategories' => $partCategories, 'searchFound' => $searchFound]);
+    }
+
 
 
 

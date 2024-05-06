@@ -66,13 +66,13 @@ class ProductController extends Controller
 
     public function store(Request $request)
 {
-    $validator = $this->validateRequest($request);
-
-
-    // Check if validation fails
-    if ($validator->fails()) {
-        return redirect()->back()->withInput()->withErrors(['error' => $validator->errors()->first()]); // Redirect back with input and error message
-    }
+//    $validator = $this->validateRequest($request);
+//
+//
+//    // Check if validation fails
+//    if ($validator->fails()) {
+//        return redirect()->back()->withInput()->withErrors(['error' => $validator->errors()->first()]); // Redirect back with input and error message
+//    }
 
     // Save category
     $product  = Product::create([

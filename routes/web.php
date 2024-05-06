@@ -5,8 +5,10 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PartController;
+use App\Http\Controllers\PaystackController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\StolenCarController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -92,6 +94,7 @@ Route::group(['middleware' => ['showNavBar']], function () {
 
         Route::get('/part/all', [PartController::class, 'getPartView'])->name('parts');
         Route::get('/view-part/{id?}', [PartController::class, 'viewPartDetails'])->name('view.parts');
+        Route::post('/search-part', [HomeController::class, 'searchPart'])->name('part.search');
 
 
 
@@ -146,7 +149,6 @@ Route::prefix('admin')->middleware('auth', 'admin', 'notify')->group(function ()
 
 
      #Brands
-
      Route::get('/brands', [BrandController::class, 'index'])->name('admin.brands');
      Route::post('/brands/create', [BrandController::class, 'store'])->name('admin.brands.create');
      Route::delete('/brands/delete/{id}', [BrandController::class, 'deleteBrand'])->name('admin.brand.delete');
@@ -163,6 +165,9 @@ Route::prefix('admin')->middleware('auth', 'admin', 'notify')->group(function ()
 
      #notification..
      Route::get('/read', [AdminController::class, 'markAsRead'])->name('mark_As_read');
+    Route::get('/stolen/car', [StolenCarController::class, 'index'])->name('admin.stolen.car');
+    Route::post('/stolen/car', [StolenCarController::class, 'store'])->name('admin.stolen.create');
+
 
      #reports view all reports
      Route::get('/reports/all', [ReportController::class, 'viewAllReports'])->name('view.reports');
@@ -204,6 +209,13 @@ Route::prefix('admin')->middleware('auth', 'admin', 'notify')->group(function ()
     Route::get('/parts/{id}/unapprove', [PartController::class, 'unapprovePart'])->name('parts.unapprove');
     Route::get('/reports/complaints/{id}', [AdminController::class, 'reportComplaint'])->name('admin.complaint.details');
     Route::get('/requests/details/{id}', [AdminController::class, 'careRequests'])->name('admin.requests.details');
+    Route::get('/products/details/{id}', [AdminController::class, 'productDetails'])->name('admin.products.details');
+
+
+    //Paystack Route
+    Route::get('paystack-onboard', [PaystackController::class, 'redirectToGateway'])->name('paystack.init');
+    Route::get('paystack-payment-success',
+        [PaystackController::class, 'handleGatewayCallback'])->name('paystack.success');
 
 
 });

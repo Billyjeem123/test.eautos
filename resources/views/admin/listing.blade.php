@@ -21,6 +21,7 @@
                     <th>Model</th>
                     <th>Price</th>
                     <th>Views</th>
+                    <th>Report Staus</th>
                     <th>Active</th>
                     <th>Approve</th>
                     <th>Date Created</th>
@@ -37,6 +38,7 @@
                         <td>{{$product->model}}</td>
                         <td>₦{{ number_format($product->price, 2) }}</td>
                         <td>{{$product->views}}</td>
+                        <td><p>{{$product->is_viewed === 0 ? "Pending" : "Seen"}}</p></td>
                         <td>{{ $product->is_approved === 1 ? 'Approved' : ($product->is_approved === 2 ? 'Deactivated' : 'Pending') }}</td>
                         <form action="{{ route('admin.product.activate', $product->id) }}" method="POST">
                             @csrf
@@ -49,7 +51,7 @@
                         </form>
 
                         <td>{{$product->created_at->diffForHumans()}}</td>
-                        <td><a class="btn btn-info btn-sm" href="{{ route('admin.edit.product', $product->id) }}">View Details</a></td>
+                        <td><a class="btn btn-info btn-sm" href="{{ route('admin.products.details', $product->id) }}">View Details</a></td>
 
 
                         <form action="{{ route('admin.product.delete', $product->id) }}" method="POST">
