@@ -24,12 +24,34 @@
                         <div class="form-row">
                             @csrf
 
+
+                            <div class="form-group col-md-5">
+
+                                <select id="brand" class="form-control bg-white" name="brand_id" required>
+                                    <option  selected>Select Brand</option>
+                                    @foreach ($brands as $brand)
+                                        <option value="{{$brand->id}}">{{$brand->name}}</option>
+
+                                    @endforeach
+
+                                </select>
+
+
+
+                            </div>
+
                             <div class="form-group col-md-12">
                                 <input type="text" name="car_name" class="form-control bg-white" placeholder="Enter Car name" id="title" required>
                             </div>
 
                             <div class="form-group col-md-12">
-                                <input type="text" name="last_seen" class="form-control bg-white" placeholder="Enter Last Address" id="title" required>
+                                <input type="text" name="plate_number" class="form-control bg-white" placeholder="Enter Car Number" id="title" required>
+                            </div>
+
+
+
+                            <div class="form-group col-md-12">
+                                <input type="text" name="last_seen" class="form-control bg-white" placeholder="Enter Last Seen" id="title" required>
                             </div>
 
                             <div class="form-group col-md-12">

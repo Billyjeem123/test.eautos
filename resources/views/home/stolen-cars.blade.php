@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stoloen Cars</title>
+    <title>Stolen Cars</title>
     <link rel="stylesheet" href="/home/css/stolenCars.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
@@ -85,147 +85,29 @@
     <div class="stolen container">
         <h3>Stolen Cars</h3>
         <div class="card_group">
-            <div class="card">
-                <div class="card_img" style="background: url(/home/images/cars/blue\ car.png) no-repeat;"></div>
-                <div class="card_text">
-                    <h4>Mercedes Benz</h4>
-                    <h5>Plate Number: ADC1223DD</h5>
-                    <h6>Date Reported: 21-11-2023</h6>
-                    <h6>Reported by: Mr Tobi (081234574330)</h6>
-                    <h6>Reported at: 24 Iyaila street police station</h6>
-                    <h6>Color: Blue</h6>
+            @forelse($stolencars as $car)
+                <div class="card">
+                    <div class="card_img" style="background: url('{{ $car->image }}') no-repeat;"></div>
+                    <div class="card_text">
+                        <h4>{{ $car->brand->name }}</h4>
+                        <h5>Plate Number: {{ $car->plate_number }}</h5>
+                        <h6>Date Reported: {{ $car->created_at->diffForHumans() }}</h6>
+                        <h6>Reported by: {{ $car->user->name }}</h6>
+                        <h6>Plate Number: {{ $car->plate_number}}</h6>
+
+                        <h6>Reported at: {{ $car->address }}</h6>
+                        <h6>Color: {{ $car->color }}</h6>
+                    </div>
                 </div>
-            </div>
-            <div class="card">
-                <div class="card_img" style="background: url(/home/images/cars/blue\ car.png) no-repeat;"></div>
-                <div class="card_text">
-                    <h4>Mercedes Benz</h4>
-                    <h5>Plate Number: ADC1223DD</h5>
-                    <h6>Date Reported: 21-11-2023</h6>
-                    <h6>Reported by: Mr Tobi (081234574330)</h6>
-                    <h6>Reported at: 24 Iyaila street police station</h6>
-                    <h6>Color: Blue</h6>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card_img" style="background: url(/home/images/cars/blue\ car.png) no-repeat;"></div>
-                <div class="card_text">
-                    <h4>Mercedes Benz</h4>
-                    <h5>Plate Number: ADC1223DD</h5>
-                    <h6>Date Reported: 21-11-2023</h6>
-                    <h6>Reported by: Mr Tobi (081234574330)</h6>
-                    <h6>Reported at: 24 Iyaila street police station</h6>
-                    <h6>Color: Blue</h6>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card_img" style="background: url(/home/images/cars/blue\ car.png) no-repeat;"></div>
-                <div class="card_text">
-                    <h4>Mercedes Benz</h4>
-                    <h5>Plate Number: ADC1223DD</h5>
-                    <h6>Date Reported: 21-11-2023</h6>
-                    <h6>Reported by: Mr Tobi (081234574330)</h6>
-                    <h6>Reported at: 24 Iyaila street police station</h6>
-                    <h6>Color: Blue</h6>
-                </div>
-            </div>
+            @empty
+                <p>No records found.</p>
+            @endforelse
+
         </div>
         <br>
-        <h3>Recovered Cars</h3>
-        <div class="card_group">
-            <div class="card">
-                <div class="card_img" style="background: url(/home/images/cars/blue\ car.png) no-repeat;"></div>
-                <div class="card_text">
-                    <h4>Mercedes Benz</h4>
-                    <h5>Plate Number: ADC1223DD</h5>
-                    <h6>Date Recovered: 21-11-2023</h6>
-                    <h6>Recovered by: Mr Tobi (081234574330)</h6>
-                    <h6>Recovered at: 24 Iyaila street police station</h6>
-                    <h6>Color: Blue</h6>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card_img" style="background: url(/home/images/cars/blue\ car.png) no-repeat;"></div>
-                <div class="card_text">
-                    <h4>Mercedes Benz</h4>
-                    <h5>Plate Number: ADC1223DD</h5>
-                    <h6>Date Recovered: 21-11-2023</h6>
-                    <h6>Recovered by: Mr Tobi (081234574330)</h6>
-                    <h6>Recovered at: 24 Iyaila street police station</h6>
-                    <h6>Color: Blue</h6>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card_img" style="background: url(/home/images/cars/blue\ car.png) no-repeat;"></div>
-                <div class="card_text">
-                    <h4>Mercedes Benz</h4>
-                    <h5>Plate Number: ADC1223DD</h5>
-                    <h6>Date Recovered: 21-11-2023</h6>
-                    <h6>Recovered by: Mr Tobi (081234574330)</h6>
-                    <h6>Recovered at: 24 Iyaila street police station</h6>
-                    <h6>Color: Blue</h6>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card_img" style="background: url(/home/images/cars/blue\ car.png) no-repeat;"></div>
-                <div class="card_text">
-                    <h4>Mercedes Benz</h4>
-                    <h5>Plate Number: ADC1223DD</h5>
-                    <h6>Date Recovered: 21-11-2023</h6>
-                    <h6>Recovered by: Mr Tobi (081234574330)</h6>
-                    <h6>Recovered at: 24 Iyaila street police station</h6>
-                    <h6>Color: Blue</h6>
-                </div>
-            </div>
-        </div>
+
     </div>
     <!-- ----------------------------------------------------- -->
-
-    <div class="groups container">
-        <h3><span>Groups you may like</span> <a href="../groupMembers.html" target="_blank">See more</a></h3>
-        <div class="card_group">
-            <div class="card">
-                <div class="card_img" style="background: url(/home/images/people/group\ of\ people.png) no-repeat;"></div>
-                <div class="details">
-                    <h5>IT news</h5>
-                    <p><span>1 Member</span>&nbsp; &nbsp;&nbsp;<span>0 Posts today</span></p>
-                    <a href="#!">Join</a>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card_img" style="background: url(/home/images/people/group\ of\ people.png) no-repeat;"></div>
-                <div class="details">
-                    <h5>IT news</h5>
-                    <p><span>1 Member</span>&nbsp; &nbsp;&nbsp;<span>0 Posts today</span></p>
-                    <a href="#!">Join</a>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card_img" style="background: url(/home/images/people/group\ of\ people.png) no-repeat;"></div>
-                <div class="details">
-                    <h5>IT news</h5>
-                    <p><span>1 Member</span>&nbsp; &nbsp;&nbsp;<span>0 Posts today</span></p>
-                    <a href="#!">Join</a>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card_img" style="background: url(/home/images/people/group\ of\ people.png) no-repeat;"></div>
-                <div class="details">
-                    <h5>IT news</h5>
-                    <p><span>1 Member</span>&nbsp; &nbsp;&nbsp;<span>0 Posts today</span></p>
-                    <a href="#!">Join</a>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card_img" style="background: url(/home/images/people/group\ of\ people.png) no-repeat;"></div>
-                <div class="details">
-                    <h5>IT news</h5>
-                    <p><span>1 Member</span>&nbsp; &nbsp;&nbsp;<span>0 Posts today</span></p>
-                    <a href="#!">Join</a>
-                </div>
-            </div>
-        </div>
-        <!-- ---------------------------------- -->
 
 
 </main>

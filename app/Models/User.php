@@ -141,4 +141,12 @@ class User extends Authenticatable
     {
         return $this->hasMany(BussinessReview::class, 'user_id');
     }
+
+    /**
+     * Get the  user associated with  stolen car reported
+     */
+    public function stolen_car(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(StolenCar::class, 'user_id');
+    }
 }

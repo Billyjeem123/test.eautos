@@ -88,13 +88,16 @@ Route::group(['middleware' => ['showNavBar']], function () {
 
         Route::view('/scrapy-yard', 'home.scarapy-yard')->name('scrapy-yard');
 //        Route::view('/parts', 'home.parts')->name('parts');
-        Route::view('/stolen-cars', 'home.stolen-cars')->name('stolen');
         Route::view('/blacklist', 'home.blacklist')->name('blacklist');
         Route::view('/sell-a-car', 'home.sell-a-car')->name('sell');
 
         Route::get('/part/all', [PartController::class, 'getPartView'])->name('parts');
         Route::get('/view-part/{id?}', [PartController::class, 'viewPartDetails'])->name('view.parts');
         Route::post('/search-part', [HomeController::class, 'searchPart'])->name('part.search');
+
+
+//        Route::view('/stolen-cars', 'home.stolen-cars')->name('stolen');
+        Route::get('/stolen-cars', [StolenCarController::class, 'getStolenCars'])->name('stolen');
 
 
 
@@ -165,8 +168,14 @@ Route::prefix('admin')->middleware('auth', 'admin', 'notify')->group(function ()
 
      #notification..
      Route::get('/read', [AdminController::class, 'markAsRead'])->name('mark_As_read');
-    Route::get('/stolen/car', [StolenCarController::class, 'index'])->name('admin.stolen.car');
+
+  #admin stolen cars.........
+    Route::get('/stolen/car', [StolenCarController::class, 'showuploadpage'])->name('admin.stolen.all');
+    Route::get('/stolen/all', [StolenCarController::class, 'index'])->name('admin.stolen.all');
     Route::post('/stolen/car', [StolenCarController::class, 'store'])->name('admin.stolen.create');
+    Route::delete('/stolen/delete/{id}', [StolenCarController::class, 'delete'])->name('admin.delete.stolen');
+    Route::get('/cartheft/{id}/approve', [StolenCarController::class, 'approveStolen'])->name('theft.approve');
+    Route::get('/cartheft/{id}/unapprove', [StolenCarController::class, 'unapproveStolenCar'])->name('theft.unapprove');
 
 
      #reports view all reports

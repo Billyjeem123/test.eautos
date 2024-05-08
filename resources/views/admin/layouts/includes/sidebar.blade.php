@@ -155,8 +155,8 @@
             <div id="collapseUtilities108" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Post Option</h6>
-                    <a class="collapse-item" href="{{route('admin.stolen.car')}}">Upload Stolen Cars</a>
-                    <a class="collapse-item" href="{{route('admin.product.all')}}">View Stolen Listings</a>
+                    <a class="collapse-item" href="{{route('admin.stolen.create')}}">Upload Stolen Cars</a>
+                    <a class="collapse-item" href="{{route('admin.stolen.all')}}">View Stolen Listings</a>
                 </div>
             </div>
         </li>

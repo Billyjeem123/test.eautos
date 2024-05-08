@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\ManagePartEvent;
+use App\Models\Brand;
 use App\Models\Category;
 use App\Models\StolenCar;
 use Illuminate\Http\Request;
@@ -11,9 +13,21 @@ class StolenCarController extends Controller
     public function index(){
 
 
-         $categories = Category::all();
+         $stolen  = StolenCar::with('user', 'brand')->get();
+         $brands = Brand::all();
 
-        return view('admin.stolencar', compact('categories'));
+
+        return view('admin.stolen-listing', ['stolens' => $stolen, 'brands' => $brands]);
+    }
+
+
+    public function showuploadpage(){
+
+
+        $brands = Brand::all();
+
+
+        return view('admin.stolencar', ['brands' => $brands]);
     }
 
     public function store(Request $request)
@@ -23,6 +37,8 @@ class StolenCarController extends Controller
         // Save part
          StolenCar::create([
             'image' => $imageUrl,
+            'brand_id' => $request->brand_id,
+             'plate_number' => $request->plate_number,
             'name' => $request->car_name ?? "null",
             'user_id' => auth()->user()->id,
             'address' => $request->last_seen,
@@ -48,4 +64,59 @@ class StolenCarController extends Controller
             return null;
         }
     }
+
+
+    public function delete($id): \Illuminate\Http\RedirectResponse
+    {
+        $stolen = StolenCar::findOrFail($id);
+        $stolen->delete();
+        return redirect()->back()->with('success', 'Record deleted successfully');
+    }
+
+
+
+
+
+
+    public function approveStolen($id)
+    {
+        $part = StolenCar::findOrFail($id);
+        $part->is_approved = $part->is_approved === 1 ? 0 : 1;
+        $part->save();
+
+        if($part->user->role != 'admin'){
+            $title = "Dear User, Your  car theft listing for :'$part->name was unapproved";
+
+            event(new ManagePartEvent($part->users->email, $title));
+
+        }
+
+
+        return redirect()->back()->with('success', 'Record  updated successfully.');
+    }
+
+    public function unapproveStolenCar($id)
+    {
+        $part = StolenCar::findOrFail($id);
+        $part->is_approved = $part->is_approved === 0 ? 1 : 0;
+        $part->save();
+
+        if($part->user->role != 'admin') {
+
+            $title = "Congrats, Your Car theft  listing Name: '$part->name' has been approved";
+
+            event(new ManagePartEvent($part->users->email, $title));
+        }
+
+
+        return redirect()->back()->with('success', 'Record updated successfully.');
+    }
+
+
+     public function getStolenCars(){
+
+         $stolencars  = StolenCar::with('user', 'brand')->get();
+
+         return view('home.stolen-cars', ['stolencars' => $stolencars]);
+     }
 }

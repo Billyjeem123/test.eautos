@@ -17,7 +17,9 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('user_id');
+            $table->unsignedInteger('brand_id');
             $table->string('is_approved');
+            $table->string('plate_number');
             $table->string('views');
             $table->string('address');
             $table->string('color');
