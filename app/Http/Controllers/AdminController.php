@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Message;
 use App\Models\Product;
 use App\Models\Report;
 use App\Models\RequestCar;
@@ -135,6 +136,41 @@ class AdminController extends Controller
 
         return view('admin.modal.product-modal', ['product' => $product]);
     }
+
+
+
+      public function allMessages(){
+
+
+        $messages =  Message::where('receiver_id', auth()->user()->id)->get();
+
+
+          return view('admin.message', ['messages' => $messages]);
+
+     }
+
+    public function allMessagesById($id){
+        // Find the message by its ID
+        $message = Message::find($id);
+
+        // Update the is_seen column to 1
+        $message->update(['is_seen' => 1]);
+
+        // Return the view with the updated message
+        return view('admin.modal.messages', ['message' => $message]);
+    }
+
+
+
+    public function deleteMessage($id): \Illuminate\Http\RedirectResponse
+    {
+        $message = Message::findOrFail($id);
+        $message->delete();
+        return redirect()->back()->with('success', 'Record deleted successfully');
+    }
+
+
+
 
 
 }

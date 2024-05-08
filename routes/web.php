@@ -97,7 +97,10 @@ Route::group(['middleware' => ['showNavBar']], function () {
 
 
 //        Route::view('/stolen-cars', 'home.stolen-cars')->name('stolen');
-        Route::get('/stolen-cars', [StolenCarController::class, 'getStolenCars'])->name('stolen');
+        Route::get('/stolen-cars/{search?}', [StolenCarController::class, 'getStolenCars'])->name('stolen');
+
+//        Route::get('/search/stolen', [StolenCarController::class, 'searchStolen'])->name('search.car.stolen');
+
 
 
 
@@ -187,6 +190,13 @@ Route::prefix('admin')->middleware('auth', 'admin', 'notify')->group(function ()
     #requests view all requests
     Route::get('/requests/all', [ReportController::class, 'viewAllRequests'])->name('view.requests');
     Route::delete('/requests/delete/{id}', [ReportController::class, 'deleteRequests'])->name('admin.requests.delete');
+
+
+    #messages
+
+    Route::get('/message/all', [AdminController::class, 'allMessages'])->name('all.message');
+    Route::get('/message/{id}', [AdminController::class, 'allMessagesById'])->name('all.message.id');
+    Route::delete('/message/delete{id}', [AdminController::class, 'deleteMessage'])->name('all.message.delete');
 
 
 

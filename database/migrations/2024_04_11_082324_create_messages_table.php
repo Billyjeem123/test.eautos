@@ -18,6 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('sender_id');
             $table->unsignedBigInteger('receiver_id');
             $table->string('message');
+            $table->integer('is_seen');
             $table->string('phone_number');
 
             $table->foreign('sender_id')->references('id')->on('users')->onDelete('cascade');

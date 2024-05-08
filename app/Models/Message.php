@@ -9,7 +9,7 @@ class Message extends Model
 {
     use HasFactory;
 
-    protected  $fillable = ['sender_id', 'receiver_id', 'message', 'phone_number'];
+    protected  $fillable = ['sender_id', 'receiver_id', 'message', 'phone_number', 'is_seen'];
     public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(User::class, 'sender_id');

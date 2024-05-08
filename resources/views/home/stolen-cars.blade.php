@@ -44,39 +44,75 @@
 
 <header class="hero">
     <div class="form_control">
-        <form action="">
+        <form action="{{ route('stolen') }}" method="GET">
             <h3>Search For Stolen Cars</h3>
+{{--            @csrf--}}
             <div class="form_group">
                 <div class="form_card">
                     <label for="category"><i class="fa fa-angle-down"></i></label>
-                    <select name="category" id="category">
+                    <select name="brand_id" id="category">
                         <option value="" selected disabled>Enter Category</option>
-                        <option value="">Toyota</option>
-                        <option value="">Benz</option>
-                        <option value="">Lexus</option>
+                        @foreach ($brands as $brand)
+                            <option value="{{$brand->id}}">{{$brand->name}}</option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="form_card">
                     <label for="specialty"><i class="fa fa-angle-down"></i></label>
                     <select name="specialty" id="specialty">
                         <option value="" selected disabled>Enter Specialty</option>
-                        <option value="">C-class</option>
-                        <option value="">E-class</option>
-                        <option value="">AMG</option>
+                        <option value="C-class">C-class</option>
+                        <option value="E-class">E-class</option>
+                        <option value="AMG">AMG</option>
                     </select>
                 </div>
                 <div class="form_card">
                     <label for="location"><i class="fa fa-angle-down"></i></label>
-                    <select name="location" id="location">
+                    <select name="address" id="address">
                         <option value="" selected disabled>Enter Location</option>
-                        <option value="">Lagos</option>
-                        <option value="">Ibadan</option>
-                        <option value="">Abuja</option>
+                        <option>Abia</option>
+                        <option>Adamawa</option>
+                        <option>Akwa Ibom</option>
+                        <option>Anambra</option>
+                        <option>Bauchi</option>
+                        <option>Bayelsa</option>
+                        <option>Benue</option>
+                        <option>Borno</option>
+                        <option>Cross River</option>
+                        <option>Delta</option>
+                        <option>Ebonyi</option>
+                        <option>Edo</option>
+                        <option>Ekiti</option>
+                        <option>Enugu</option>
+                        <option>Gombe</option>
+                        <option>Imo</option>
+                        <option>Jigawa</option>
+                        <option>Kaduna</option>
+                        <option>Kano</option>
+                        <option>Katsina</option>
+                        <option>Kebbi</option>
+                        <option>Kogi</option>
+                        <option>Kwara</option>
+                        <option>Lagos</option>
+                        <option>Nasarawa</option>
+                        <option>Niger</option>
+                        <option>Ogun</option>
+                        <option>Ondo</option>
+                        <option>Osun</option>
+                        <option>Oyo</option>
+                        <option>Plateau</option>
+                        <option>Rivers</option>
+                        <option>Sokoto</option>
+                        <option>Taraba</option>
+                        <option>Yobe</option>
+                        <option>Zamfara</option>
+                        <option>Federal Capital Territory (FCT)</option>
                     </select>
                 </div>
             </div>
-            <button>Search</button>
+            <button type="submit">Search</button>
         </form>
+
     </div>
 </header>
 <main>
@@ -90,7 +126,6 @@
                     <div class="card_img" style="background: url('{{ $car->image }}') no-repeat;"></div>
                     <div class="card_text">
                         <h4>{{ $car->brand->name }}</h4>
-                        <h5>Plate Number: {{ $car->plate_number }}</h5>
                         <h6>Date Reported: {{ $car->created_at->diffForHumans() }}</h6>
                         <h6>Reported by: {{ $car->user->name }}</h6>
                         <h6>Plate Number: {{ $car->plate_number}}</h6>

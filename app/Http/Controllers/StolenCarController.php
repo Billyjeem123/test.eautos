@@ -113,10 +113,37 @@ class StolenCarController extends Controller
     }
 
 
-     public function getStolenCars(){
+//     public function getStolenCars(){
+//
+//         $stolencars  = StolenCar::with('user', 'brand')->get();
+//
+//         $brands = Brand::all();
+//
+//         return view('home.stolen-cars', ['stolencars' => $stolencars, 'brands' => $brands]);
+//     }
 
-         $stolencars  = StolenCar::with('user', 'brand')->get();
 
-         return view('home.stolen-cars', ['stolencars' => $stolencars]);
+    public function getStolenCars(Request $request) {
+        $query = StolenCar::with('user', 'brand');
+
+        if ($request->has('brand_id')) {
+            $query->where('brand_id', $request->brand_id);
+        }
+//        if ($request->has('specialty')) {
+//            $query->where('specialty', $request->specialty);
+//        }
+        if ($request->has('address')) {
+            $query->where('address', $request->address);
+        }
+
+        $stolencars = $query->get();
+
+        return view('home.stolen-cars', ['stolencars' => $stolencars]);
+    }
+
+
+     public function searchStolen(Request $request){
+
+
      }
 }

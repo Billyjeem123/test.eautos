@@ -435,51 +435,51 @@
     </div>
     <!-- ----------------------------------------------------- -->
 
-    <div class="groups container">
-        <h3><span>Groups you may like</span> <a href="" target="_blank">See more</a></h3>
-        <div class="card_group">
-            <div class="card">
-                <div class="card_img" style="background: url(/home/images/people/group\ of\ people.png) no-repeat;"></div>
-                <div class="details">
-                    <h5>IT news</h5>
-                    <p><span>1 Member</span>&nbsp; &nbsp;&nbsp;<span>0 Posts today</span></p>
-                    <a href="#!">Join</a>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card_img" style="background: url(/home/images/people/group\ of\ people.png) no-repeat;"></div>
-                <div class="details">
-                    <h5>IT news</h5>
-                    <p><span>1 Member</span>&nbsp; &nbsp;&nbsp;<span>0 Posts today</span></p>
-                    <a href="#!">Join</a>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card_img" style="background: url(/home/images/people/group\ of\ people.png) no-repeat;"></div>
-                <div class="details">
-                    <h5>IT news</h5>
-                    <p><span>1 Member</span>&nbsp; &nbsp;&nbsp;<span>0 Posts today</span></p>
-                    <a href="#!">Join</a>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card_img" style="background: url(/home/images/people/group\ of\ people.png) no-repeat;"></div>
-                <div class="details">
-                    <h5>IT news</h5>
-                    <p><span>1 Member</span>&nbsp; &nbsp;&nbsp;<span>0 Posts today</span></p>
-                    <a href="#!">Join</a>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card_img" style="background: url(/home/images/people/group\ of\ people.png) no-repeat;"></div>
-                <div class="details">
-                    <h5>IT news</h5>
-                    <p><span>1 Member</span>&nbsp; &nbsp;&nbsp;<span>0 Posts today</span></p>
-                    <a href="#!">Join</a>
-                </div>
-            </div>
-        </div>
-        <!-- ---------------------------------- -->
+{{--    <div class="groups container">--}}
+{{--        <h3><span>Groups you may like</span> <a href="" target="_blank">See more</a></h3>--}}
+{{--        <div class="card_group">--}}
+{{--            <div class="card">--}}
+{{--                <div class="card_img" style="background: url(/home/images/people/group\ of\ people.png) no-repeat;"></div>--}}
+{{--                <div class="details">--}}
+{{--                    <h5>IT news</h5>--}}
+{{--                    <p><span>1 Member</span>&nbsp; &nbsp;&nbsp;<span>0 Posts today</span></p>--}}
+{{--                    <a href="#!">Join</a>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--            <div class="card">--}}
+{{--                <div class="card_img" style="background: url(/home/images/people/group\ of\ people.png) no-repeat;"></div>--}}
+{{--                <div class="details">--}}
+{{--                    <h5>IT news</h5>--}}
+{{--                    <p><span>1 Member</span>&nbsp; &nbsp;&nbsp;<span>0 Posts today</span></p>--}}
+{{--                    <a href="#!">Join</a>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--            <div class="card">--}}
+{{--                <div class="card_img" style="background: url(/home/images/people/group\ of\ people.png) no-repeat;"></div>--}}
+{{--                <div class="details">--}}
+{{--                    <h5>IT news</h5>--}}
+{{--                    <p><span>1 Member</span>&nbsp; &nbsp;&nbsp;<span>0 Posts today</span></p>--}}
+{{--                    <a href="#!">Join</a>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--            <div class="card">--}}
+{{--                <div class="card_img" style="background: url(/home/images/people/group\ of\ people.png) no-repeat;"></div>--}}
+{{--                <div class="details">--}}
+{{--                    <h5>IT news</h5>--}}
+{{--                    <p><span>1 Member</span>&nbsp; &nbsp;&nbsp;<span>0 Posts today</span></p>--}}
+{{--                    <a href="#!">Join</a>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--            <div class="card">--}}
+{{--                <div class="card_img" style="background: url(/home/images/people/group\ of\ people.png) no-repeat;"></div>--}}
+{{--                <div class="details">--}}
+{{--                    <h5>IT news</h5>--}}
+{{--                    <p><span>1 Member</span>&nbsp; &nbsp;&nbsp;<span>0 Posts today</span></p>--}}
+{{--                    <a href="#!">Join</a>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--        <!-- ---------------------------------- -->--}}
 
 
 </main>
