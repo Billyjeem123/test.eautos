@@ -208,52 +208,52 @@
   </div>
   <!-- ----------------------------------------------------- -->
 
-  <div class="short_video container">
-    <h3><span>Short Videos</span> <a href="javascript:void(0)" >See All</a></h3>
-    <div class="card_group">
-      <div class="card" style="background: linear-gradient(#00000059, #00000059),
-      url(/home/images/cars/Optimized-dima-panyukov-DwxlhTvC16Q-unsplash.jpg) no-repeat;">
-        <span class="control"><i class="fa-solid fa-play"></i></span>
-        <div class="reaction">
-          <span class="love"><i class="fa-regular fa-heart"></i> 203</span>
-          <span class="views">5,345 views</span>
-        </div>
-      </div>
-      <div class="card" style="background: linear-gradient(#00000059, #00000059),
-      url(/home/images/bikes/Optimized-ajin-k-s-GmSBNRB9124-unsplash.jpg) no-repeat;">
-        <span class="control"><i class="fa-solid fa-play"></i></span>
-        <div class="reaction">
-          <span class="love"><i class="fa-regular fa-heart"></i> 203</span>
-          <span class="views">5,345 views</span>
-        </div>
-      </div>
-      <div class="card" style="background: linear-gradient(#00000059, #00000059),
-      url(/home/images/cars/Optimized-dhiva-krishna-YApS6TjKJ9c-unsplash.jpg) no-repeat;">
-        <span class="control"><i class="fa-solid fa-play"></i></span>
-        <div class="reaction">
-          <span class="love"><i class="fa-regular fa-heart"></i> 203</span>
-          <span class="views">5,345 views</span>
-        </div>
-      </div>
-      <div class="card" style="background: linear-gradient(#00000059, #00000059),
-      url(/home/images/bikes/Optimized-sanjeev-nagaraj-caz59CGkQz8-unsplash.jpg) no-repeat;">
-        <span class="control"><i class="fa-solid fa-play"></i></span>
-        <div class="reaction">
-          <span class="love"><i class="fa-regular fa-heart"></i> 203</span>
-          <span class="views">5,345 views</span>
-        </div>
-      </div>
-      <div class="card" style="background: linear-gradient(#00000059, #00000059),
-      url(/home/images/cars/Optimized-kenny-eliason-FcyipqujfGg-unsplash.jpg) no-repeat;">
-        <span class="control"><i class="fa-solid fa-play"></i></span>
-        <div class="reaction">
-          <span class="love"><i class="fa-regular fa-heart"></i> 203</span>
-          <span class="views">5,345 views</span>
-        </div>
-      </div>
-    </div>
+{{--  <div class="short_video container">--}}
+{{--    <h3><span>Short Videos</span> <a href="javascript:void(0)" >See All</a></h3>--}}
+{{--    <div class="card_group">--}}
+{{--      <div class="card" style="background: linear-gradient(#00000059, #00000059),--}}
+{{--      url(/home/images/cars/Optimized-dima-panyukov-DwxlhTvC16Q-unsplash.jpg) no-repeat;">--}}
+{{--        <span class="control"><i class="fa-solid fa-play"></i></span>--}}
+{{--        <div class="reaction">--}}
+{{--          <span class="love"><i class="fa-regular fa-heart"></i> 203</span>--}}
+{{--          <span class="views">5,345 views</span>--}}
+{{--        </div>--}}
+{{--      </div>--}}
+{{--      <div class="card" style="background: linear-gradient(#00000059, #00000059),--}}
+{{--      url(/home/images/bikes/Optimized-ajin-k-s-GmSBNRB9124-unsplash.jpg) no-repeat;">--}}
+{{--        <span class="control"><i class="fa-solid fa-play"></i></span>--}}
+{{--        <div class="reaction">--}}
+{{--          <span class="love"><i class="fa-regular fa-heart"></i> 203</span>--}}
+{{--          <span class="views">5,345 views</span>--}}
+{{--        </div>--}}
+{{--      </div>--}}
+{{--      <div class="card" style="background: linear-gradient(#00000059, #00000059),--}}
+{{--      url(/home/images/cars/Optimized-dhiva-krishna-YApS6TjKJ9c-unsplash.jpg) no-repeat;">--}}
+{{--        <span class="control"><i class="fa-solid fa-play"></i></span>--}}
+{{--        <div class="reaction">--}}
+{{--          <span class="love"><i class="fa-regular fa-heart"></i> 203</span>--}}
+{{--          <span class="views">5,345 views</span>--}}
+{{--        </div>--}}
+{{--      </div>--}}
+{{--      <div class="card" style="background: linear-gradient(#00000059, #00000059),--}}
+{{--      url(/home/images/bikes/Optimized-sanjeev-nagaraj-caz59CGkQz8-unsplash.jpg) no-repeat;">--}}
+{{--        <span class="control"><i class="fa-solid fa-play"></i></span>--}}
+{{--        <div class="reaction">--}}
+{{--          <span class="love"><i class="fa-regular fa-heart"></i> 203</span>--}}
+{{--          <span class="views">5,345 views</span>--}}
+{{--        </div>--}}
+{{--      </div>--}}
+{{--      <div class="card" style="background: linear-gradient(#00000059, #00000059),--}}
+{{--      url(/home/images/cars/Optimized-kenny-eliason-FcyipqujfGg-unsplash.jpg) no-repeat;">--}}
+{{--        <span class="control"><i class="fa-solid fa-play"></i></span>--}}
+{{--        <div class="reaction">--}}
+{{--          <span class="love"><i class="fa-regular fa-heart"></i> 203</span>--}}
+{{--          <span class="views">5,345 views</span>--}}
+{{--        </div>--}}
+{{--      </div>--}}
+{{--    </div>--}}
 
-  </div>
+{{--  </div>--}}
 
   <!-- ------------------------------------------------------------ -->
   <div class="why">
@@ -282,52 +282,52 @@
   </div>
   <!-- ----------------------------------------------------- -->
 
-  <div class="groups container">
-    <h3><span>Groups you may like</span> <a href="javascript:void(0)" target="_blank">See more</a></h3>
-    <div class="card_group">
-      <div class="card">
-        <div class="card_img" style="background: url(/home/images/people/group\ of\ people.png) no-repeat;"></div>
-        <div class="details">
-          <h5>IT news</h5>
-          <p><span>1 Member</span>&nbsp; &nbsp;&nbsp;<span>0 Posts today</span></p>
-          <a href="#!">Join</a>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card_img" style="background: url(/home/images/people/group\ of\ people.png) no-repeat;"></div>
-        <div class="details">
-          <h5>IT news</h5>
-          <p><span>1 Member</span>&nbsp; &nbsp;&nbsp;<span>0 Posts today</span></p>
-          <a href="#!">Join</a>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card_img" style="background: url(/home/images/people/group\ of\ people.png) no-repeat;"></div>
-        <div class="details">
-          <h5>IT news</h5>
-          <p><span>1 Member</span>&nbsp; &nbsp;&nbsp;<span>0 Posts today</span></p>
-          <a href="#!">Join</a>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card_img" style="background: url(/home/images/people/group\ of\ people.png) no-repeat;"></div>
-        <div class="details">
-          <h5>IT news</h5>
-          <p><span>1 Member</span>&nbsp; &nbsp;&nbsp;<span>0 Posts today</span></p>
-          <a href="#!">Join</a>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card_img" style="background: url(/home/images/people/group\ of\ people.png) no-repeat;"></div>
-        <div class="details">
-          <h5>IT news</h5>
-          <p><span>1 Member</span>&nbsp; &nbsp;&nbsp;<span>0 Posts today</span></p>
-          <a href="#!">Join</a>
-        </div>
-      </div>
-    </div>
+{{--  <div class="groups container">--}}
+{{--    <h3><span>Groups you may like</span> <a href="javascript:void(0)" target="_blank">See more</a></h3>--}}
+{{--    <div class="card_group">--}}
+{{--      <div class="card">--}}
+{{--        <div class="card_img" style="background: url(/home/images/people/group\ of\ people.png) no-repeat;"></div>--}}
+{{--        <div class="details">--}}
+{{--          <h5>IT news</h5>--}}
+{{--          <p><span>1 Member</span>&nbsp; &nbsp;&nbsp;<span>0 Posts today</span></p>--}}
+{{--          <a href="#!">Join</a>--}}
+{{--        </div>--}}
+{{--      </div>--}}
+{{--      <div class="card">--}}
+{{--        <div class="card_img" style="background: url(/home/images/people/group\ of\ people.png) no-repeat;"></div>--}}
+{{--        <div class="details">--}}
+{{--          <h5>IT news</h5>--}}
+{{--          <p><span>1 Member</span>&nbsp; &nbsp;&nbsp;<span>0 Posts today</span></p>--}}
+{{--          <a href="#!">Join</a>--}}
+{{--        </div>--}}
+{{--      </div>--}}
+{{--      <div class="card">--}}
+{{--        <div class="card_img" style="background: url(/home/images/people/group\ of\ people.png) no-repeat;"></div>--}}
+{{--        <div class="details">--}}
+{{--          <h5>IT news</h5>--}}
+{{--          <p><span>1 Member</span>&nbsp; &nbsp;&nbsp;<span>0 Posts today</span></p>--}}
+{{--          <a href="#!">Join</a>--}}
+{{--        </div>--}}
+{{--      </div>--}}
+{{--      <div class="card">--}}
+{{--        <div class="card_img" style="background: url(/home/images/people/group\ of\ people.png) no-repeat;"></div>--}}
+{{--        <div class="details">--}}
+{{--          <h5>IT news</h5>--}}
+{{--          <p><span>1 Member</span>&nbsp; &nbsp;&nbsp;<span>0 Posts today</span></p>--}}
+{{--          <a href="#!">Join</a>--}}
+{{--        </div>--}}
+{{--      </div>--}}
+{{--      <div class="card">--}}
+{{--        <div class="card_img" style="background: url(/home/images/people/group\ of\ people.png) no-repeat;"></div>--}}
+{{--        <div class="details">--}}
+{{--          <h5>IT news</h5>--}}
+{{--          <p><span>1 Member</span>&nbsp; &nbsp;&nbsp;<span>0 Posts today</span></p>--}}
+{{--          <a href="#!">Join</a>--}}
+{{--        </div>--}}
+{{--      </div>--}}
+{{--    </div>--}}
 
-  </div>
+{{--  </div>--}}
 
 
   @include('home.includes.footer')

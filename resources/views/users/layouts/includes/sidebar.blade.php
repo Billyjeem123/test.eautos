@@ -2,7 +2,7 @@
     <!-- Sidebar -->
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('admin.index')}}">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('user.index')}}">
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-car"></i>
         </div>
@@ -14,49 +14,10 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
-        <a class="nav-link" href="{{route('admin.index')}}">
+        <a class="nav-link" href="{{route('user.index')}}">
           <i class="fas fa-fw fa-qrcode"></i>
           <span>Dashboard</span></a>
       </li>
-
-
-
-
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#add" aria-expanded="true"
-          aria-controls="add">
-          <i class="fas fa-fw fa-plus"></i>
-          <span>Add</span>
-        </a>
-        <div id="add" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Add New</h6>
-            <a class="collapse-item" href="{{route('admin.brands')}}">Brand</a>
-
-
-          </div>
-        </div>
-      </li>
-
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities102"
-               aria-expanded="true" aria-controls="collapseUtilities102">
-                <i class="fas fa-folder"></i>
-
-                <span>Category</span>
-            </a>
-            <div id="collapseUtilities102" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Post Option</h6>
-                    <a class="collapse-item" href="{{route('admin.category')}}">Upload Category</a>
-                </div>
-            </div>
-        </li>
-
-
-
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities101"
                aria-expanded="true" aria-controls="collapseUtilities101">
@@ -67,8 +28,8 @@
             <div id="collapseUtilities101" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Post Option</h6>
-                    <a class="collapse-item" href="{{route('admin.vehicle')}}">Post A Vehicle</a>
-                    <a class="collapse-item" href="{{route('admin.product.all')}}">Vehicle Listings</a>
+                    <a class="collapse-item" href="{{route('user.product.index')}}">Post A Vehicle</a>
+                    <a class="collapse-item" href="{{route('user.products.all')}}">Vehicle Listings</a>
                 </div>
             </div>
         </li>
