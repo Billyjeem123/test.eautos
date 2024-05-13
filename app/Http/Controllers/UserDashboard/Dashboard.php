@@ -5,6 +5,7 @@ namespace App\Http\Controllers\UserDashboard;
 use App\Http\Controllers\Controller;
 use App\Models\Auction;
 use App\Models\Brand;
+use App\Models\BussinessService;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Report;
@@ -127,4 +128,77 @@ class Dashboard extends Controller
     }
 
 
+    public function ShowDashboardProfile()
+    {
+        // Find the user profile
+        $profileid = auth()->user()->id;
+
+        // Check if the user profile exists
+        if (!$profileid) {
+            abort(404); // Or handle the case where the user does not exist
+        }
+
+        $profile  = User::find($profileid);
+
+        return view('users.profile', ['profile' => $profile]);
+    }
+
+
+    public function updateProfile(Request $request)
+    {
+        $user = auth()->user();
+
+        // Update user profile fields
+        $user->fill($request->only([
+            'name',
+            'email',
+            'bussiness_name',
+            'country',
+            'phone',
+            'about',
+            'business_location',
+            'business_state',
+            'organisation_services'
+
+        ]));
+
+        // Check if a new profile image is uploaded
+        if ($request->hasFile('profile_image')) {
+            $user->image = $this->uploadProfileImageAndGetLink($request);
+        }
+
+        // Save the user's profile
+        $user->save();
+
+        // Update or create business services
+        $businessServicesData = $request->input('businessCategoryWords');
+        if ($businessServicesData && is_array($businessServicesData)) {
+            foreach ($businessServicesData as $service) {
+                if (!empty($service)) { // Check if the service is not empty
+                    BussinessService::create([
+                        'user_id' => $user->id,
+                        'bussiness_name' => $service
+                    ]);
+                }
+            }
+        }
+
+        return redirect()->back()->with('success', 'Profile updated successfully');
+    }
+
+
+
+    public function uploadProfileImageAndGetLink($request): ?string
+    {
+        if ($request->hasFile('profile_image')) {
+            $file = $request->file('profile_image');
+            $fileName = time() . '_' . $file->getClientOriginalName(); // Generate a unique name for the file
+            $filePath = $file->storeAs('public/uploads', $fileName);
+            $fileUrl = asset('storage/uploads/' . $filePath);
+            return $fileUrl;
+        } else {
+            // Handle case where no file was uploaded
+            return null;
+        }
+    }
 }

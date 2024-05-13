@@ -27,7 +27,7 @@
             <div class="modal-footer">
                 <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
                 <!-- Button to redirect to profile update page -->
-                <a href="{{route('admin.profile')}}" class="btn btn-primary">Update Profile</a>
+                <a href="{{route('user.dashboard.profile')}}" class="btn btn-primary">Update Profile</a>
             </div>
         </div>
     </div>
