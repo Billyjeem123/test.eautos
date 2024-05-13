@@ -287,7 +287,8 @@
         </span>
         <ul>
             <li><a href="{{route('user.logout')}}">Logout</a></li>
-            <li><a href="#">Dashboard</a></li>
+            <li><a href="{{ (auth()->user()->role === 'dealer' || auth()->user()->role === 'provider' || auth()->user()->role === 'buyer') ? route('user.index') : route('admin.index') }}">Dashboard</a></li>
+
         </ul>
     </span>
     @endif
