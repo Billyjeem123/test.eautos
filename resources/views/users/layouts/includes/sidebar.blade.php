@@ -36,40 +36,24 @@
 
 
 
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-          aria-expanded="true" aria-controls="collapseUtilities">
-            <i class="fas fa-gavel"></i>
+{{--      <li class="nav-item">--}}
+{{--        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"--}}
+{{--          aria-expanded="true" aria-controls="collapseUtilities">--}}
+{{--            <i class="fas fa-gavel"></i>--}}
 
-            <span>Auction Asset</span>
-        </a>
-        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Post Option</h6>
-            <a class="collapse-item" href="{{route('admin.auction')}}">Auction Asset</a>
-            <a class="collapse-item" href="{{route('admin.auction')}}">View Listings</a>
-          </div>
-        </div>
-      </li>
-
-
+{{--            <span>Auction Asset</span>--}}
+{{--        </a>--}}
+{{--        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">--}}
+{{--          <div class="bg-white py-2 collapse-inner rounded">--}}
+{{--            <h6 class="collapse-header">Post Option</h6>--}}
+{{--            <a class="collapse-item" href="{{route('admin.auction')}}">Auction Asset</a>--}}
+{{--            <a class="collapse-item" href="{{route('admin.auction')}}">View Listings</a>--}}
+{{--          </div>--}}
+{{--        </div>--}}
+{{--      </li>--}}
 
 
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities103"
-               aria-expanded="true" aria-controls="collapseUtilities103">
-                <i class="fas fa-user-circle"></i>
 
-                <span>Users</span>
-            </a>
-            <div id="collapseUtilities103" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Post Option</h6>
-                    <a class="collapse-item" href="{{route('admin.users')}}">Create User</a>
-                    <a class="collapse-item" href="{{route('admin.users.all')}}">View Users</a>
-                </div>
-            </div>
-        </li>
 
 
         <li class="nav-item">
@@ -123,14 +107,14 @@
         </li>
 
         <li class="nav-item">
-        <a class="nav-link" href="{{route('admin.profile')}}">
+        <a class="nav-link" href="{{route('user.dashboard.profile')}}">
           <i class="fas fa-fw fa-user-circle"></i>
           <span>Profile</span></a>
       </li>
 
 
       <li class="nav-item">
-        <a class="nav-link" href="{{route('all.message')}}">
+        <a class="nav-link" href="{{route('all.message.users')}}">
           <i class="fas fa-fw fa-envelope"></i>
           <span>Message</span></a>
       </li>

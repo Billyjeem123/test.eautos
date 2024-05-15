@@ -7,11 +7,14 @@ use App\Models\Auction;
 use App\Models\Brand;
 use App\Models\BussinessService;
 use App\Models\Category;
+use App\Models\Message;
 use App\Models\Product;
 use App\Models\Report;
 use App\Models\RequestCar;
+use App\Models\SubCategory;
 use App\Models\User;
 use App\Models\ValueAsset;
+use App\Notifications\AlertAdminOfActivities;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -79,6 +82,24 @@ class Dashboard extends Controller
             ]);
         }
 
+         $user = auth()->user()->id;
+
+        $title = "Urgent Action Needed";
+        $message = "You have a pending product approval";
+
+        $data = [
+            'title'  => $title,
+            'message' => $message
+        ];
+
+        $useradmin = User::whereHas('role', function($query) {
+            $query->where('name', 'admin');
+        })->get();
+
+        foreach ($useradmin as $admin) {
+            $admin->notify(new AlertAdminOfActivities($data));
+        }
+
 
         // Return a success response
         return redirect()->back()->with(['success' => 'Product created successfully']);
@@ -144,9 +165,67 @@ class Dashboard extends Controller
     }
 
 
+//    public function updateProfile(Request $request)
+//    {
+//        $user = auth()->user();
+//
+//        // Update user profile fields
+//        $user->fill($request->only([
+//            'name',
+//            'email',
+//            'bussiness_name',
+//            'country',
+//            'phone',
+//            'about',
+//            'business_location',
+//            'business_state',
+//            'organisation_services'
+//
+//        ]));
+//
+//        // Check if a new profile image is uploaded
+//        if ($request->hasFile('profile_image')) {
+//            $user->image = $this->uploadProfileImageAndGetLink($request);
+//        }
+//
+//        // Save the user's profile
+//        $user->save();
+//
+//        // Update or create business services
+//        $businessServicesData = $request->input('businessCategoryWords');
+//        if ($businessServicesData && is_array($businessServicesData)) {
+//            foreach ($businessServicesData as $service) {
+//                if (!empty($service)) { // Check if the service is not empty
+//                    BussinessService::create([
+//                        'user_id' => $user->id,
+//                        'bussiness_name' => $service
+//                    ]);
+//                }
+//            }
+//        }
+//
+//        return redirect()->back()->with('success', 'Profile updated successfully');
+//    }
+
+
     public function updateProfile(Request $request)
     {
         $user = auth()->user();
+
+        // Validate request data
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255|unique:users,email,' . $user->id,
+            'bussiness_name' => 'nullable|string|max:255',
+            'country' => 'nullable|string|max:255',
+            'phone' => 'nullable|string|max:255',
+            'about' => 'nullable|string',
+            'business_location' => 'nullable|string|max:255',
+            'business_state' => 'nullable|string|max:255',
+            'organisation_services' => 'nullable|string',
+            'profile_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'businessCategoryWords' => 'nullable|array'
+        ]);
 
         // Update user profile fields
         $user->fill($request->only([
@@ -159,7 +238,6 @@ class Dashboard extends Controller
             'business_location',
             'business_state',
             'organisation_services'
-
         ]));
 
         // Check if a new profile image is uploaded
@@ -174,11 +252,11 @@ class Dashboard extends Controller
         $businessServicesData = $request->input('businessCategoryWords');
         if ($businessServicesData && is_array($businessServicesData)) {
             foreach ($businessServicesData as $service) {
-                if (!empty($service)) { // Check if the service is not empty
-                    BussinessService::create([
-                        'user_id' => $user->id,
-                        'bussiness_name' => $service
-                    ]);
+                if (!empty($service)) {
+                    BussinessService::updateOrCreate(
+                        ['user_id' => $user->id, 'bussiness_name' => $service],
+                        ['bussiness_name' => $service]
+                    );
                 }
             }
         }
@@ -200,5 +278,45 @@ class Dashboard extends Controller
             // Handle case where no file was uploaded
             return null;
         }
+    }
+
+
+
+    public function getSubcategories($categoryId): \Illuminate\Http\JsonResponse
+    {
+        // Logic to fetch subcategories based on the category ID
+        $subcategories = SubCategory::where('category_id', $categoryId)->pluck('name', 'id');
+        return response()->json($subcategories);
+    }
+
+
+    public function allMessages(){
+
+
+        $messages =  Message::where('receiver_id', auth()->user()->id)->get();
+
+
+        return view('users.message', ['messages' => $messages]);
+
+    }
+
+    public function allMessagesById($id){
+        // Find the message by its ID
+        $message = Message::find($id);
+
+        // Update the is_seen column to 1
+        $message->update(['is_seen' => 1]);
+
+        // Return the view with the updated message
+        return view('users.modal.messages', ['message' => $message]);
+    }
+
+
+
+    public function deleteMessage($id): \Illuminate\Http\RedirectResponse
+    {
+        $message = Message::findOrFail($id);
+        $message->delete();
+        return redirect()->back()->with('success', 'Record deleted successfully');
     }
 }

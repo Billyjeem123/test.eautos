@@ -14,5 +14,10 @@ Route::prefix('users')->middleware( 'notify', 'auth')->group(function () {
     Route::view('/incomplete/profile', 'users.incomplete')->name('user.profile.incomplete');
     Route::get('/user/profile', [Dashboard::class, 'ShowDashboardProfile'])->name('user.dashboard.profile');
     Route::post('/update-profile', [Dashboard::class, 'updateProfile'])->name('users.update.profile');
+    Route::get('/get-subcategories/{categoryId}', [Dashboard::class, 'getSubcategories'])->name('admin.vehicle.getSubcategories');
 
+
+    Route::get('/message/all', [Dashboard::class, 'allMessages'])->name('all.message.users');
+    Route::get('/message/{id}', [Dashboard::class, 'allMessagesById'])->name('users.all.message.id');
+    Route::delete('/message/delete{id}', [Dashboard::class, 'deleteMessage'])->name('users.all.message.delete');
 });

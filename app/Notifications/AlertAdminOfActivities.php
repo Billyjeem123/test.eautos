@@ -7,25 +7,20 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class CommentNotification extends Notification
+class AlertAdminOfActivities extends Notification
 {
     use Queueable;
 
-    public mixed $owneremail;
-    private mixed $title;
+    public mixed $data;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-
-
-
-    public function __construct($owneremail, $title)
+    public function __construct($data)
     {
-        $this->owneremail  = $owneremail;
-        $this->title  = $title;
+        $this->data = $data;
     }
 
     /**
@@ -36,7 +31,7 @@ class CommentNotification extends Notification
      */
     public function via($notifiable)
     {
-        return ['database', 'mail'];
+        return ['mail', 'database'];
     }
 
     /**
@@ -48,13 +43,10 @@ class CommentNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->subject('Notification: New Comment on Asset')
-            ->greeting('Hello,')
-            ->line('A new comment has been posted on Your asset ')
-            ->line('Activity Details: ' . $this->activityDetails['description'])
-            ->action('View Activity', url('/activities/' . $this->activityDetails['id']))
-            ->line('Thank you for your attention.')
-            ->salutation('Best regards,');
+                    ->line('Urgent Action Needed:: Property Update')
+            ->line('Hello,')
+            ->line($this->data['message'])
+            ->line('Thank you for your attention.');
     }
 
     /**
@@ -65,9 +57,9 @@ class CommentNotification extends Notification
      */
     public function toArray($notifiable)
     {
-             return [
-                 'title' => 'New Notification on Asset',
-                 'message' => $this->title
-        ];
+        return [
+            'title' => $this->data['title'],
+            'message' => $this->data['message']
+            ];
     }
 }

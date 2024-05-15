@@ -241,7 +241,7 @@
                 if (categoryId) {
                     $.ajax({
                         type: 'GET',
-                        url: '{{ url('admin/get-subcategories/') }}/' + categoryId,
+                        url: '{{ url('users/get-subcategories/') }}/' + categoryId,
                         success: function(data) {
                             $('#subcategory').empty(); // Clear the existing options
                             $('#subcategory').append('<option selected disabled>Sub Category</option>');

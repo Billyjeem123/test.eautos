@@ -18,7 +18,7 @@ class UserProfileCompleted
     {
         $user = $request->user();
 
-        if (!$user || $user->profileCompletionPercentage() < 70) {
+        if (!$user || $user->profileCompletionPercentage() < 50) {
             // Profile is not 100% complete, return an error response or redirect
             return redirect()->route('user.profile.incomplete', ['percentage' => $user->profileCompletionPercentage()]);
 
