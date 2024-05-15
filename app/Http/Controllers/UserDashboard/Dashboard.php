@@ -51,6 +51,8 @@ class Dashboard extends Controller
 
     public  function product_save(Request $request){
 
+
+
         $product  = Product::create([
             'category_id' => $request->category_id,
             'sub_category_id' => $request->sub_category_id,
@@ -66,12 +68,15 @@ class Dashboard extends Controller
             'mileage' => $request->mileage,
             'desc' => $request->desc,
             'user_id' => auth()->user()->id,
+//            'user_id' => 14,
             'cylinder' => $request->cylinder,
             'car_name' => $request->car_name,
             'is_approved' => auth()->user()->role === 'admin' ? 1 : 0,
+//            'is_approved' => 0,
             'is_installemt' => $request->is_installemt ? 1 : 0
 
         ]);
+
 
         $imageUrls = $this->uploadImagesAndGetLinks($request);
 
@@ -82,7 +87,8 @@ class Dashboard extends Controller
             ]);
         }
 
-         $user = auth()->user()->id;
+
+        $user = auth()->user()->id;
 
         $title = "Urgent Action Needed";
         $message = "You have a pending product approval";
@@ -92,10 +98,7 @@ class Dashboard extends Controller
             'message' => $message
         ];
 
-        $useradmin = User::whereHas('role', function($query) {
-            $query->where('name', 'admin');
-        })->get();
-
+         $useradmin = User::where('role', 'admin')->get();
         foreach ($useradmin as $admin) {
             $admin->notify(new AlertAdminOfActivities($data));
         }
@@ -138,7 +141,7 @@ class Dashboard extends Controller
         // echo "<pre>";
         // echo json_encode($products, JSON_PRETTY_PRINT);
         // echo "</pre>";
-        return view('users.products.all', ['products' => $products]);
+        return view('users.products_all', ['products' => $products]);
     }
 
     public function logout(): \Illuminate\Http\RedirectResponse
@@ -319,4 +322,21 @@ class Dashboard extends Controller
         $message->delete();
         return redirect()->back()->with('success', 'Record deleted successfully');
     }
+
+    public function delete_product($id): \Illuminate\Http\RedirectResponse
+    {
+        $product = Product::findOrFail($id);
+        $product->delete();
+        return redirect()->back()->with('success', 'Record deleted successfully');
+    }
+
+    public  function product_details($id)
+    {
+        $product =   Product::with('categories', 'user', 'brand', 'images')->find($id);
+        $product->is_viewed = 1;
+        $product->save();
+        return view('users.modal.product-modal', ['product' => $product]);
+    }
+
+
 }

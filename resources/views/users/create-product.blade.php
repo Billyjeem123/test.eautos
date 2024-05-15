@@ -13,7 +13,7 @@
             <h1 class="h3 text-gray-800">Post a Vehicle</h1>
             <span class="py-2 px-4 bg-white text-dark rounded">Sell your car</span>
         </div>
-        <form class="p-3"   method="POST"   enctype="multipart/form-data"  action="{{route('admin.vehicle.create')}}">
+        <form class="p-3" action="{{route('user.product.save')}}"  method="POST"   enctype="multipart/form-data" >
             @csrf
             <div class="d-flex justify-content-start align-items-center">
                 <h5 class="h5">Property Details</h5>

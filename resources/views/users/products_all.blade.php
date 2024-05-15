@@ -21,9 +21,7 @@
                     <th>Model</th>
                     <th>Price</th>
                     <th>Views</th>
-                    <th>Report Staus</th>
                     <th>Active</th>
-                    <th>Approve</th>
                     <th>Date Created</th>
                     <th>View Info</th>
                     <th>Delete</th>
@@ -39,22 +37,13 @@
                         <td>₦{{ number_format($product->price, 2) }}</td>
                         <td>{{$product->views}}</td>
                         <td><p>{{$product->is_viewed === 0 ? "Pending" : "Seen"}}</p></td>
-                        <td>{{ $product->is_approved === 1 ? 'Approved' : ($product->is_approved === 2 ? 'Deactivated' : 'Pending') }}</td>
-                        <form action="{{ route('admin.product.activate', $product->id) }}" method="POST">
-                            @csrf
-                            @method('PUT')
-                            <td>
-                                <button type="submit" class="btn btn-info btn-sm">
-                                    {{ $product->is_approved === 1 ? 'Deactivate'  : 'Activate' }}
-                                </button>
-                            </td>
-                        </form>
+
 
                         <td>{{$product->created_at->diffForHumans()}}</td>
-                        <td><a class="btn btn-info btn-sm" href="{{ route('admin.products.details', $product->id) }}">View Details</a></td>
+                        <td><a class="btn btn-info btn-sm" href="{{ route('users.products.details', $product->id) }}">View Details</a></td>
 
 
-                        <form action="{{ route('admin.product.delete', $product->id) }}" method="POST">
+                        <form action="{{ route('users.product.delete', $product->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
                             <td><button type="submit" class="btn btn-danger btn-sm">Delete</button></td>

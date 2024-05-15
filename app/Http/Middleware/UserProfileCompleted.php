@@ -20,7 +20,7 @@ class UserProfileCompleted
 
         if (!$user || $user->profileCompletionPercentage() < 50) {
             // Profile is not 100% complete, return an error response or redirect
-            return redirect()->route('user.profile.incomplete', ['percentage' => $user->profileCompletionPercentage()]);
+            return redirect()->route('users.modal.messages', ['percentage' => $user->profileCompletionPercentage()]);
 
         }
 
