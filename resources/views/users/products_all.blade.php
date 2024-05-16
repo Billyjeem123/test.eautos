@@ -36,7 +36,7 @@
                         <td>{{$product->model}}</td>
                         <td>₦{{ number_format($product->price, 2) }}</td>
                         <td>{{$product->views}}</td>
-                        <td><p>{{$product->is_viewed === 0 ? "Pending" : "Seen"}}</p></td>
+                        <td><p>{{$product->is_approved === 0 ? "Pending" : "Approved"}}</p></td>
 
 
                         <td>{{$product->created_at->diffForHumans()}}</td>

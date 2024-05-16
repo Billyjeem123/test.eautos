@@ -27,7 +27,7 @@
             <!-- Remove the modal header -->
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Request Details</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="window.location.href='{{ route('admin.product.all')}}';"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="window.location.href='{{ route('user.products.all')}}';"></button>
             </div>
 
 
@@ -119,7 +119,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <a href="{{ route('admin.product.all')}}" class="btn btn-primary">Back</a>
+                <a href="{{ route('user.products.all')}}" class="btn btn-primary">Back</a>
             </div>
         </div>
     </div>

@@ -15,10 +15,12 @@ Route::prefix('users')->middleware( 'notify', 'auth')->group(function () {
     Route::view('/incomplete/profile', 'users.incomplete')->name('users.modal.messages');
     Route::get('/user/profile', [Dashboard::class, 'ShowDashboardProfile'])->name('user.dashboard.profile');
     Route::post('/update-profile', [Dashboard::class, 'updateProfile'])->name('users.update.profile');
-    Route::get('/get-subcategories/{categoryId}', [Dashboard::class, 'getSubcategories'])->name('admin.vehicle.getSubcategories');
+    Route::get('/get-subcategories/{categoryId}', [Dashboard::class, 'getSubcategories'])->name('users.getSubcategories');
     Route::get('/products/details/{id}', [Dashboard::class, 'product_details'])->name('users.products.details');
 
     Route::get('/message/all', [Dashboard::class, 'allMessages'])->name('all.message.users');
     Route::get('/message/{id}', [Dashboard::class, 'allMessagesById'])->name('users.all.message.id');
     Route::delete('/message/delete{id}', [Dashboard::class, 'deleteMessage'])->name('users.all.message.delete');
+    Route::get('/part', [Dashboard::class, 'part_page'])->name('users.parts');
+    Route::post('/save-part', [Dashboard::class, 'save_parts'])->name('save_parts');
 });

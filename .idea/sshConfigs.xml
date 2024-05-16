@@ -2,7 +2,9 @@
 <project version="4">
   <component name="SshConfigs">
     <configs>
-      <sshConfig authType="PASSWORD" host="162.215.15.12" id="a18e206b-9e01-48a3-a8e6-29426af5fd4a" port="22" nameFormat="DESCRIPTIVE" username="iccflife" useOpenSSHConfig="true" />
+      <sshConfig authType="PASSWORD" host="162.215.15.12" id="a18e206b-9e01-48a3-a8e6-29426af5fd4a" port="22" customName="test.e-autos" nameFormat="CUSTOM" username="iccflife" useOpenSSHConfig="true">
+        <option name="customName" value="test.e-autos" />
+      </sshConfig>
     </configs>
   </component>
 </project>

@@ -6,8 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Models\Auction;
 use App\Models\Brand;
 use App\Models\BussinessService;
+use App\Models\CarPartCategory;
 use App\Models\Category;
 use App\Models\Message;
+use App\Models\Part;
 use App\Models\Product;
 use App\Models\Report;
 use App\Models\RequestCar;
@@ -339,4 +341,48 @@ class Dashboard extends Controller
     }
 
 
+     public function  part_page()
+     {
+         $partcategories = CarPartCategory::all();
+
+         return view('users.part', ['partcategories' => $partcategories]);
+     }
+
+
+    public function save_parts(Request $request)
+    {
+        $role = auth()->user()->role == "admin" ? 1 : 0;
+        $imageUrl = $this->uploadImageAndGetLink($request);
+        // Save part
+        $part = Part::create([
+            'image' => $imageUrl,
+            'part_name' => $request->part_name,
+            'price' => $request->price,
+            'part_category_id' => $request->part_category_id,
+            'location' => $request->location,
+            'user_id' => auth()->user()->id,
+            'active' => $role,
+            'description' => $request->description
+        ]);
+
+        // Return a success response
+        return redirect()->back()->with(['success' => 'Part added successfully.. You would be notified upon approval']);
+    }
+
+
+    public function uploadImageAndGetLink($request): ?string
+    {
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time() . '_' . $image->getClientOriginalName(); // Generate a unique name for the image
+            $imagePath = $image->storeAs('public/uploads', $imageName);
+            $imageUrl = asset('storage/uploads/' . $imageName);
+            return $imageUrl;
+        } else {
+            // Handle case where no image was uploaded
+            return null;
+        }
+    }
+
 }
+

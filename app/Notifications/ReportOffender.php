@@ -32,7 +32,7 @@ class ReportOffender extends Notification
      */
     public function via($notifiable)
     {
-        return ['database']; // Send via email and store in database
+        return ['database', 'mail']; // Send via email and store in database
     }
 
     /**

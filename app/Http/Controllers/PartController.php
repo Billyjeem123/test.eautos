@@ -141,7 +141,7 @@ class PartController extends Controller
     public  function  getPartView()
     {
 
-            $parts = Part::with('partcategories')->get();
+            $parts = Part::with('partcategories')->where('active', 1)->get();
 
             $partCategories = CarPartCategory::all();
 

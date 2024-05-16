@@ -234,7 +234,8 @@ private function validateRequest(Request $request): \Illuminate\Contracts\Valida
                 ->with(['user' => function ($query) {
                     $query->select('id', 'name', 'created_at'); // Select only the 'id' and 'name' attributes from the 'users' table
                 }])
-                ->where('category_id', $id);
+                ->where('category_id', $id)
+            ->where('is_approved', 1);
 
             $auctions = Auction::all()->take(5);
 
@@ -286,6 +287,7 @@ private function validateRequest(Request $request): \Illuminate\Contracts\Valida
                 ->whereHas('subcategories', function ($query) use ($sub_category_name) {
                     $query->where('name', $sub_category_name);
                 })
+                ->where('is_approved', 1)
                 ->paginate(10); // Adjust the number of products per page as needed
 
 

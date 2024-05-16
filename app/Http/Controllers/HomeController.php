@@ -24,7 +24,7 @@ class HomeController extends Controller
         $getDealers = User::where('role', 'dealer')->take(5)->select('name', 'image', 'id')->get();
 
 
-        $products  = Product::with('brand', 'images', 'categories')->get();
+        $products  = Product::with('brand', 'images', 'categories')->where('is_approved', 1)->get();
 
 //                echo "<pre>";
 //          echo json_encode($products, JSON_PRETTY_PRINT);
