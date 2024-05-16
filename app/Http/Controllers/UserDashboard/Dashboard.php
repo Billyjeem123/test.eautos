@@ -335,8 +335,7 @@ class Dashboard extends Controller
     public  function product_details($id)
     {
         $product =   Product::with('categories', 'user', 'brand', 'images')->find($id);
-        $product->is_viewed = 1;
-        $product->save();
+
         return view('users.modal.product-modal', ['product' => $product]);
     }
 
@@ -383,6 +382,38 @@ class Dashboard extends Controller
             return null;
         }
     }
+
+
+
+    public function get_all_parts(){
+
+        $parts =  Part::with('users', 'partcategories')->where('user_id', auth()->user()->id)->get();
+
+        return view('users.get-parts', compact('parts'));
+    }
+
+    public function delete_part($id): \Illuminate\Http\RedirectResponse
+    {
+        $part = Part::findOrFail($id);
+        $part->delete();
+        return redirect()->back()->with('success', 'Record deleted successfully');
+    }
+
+
+    public  function view_all_reports()
+    {
+        $reports  = Report::where('user_id', auth()->user()->id)->get();
+        return view('users.reported-vendors', ['reports' => $reports]);
+    }
+
+
+    public  function view_report_complaint($id)
+    {
+        $report =   Report::find($id);
+
+        return view('users.modal.report', ['report' => $report]);
+    }
+
 
 }
 

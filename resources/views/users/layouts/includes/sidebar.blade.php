@@ -65,7 +65,7 @@
             <div id="collapseUtilities105" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Post Option</h6>
-                    <a class="collapse-item" href="{{route('view.reports')}}">User-Reported Vendors</a>
+                    <a class="collapse-item" href="{{route('users.view.reports')}}">User-Reported Vendors</a>
                     <a class="collapse-item" href="{{route('view.requests')}}">Car Requests</a>
                     <a class="collapse-item" href="{{route('evaluate.all')}}">Asset Evaluation</a>
                 </div>
@@ -85,7 +85,7 @@
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Post Option</h6>
                     <a class="collapse-item" href="{{route('users.parts')}}">Upload Car Parts</a>
-                    <a class="collapse-item" href="{{route('admin.parts.all')}}">Part Listings</a>
+                    <a class="collapse-item" href="{{route('users.all.parts')}}">Part Listings</a>
                 </div>
             </div>
         </li>

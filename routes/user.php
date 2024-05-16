@@ -23,4 +23,11 @@ Route::prefix('users')->middleware( 'notify', 'auth')->group(function () {
     Route::delete('/message/delete{id}', [Dashboard::class, 'deleteMessage'])->name('users.all.message.delete');
     Route::get('/part', [Dashboard::class, 'part_page'])->name('users.parts');
     Route::post('/save-part', [Dashboard::class, 'save_parts'])->name('save_parts');
+    Route::get('/get-all-parts', [Dashboard::class, 'get_all_parts'])->name('users.all.parts');
+    Route::delete('/get-part/{id)', [Dashboard::class, 'delete_part'])->name('users.parts.delete');
+
+    Route::get('/reports/all', [Dashboard::class, 'view_all_reports'])->name('users.view.reports');
+    Route::get('/reports/complaints/{id}', [Dashboard::class, 'view_report_complaint'])->name('user.complaint.details');
+    Route::delete('/reports/delete/{id}', [Dashboard::class, 'delete_reports'])->name('users.reports.delete');
+
 });

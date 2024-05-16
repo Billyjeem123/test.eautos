@@ -31,7 +31,7 @@
                         <td>{{$request->brand}}</td>
                         <td>{{$request->model}}</td>
                         <td><p>{{$request->is_viewed === 0 ? "Pending" : "Seen"}}</p></td>
-                        <td><a href="{{route('admin.requests.details', $request->id)}}" class="btn btn-info btn-sm">View Complaint</a></td>
+                        <td><a href="{{route('admin.requests.details', $request->id)}}" class="btn btn-info btn-sm">View Details</a></td>
                         <td>{{$request->created_at->diffForHumans()}}</td>
                             @csrf
                             @method('DELETE')
