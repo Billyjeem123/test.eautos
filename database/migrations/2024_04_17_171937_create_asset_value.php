@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('model');
             $table->string('color');
             $table->string('mileage');
+            $table->string('is_seen');
             $table->string('engine_type');
             $table->string('desc');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

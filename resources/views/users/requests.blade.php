@@ -1,4 +1,4 @@
-@extends('admin.layouts.master')
+@extends('users.layouts.master')
 
 
 
@@ -33,7 +33,7 @@
                         <td><p>{{$request->is_viewed === 0 ? "Pending" : "Seen"}}</p></td>
                         <td><a href="{{route('admin.requests.details', $request->id)}}" class="btn btn-info btn-sm">View Details</a></td>
                         <td>{{$request->created_at->diffForHumans()}}</td>
-                        <form action="{{ route('admin.requests.delete', $request->id) }}" method="POST">
+                        <form action="{{ route('users.requests.delete', $request->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
                             <td><button type="submit" class="btn btn-danger">Delete</button></td>

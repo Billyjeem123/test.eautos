@@ -415,5 +415,28 @@ class Dashboard extends Controller
     }
 
 
+    public function view_all_requests(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
+    {
+
+        $requests  = RequestCar::where('user_id', auth()->user()->id)->get();
+        return view('users.requests', ['requests' => $requests]);
+
+
+    }
+
+
+    public function delete_request($id): \Illuminate\Http\RedirectResponse
+    {
+        $requests = RequestCar::findOrFail($id);
+        $requests->delete();
+        return redirect()->back()->with('success', 'Record deleted successfully');
+    }
+
+
+     public  function get_asset_evaluation()
+     {
+         $allAsset = ValueAsset::with('asset_docs')->where('user_id', auth()->user()->id)->get();
+         return view('users.assets_evaluation', ['allAsset' => $allAsset]);
+     }
 }
 

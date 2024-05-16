@@ -28,6 +28,9 @@ Route::prefix('users')->middleware( 'notify', 'auth')->group(function () {
 
     Route::get('/reports/all', [Dashboard::class, 'view_all_reports'])->name('users.view.reports');
     Route::get('/reports/complaints/{id}', [Dashboard::class, 'view_report_complaint'])->name('user.complaint.details');
-    Route::delete('/reports/delete/{id}', [Dashboard::class, 'delete_reports'])->name('users.reports.delete');
 
+
+    Route::get('/requests/all', [Dashboard::class, 'view_all_requests'])->name('users.view.requests');
+    Route::delete('/requests/delete/{id}', [Dashboard::class, 'delete_request'])->name('users.requests.delete');
+    Route::get('/evaluate-all', [Dashboard::class, 'get_asset_evaluation'])->name('users.evaluate.all');
 });

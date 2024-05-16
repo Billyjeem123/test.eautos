@@ -1,4 +1,4 @@
-@extends('admin.layouts.master')
+@extends('users.layouts.master')
 
 
 
@@ -21,10 +21,8 @@
                     <th>Mileage</th>
                     <th>Engine Type</th>
                     <th>Report status</th>
-                    <th>Credentials</th>
                     <th>Date Posted</th>
-{{--                    <th>Status</th>--}}
-                    <th>Delete</th>
+                    {{--                    <th>Status</th>--}}
 
 
                 </tr>
@@ -39,13 +37,8 @@
                         <td>{{$valuedAsset->mileage}}</td>
                         <td>{{$valuedAsset->engine_type}}</td>
                         <td><p>{{$valuedAsset->is_seen === 0 ? "Pending" : "Seen"}}</p></td>
-                        <td><a href="" class="btn btn-info">Credentials</a></td>
                         <td>{{$valuedAsset->created_at}}</td>
-                        <form action="{{ route('admin.users.delete', $valuedAsset->id) }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <td><button type="submit" class="btn btn-danger">Delete</button></td>
-                        </form>
+
                     </tr>
                 @endforeach
                 </tbody>

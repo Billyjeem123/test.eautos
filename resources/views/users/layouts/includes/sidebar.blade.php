@@ -66,8 +66,8 @@
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Post Option</h6>
                     <a class="collapse-item" href="{{route('users.view.reports')}}">User-Reported Vendors</a>
-                    <a class="collapse-item" href="{{route('view.requests')}}">Car Requests</a>
-                    <a class="collapse-item" href="{{route('evaluate.all')}}">Asset Evaluation</a>
+                    <a class="collapse-item" href="{{route('users.view.requests')}}">Car Requests</a>
+                    <a class="collapse-item" href="{{route('users.evaluate.all')}}">Asset Evaluation</a>
                 </div>
             </div>
         </li>

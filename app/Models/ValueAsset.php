@@ -12,7 +12,7 @@ class ValueAsset extends Model
 
     protected $table = 'value_asset';
 
-    protected $fillable = ['user_id', 'brand', 'model', 'color', 'mileage', 'engine_type', 'desc', 'asset_type'];
+    protected $fillable = ['user_id', 'brand', 'model', 'color', 'mileage', 'engine_type', 'desc', 'asset_type', 'is_seen'];
 
 
 
