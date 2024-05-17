@@ -33,4 +33,6 @@ Route::prefix('users')->middleware( 'notify', 'auth')->group(function () {
     Route::get('/requests/all', [Dashboard::class, 'view_all_requests'])->name('users.view.requests');
     Route::delete('/requests/delete/{id}', [Dashboard::class, 'delete_request'])->name('users.requests.delete');
     Route::get('/evaluate-all', [Dashboard::class, 'get_asset_evaluation'])->name('users.evaluate.all');
+    Route::get('/sold/items', [Dashboard::class, 'sold_items'])->name('sold.all');
+    Route::get('/sold/items/{id}', [Dashboard::class, 'sold_items_by_id'])->name('sold_by_id');
 });

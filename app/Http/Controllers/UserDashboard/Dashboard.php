@@ -13,6 +13,7 @@ use App\Models\Part;
 use App\Models\Product;
 use App\Models\Report;
 use App\Models\RequestCar;
+use App\Models\SoldItems;
 use App\Models\SubCategory;
 use App\Models\User;
 use App\Models\ValueAsset;
@@ -437,6 +438,24 @@ class Dashboard extends Controller
      {
          $allAsset = ValueAsset::with('asset_docs')->where('user_id', auth()->user()->id)->get();
          return view('users.assets_evaluation', ['allAsset' => $allAsset]);
+     }
+
+
+     public function sold_items(){
+
+         $solditems = SoldItems::with('buyer_details')->where('owner_id', auth()->user()->id)->get();
+         return view('users.sold-history', ['solditems' => $solditems]);
+     }
+
+
+     public function sold_items_by_id($id){
+
+         $solditem = SoldItems::with('buyer_details')->where('id', $id)->first();
+
+//         echo "<pre>";
+//          echo json_encode($solditem, JSON_PRETTY_PRINT);
+//          echo "</pre>";
+         return view('users.modal.orders', ['solditem' => $solditem]);
      }
 }
 

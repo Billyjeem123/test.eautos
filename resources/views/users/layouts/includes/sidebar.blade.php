@@ -117,7 +117,7 @@
           <span>Service Provided</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="soldHistory.html">
+        <a class="nav-link" href="{{route('sold.all')}}">
           <i class="fas fa-fw fa-file"></i>
           <span>Sold History</span></a>
       </li>
