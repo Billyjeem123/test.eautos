@@ -93,8 +93,8 @@ class Dashboard extends Controller
 
         $user = auth()->user()->id;
 
-        $title = "Urgent Action Needed";
-        $message = "You have a pending product approval";
+        $title = "Action Required: Pending Product Approval";
+        $message = "A product has been uploaded and is awaiting your approval. Please review the pending submission as soon as possible";
 
         $data = [
             'title'  => $title,
@@ -364,6 +364,20 @@ class Dashboard extends Controller
             'active' => $role,
             'description' => $request->description
         ]);
+
+
+        $title = "Action Required: User Submitted Car Part for Verification";
+        $message = "A user has uploaded a car part for verification. Please review the submission at your earliest convenience.";
+
+        $data = [
+            'title'  => $title,
+            'message' => $message
+        ];
+
+        $useradmin = User::where('role', 'admin')->get();
+        foreach ($useradmin as $admin) {
+            $admin->notify(new AlertAdminOfActivities($data));
+        }
 
         // Return a success response
         return redirect()->back()->with(['success' => 'Part added successfully.. You would be notified upon approval']);

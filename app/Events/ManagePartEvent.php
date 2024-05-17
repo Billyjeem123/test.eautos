@@ -16,16 +16,18 @@ class ManagePartEvent
 
     public mixed $title;
     public mixed $useremail;
+    public mixed $message;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($useremail, $title)
+    public function __construct($useremail, $title, $message)
     {
         $this->useremail  = $useremail;
         $this->title  = $title;
+        $this->message = $message;
     }
 
     /**

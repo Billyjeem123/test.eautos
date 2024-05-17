@@ -28,6 +28,6 @@ class ManageEventListener
     public function handle(ManagePartEvent $event)
     {
         $admin = User::where('email', $event->useremail)->first();
-        $admin->notify(new \App\Notifications\ManagePartNotification($event->useremail, $event->title));
+        $admin->notify(new \App\Notifications\ManagePartNotification($event->useremail, $event->title, $event->message));
     }
 }

@@ -4,7 +4,7 @@ use App\Http\Controllers\UserDashboard\Dashboard;
 use Illuminate\Support\Facades\Route;
 
 
-Route::prefix('users')->middleware( 'notify', 'auth')->group(function () {
+Route::prefix('users')->middleware( 'notify', 'auth', 'strictlyUsers')->group(function () {
 
     Route::get('/index', [Dashboard::class, 'index'])->name('user.index');
     Route::get('/product-create', [Dashboard::class, 'product_create'])->middleware('userProfileCompleted')->name('user.product.index');

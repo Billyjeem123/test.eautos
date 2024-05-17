@@ -59,7 +59,7 @@ class PartController extends Controller
 
     public function getAllParts(){
 
-       $parts =  Part::with('users', 'partcategories')->get();
+        $parts =  Part::with('users', 'partcategories')->get();
 
         return view('admin.parts.part-listings', compact('parts'));
     }
@@ -108,12 +108,13 @@ class PartController extends Controller
         $part->active = $part->active === 1 ? 0 : 1;
         $part->save();
 
-        if($part->users->role != 'admin'){
-            $title = "Dear User, Your Car Part listing Name:'$part->part_name was unapproved";
+        if ($part->users->role != 'admin') {
+            $title = "Your Car Part Listing: '$part->part_name' Was Not Approved";
+            $message = "Dear User,\n\nWe regret to inform you that your car part listing, '$part->part_name', was not approved. Please review our guidelines and make the necessary adjustments before resubmitting.\n\nThank you for your understanding.";
 
-            event(new ManagePartEvent($part->users->email, $title));
-
+            event(new ManagePartEvent($part->users->email, $title, $message));
         }
+
 
 
         return redirect()->back()->with('success', 'Part status updated successfully.');
@@ -124,13 +125,13 @@ class PartController extends Controller
         $part = Part::findOrFail($id);
         $part->active = $part->active === 0 ? 1 : 0;
         $part->save();
+        if ($part->users->role != 'admin') {
+            $title = "Congrats! Your Car Part Listing: '$part->part_name' Has Been Approved";
+            $message = "Dear User,\n\nWe are pleased to inform you that your car part listing, '$part->part_name', has been approved. It is now live on our platform.\n\nThank you for your contribution!";
 
-        if($part->users->role != 'admin') {
-
-            $title = "Congrats, Your Car Part listing Name: '$part->part_name' has been approved";
-
-            event(new ManagePartEvent($part->users->email, $title));
+            event(new ManagePartEvent($part->users->email, $title, $message));
         }
+
 
 
         return redirect()->back()->with('success', 'Part status updated successfully.');
@@ -141,9 +142,9 @@ class PartController extends Controller
     public  function  getPartView()
     {
 
-            $parts = Part::with('partcategories')->where('active', 1)->get();
+        $parts = Part::with('partcategories')->where('active', 1)->get();
 
-            $partCategories = CarPartCategory::all();
+        $partCategories = CarPartCategory::all();
 
         return view('home.part.index', compact('parts', 'partCategories'));
     }

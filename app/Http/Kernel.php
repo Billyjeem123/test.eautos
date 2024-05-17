@@ -69,6 +69,7 @@ class Kernel extends HttpKernel
         'showNavBar' => \App\Http\Middleware\showNavBar::class,
         'authRedirect' => \App\Http\Middleware\authRedirect::class,
         'profile.complete' => \App\Http\Middleware\profileComleted::class,
-        'userProfileCompleted' => \App\Http\Middleware\UserProfileCompleted::class
+        'userProfileCompleted' => \App\Http\Middleware\UserProfileCompleted::class,
+        'strictlyUsers' => \App\Http\Middleware\UserOnlyMiddleware::class
     ];
 }

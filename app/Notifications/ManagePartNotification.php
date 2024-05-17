@@ -19,10 +19,11 @@ class ManagePartNotification extends Notification
      *
      * @return void
      */
-    public function __construct($email, $title)
+    public function __construct($email, $title, $message)
     {
         $this->email  = $email;
         $this->title  = $title;
+        $this->message = $message;
     }
 
     /**
@@ -33,7 +34,7 @@ class ManagePartNotification extends Notification
      */
     public function via($notifiable)
     {
-        return ['database'];
+        return ['database', 'mail'];
     }
 
     /**
@@ -45,9 +46,11 @@ class ManagePartNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+            ->line($this->title)
+            ->line("Dear User,")
+            ->line($this->message)
+            ->line("Thank you for your understanding.");
+
     }
 
     /**
@@ -59,8 +62,8 @@ class ManagePartNotification extends Notification
     public function toArray($notifiable)
     {
         return [
-            'title' => 'New Notification on Part uploaded',
-            'message' => $this->title
+            'title' => $this->title,
+            'message' => $this->message,
         ];
     }
 }
