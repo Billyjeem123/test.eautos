@@ -21,6 +21,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use JetBrains\PhpStorm\NoReturn;
@@ -515,7 +516,7 @@ private function validateRequest(Request $request): \Illuminate\Contracts\Valida
             'sender_id' => auth()->user()->id,
             'receiver_id' => $product->user->id,
             'message' => $request->message,
-            'phone_number' => $request->phone
+            'phone_number' => $request->phone,
         ]);
 
         $receiverMail = $product->user->email;
@@ -547,6 +548,8 @@ private function validateRequest(Request $request): \Illuminate\Contracts\Valida
     {
         $today = Carbon::today();
         $searchTerm = $request->input('search');
+
+
 
         // Base query for live auctions: all auctions except those whose ending date has passed
         $liveAuctionsQuery = Auction::with('user', 'images')
@@ -623,6 +626,25 @@ private function validateRequest(Request $request): \Illuminate\Contracts\Valida
 //     }
 
 
+    public function getAuctionCarsById($id)
+    {
+        // Convert the JSON string to an associative array
+        $countdownData = json_decode(Session::get('countdownData'), true);
+
+        // Fetch auction records based on the IDs in $countdownData
+        $auctions = [];
+        foreach ($countdownData as $auctionId => $countdown) {
+            // Find the auction record by ID and add it to the $auctions array
+            $auction = Auction::with('images', 'user')->findOrFail($auctionId);
+            $auctions[] = $auction;
+        }
+
+        echo json_encode($auctions);
+
+        return view('home.auction.view_auction', ['auctions' => $auctions]);
+    }
+
+
 
     public function comment(Request $request): \Illuminate\Http\RedirectResponse
     {
@@ -653,7 +675,7 @@ private function validateRequest(Request $request): \Illuminate\Contracts\Valida
         } catch (\Exception $e) {
             // Log the error or handle it appropriately
             // For now, we'll redirect back with an error message
-            return redirect()->back()->with(['error' => 'Failed to post comment. Please try again later.']);
+            return redirect()->back()->with(['error' => 'Failed to post comment. Please try again later.' . $e->getMessage()]);
         }
     }
 
@@ -829,4 +851,15 @@ private function validateRequest(Request $request): \Illuminate\Contracts\Valida
         return response()->json(['success' => false, 'message' => 'Auction not found'], 404);
     }
 
+
+    public  function countdown(Request $request)
+    {
+        $countdownData = $request->input('countdownData');
+
+        // Store the countdown data in the session
+        session(['countdownData' => $countdownData]);
+
+        return response()->json(['success' => true]);
+
+    }
 }

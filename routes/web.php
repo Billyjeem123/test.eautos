@@ -70,7 +70,7 @@ Route::group(['middleware' => ['showNavBar']], function () {
     Route::get('/get-product-details/{id}', [ProductController::class, 'getProductDetails'])->name('product.show');
     Route::post('/reach-out', [ProductController::class, 'reachOut'])->name('client.reachout')->middleware('auth');
     Route::get('/get-auction-dates', [ProductController::class, 'getAuctionDates'])->name('getDateDynamically');
-
+        Route::post('/store-countdown-data', [ProductController::class, 'countdown'])->name('store.countdown.data');
 
         #value asset
 
@@ -79,6 +79,7 @@ Route::group(['middleware' => ['showNavBar']], function () {
 
     #auction routes....
         Route::get('/get-auction', [ProductController::class, 'getAuctionCars'])->name('get.auction.cars');
+        Route::get('/get-auction/{id}', [ProductController::class, 'getAuctionCarsById'])->name('get.auction.cars.id');
 
         #comment routes....
 
@@ -101,6 +102,7 @@ Route::group(['middleware' => ['showNavBar']], function () {
 
 //        Route::get('/search/stolen', [StolenCarController::class, 'searchStolen'])->name('search.car.stolen');
 
+        Route::view('auction_view', 'home.auction_view')->name('auction_view');
 
 
 

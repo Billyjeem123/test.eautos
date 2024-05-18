@@ -14,6 +14,7 @@ use App\Models\Product;
 use App\Models\Report;
 use App\Models\RequestCar;
 use App\Models\SoldItems;
+use App\Models\StolenCar;
 use App\Models\SubCategory;
 use App\Models\User;
 use App\Models\ValueAsset;
@@ -471,5 +472,64 @@ class Dashboard extends Controller
 //          echo "</pre>";
          return view('users.modal.orders', ['solditem' => $solditem]);
      }
+
+     public function  showuploadpage()
+     {
+         $brands = Brand::all();
+
+
+         return view('users.stolen_car', ['brands' => $brands]);
+
+     }
+
+    public function save_stolen_car(Request $request)
+    {
+        $role = auth()->user()->role == "admin" ? 1 : 0;
+        $imageUrl = $this->uploadImageAndGetLink($request);
+        // Save part
+        StolenCar::create([
+            'image' => $imageUrl,
+            'brand_id' => $request->brand_id,
+            'plate_number' => $request->plate_number,
+            'name' => $request->car_name ?? "null",
+            'user_id' => auth()->user()->id,
+            'address' => $request->last_seen,
+            'color' => $request->color,
+            'views' =>0,
+            'is_approved' => $role,
+        ]);
+
+        // Define the title and message for the notification
+        $title = "Urgent: User Submitted Stolen Car for Verification";
+        $message = "A user has uploaded information regarding a stolen car. Please review the submission and take appropriate action as soon as possible.";
+
+        $data = [
+            'title'  => $title,
+            'message' => $message
+        ];
+
+        $userAdmins = User::where('role', 'admin')->get();
+
+        foreach ($userAdmins as $admin) {
+            $admin->notify(new AlertAdminOfActivities($data));
+        }
+
+
+        // Return a success response
+        return redirect()->back()->with(['success' => 'Record added successfully']);
+    }
+
+    public function show_all_stolen_cars(){
+
+
+        $stolen  = StolenCar::with('user', 'brand')->where('user_id', auth()->user()->id)->get();
+        $brands = Brand::all();
+
+
+        return view('users.stolenlisting', ['stolens' => $stolen, 'brands' => $brands]);
+    }
+
+
+
 }
 

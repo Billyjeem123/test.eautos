@@ -65,7 +65,7 @@
 
             @forelse ($auctions as $auction)
                 <div class="card">
-                    <div class="time" data-auction-id="{{ $auction->id }}" data-ending-date="{{ $auction->ending_date }}">
+                    <div class="time auction-item" data-auction-id="{{ $auction->id }}" data-ending-date="{{ $auction->ending_date }}">
                         <p>
                             <strong>Days</strong><br>
                             <span class="days">0</span>
@@ -103,7 +103,7 @@
                     </div>
                     <div class="card_footer">
                         <p><strong>Starts:</strong> {{$auction->starting_date}}</p>
-                        <a href="" class="footer_button">Place a bid</a>
+                        <a href="{{route('get.auction.cars.id', $auction->id)}}" class="footer_button">Place a bid</a>
                     </div>
                 </div>
             @empty
@@ -309,9 +309,6 @@
 </footer>
 
 
-<script src="../assets/fontawesome/js/all.min.js"></script>
-<script src="../js/jquery.js"></script>
-<script src="../js/index.js"></script>
 <script>
     $(document).ready(function () {
         state = true;
@@ -421,6 +418,49 @@
             });
         }
     });
+
+
+    $(document).ready(function() {
+        var countdownData = {}; // Object to store countdown data
+
+        $('.auction-item').each(function() {
+            var auctionId = $(this).data('auction-id');
+            var days = $(this).find('.days').text();
+            var hours = $(this).find('.hours').text();
+            var minutes = $(this).find('.minutes').text();
+            var seconds = $(this).find('.seconds').text();
+
+            // Store the countdown data in the object
+            countdownData[auctionId] = {
+                days: days,
+                hours: hours,
+                minutes: minutes,
+                seconds: seconds
+            };
+        });
+
+        // Send the countdownData to the server to store in the session
+        $.ajax({
+            url: '{{ route("store.countdown.data") }}',
+            type: 'POST',
+            data: {
+                _token: '{{ csrf_token() }}',
+                countdownData: countdownData
+            },
+            success: function(response) {
+                console.log(response); // Optional: Handle success response
+                // alert(response)
+            },
+            error: function(xhr, status, error) {
+                console.error(error); // Optional: Handle error
+            }
+        });
+    });
+
+
+
+    // Now countdownData contains all the countdown information associated with each auction item
+
 </script>
 </body>
 </html>

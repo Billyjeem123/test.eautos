@@ -43,7 +43,7 @@ class AlertAdminOfActivities extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('Urgent Action Needed:: Property Update')
+                    ->line('Urgent Notification: Immediate Action Required')
             ->line('Hello,')
             ->line($this->data['message'])
             ->line('Thank you for your attention.');

@@ -86,8 +86,9 @@ class StolenCarController extends Controller
 
         if($part->user->role != 'admin'){
             $title = "Dear User, Your  car theft listing for :'$part->name was unapproved";
+            $message = "Dear User,\n\nYour listing for the car part '$part->name' has been unapproved. For more details, please contact support.\n\nBest regards.";
 
-            event(new ManagePartEvent($part->users->email, $title));
+            event(new ManagePartEvent($part->user->email, $title, $message));
 
         }
 
@@ -104,8 +105,9 @@ class StolenCarController extends Controller
         if($part->user->role != 'admin') {
 
             $title = "Congrats, Your Car theft  listing Name: '$part->name' has been approved";
+            $message = "We are pleased to inform you that your car theft listing for '$part->name' has been approved. It is now live on our platform.";
 
-            event(new ManagePartEvent($part->users->email, $title));
+            event(new ManagePartEvent($part->user->email, $title, $message));
         }
 
 
@@ -113,14 +115,6 @@ class StolenCarController extends Controller
     }
 
 
-//     public function getStolenCars(){
-//
-//         $stolencars  = StolenCar::with('user', 'brand')->get();
-//
-//         $brands = Brand::all();
-//
-//         return view('home.stolen-cars', ['stolencars' => $stolencars, 'brands' => $brands]);
-//     }
 
 
     public function getStolenCars(Request $request) {

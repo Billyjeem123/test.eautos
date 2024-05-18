@@ -105,11 +105,22 @@
           <span>Message</span></a>
       </li>
 
-{{--      <li class="nav-item">--}}
-{{--        <a class="nav-link" href="media.html">--}}
-{{--          <i class="fas fa-fw fa-image"></i>--}}
-{{--          <span>Media</span></a>--}}
-{{--      </li>--}}
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities108"
+               aria-expanded="true" aria-controls="collapseUtilities108">
+                <i class="fas fa-ban"></i>
+                <span>Blacklist</span>
+            </a>
+            <div id="collapseUtilities108" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Post Option</h6>
+                    <a class="collapse-item" href="{{route('users.stolen.view')}}">Upload Stolen Cars</a>
+                    <a class="collapse-item" href="{{route('users.stolen.all')}}">View Stolen Listings</a>
+                </div>
+            </div>
+        </li>
+
+
 
       <li class="nav-item">
         <a class="nav-link" href="serviceProvided.html">

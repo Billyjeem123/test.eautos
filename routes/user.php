@@ -35,4 +35,7 @@ Route::prefix('users')->middleware( 'notify', 'auth', 'strictlyUsers')->group(fu
     Route::get('/evaluate-all', [Dashboard::class, 'get_asset_evaluation'])->name('users.evaluate.all');
     Route::get('/sold/items', [Dashboard::class, 'sold_items'])->name('sold.all');
     Route::get('/sold/items/{id}', [Dashboard::class, 'sold_items_by_id'])->name('sold_by_id');
+    Route::get('/stolen/car', [Dashboard::class, 'showuploadpage'])->name('users.stolen.view');
+    Route::post('/stolen/car', [Dashboard::class, 'save_stolen_car'])->name('users.stolen_car');
+    Route::get('/stolen/all', [Dashboard::class, 'show_all_stolen_cars'])->name('users.stolen.all');
 });
