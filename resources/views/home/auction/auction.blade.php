@@ -64,7 +64,7 @@
 <main>
     <section>
         <div class="upcoming">
-            <h3>Up Coming Auction</h3><br>
+            <h3>Upcoming Auction</h3><br>
 
             <div class="card_group">
 

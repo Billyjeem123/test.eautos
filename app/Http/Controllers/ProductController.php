@@ -238,8 +238,7 @@ private function validateRequest(Request $request): \Illuminate\Contracts\Valida
                 ->where('category_id', $id)
             ->where('is_approved', 1);
 
-            $auctions = Auction::all()->take(5);
-
+            $auctions = Auction::where('category_id', $category->id)->limit(5)->get();
 
 
             // Execute the query to fetch products
@@ -527,28 +526,101 @@ private function validateRequest(Request $request): \Illuminate\Contracts\Valida
         return redirect()->back()->with(['success' => 'Message sent successfully']);
     }
 
-
-     public function getAuctionCars(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
-     {
-         $auctions = Auction::with('user', 'images')->get();
-
-         $today = Carbon::today();
-
-         $upcomingAuctions = Auction::with('user', 'images')
-             ->where('starting_date', '>', $today)
-             ->limit(5)
-             ->get();
+//    public function getAuctionCars()
+//     {
 //
-//          echo "<pre>";
-//          echo json_encode($auctions, JSON_PRETTY_PRINT);
-//          echo "</pre>";
 //
-//          exit;
+//         $today = Carbon::today();
+//         // Fetch live auctions (starting today or earlier)
+//         $auctions = Auction::with('user', 'images')->get();
+//
+//         $upcomingAuctions = Auction::with('user', 'images')
+//             ->where('starting_date', '>', $today)
+//             ->get();
+//
+//         return view('home.auction.index', ['auctions' => $auctions, 'upcomingAuctions' => $upcomingAuctions]);
+//
+//     }
 
 
-         return view('home.auction.index', ['auctions' => $auctions, 'upcomingAuctions' => $upcomingAuctions]);
+    public function getAuctionCars(Request $request)
+    {
+        $today = Carbon::today();
+        $searchTerm = $request->input('search');
 
-     }
+        // Base query for live auctions: all auctions except those whose ending date has passed
+        $liveAuctionsQuery = Auction::with('user', 'images')
+            ->where('ending_date', '>=', $today);
+
+        // Base query for upcoming auctions
+        $upcomingAuctionsQuery = Auction::with('user', 'images')
+            ->where('starting_date', '>', $today)
+            ->limit(5);
+
+        // Apply search filter if a search term is provided
+        if ($searchTerm) {
+            $liveAuctionsQuery->where(function ($query) use ($searchTerm) {
+                $query->where('model', 'LIKE', '%' . $searchTerm . '%')
+                    ->orWhere('address', 'LIKE', '%' . $searchTerm . '%')
+                    ->orWhere('desc', 'LIKE', '%' . $searchTerm . '%');
+            });
+
+            $upcomingAuctionsQuery->where(function ($query) use ($searchTerm) {
+                $query->where('model', 'LIKE', '%' . $searchTerm . '%')
+                    ->orWhere('address', 'LIKE', '%' . $searchTerm . '%')
+                    ->orWhere('desc', 'LIKE', '%' . $searchTerm . '%');
+            });
+        }
+
+        // Execute the queries
+        $liveAuctions = $liveAuctionsQuery->get();
+        $upcomingAuctions = $upcomingAuctionsQuery->get();
+
+        // Return the view with the fetched auctions
+        return view('home.auction.index', [
+            'auctions' => $liveAuctions,
+            'upcomingAuctions' => $upcomingAuctions,
+            'searchTerm' => $searchTerm
+        ]);
+    }
+
+
+
+
+//     public function getAuctionCars(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
+//     {
+//
+//
+//         $today = Carbon::today();
+//
+////         $auctions = Auction::with('user', 'images') ->where('starting_date', '>', $today)->get();
+//
+//         // Fetch live auctions (starting today or earlier)
+//         $auctions = Auction::with('user', 'images')->get();
+////             ->where('starting_date', '<=', $today)
+////             ->get();
+//
+//         // Fetch upcoming auctions (starting after today) and limit to 5
+//         $upcomingAuctions = Auction::with('user', 'images')
+//             ->where('starting_date', '>', $today)
+//             ->get();
+//
+//
+////         $upcomingAuctions = Auction::with('user', 'images')
+////             ->where('starting_date', '<', $today)
+////             ->limit(5)
+////             ->get();
+////
+////          echo "<pre>";
+////          echo json_encode($auctions, JSON_PRETTY_PRINT);
+////          echo "</pre>";
+////
+////          exit;
+//
+//
+//         return view('home.auction.index', ['auctions' => $auctions, 'upcomingAuctions' => $upcomingAuctions]);
+//
+//     }
 
 
 

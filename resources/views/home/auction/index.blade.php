@@ -48,10 +48,11 @@
     <div class="search">
         <h2>INVEST WITH SUCCESS BUY FROM <br> E-Autos.COM</h2>
         <h6>Exclusive Car Listing From The Nation's Leading Car Management</h6><br>
-        <form action="">
-            <input type="text" placeholder="Enter a Model or Brand">
+        <form action="{{ route('get.auction.cars') }}" method="GET">
+            <input type="text" name="search" placeholder="Enter a Model or Brand">
             <button id="search"><i class="fa fa-search"></i></button>
         </form>
+
     </div>
 </header>
 <main>
@@ -102,20 +103,18 @@
                     </div>
                     <div class="card_footer">
                         <p><strong>Starts:</strong> {{$auction->starting_date}}</p>
-                        <a href="" class="footer_button">View</a>
+                        <a href="" class="footer_button">Place a bid</a>
                     </div>
                 </div>
             @empty
-                <div class="card" style="text-align: center;">
                     <p>No auction items at the moment.</p>
-                </div>
             @endforelse
 
         </div>
 
-        <a href="" class="live_auction_more">
-            See All
-        </a>
+{{--        <a href="" class="live_auction_more">--}}
+{{--            See All--}}
+{{--        </a>--}}
     </div>
     <!-- ---------------------------------- -->
     <!-- ------------------------------------------- -->
@@ -143,71 +142,71 @@
 {{--    <!-- ----------------------------------- -->--}}
 {{--    <!-- ---------------------------------- -->--}}
 
-    <div class="upcoming">
-        <h3>Up Coming Auction</h3><br>
-        <p class="welcome_message">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quisquam quasi similique
-            consequatur commodi aliquam
-            facere, voluptas magnam? Dolorem, earum incidunt.</p><br>
+{{--    <div class="upcoming">--}}
+{{--        <h3>Up Coming Auction</h3><br>--}}
+{{--        <p class="welcome_message">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quisquam quasi similique--}}
+{{--            consequatur commodi aliquam--}}
+{{--            facere, voluptas magnam? Dolorem, earum incidunt.</p><br>--}}
 
-        <div class="card_group">
+{{--        <div class="card_group">--}}
 
-            @forelse ($auctions as $auction)
-                <div class="card">
-                    <div class="time" data-auction-id="{{ $auction->id }}" data-ending-date="{{ $auction->ending_date }}">
-                        <p>
-                            <strong>Days</strong><br>
-                            <span class="days">0</span>
-                        </p>
-                        <p>
-                            <strong>Hours</strong><br>
-                            <span class="hours">0</span>
-                        </p>
-                        <p>
-                            <strong>Minutes</strong><br>
-                            <span class="minutes">0</span>
-                        </p>
-                        <p>
-                            <strong>Seconds</strong><br>
-                            <span class="seconds">0</span>
-                        </p>
-                    </div>
-                    <div class="card_img" style="background: url('{{ $auction->images[0]['image'] }}') no-repeat;">
-                        <a href="" class="card_img_icon">
-                            <a href="{{route('user.profile', $auction->user->id)}}" class="card_img_icon"><i class="far fa-user"></i></a>
-                        </a>
-                    </div>
-                    <div class="card_text">
-                        <h5>{{$auction->car_name}}</h5>
-                        <div class="details">
-                            <p class="location">{{$auction->address}} ({{$auction->mileage}})</p>
-                            <p class="bid_price">Current bid: <span>₦ 930,000</span></p>
-                            <ul>
-                                <li>New</li>
-                                <li>{{$auction->cylinder ?? "10 Cylinder"}}</li>
-                                <li style="background-color: blue; border: none; color: #ffffff;">{{$auction->color}}</li>
-                                <li>Fuel</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="card_footer">
-                        <p><strong>Starts:</strong> {{$auction->starting_date}}</p>
-                        <a href="" class="footer_button">View</a>
-                    </div>
-                </div>
-            @empty
-                <div class="card" style="text-align: center;">
-                    <p>No auction items at the moment.</p>
-                </div>
-            @endforelse
+{{--            @forelse ($auctions as $auction)--}}
+{{--                <div class="card">--}}
+{{--                    <div class="time" data-auction-id="{{ $auction->id }}" data-ending-date="{{ $auction->ending_date }}">--}}
+{{--                        <p>--}}
+{{--                            <strong>Days</strong><br>--}}
+{{--                            <span class="days">0</span>--}}
+{{--                        </p>--}}
+{{--                        <p>--}}
+{{--                            <strong>Hours</strong><br>--}}
+{{--                            <span class="hours">0</span>--}}
+{{--                        </p>--}}
+{{--                        <p>--}}
+{{--                            <strong>Minutes</strong><br>--}}
+{{--                            <span class="minutes">0</span>--}}
+{{--                        </p>--}}
+{{--                        <p>--}}
+{{--                            <strong>Seconds</strong><br>--}}
+{{--                            <span class="seconds">0</span>--}}
+{{--                        </p>--}}
+{{--                    </div>--}}
+{{--                    <div class="card_img" style="background: url('{{ $auction->images[0]['image'] }}') no-repeat;">--}}
+{{--                        <a href="" class="card_img_icon">--}}
+{{--                            <a href="{{route('user.profile', $auction->user->id)}}" class="card_img_icon"><i class="far fa-user"></i></a>--}}
+{{--                        </a>--}}
+{{--                    </div>--}}
+{{--                    <div class="card_text">--}}
+{{--                        <h5>{{$auction->car_name}}</h5>--}}
+{{--                        <div class="details">--}}
+{{--                            <p class="location">{{$auction->address}} ({{$auction->mileage}})</p>--}}
+{{--                            <p class="bid_price">Current bid: <span>₦ 930,000</span></p>--}}
+{{--                            <ul>--}}
+{{--                                <li>New</li>--}}
+{{--                                <li>{{$auction->cylinder ?? "10 Cylinder"}}</li>--}}
+{{--                                <li style="background-color: blue; border: none; color: #ffffff;">{{$auction->color}}</li>--}}
+{{--                                <li>Fuel</li>--}}
+{{--                            </ul>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <div class="card_footer">--}}
+{{--                        <p><strong>Starts:</strong> {{$auction->starting_date}}</p>--}}
+{{--                        <a href="" class="footer_button">View</a>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            @empty--}}
+{{--                <div class="card" style="text-align: center;">--}}
+{{--                    <p>No auction items at the moment.</p>--}}
+{{--                </div>--}}
+{{--            @endforelse--}}
 
-        </div>
+{{--        </div>--}}
 
-        <a href="" class="upcoming_auction_more">
-            See All
-        </a>
+{{--        <a href="" class="upcoming_auction_more">--}}
+{{--            See All--}}
+{{--        </a>--}}
 
 
-    </div>
+{{--    </div>--}}
 
 
 
