@@ -28,7 +28,7 @@ use Illuminate\Support\Facades\Route;
 // });
 
 ##Home routes
-
+Route::get('/countdown', [ProductController::class, 'showCountdown']);
 Route::group(['middleware' => ['showNavBar']], function () {
     Route::get('/', [HomeController::class, 'index'])->name('index');
     Route::get('/report', [ReportController::class, 'viewReport'])->name('report.show');
@@ -59,7 +59,7 @@ Route::group(['middleware' => ['showNavBar']], function () {
     Route::post('/login', [HomeController::class, 'loginUser'])->name('login.user');
     Route::view('/register', 'home.register')->name('register');
     Route::post('/register', [HomeController::class, 'register'])->name('register.user');
-
+    Route::post('/update-auction-status', [ProductController::class, 'updateAuctionStatus'])->name('updateAuctionStatus');
 
     #products.....
 
@@ -230,6 +230,9 @@ Route::prefix('admin')->middleware('auth', 'admin', 'notify')->group(function ()
     Route::get('/requests/details/{id}', [AdminController::class, 'careRequests'])->name('admin.requests.details');
     Route::get('/products/details/{id}', [AdminController::class, 'productDetails'])->name('admin.products.details');
 //    Route::get('/asset_evaluation/details/{id}', [AdminController::class, 'productDetails'])->name('admin.products.details');
+
+
+
 
 
     //Paystack Route

@@ -29,7 +29,8 @@ class Auction extends Model
         'user_id',
         'car_name',
         'starting_date',
-        'ending_date'
+        'ending_date',
+        'is_expired'
     ];
 
 

@@ -18,6 +18,7 @@ use App\Models\ValueAsset;
 use App\Models\ValueDocs;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -531,6 +532,13 @@ private function validateRequest(Request $request): \Illuminate\Contracts\Valida
      {
          $auctions = Auction::with('user', 'images')->get();
 
+         $today = Carbon::today();
+
+         $upcomingAuctions = Auction::with('user', 'images')
+             ->where('starting_date', '>', $today)
+             ->limit(5)
+             ->get();
+//
 //          echo "<pre>";
 //          echo json_encode($auctions, JSON_PRETTY_PRINT);
 //          echo "</pre>";
@@ -538,7 +546,7 @@ private function validateRequest(Request $request): \Illuminate\Contracts\Valida
 //          exit;
 
 
-         return view('home.auction.index', ['auctions' => $auctions]);
+         return view('home.auction.index', ['auctions' => $auctions, 'upcomingAuctions' => $upcomingAuctions]);
 
      }
 
@@ -726,6 +734,27 @@ private function validateRequest(Request $request): \Illuminate\Contracts\Valida
     }
 
 
+    public function showCountdown()
+    {
+        $startingDate = Carbon::create(2024, 5, 13);
+        $endingDate = Carbon::create(2024, 5, 22);
 
+        return view('home.test', compact('startingDate', 'endingDate'));
+    }
+
+
+
+    public function updateAuctionStatus(Request $request)
+    {
+        $auctionId = $request->input('auction_id');
+        $auction = Auction::find($auctionId);
+
+        if ($auction) {
+            $auction->update(['is_expired' => 2]);  // Assuming 'is_expired' is the field you want to update
+            return response()->json(['success' => true]);
+        }
+
+        return response()->json(['success' => false, 'message' => 'Auction not found'], 404);
+    }
 
 }

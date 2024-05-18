@@ -6,6 +6,7 @@ use App\Events\ManagePartEvent;
 use App\Models\User;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Support\Facades\Log;
 
 class ManageEventListener
 {
@@ -28,6 +29,13 @@ class ManageEventListener
     public function handle(ManagePartEvent $event)
     {
         $admin = User::where('email', $event->useremail)->first();
-        $admin->notify(new \App\Notifications\ManagePartNotification($event->useremail, $event->title, $event->message));
+
+        if ($admin) {
+            $admin->notify(new \App\Notifications\ManagePartNotification($event->useremail, $event->title, $event->message));
+            Log::info('Notification sent to user', ['user' => $admin->toArray()]);
+        } else {
+            Log::warning('User not found for email', ['email' => $event->useremail]);
+        }
     }
+
 }
