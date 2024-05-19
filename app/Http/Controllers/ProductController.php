@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Events\CommentEvent;
 use App\Events\ReachOut;
 use App\Models\Auction;
+use App\Models\Bid;
 use App\Models\BussinessReview;
 use App\Models\Comment;
 use App\Models\Message;
@@ -16,11 +17,13 @@ use App\Models\Category;
 use App\Models\SubCategory;
 use App\Models\ValueAsset;
 use App\Models\ValueDocs;
+use App\Notifications\NotifyAuctionOwners;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -29,16 +32,17 @@ use JetBrains\PhpStorm\NoReturn;
 class ProductController extends Controller
 {
 
-    public function index(){
+    public function index()
+    {
 
         $brands = Brand::all();
-        $categories=  Category::all();
+        $categories = Category::all();
 
         return view('admin.vehicle', ['brands' => $brands, 'categories' => $categories]);
     }
 
 
-    public  function userLogout()
+    public function userLogout()
     {
         Auth::logout();
 
@@ -46,16 +50,14 @@ class ProductController extends Controller
     }
 
 
-
     public function showProductRecords($id): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
     {
 
         $brands = Brand::all();
-        $categories=  Category::all();
+        $categories = Category::all();
         $product = Product::find($id);
         return view('admin.edit-listing', ['brands' => $brands, 'categories' => $categories, 'product' => $product]);
     }
-
 
 
     public function getSubcategories($categoryId): \Illuminate\Http\JsonResponse
@@ -67,7 +69,7 @@ class ProductController extends Controller
 
 
     public function store(Request $request)
-{
+    {
 //    $validator = $this->validateRequest($request);
 //
 //
@@ -76,42 +78,42 @@ class ProductController extends Controller
 //        return redirect()->back()->withInput()->withErrors(['error' => $validator->errors()->first()]); // Redirect back with input and error message
 //    }
 
-    // Save category
-    $product  = Product::create([
-        'category_id' => $request->category_id,
-        'sub_category_id' => $request->sub_category_id,
-        'brand_id' => $request->brand_id,
-        'model' => $request->model,
-        'color' => $request->color,
-        'address' => $request->address,
-        'location' => $request->location,
-        'price' => $request->price,
-        'deed' => $request->deed  ? 1 : 0,
-        'car_receipt' => $request->car_receipt ? 1 : 0,
-        'car_docs' => $request->car_docs ? 1 : 0,
-        'mileage' => $request->mileage,
-        'desc' => $request->desc,
-        'user_id' => auth()->user()->id,
-        'cylinder' => $request->cylinder,
-        'car_name' => $request->car_name,
-        'is_approved' => auth()->user()->role === 'admin' ? 1 : 0,
-        'is_installemt' => $request->is_installemt ? 1 : 0
+        // Save category
+        $product = Product::create([
+            'category_id' => $request->category_id,
+            'sub_category_id' => $request->sub_category_id,
+            'brand_id' => $request->brand_id,
+            'model' => $request->model,
+            'color' => $request->color,
+            'address' => $request->address,
+            'location' => $request->location,
+            'price' => $request->price,
+            'deed' => $request->deed ? 1 : 0,
+            'car_receipt' => $request->car_receipt ? 1 : 0,
+            'car_docs' => $request->car_docs ? 1 : 0,
+            'mileage' => $request->mileage,
+            'desc' => $request->desc,
+            'user_id' => auth()->user()->id,
+            'cylinder' => $request->cylinder,
+            'car_name' => $request->car_name,
+            'is_approved' => auth()->user()->role === 'admin' ? 1 : 0,
+            'is_installemt' => $request->is_installemt ? 1 : 0
 
-    ]);
-
-    $imageUrls = $this->uploadImagesAndGetLinks($request);
-
-    foreach ($imageUrls as $imageUrl) {
-        $product->images()->create([
-            'product_id' => $product->id,
-            'image' => $imageUrl,
         ]);
+
+        $imageUrls = $this->uploadImagesAndGetLinks($request);
+
+        foreach ($imageUrls as $imageUrl) {
+            $product->images()->create([
+                'product_id' => $product->id,
+                'image' => $imageUrl,
+            ]);
+        }
+
+
+        // Return a success response
+        return redirect()->back()->with(['success' => 'Product created successfully']);
     }
-
-
-    // Return a success response
-    return redirect()->back()->with(['success' => 'Product created successfully']);
-}
 
 
     public function uploadImagesAndGetLinks($request): array
@@ -134,55 +136,55 @@ class ProductController extends Controller
     }
 
 
-/**
- * Validate request data.
- *
- * @param \Illuminate\Http\Request $request
- * @return \Illuminate\Contracts\Validation\Validator
- */
-private function validateRequest(Request $request): \Illuminate\Contracts\Validation\Validator
-{
-    // Set custom validation messages
-    $messages = [
-        'category_id.required' => 'The category field is required.',
-        'sub_category_id.required' => 'The sub-category field is required.',
-        'brand_id.required' => 'The brand field is required.',
-        'model.required' => 'The model field is required.',
-        'year.required' => 'The year field is required.',
-        'mileage.required' => 'The mileage field is required.',
-        'color.required' => 'The color field is required.',
-        'location.required' => 'The location field is required.',
-        'address.required' => 'The address field is required.',
-        'price.required' => 'The price field is required.',
-        'car_name.required' => 'The car name input is required',
-        'desc.required' => 'The description field is required.',
-        'images.required' => 'The images field is required.',
-        'images.array' => 'The images must be an array.',
-        'images.*.image' => 'Each image must be a valid image file.',
-    ];
+    /**
+     * Validate request data.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
+    private function validateRequest(Request $request): \Illuminate\Contracts\Validation\Validator
+    {
+        // Set custom validation messages
+        $messages = [
+            'category_id.required' => 'The category field is required.',
+            'sub_category_id.required' => 'The sub-category field is required.',
+            'brand_id.required' => 'The brand field is required.',
+            'model.required' => 'The model field is required.',
+            'year.required' => 'The year field is required.',
+            'mileage.required' => 'The mileage field is required.',
+            'color.required' => 'The color field is required.',
+            'location.required' => 'The location field is required.',
+            'address.required' => 'The address field is required.',
+            'price.required' => 'The price field is required.',
+            'car_name.required' => 'The car name input is required',
+            'desc.required' => 'The description field is required.',
+            'images.required' => 'The images field is required.',
+            'images.array' => 'The images must be an array.',
+            'images.*.image' => 'Each image must be a valid image file.',
+        ];
 
-    // Validate request data with custom messages
-    $validator = Validator::make($request->all(), [
-        'category_id' => 'required',
-        'sub_category_id' => 'required',
-        'brand_id' => 'required',
-        'model' => 'required',
-        'year' => 'required',
-        'mileage' => 'required',
-        'color' => 'required',
-        'car_name' => 'required',
-        'location' => 'required',
-        'address' => 'required',
-        'price' => 'required',
-        'desc' => 'required',
-        'receipt' => 'nullable',
-        'document' => 'nullable',
-        'images' => 'required|array',
-        'images.*' => 'image',
-    ], $messages);
+        // Validate request data with custom messages
+        $validator = Validator::make($request->all(), [
+            'category_id' => 'required',
+            'sub_category_id' => 'required',
+            'brand_id' => 'required',
+            'model' => 'required',
+            'year' => 'required',
+            'mileage' => 'required',
+            'color' => 'required',
+            'car_name' => 'required',
+            'location' => 'required',
+            'address' => 'required',
+            'price' => 'required',
+            'desc' => 'required',
+            'receipt' => 'nullable',
+            'document' => 'nullable',
+            'images' => 'required|array',
+            'images.*' => 'image',
+        ], $messages);
 
-    return $validator;
-}
+        return $validator;
+    }
 
 // The Product model has a belongsTo relationship defined with the Category model, indicating that a product belongs to a single category.
 
@@ -190,7 +192,7 @@ private function validateRequest(Request $request): \Illuminate\Contracts\Valida
     {
 
 
-        $products  = Product::with('brand', 'images', 'categories')->get();
+        $products = Product::with('brand', 'images', 'categories')->get();
         // echo "<pre>";
         // echo json_encode($products, JSON_PRETTY_PRINT);
         // echo "</pre>";
@@ -237,7 +239,7 @@ private function validateRequest(Request $request): \Illuminate\Contracts\Valida
                     $query->select('id', 'name', 'created_at'); // Select only the 'id' and 'name' attributes from the 'users' table
                 }])
                 ->where('category_id', $id)
-            ->where('is_approved', 1);
+                ->where('is_approved', 1);
 
             $auctions = Auction::where('category_id', $category->id)->limit(5)->get();
 
@@ -245,13 +247,12 @@ private function validateRequest(Request $request): \Illuminate\Contracts\Valida
             // Execute the query to fetch products
             $products = $productsQuery->get();
             // Return the data to your view or do something else with it
-            return view('home.products.index', compact('category',  'auctions', 'subcategories', 'products', 'categoryName'));
+            return view('home.products.index', compact('category', 'auctions', 'subcategories', 'products', 'categoryName'));
         } catch (ModelNotFoundException $e) {
             // Handle the case where the category is not found
             abort(404); // Return a 404 response
         }
     }
-
 
 
     public function getAuctionDates(): \Illuminate\Http\JsonResponse
@@ -262,9 +263,6 @@ private function validateRequest(Request $request): \Illuminate\Contracts\Valida
         // Return the starting and ending dates as a JSON response
         return response()->json($auctions);
     }
-
-
-
 
 
     public function getSubProductCategory($sub_category_name)
@@ -296,7 +294,7 @@ private function validateRequest(Request $request): \Illuminate\Contracts\Valida
 
 
             // Return the data to your view
-            return view('home.products.sub-category-product', compact('subcategories',  'categoryImage','auctions',  'sub_category_name', 'categoryName', 'products'));
+            return view('home.products.sub-category-product', compact('subcategories', 'categoryImage', 'auctions', 'sub_category_name', 'categoryName', 'products'));
         } catch (ModelNotFoundException $e) {
             // Handle the case where the subcategory is not found
             abort(404); // Return a 404 response
@@ -341,16 +339,14 @@ private function validateRequest(Request $request): \Illuminate\Contracts\Valida
     }
 
 
+    public function createAuction(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
+    {
 
-     public  function createAuction(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
-     {
+        $brands = Brand::all();
+        $categories = Category::all();
 
-         $brands = Brand::all();
-         $categories=  Category::all();
-
-         return view('admin.auction', ['brands' => $brands, 'categories' => $categories]);
-     }
-
+        return view('admin.auction', ['brands' => $brands, 'categories' => $categories]);
+    }
 
 
     public function saveAuction(Request $request)
@@ -364,7 +360,7 @@ private function validateRequest(Request $request): \Illuminate\Contracts\Valida
         }
 
         // Save category
-        $auction  = Auction::create([
+        $auction = Auction::create([
             'category_id' => $request->category_id,
             'sub_category_id' => $request->sub_category_id,
             'brand_id' => $request->brand_id,
@@ -372,7 +368,7 @@ private function validateRequest(Request $request): \Illuminate\Contracts\Valida
             'color' => $request->color,
             'address' => $request->address,
             'price' => $request->price,
-            'deed' => $request->deed  ? 1 : 0,
+            'deed' => $request->deed ? 1 : 0,
             'car_receipt' => $request->car_receipt ? 1 : 0,
             'car_docs' => $request->car_docs ? 1 : 0,
             'mileage' => $request->mileage,
@@ -401,7 +397,6 @@ private function validateRequest(Request $request): \Illuminate\Contracts\Valida
         return redirect()->back()->with(['success' => 'The auction has been successfully uploaded and is now live.']);
 
     }
-
 
 
     private function validateAuctionRequest(Request $request): \Illuminate\Validation\Validator
@@ -450,7 +445,6 @@ private function validateRequest(Request $request): \Illuminate\Contracts\Valida
 
         return $validator;
     }
-
 
 
     public function updateProduct(Request $request)
@@ -503,7 +497,7 @@ private function validateRequest(Request $request): \Illuminate\Contracts\Valida
 
     public function reachOut(Request $request): \Illuminate\Http\RedirectResponse
     {
-         # Find the product
+        # Find the product
         $product = Product::find($request->productid);
 
         #  Ensure the product exists
@@ -550,7 +544,6 @@ private function validateRequest(Request $request): \Illuminate\Contracts\Valida
         $searchTerm = $request->input('search');
 
 
-
         // Base query for live auctions: all auctions except those whose ending date has passed
         $liveAuctionsQuery = Auction::with('user', 'images')
             ->where('ending_date', '>=', $today);
@@ -588,60 +581,70 @@ private function validateRequest(Request $request): \Illuminate\Contracts\Valida
     }
 
 
-
-
-//     public function getAuctionCars(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
-//     {
-//
-//
-//         $today = Carbon::today();
-//
-////         $auctions = Auction::with('user', 'images') ->where('starting_date', '>', $today)->get();
-//
-//         // Fetch live auctions (starting today or earlier)
-//         $auctions = Auction::with('user', 'images')->get();
-////             ->where('starting_date', '<=', $today)
-////             ->get();
-//
-//         // Fetch upcoming auctions (starting after today) and limit to 5
-//         $upcomingAuctions = Auction::with('user', 'images')
-//             ->where('starting_date', '>', $today)
-//             ->get();
-//
-//
-////         $upcomingAuctions = Auction::with('user', 'images')
-////             ->where('starting_date', '<', $today)
-////             ->limit(5)
-////             ->get();
-////
-////          echo "<pre>";
-////          echo json_encode($auctions, JSON_PRETTY_PRINT);
-////          echo "</pre>";
-////
-////          exit;
-//
-//
-//         return view('home.auction.index', ['auctions' => $auctions, 'upcomingAuctions' => $upcomingAuctions]);
-//
-//     }
-
-
     public function getAuctionCarsById($id)
     {
-        // Convert the JSON string to an associative array
-        $countdownData = json_decode(Session::get('countdownData'), true);
+        try {
+            // Retrieve the session data
+            $countdownData = Session::get('countdownData');
 
-        // Fetch auction records based on the IDs in $countdownData
-        $auctions = [];
-        foreach ($countdownData as $auctionId => $countdown) {
-            // Find the auction record by ID and add it to the $auctions array
-            $auction = Auction::with('images', 'user')->findOrFail($auctionId);
-            $auctions[] = $auction;
+            // Check if countdownData is a JSON string and decode it if necessary
+            if (is_string($countdownData)) {
+                $countdownData = json_decode($countdownData, true);
+            }
+
+            // Ensure countdownData is an array
+            if (!is_array($countdownData)) {
+                // Handle the error accordingly
+                return redirect()->route('get.auction.cars');
+            }
+
+            // Define the default countdown
+            $defaultCountdown = [
+                'days' => '3',
+                'hours' => '19',
+                'minutes' => '20',
+                'seconds' => '48'
+            ];
+
+            // Check if the provided ID exists in the countdown data and set the countdown accordingly
+            $countdown = $countdownData[$id] ?? $defaultCountdown;
+
+            // Find the auction record by the provided ID
+            $auction = Auction::with('images', 'user', 'categories', 'bids')->findOrFail($id);
+
+            // Retrieve the bids for the auction
+            $bids = $auction->bids;
+
+            // Calculate the total count of bids
+            $totalBids = $bids->count();
+
+            // Find the highest bid
+            $highestBid = $bids->max('price');
+
+            $MinimumBid = $bids->min('price');
+
+            // Add the views increment
+            $auction->increment('views');
+
+            // Get the current date and time
+            $currentDateTime = Carbon::now()->format('l, h:ia');
+
+            // Add countdown data to the auction
+            $auction->countdown = $countdown;
+
+            // Prepare the data to be returned
+
+            // Return the auction data as a JSON response
+            return view('home.auction.view_auction', ['auction' => $auction, 'currentDateTime' => $currentDateTime,
+                'totalBids' => $totalBids, 'highestBid' => $highestBid, 'MinimumBid' => $MinimumBid]);
+
+        } catch (\Exception $e) {
+            // Log the error
+            Log::error('Error retrieving auction data: ' . $e->getMessage());
+
+            // Redirect back with an error message
+            return redirect()->route('get.auction.cars')->with('error', 'An error occurred while retrieving the auction data. Please try again.');
         }
-
-        echo json_encode($auctions);
-
-        return view('home.auction.view_auction', ['auctions' => $auctions]);
     }
 
 
@@ -678,7 +681,6 @@ private function validateRequest(Request $request): \Illuminate\Contracts\Valida
             return redirect()->back()->with(['error' => 'Failed to post comment. Please try again later.' . $e->getMessage()]);
         }
     }
-
 
 
     public function bussinessReview(Request $request): \Illuminate\Http\RedirectResponse
@@ -753,60 +755,55 @@ private function validateRequest(Request $request): \Illuminate\Contracts\Valida
         $auctions = Auction::all()->take(5);
 
 
-
         // Return the search results to the view
         return view('home.products.search', compact('products', 'auctions'));
     }
 
-     public  function  valueAsset(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
-     {
+    public function valueAsset(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
+    {
 
-          $brands = Brand::all();
+        $brands = Brand::all();
 
-         return view('home.value.index', compact('brands'));
-     }
-
-
-        public function saveValuedAsset(Request $request): \Illuminate\Http\RedirectResponse
-        {
+        return view('home.value.index', compact('brands'));
+    }
 
 
-            $saveAsset = ValueAsset::create([
-                'user_id' => auth()->user()->id,
-                'model' => $request->model,
-                'color' => $request->color,
-                'mileage' => $request->mileage,
-                'engine_type' => $request->engine_type,
-                'desc' => $request->desc,
-                'brand' => $request->brand,
-                'asset_type' => $request->selected_car_type
+    public function saveValuedAsset(Request $request): \Illuminate\Http\RedirectResponse
+    {
+
+
+        $saveAsset = ValueAsset::create([
+            'user_id' => auth()->user()->id,
+            'model' => $request->model,
+            'color' => $request->color,
+            'mileage' => $request->mileage,
+            'engine_type' => $request->engine_type,
+            'desc' => $request->desc,
+            'brand' => $request->brand,
+            'asset_type' => $request->selected_car_type
+        ]);
+
+
+        $uploadImagesAndGetLinks = $this->uploadImagesAndGetLinks($request);
+        foreach ($uploadImagesAndGetLinks as $imageUrl) {
+            ValueDocs::create([
+                'value_asset_id' => $saveAsset->id,
+                'type' => 'Images',
+                'file_name' => $imageUrl,
             ]);
-
-
-
-            $uploadImagesAndGetLinks = $this->uploadImagesAndGetLinks($request);
-            foreach ($uploadImagesAndGetLinks as $imageUrl) {
-                ValueDocs::create([
-                    'value_asset_id' => $saveAsset->id,
-                    'type' => 'Images',
-                    'file_name' => $imageUrl,
-                ]);
-            }
-
-            $uploadDocsAndGetLinks = $this->uploadDocsAndGetLinks($request);
-            foreach ($uploadDocsAndGetLinks as $docsUrl) {
-                ValueDocs::create([
-                    'value_asset_id' => $saveAsset->id,
-                    'type' => 'Docs',
-                    'file_name' => $docsUrl,
-                ]);
-            }
-
-            return redirect()->back()->with(['success' => 'Record received. You shall be notified upon reviewal.']);
         }
 
+        $uploadDocsAndGetLinks = $this->uploadDocsAndGetLinks($request);
+        foreach ($uploadDocsAndGetLinks as $docsUrl) {
+            ValueDocs::create([
+                'value_asset_id' => $saveAsset->id,
+                'type' => 'Docs',
+                'file_name' => $docsUrl,
+            ]);
+        }
 
-
+        return redirect()->back()->with(['success' => 'Record received. You shall be notified upon reviewal.']);
+    }
 
 
     public function uploadDocsAndGetLinks($request): array
@@ -837,7 +834,6 @@ private function validateRequest(Request $request): \Illuminate\Contracts\Valida
     }
 
 
-
     public function updateAuctionStatus(Request $request)
     {
         $auctionId = $request->input('auction_id');
@@ -852,7 +848,7 @@ private function validateRequest(Request $request): \Illuminate\Contracts\Valida
     }
 
 
-    public  function countdown(Request $request)
+    public function countdown(Request $request)
     {
         $countdownData = $request->input('countdownData');
 
@@ -862,4 +858,46 @@ private function validateRequest(Request $request): \Illuminate\Contracts\Valida
         return response()->json(['success' => true]);
 
     }
+
+
+    public function BidForAuction(Request $request)
+    {
+        try {
+            // Step 1: Validate the incoming request
+            $request->validate([
+                'auction_id' => 'required',
+                'amount_to_bid' => 'required|numeric|min:0',
+            ]);
+
+            // Step 2: Create a new bid
+            Bid::create([
+                'user_id' => Auth::id(),
+                'auction_id' => $request->auction_id,
+                'price' => $request->amount_to_bid,
+            ]);
+
+            // Step 3: Retrieve the auction record
+            $auction = Auction::findOrFail($request->auction_id);
+
+            // Step 4: Notify the auction owner
+            $owner = $auction->user; // Assuming the Auction model has a 'user' relationship defined
+
+            $data = [
+                'title' => 'New Bid Notification',
+                'message' => Auth::user()->name . ' just bid on your auction car named ' . $auction->car_name . ' with a bid of N' . $request->amount_to_bid
+            ];
+
+            $owner->notify(new NotifyAuctionOwners($data));
+
+            // Step 5: Redirect back with a success message
+            return redirect()->back()->with('success', 'You have successfully bid on this asset. You will be notified of any updates.');
+        } catch (\Exception $e) {
+            // Log the error
+            Log::error('Error bidding for auction: ' . $e->getMessage());
+
+            // Redirect back with an error message
+            return redirect()->back()->with('error', 'An error occurred while placing your bid. Please try again.');
+        }
+    }
+
 }

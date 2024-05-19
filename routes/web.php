@@ -80,6 +80,7 @@ Route::group(['middleware' => ['showNavBar']], function () {
     #auction routes....
         Route::get('/get-auction', [ProductController::class, 'getAuctionCars'])->name('get.auction.cars');
         Route::get('/get-auction/{id}', [ProductController::class, 'getAuctionCarsById'])->name('get.auction.cars.id');
+        Route::post('/bid-on-asset', [ProductController::class, 'BidForAuction'])->name('bid_auction');
 
         #comment routes....
 
