@@ -30,18 +30,22 @@
                         <div id="auction-timers">
                             <!-- Countdown timer for each auction will be dynamically generated here -->
                         </div>
-                        <div class="time">
+                        <div class="time" data-auction-id="{{ $auction->id }}" data-ending-date="{{ $auction->ending_date }}">
                             <p>
                                 <strong>Days</strong><br>
-                                <span id="days">50</span>
+                                <span class="days">0</span>
                             </p>
                             <p>
                                 <strong>Hours</strong><br>
-                                <span id="hours">4</span>
+                                <span class="hours">0</span>
                             </p>
                             <p>
                                 <strong>Minutes</strong><br>
-                                <span id="minutes">31</span>
+                                <span class="minutes">0</span>
+                            </p>
+                            <p>
+                                <strong>Seconds</strong><br>
+                                <span class="seconds">0</span>
                             </p>
                         </div>
 
@@ -153,6 +157,74 @@
         });
     });
 
+</script>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const countdownElements = document.querySelectorAll('.time');
+
+        countdownElements.forEach(countdownElement => {
+            const auctionId = countdownElement.getAttribute('data-auction-id');
+            const endDateString = countdownElement.getAttribute('data-ending-date');
+            const endDate = new Date(endDateString).getTime();
+
+            // Debugging: Check if dates are parsed correctly
+            console.log(`Auction ID: ${auctionId}`);
+            console.log(`End Date: ${endDateString}`);
+            console.log(`Parsed End Date (timestamp): ${endDate}`);
+
+            const updateCountdown = () => {
+                const now = new Date().getTime();
+                const distance = endDate - now;
+
+                // Debugging: Check distance calculation
+                console.log(`Current Time: ${now}`);
+                console.log(`Time Difference: ${distance}`);
+
+                if (distance >= 0) {
+                    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                    countdownElement.querySelector('.days').innerText = days;
+                    countdownElement.querySelector('.hours').innerText = hours;
+                    countdownElement.querySelector('.minutes').innerText = minutes;
+                    countdownElement.querySelector('.seconds').innerText = seconds;
+                } else {
+                    clearInterval(countdownInterval);
+                    countdownElement.innerHTML = "EXPIRED";
+                    // updateAuctionStatus(auctionId); // Uncomment this to update status
+                }
+            };
+
+            const countdownInterval = setInterval(updateCountdown, 1000);
+            updateCountdown();
+        });
+
+        function updateAuctionStatus(auctionId) {
+            $.ajax({
+                url: '{{ route("updateAuctionStatus") }}',
+                method: 'POST',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    auction_id: auctionId
+                },
+                success: function(response) {
+                    if (response.success) {
+                        console.log('Auction status updated successfully.');
+                    } else {
+                        console.log('Failed to update auction status.');
+                    }
+                },
+                error: function(xhr) {
+                    console.log('Error:', xhr.responseText);
+                }
+            });
+        }
+    });
 </script>
 </body>
 

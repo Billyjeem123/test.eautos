@@ -144,7 +144,7 @@
                             <h6>Compare</h6>
                             <span>
                 <i class="fa-regular fa-heart"></i>
-                <i class="fa fa-share"></i>
+{{--                <i class="fa fa-share"></i>--}}
             </span>
                         </div>
                     </div>

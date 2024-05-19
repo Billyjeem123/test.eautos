@@ -113,6 +113,9 @@ class HomeController extends Controller
         // Save the user to the database
         $user->save();
 
+        // Authenticate and log in the user
+        Auth::login($user);
+
         // Optionally, you can return a response or redirect to a different page
         return redirect()->route('index')->with('success', 'Registration successful');
 
@@ -149,6 +152,9 @@ class HomeController extends Controller
         // Save the user to the database
         $user->save();
 
+        // Authenticate and log in the user
+        Auth::login($user);
+
         // Redirect to the index page with a success message
         return redirect()->route('index')->with('success', 'Registration successful');
     }
@@ -182,6 +188,10 @@ class HomeController extends Controller
 
         // Save the user to the database
         $user->save();
+
+
+        // Authenticate and log in the user
+        Auth::login($user);
 
         // Redirect to the index page with a success message
         return redirect()->route('index')->with('success', 'Registration successful');
