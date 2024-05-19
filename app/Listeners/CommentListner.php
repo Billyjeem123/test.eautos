@@ -4,6 +4,7 @@ namespace App\Listeners;
 
 use App\Events\CommentEvent;
 use App\Models\User;
+use App\Notifications\CommentNotification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
@@ -28,6 +29,6 @@ class CommentListner
     public function handle(CommentEvent $event): void
     {
         $admin = User::where('email', $event->owneremail)->first();
-        $admin->notify(new \App\Notifications\CommentNotification($event->owneremail, $event->title));
+        $admin->notify(new CommentNotification($event->owneremail, $event->title));
     }
 }

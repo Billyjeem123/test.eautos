@@ -80,17 +80,35 @@ class AdminController extends Controller
     return view('admin.login');
  }
 
-    public function markAsRead()
-{
-    // Get the authenticated user
-    $user = Auth::user();
+    public function markAsRead($id)
+    {
+        // Get the authenticated user
+        $user = Auth::user();
 
-    // Mark all unread notifications as read for the user
-    $user->unreadNotifications->markAsRead();
+        // Find the notification by id
+        $notification = $user->notifications()->find($id);
 
-    // Optionally, you can redirect the user back or to another page
-    return redirect()->back()->with('success', 'Notification marked as read.');
-}
+        if ($notification) {
+            // Mark the notification as read
+            $notification->markAsRead();
+        }
+
+        // Optionally, you can redirect the user back or to another page
+        return redirect()->back()->with('success', 'Notification marked as read.');
+    }
+
+
+//    public function markAsRead($id)
+//{
+//    // Get the authenticated user
+//    $user = Auth::user();
+//
+//    // Mark all unread notifications as read for the user
+//    $user->unreadNotifications->markAsRead();
+//
+//    // Optionally, you can redirect the user back or to another page
+//    return redirect()->back()->with('success', 'Notification marked as read.');
+//}
 
 
     public  function getEvaluations(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application

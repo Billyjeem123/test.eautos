@@ -173,7 +173,7 @@ Route::prefix('admin')->middleware('auth', 'admin', 'notify')->group(function ()
 
 
      #notification..
-     Route::get('/read', [AdminController::class, 'markAsRead'])->name('mark_As_read');
+     Route::get('/read/{id}', [AdminController::class, 'markAsRead'])->name('mark_As_read');
 
   #admin stolen cars.........
     Route::get('/stolen/car', [StolenCarController::class, 'showuploadpage'])->name('admin.stolen.all');
@@ -234,7 +234,7 @@ Route::prefix('admin')->middleware('auth', 'admin', 'notify')->group(function ()
     Route::get('/products/details/{id}', [AdminController::class, 'productDetails'])->name('admin.products.details');
     Route::get('/auction/all', [AdminController::class, 'auctionAll'])->name('admin.auction.all');
     Route::delete('/auction/delete/{id}', [ProductController::class, 'deleteAuction'])->name('admin.auction.delete');
-    Route::get('/interested-bidders', [AdminController::class, 'interestedBidders'])->name('admin.bidders.interested');
+    Route::get('/bidders-activity', [AdminController::class, 'interestedBidders'])->name('admin.bidders.interested');
     Route::delete('/bid/delete/{id}', [ProductController::class, 'deleteBid'])->name('admin.bid.delete');
 //    Route::get('/asset_evaluation/details/{id}', [AdminController::class, 'productDetails'])->name('admin.products.details');
 
