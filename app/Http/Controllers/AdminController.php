@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Auction;
+use App\Models\Bid;
 use App\Models\Category;
 use App\Models\Message;
 use App\Models\Product;
@@ -96,7 +98,10 @@ class AdminController extends Controller
 
 
 
-   $allAsset = ValueAsset::with('asset_docs')->get();
+        $allAsset = ValueAsset::with('asset_docs')
+            ->orderBy('id', 'desc')
+            ->get();
+
         return view('admin.asset-evaluation', ['allAsset' => $allAsset]);
 
 
@@ -156,7 +161,10 @@ class AdminController extends Controller
       public function allMessages(){
 
 
-        $messages =  Message::where('receiver_id', auth()->user()->id)->get();
+          $messages = Message::where('receiver_id', auth()->user()->id)
+              ->orderBy('id', 'desc')
+              ->get();
+
 
 
           return view('admin.message', ['messages' => $messages]);
@@ -181,6 +189,27 @@ class AdminController extends Controller
         $message = Message::findOrFail($id);
         $message->delete();
         return redirect()->back()->with('success', 'Record deleted successfully');
+    }
+
+    public function auctionAll()
+    {
+        $auctions = Auction::orderBy('id', 'desc')->get();
+
+        return view('admin.auction-listing', ['auction' => $auctions]);
+
+    }
+
+    public function interestedBidders(){
+
+        $bids = Bid::with('auction')->where('owner_id', auth()->user()->id)
+            ->orderBy('id', 'desc')
+            ->get();
+
+        return view('admin.bidders-list', ['bids' => $bids]);
+
+
+
+
     }
 
 

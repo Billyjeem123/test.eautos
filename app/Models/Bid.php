@@ -11,7 +11,7 @@ class Bid extends Model
 
     protected $table = 'auction_bids';
 
-    protected $fillable = ['auction_id', 'user_id', 'price'];
+    protected $fillable = ['auction_id', 'user_id', 'price', 'owner_id'];
 
     public function user()
     {

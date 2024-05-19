@@ -76,7 +76,7 @@
 
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+        <a class="nav-link collapsed" href="" data-toggle="collapse" data-target="#collapseUtilities"
           aria-expanded="true" aria-controls="collapseUtilities">
             <i class="fas fa-gavel"></i>
 
@@ -86,13 +86,11 @@
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Post Option</h6>
             <a class="collapse-item" href="{{route('admin.auction')}}">Auction Asset</a>
-            <a class="collapse-item" href="{{route('admin.auction')}}">View Listings</a>
+            <a class="collapse-item" href="{{route('admin.auction.all')}}">View Listings</a>
+              <a class="collapse-item" href="{{route('admin.bidders.interested')}}">Bidders Activity</a>
           </div>
         </div>
       </li>
-
-
-
 
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities103"

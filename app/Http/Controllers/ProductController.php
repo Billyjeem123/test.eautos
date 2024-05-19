@@ -219,6 +219,23 @@ class ProductController extends Controller
         return redirect()->back()->with('success', 'Record deleted successfully');
     }
 
+    public function deleteAuction($id): \Illuminate\Http\RedirectResponse
+    {
+        $product = Auction::findOrFail($id);
+        $product->delete();
+        return redirect()->back()->with('success', 'Record deleted successfully');
+    }
+
+    public function deleteBid($id): \Illuminate\Http\RedirectResponse
+    {
+        $product = Bid::findOrFail($id);
+        $product->delete();
+        return redirect()->back()->with('success', 'Record deleted successfully');
+    }
+
+
+
+
     public function getProductCategory($id)
     {
         try {
@@ -869,22 +886,22 @@ class ProductController extends Controller
                 'amount_to_bid' => 'required|numeric|min:0',
             ]);
 
-            // Step 2: Create a new bid
+            // Step 2: Create a new bid and retrieve owner
+
+            $auction = Auction::findOrFail($request->auction_id);
             Bid::create([
                 'user_id' => Auth::id(),
                 'auction_id' => $request->auction_id,
                 'price' => $request->amount_to_bid,
+                'owner_id'  => $auction->user_id
             ]);
-
-            // Step 3: Retrieve the auction record
-            $auction = Auction::findOrFail($request->auction_id);
 
             // Step 4: Notify the auction owner
             $owner = $auction->user; // Assuming the Auction model has a 'user' relationship defined
 
             $data = [
                 'title' => 'New Bid Notification',
-                'message' => Auth::user()->name . ' just bid on your auction car named ' . $auction->car_name . ' with a bid of N' . $request->amount_to_bid
+                'message' => Auth::user()->name . ' just bid on your auction car named ' . $auction->car_name . ' with a bid of N' . number_format($request->amount_to_bid)
             ];
 
             $owner->notify(new NotifyAuctionOwners($data));
