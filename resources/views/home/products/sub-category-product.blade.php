@@ -23,9 +23,9 @@
 
 
 
-        <li>
-            <a href="{{ route('sell') }}" class="{{ request()->routeIs('sell') ? 'active' : '' }}">Sell A {{ Str::singular($categoryName) }}</a>
-        </li>
+{{--        <li>--}}
+{{--            <a href="{{ route('sell') }}" class="{{ request()->routeIs('sell') ? 'active' : '' }}">Sell A {{ Str::singular($categoryName) }}</a>--}}
+{{--        </li>--}}
 
 
         <li><a href="{{route('value.vehicle')}}">Value My {{ Str::singular($categoryName) }}</a></li>
@@ -57,18 +57,22 @@
                         <div id="auction-timers">
                             <!-- Countdown timer for each auction will be dynamically generated here -->
                         </div>
-                        <div class="time">
+                        <div class="time" data-auction-id="{{ $auction->id }}" data-ending-date="{{ $auction->ending_date }}">
                             <p>
                                 <strong>Days</strong><br>
-                                <span id="days">50</span>
+                                <span class="days">0</span>
                             </p>
                             <p>
                                 <strong>Hours</strong><br>
-                                <span id="hours">4</span>
+                                <span class="hours">0</span>
                             </p>
                             <p>
                                 <strong>Minutes</strong><br>
-                                <span id="minutes">31</span>
+                                <span class="minutes">0</span>
+                            </p>
+                            <p>
+                                <strong>Seconds</strong><br>
+                                <span class="seconds">0</span>
                             </p>
                         </div>
 
@@ -95,16 +99,15 @@
 
             <div class="card_group">
 
-                @foreach ($products as $product)
+                @forelse ($products as $product)
                     <div class="card">
-
-                        <a href="{{route('product.show', $product->id)}}" class="card_link">
+                        <a href="{{ route('product.show', $product->id) }}" class="card_link">
                             <div class="card_img" style="background: url('{{ $product->images[0]['image'] }}') no-repeat;"></div>
                         </a>
                         <div class="card_text">
                             <h5>{{ $product->car_name }}</h5>
-                            <small><em>Posted by: {{ $product->user->name }} - Posted  {{ $product->created_at->diffForHumans() }}</em></small>
-{{--                            <small><em>Posted by: {{ $product->user->name }} - Joined {{ $product->user->created_at->diffForHumans() }}</em></small>--}}
+                            <small><em>Posted by: {{ $product->user->name }} - Posted {{ $product->created_at->diffForHumans() }}</em></small>
+                            {{-- <small><em>Posted by: {{ $product->user->name }} - Joined {{ $product->user->created_at->diffForHumans() }}</em></small> --}}
                             <div class="details">
                                 <ul>
                                     <li>{{ $sub_category_name }}</li>
@@ -120,11 +123,15 @@
                             <h6>Compare</h6>
                             <span>
                 <i class="fa-regular fa-heart"></i>
-                <i class="fa fa-share"></i>
+{{--                <i class="fa fa-share"></i>--}}
+
             </span>
                         </div>
                     </div>
-                @endforeach
+                @empty
+                    <p>No products available.</p>
+                @endforelse
+
 
 
 
@@ -228,6 +235,73 @@
         });
     });
 
+</script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const countdownElements = document.querySelectorAll('.time');
+
+        countdownElements.forEach(countdownElement => {
+            const auctionId = countdownElement.getAttribute('data-auction-id');
+            const endDateString = countdownElement.getAttribute('data-ending-date');
+            const endDate = new Date(endDateString).getTime();
+
+            // Debugging: Check if dates are parsed correctly
+            console.log(`Auction ID: ${auctionId}`);
+            console.log(`End Date: ${endDateString}`);
+            console.log(`Parsed End Date (timestamp): ${endDate}`);
+
+            const updateCountdown = () => {
+                const now = new Date().getTime();
+                const distance = endDate - now;
+
+                // Debugging: Check distance calculation
+                console.log(`Current Time: ${now}`);
+                console.log(`Time Difference: ${distance}`);
+
+                if (distance >= 0) {
+                    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                    countdownElement.querySelector('.days').innerText = days;
+                    countdownElement.querySelector('.hours').innerText = hours;
+                    countdownElement.querySelector('.minutes').innerText = minutes;
+                    countdownElement.querySelector('.seconds').innerText = seconds;
+                } else {
+                    clearInterval(countdownInterval);
+                    countdownElement.innerHTML = "EXPIRED";
+                    // updateAuctionStatus(auctionId); // Uncomment this to update status
+                }
+            };
+
+            const countdownInterval = setInterval(updateCountdown, 1000);
+            updateCountdown();
+        });
+
+        function updateAuctionStatus(auctionId) {
+            $.ajax({
+                url: '{{ route("updateAuctionStatus") }}',
+                method: 'POST',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    auction_id: auctionId
+                },
+                success: function(response) {
+                    if (response.success) {
+                        console.log('Auction status updated successfully.');
+                    } else {
+                        console.log('Failed to update auction status.');
+                    }
+                },
+                error: function(xhr) {
+                    console.log('Error:', xhr.responseText);
+                }
+            });
+        }
+    });
 </script>
 </body>
 

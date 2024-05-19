@@ -238,6 +238,8 @@ Route::prefix('admin')->middleware('auth', 'admin', 'notify')->group(function ()
     Route::delete('/bid/delete/{id}', [ProductController::class, 'deleteBid'])->name('admin.bid.delete');
 //    Route::get('/asset_evaluation/details/{id}', [AdminController::class, 'productDetails'])->name('admin.products.details');
 
+    Route::get('/sold/items', [ProductController::class, 'sold_items'])->name('sold.all.admin');
+    Route::get('/sold/items/{id}', [ProductController::class, 'sold_items_by_id'])->name('sold_by_id.admin');
 
 
     //Paystack Route

@@ -1,4 +1,4 @@
-@extends('users.layouts.master')
+@extends('admin.layouts.master')
 
 
 
@@ -17,8 +17,8 @@
                 <tr>
                     <th>Sold Item</th>
                     <th>Price</th>
+                    <th>Report Status</th>
                     <th>Date Purchased</th>
-
                     <th>View Details</th>
 
                 </tr>
@@ -28,6 +28,7 @@
                     <tr>
                         <td>{{$report->item_name}}</td>
                         <td>{{$report->price}}</td>
+                        <td>{{$report->is_viewed === 0 ? "Pending" : "Seen"}}</td>
                         <td>{{$report->created_at->diffForHumans()}}</td>
                         <td><a href="{{route('sold_by_id.admin', $report->id)}}" class="btn btn-info btn-sm">View Order</a></td>
                     </tr>

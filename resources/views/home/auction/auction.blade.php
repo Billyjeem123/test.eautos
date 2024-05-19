@@ -21,9 +21,9 @@
         </li>
 
 
-        <li>
-            <a href="{{ route('sell') }}" class="{{ request()->routeIs('sell') ? 'active' : '' }}">Sell A Car</a>
-        </li>
+{{--        <li>--}}
+{{--            <a href="{{ route('sell') }}" class="{{ request()->routeIs('sell') ? 'active' : '' }}">Sell A Car</a>--}}
+{{--        </li>--}}
 
 
 

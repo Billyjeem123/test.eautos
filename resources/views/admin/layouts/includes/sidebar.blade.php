@@ -178,16 +178,12 @@
 {{--          <span>Media</span></a>--}}
 {{--      </li>--}}
 
-{{--      <li class="nav-item">--}}
-{{--        <a class="nav-link" href="serviceProvided.html">--}}
-{{--          <i class="fas fa-fw fa-briefcase"></i>--}}
-{{--          <span>Service Provided</span></a>--}}
-{{--      </li>--}}
-{{--      <li class="nav-item">--}}
-{{--        <a class="nav-link" href="soldHistory.html">--}}
-{{--          <i class="fas fa-fw fa-file"></i>--}}
-{{--          <span>Sold History</span></a>--}}
-{{--      </li>--}}
+
+      <li class="nav-item">
+        <a class="nav-link" href="{{route('sold.all.admin')}}">
+          <i class="fas fa-fw fa-file"></i>
+          <span>Sold History</span></a>
+      </li>
 
 
 
@@ -309,7 +305,7 @@
                 <a class="dropdown-item" href="#">
                   <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                   Activity Log
-                </a>FF
+                </a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="{{route('process.logout')}}" data-toggle="modal" data-target="#logoutModal">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>

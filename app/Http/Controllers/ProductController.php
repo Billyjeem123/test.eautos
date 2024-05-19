@@ -10,6 +10,7 @@ use App\Models\Bid;
 use App\Models\BussinessReview;
 use App\Models\Comment;
 use App\Models\Message;
+use App\Models\SoldItems;
 use App\Models\User;
 use App\Models\Brand;
 use App\Models\Product;
@@ -915,6 +916,30 @@ class ProductController extends Controller
             // Redirect back with an error message
             return redirect()->back()->with('error', 'An error occurred while placing your bid. Please try again.');
         }
+    }
+
+
+    public function sold_items(){
+
+
+        $solditems = SoldItems::with('buyer_details')
+            ->orderBy('id', 'DESC')
+            ->get();
+
+        return view('admin.sold-history', ['solditems' => $solditems]);
+    }
+
+
+    public function sold_items_by_id($id)
+    {
+        $solditem = SoldItems::with('buyer_details', 'owner_details')->where('id', $id)->first();
+
+        // Check if the sold item exists
+        if ($solditem) {
+            $solditem->update(['is_viewed' => 1]);
+        }
+
+        return view('admin.modal.orders', ['solditem' => $solditem]);
     }
 
 }

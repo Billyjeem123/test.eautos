@@ -27,9 +27,9 @@
         </li>
 
 
-        <li>
-            <a href="{{ route('sell') }}" class="{{ request()->routeIs('sell') ? 'active' : '' }}">Sell A Car</a>
-        </li>
+{{--        <li>--}}
+{{--            <a href="{{ route('sell') }}" class="{{ request()->routeIs('sell') ? 'active' : '' }}">Sell A Car</a>--}}
+{{--        </li>--}}
 
 
         <li>
@@ -174,7 +174,7 @@
 <!-- ---------------------------- -->
 <main>
     <div class="table">
-        <h3>Farm Details</h3>
+        <h3>Auction Details</h3>
         <table>
             <tr>
                 <th>Property Type</th>

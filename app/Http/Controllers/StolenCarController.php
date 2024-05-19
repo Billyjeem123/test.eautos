@@ -13,7 +13,9 @@ class StolenCarController extends Controller
     public function index(){
 
 
-         $stolen  = StolenCar::with('user', 'brand')->get();
+         $stolen  = StolenCar::with('user', 'brand')
+             ->orderBy('stolen_cars.id', 'DESC')
+             ->get();
          $brands = Brand::all();
 
 
