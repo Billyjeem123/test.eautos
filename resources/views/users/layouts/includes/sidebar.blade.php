@@ -209,18 +209,18 @@
                   aria-labelledby="alertsDropdown">
                   <h6 class="dropdown-header">Alerts Center</h6>
                   @foreach ($notifications ?? [] as $notification)
-                  <a class="dropdown-item d-flex align-items-center" href="{{route('mark_As_read')}}">
-                      <div class="mr-3">
-                          <div class="icon-circle bg-primary">
-                              <i class="fas fa-file-alt text-white"></i>
+                      <a class="dropdown-item d-flex align-items-center" href="{{ route('mark_As_read', ['id' => $notification->id]) }}">
+                          <div class="mr-3">
+                              <div class="icon-circle bg-primary">
+                                  <i class="fas fa-file-alt text-white"></i>
+                              </div>
                           </div>
-                      </div>
-                      <div>
-                          <div class="small text-gray-500">{{ $notification->created_at->format('F d, Y') }}</div>
-                          <span class="font-weight-bold">{{ $notification->data['message'] }}</span>
-                      </div>
-                  </a>
-              @endforeach
+                          <div>
+                              <div class="small text-gray-500">{{ $notification->created_at->format('F d, Y') }}</div>
+                              <span class="font-weight-bold">{{ $notification->data['message'] }}</span>
+                          </div>
+                      </a>
+                  @endforeach
 
                   <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
               </div>

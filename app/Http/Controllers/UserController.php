@@ -15,14 +15,14 @@ class UserController extends Controller
 
     public function index(){
 
-        $users = User::all();
+        $users = User::orderBy('id', 'DESC')->get();
 
         return view('admin.users', ['users' => $users]);
     }
 
     public function indexAll(){
 
-        $users = User::all();
+        $users = User::orderBy('id', 'DESC')->get();
 
         return view('admin.allusers', ['users' => $users]);
     }

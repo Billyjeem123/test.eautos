@@ -140,7 +140,11 @@ class Dashboard extends Controller
     {
 
 
-        $products = Product::with('brand', 'images', 'categories')->where('user_id', auth()->user()->id)->get();
+        $products = Product::with('brand', 'images', 'categories')
+            ->where('user_id', auth()->user()->id)
+            ->orderBy('products.id', 'DESC')
+            ->get();
+
 
         // echo "<pre>";
         // echo json_encode($products, JSON_PRETTY_PRINT);
@@ -403,7 +407,9 @@ class Dashboard extends Controller
 
     public function get_all_parts(){
 
-        $parts =  Part::with('users', 'partcategories')->where('user_id', auth()->user()->id)->get();
+        $parts =  Part::with('users', 'partcategories')->where('user_id', auth()->user()->id)
+            ->orderBy('id', 'DESC')
+            ->get();
 
         return view('users.get-parts', compact('parts'));
     }
@@ -418,7 +424,10 @@ class Dashboard extends Controller
 
     public  function view_all_reports()
     {
-        $reports  = Report::where('user_id', auth()->user()->id)->get();
+        $reports = Report::where('user_id', auth()->user()->id)
+            ->orderBy('id', 'DESC')
+            ->get();
+
         return view('users.reported-vendors', ['reports' => $reports]);
     }
 
@@ -434,7 +443,10 @@ class Dashboard extends Controller
     public function view_all_requests(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
     {
 
-        $requests  = RequestCar::where('user_id', auth()->user()->id)->get();
+        $requests = RequestCar::where('user_id', auth()->user()->id)
+            ->orderBy('id', 'DESC')
+            ->get();
+
         return view('users.requests', ['requests' => $requests]);
 
 
@@ -451,14 +463,23 @@ class Dashboard extends Controller
 
      public  function get_asset_evaluation()
      {
-         $allAsset = ValueAsset::with('asset_docs')->where('user_id', auth()->user()->id)->get();
+         $allAsset = ValueAsset::with('asset_docs')
+             ->where('user_id', auth()->user()->id)
+             ->orderBy('id', 'DESC')
+             ->get();
+
          return view('users.assets_evaluation', ['allAsset' => $allAsset]);
      }
 
 
      public function sold_items(){
 
-         $solditems = SoldItems::with('buyer_details')->where('owner_id', auth()->user()->id)->get();
+
+         $solditems = SoldItems::with('buyer_details')
+             ->where('owner_id', auth()->user()->id)
+             ->orderBy('id', 'DESC')
+             ->get();
+
          return view('users.sold-history', ['solditems' => $solditems]);
      }
 
@@ -522,11 +543,33 @@ class Dashboard extends Controller
     public function show_all_stolen_cars(){
 
 
-        $stolen  = StolenCar::with('user', 'brand')->where('user_id', auth()->user()->id)->get();
+        $stolen = StolenCar::with('user', 'brand')
+            ->where('user_id', auth()->user()->id)
+            ->orderBy('id', 'DESC')
+            ->get();
+
         $brands = Brand::all();
 
 
         return view('users.stolenlisting', ['stolens' => $stolen, 'brands' => $brands]);
+    }
+
+
+    public function markAsRead($id)
+    {
+        // Get the authenticated user
+        $user = Auth::user();
+
+        // Find the notification by id
+        $notification = $user->notifications()->find($id);
+
+        if ($notification) {
+            // Mark the notification as read
+            $notification->markAsRead();
+        }
+
+        // Optionally, you can redirect the user back or to another page
+        return redirect()->back()->with('success', 'Notification marked as read.');
     }
 
 

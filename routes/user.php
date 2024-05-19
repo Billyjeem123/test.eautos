@@ -4,7 +4,7 @@ use App\Http\Controllers\UserDashboard\Dashboard;
 use Illuminate\Support\Facades\Route;
 
 
-Route::prefix('users')->middleware( 'notify', 'auth', 'strictlyUsers')->group(function () {
+Route::prefix('users')->middleware( 'userNotify', 'auth', 'strictlyUsers')->group(function () {
 
     Route::get('/index', [Dashboard::class, 'index'])->name('user.index');
     Route::get('/product-create', [Dashboard::class, 'product_create'])->middleware('userProfileCompleted')->name('user.product.index');
@@ -38,4 +38,5 @@ Route::prefix('users')->middleware( 'notify', 'auth', 'strictlyUsers')->group(fu
     Route::get('/stolen/car', [Dashboard::class, 'showuploadpage'])->name('users.stolen.view');
     Route::post('/stolen/car', [Dashboard::class, 'save_stolen_car'])->name('users.stolen_car');
     Route::get('/stolen/all', [Dashboard::class, 'show_all_stolen_cars'])->name('users.stolen.all');
+    Route::get('/read/{id}', [Dashboard::class, 'markAsRead'])->name('mark_As_read');
 });

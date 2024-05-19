@@ -70,6 +70,7 @@ class Kernel extends HttpKernel
         'authRedirect' => \App\Http\Middleware\authRedirect::class,
         'profile.complete' => \App\Http\Middleware\profileComleted::class,
         'userProfileCompleted' => \App\Http\Middleware\UserProfileCompleted::class,
-        'strictlyUsers' => \App\Http\Middleware\UserOnlyMiddleware::class
+        'strictlyUsers' => \App\Http\Middleware\UserOnlyMiddleware::class,
+        'userNotify' => \App\Http\Middleware\UserNotification::class
     ];
 }
