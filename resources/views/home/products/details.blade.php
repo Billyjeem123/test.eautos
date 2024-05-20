@@ -156,15 +156,58 @@
             <p><i class="fa fa-phone"></i>&nbsp; <span>{{$products->user->phone}}</span></p><br>
             <p><i class="fa fa-envelope"></i>&nbsp; <span>{{$products->user->email}}</span></p>
             <a>To Schedule Meeting &nbsp; <i class="fa fa-arrow-down"></i></a>
-            <form action="{{route('client.reachout')}}"  method="POST">
+
+            <form id="contactForm" action="{{ route('client.reachout') }}" method="POST">
                 @csrf
-                <input type="text" placeholder="Your Name" name="name"  required>
-                <input type="text" placeholder="Your Email"  name="email" required>
-                <input type="text" placeholder="Your Phone Number" name="phone" required>
-                <input type="hidden"  name="productid"  value="{{$products->id}}">
-                <textarea name="message" id="" cols="30" rows="6" placeholder="I'm interested in buying............" required></textarea>
-                <button type="submit">Send Email</button>
+                <input type="text" placeholder="Your Name" name="name" id="name" value="{{ old('name') }}" required>
+                <input type="text" placeholder="Your Email" name="email" id="email" value="{{ old('email') }}" required>
+                <input type="text" placeholder="Your Phone Number" name="phone" id="phone" value="{{ old('phone') }}" required>
+                <input type="hidden" name="productid" id="productid" value="{{ old('productid', $products->id) }}">
+                <textarea name="message" id="message" cols="30" rows="6" placeholder="I'm interested in buying............" required>{{ old('message') }}</textarea>
+                <button type="button" id="sendButton">Send Email</button>
             </form>
+
+            <script>
+                document.getElementById('sendButton').addEventListener('click', function() {
+                    @auth
+                    document.getElementById('contactForm').submit();
+                    @else
+                    // Save form data to session storage before redirecting
+                    let formData = {
+                        name: document.getElementById('name').value,
+                        email: document.getElementById('email').value,
+                        phone: document.getElementById('phone').value,
+                        message: document.getElementById('message').value,
+                        productid: document.getElementById('productid').value
+                    };
+
+                    // Save to session storage
+                    Object.keys(formData).forEach(key => {
+                        sessionStorage.setItem(key, formData[key]);
+                    });
+
+                    // Redirect to login page
+                    window.location.href = "{{ route('login') }}";
+                    @endauth
+                });
+
+                document.addEventListener('DOMContentLoaded', function() {
+                    // Check if there is saved data in session storage and populate the form
+                    ['name', 'email', 'phone', 'message', 'productid'].forEach(key => {
+                        if (sessionStorage.getItem(key)) {
+                            document.getElementById(key).value = sessionStorage.getItem(key);
+                            sessionStorage.removeItem(key); // Clean up the session storage
+                        }
+                    });
+
+                    // Check if the form was submitted successfully
+                    @if(session('status') && session('status') === 'success')
+                    document.getElementById('contactForm').reset();
+                    @endif
+                });
+            </script>
+
+
 
         </aside>
     </section>

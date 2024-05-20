@@ -121,38 +121,38 @@
 
 
     </section>
-    <div class="stores">
-        <div class="store-wrapper">
-            <h3>See Stores</h3>
-            <p>Buy your building materials from stores around you!</p>
-            <a href="#">See Stores</a>
-        </div>
-    </div>
-    <div class="arrival">
-        <h3><span>New Arrivals</span> <a href="#">See more</a></h3>
-        <div class="card-group">
+{{--    <div class="stores">--}}
+{{--        <div class="store-wrapper">--}}
+{{--            <h3>See Stores</h3>--}}
+{{--            <p>Buy your building materials from stores around you!</p>--}}
+{{--            <a href="#">See Stores</a>--}}
+{{--        </div>--}}
+{{--    </div>--}}
+{{--    <div class="arrival">--}}
+{{--        <h3><span>New Arrivals</span> <a href="#">See more</a></h3>--}}
+{{--        <div class="card-group">--}}
 
-            <div class="card">
-                <div
-                    class="card-image"
-                    style="background: url(images/parts/Rectangle\ 17.jpg)"
-                >
-                    <span><i class="far fa-heart"></i></span>
-                </div>
-                <div class="details">
-                    <h4>Cart Parts</h4>
-                    <p>
-                        <span>₦ 20,000</span>
-                        <span>&dollar; 200,000</span>
-                        <span>&pound; 180,000</span>
-                    </p>
-                    <strong><i class="fa fa-location-dot"></i>&nbsp; Lagos</strong>
-                </div>
-                <div class="card-footer">
-                    <p>
-                        <span><i class="fa fa-check"></i></span> Verified
-                    </p>
-    <!-- ----------------------------------- -->
+{{--            <div class="card">--}}
+{{--                <div--}}
+{{--                    class="card-image"--}}
+{{--                    style="background: url(images/parts/Rectangle\ 17.jpg)"--}}
+{{--                >--}}
+{{--                    <span><i class="far fa-heart"></i></span>--}}
+{{--                </div>--}}
+{{--                <div class="details">--}}
+{{--                    <h4>Cart Parts</h4>--}}
+{{--                    <p>--}}
+{{--                        <span>₦ 20,000</span>--}}
+{{--                        <span>&dollar; 200,000</span>--}}
+{{--                        <span>&pound; 180,000</span>--}}
+{{--                    </p>--}}
+{{--                    <strong><i class="fa fa-location-dot"></i>&nbsp; Lagos</strong>--}}
+{{--                </div>--}}
+{{--                <div class="card-footer">--}}
+{{--                    <p>--}}
+{{--                        <span><i class="fa fa-check"></i></span> Verified--}}
+{{--                    </p>--}}
+{{--    <!-- ----------------------------------- -->--}}
 {{--    <div class="car_dealers">--}}
 {{--        <h3>Connect with Car Dealers</h3>--}}
 {{--        <div class="card_group">--}}
