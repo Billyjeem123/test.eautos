@@ -7,6 +7,10 @@
   <title>Home Page</title>
   <link rel="stylesheet" href="/home/css/home.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+ <!-- Add the slick-theme.css if you want default styling -->
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.css"/>
+<!-- Add the slick-theme.css if you want default styling -->
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick-theme.css"/>
 </head>
 
 <body>
@@ -61,54 +65,26 @@
     <h4>List of essential Group Brands</h4>
     <ul>
       <li>
-        <img src="essential_img/Frame 194.png" alt="">
-        <p>Product</p>
-      </li>
-      <li>
-        <img src="essential_img/Frame 194.png" alt="">
-        <p>Product</p>
-      </li>
-      <li>
-        <img src="essential_img/Frame 194.png" alt="">
-        <p>Product</p>
-      </li>
-      <li>
-        <img src="essential_img/Frame 194.png" alt="">
-        <p>Product</p>
-      </li>
-      <li>
-        <img src="essential_img/Frame 194.png" alt="">
-        <p>Product</p>
-      </li>
-      <li>
-        <img src="essential_img/Frame 194.png" alt="">
-        <p>Product</p>
-      </li>
-      <li>
-        <img src="essential_img/Frame 194.png" alt="">
-        <p>Product</p>
-      </li>
-      <li>
-        <img src="essential_img/Frame 194.png" alt="">
-        <p>Product</p>
-      </li>
-      <li>
-        <img src="essential_img/Frame 194.png" alt="">
-        <p>Product</p>
-      </li>
-      <li>
-        <img src="essential_img/Frame 194.png" alt="">
-        <p>Product</p>
-      </li>
-      <li>
-        <img src="essential_img/Frame 194.png" alt="">
-        <p>Product</p>
-      </li>
-      <li>
-        <img src="essential_img/Frame 194.png" alt="">
-        <p>Product</p>
+        <h3>Lorem</h3>
+        <p>loremloremloremloeremememwjfbljvajh</p>
+        <a href="#">Button</a>
       </li>
     </ul>
+    
+        <div class="center-item-slider">
+         <div class="holder center">your content <br><br><br> ygfwygsdyafgukqvyjsheavcsdjhcvaksdjhcv</div>
+         <div class="holder center">your content <br><br><br> ygfwygsdyafgukqvyjsheavcsdjhcvaksdjhcv</div>
+         <div class="holder center">your content <br><br><br> ygfwygsdyafgukqvyjsheavcsdjhcvaksdjhcv</div>
+         <div class="holder center">your content <br><br><br> ygfwygsdyafgukqvyjsheavcsdjhcvaksdjhcv</div>
+         <div class="holder center">your content <br> ygfwygsdyafgukqvyjsheavcsdjhcvaksdjhcv</div>
+         <div class="holder center">your content <br> ygfwygsdyafgukqvyjsheavcsdjhcvaksdjhcv</div>
+         <div class="holder center">your content</div>
+         <div class="holder center">your content</div>
+         <div class="holder center">your content</div>
+         <div class="holder center">your content</div>
+         <div class="holder center">your content</div>
+       </div>
+  
   </div>
   <!-- ------------------------------------------------- -->
   <div class="report_request container">
@@ -330,4 +306,64 @@
 {{--  </div>--}}
 
 
+  <!-- --------------------------------------------------- -->
+  <div class="blog">
+      <h3>Blog Posts</h3>
+     <div class="blog-group">
+            <a href="#" class="card">
+                <div class="blog-img"></div>
+                <h4>Latest News</h4>
+                <p>Lorem jjwefilqrfrbhbflqervn vyuqoYF</p>
+            </a>
+            <a href="#" class="card">
+                <div class="blog-img"></div>
+                <h4>Latest News</h4>
+                <p>Lorem jjwefilqrfrbhbflqervn vyuqoYF</p>
+            </a>
+            <a href="#" class="card">
+                <div class="blog-img"></div>
+                <h4>Latest News</h4>
+                <p>Lorem jjwefilqrfrbhbflqervn vyuqoYF</p>
+            </a>
+            <a href="#" class="card">
+                <div class="blog-img"></div>
+                <h4>Latest News</h4>
+                <p>Lorem jjwefilqrfrbhbflqervn vyuqoYF</p>
+            </a>
+         
+        </div>
+  </div>
   @include('home.includes.footer')
+  <script src="
+https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js
+"></script>
+<script>
+      //Center item Slider
+  $('.center-item-slider').slick({
+    centerMode: true,
+    centerPadding: '60px',
+    autoplay: true,
+    autoplaySpeed: 4000,
+    slidesToShow: 3,
+    responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          arrows: false,
+          centerMode: true,
+          centerPadding: '40px',
+          slidesToShow: 3
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          arrows: false,
+          centerMode: true,
+          centerPadding: '40px',
+          slidesToShow: 1
+        }
+      }
+    ]
+  });
+</script>

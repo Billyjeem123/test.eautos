@@ -942,4 +942,34 @@ class ProductController extends Controller
         return view('admin.modal.orders', ['solditem' => $solditem]);
     }
 
+
+
+    public function showForm()
+    {
+        return view('home.test');
+    }
+
+    public function handleForm(Request $request)
+    {
+        $selectedFrameworks = $request->input('frameworks', []);
+
+        // Process the selected frameworks
+        // For example, you can store them in the database or perform some other action
+
+        return redirect()->back()->with('success', 'Form submitted successfully!');
+    }
+
+     public  function showBlog()
+     {
+
+         return view('home.blog');
+
+     }
+
+
+     public function showBlogById(){
+
+         return view('home.blog-details');
+
+     }
 }

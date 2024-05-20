@@ -104,7 +104,7 @@ html {
     background-color: #ffffff;
     padding: 1rem;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     gap: 10px;
 }
@@ -134,7 +134,7 @@ html {
 .hero {
     width: 100%;
     min-height: 35vh;
-    background: linear-gradient(#000088, #000088), url(images/gold.png) no-repeat;
+    background: linear-gradient(#000088, #000088), url(https://plus.unsplash.com/premium_photo-1678440680755-81ff72fb2adf?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D) no-repeat;
     background-blend-mode: hue;
     background-position: center;
     background-size: cover;
@@ -352,7 +352,7 @@ footer .socials a:hover {
         min-width: 30%;
         min-height: 200px;
         right: 0;
-        z-index: 999;
+        z-index: 99999;
         background-color: #ffffff;
         padding: 0;
         gap: 0;
@@ -411,7 +411,7 @@ footer .socials a:hover {
     .car_type_nav {
         position: absolute;
         z-index: 9999;
-        top: 3.9rem;
+        top: 5.5rem;
         left: 0;
         width: 200px;
         height: fit-content;

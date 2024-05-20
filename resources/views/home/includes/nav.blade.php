@@ -210,6 +210,10 @@
                 <a href="{{ route('parts') }}" class="{{ request()->routeIs('parts') ? 'active' : '' }}">Car Part</a>
             </li>
 
+            <li>
+                <a href="{{ route('show.blog') }}" class="{{ request()->routeIs('show.blog') ? 'active' : '' }}">Blog News</a>
+            </li>
+
     </ul>
 
     <style>

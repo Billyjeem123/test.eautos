@@ -285,7 +285,7 @@
             $(".bid-modal").css("display", "none");
         });
 
-        // -------------------------------------
+          // -------------------------------------
         $height = $(".car_type_nav").height() + $(".navbar").height();
         $(window).scroll(function () {
             if ($(window).scrollTop() > $height) {
@@ -293,14 +293,15 @@
                     position: "fixed",
                     top: "3.9rem",
                     left: "0",
-                    "z-index": "9999",
+                    "z-index": "999",
                 });
             } else {
                 $(".car_type_nav").css({
                     position: "normal",
-                    top: "normal",
+                    top: "5rem",
+                    "z-index": "999",
                 });
-                $("header").css("padding-top", "5rem");
+                $(".hero").css("padding-top", "5rem");
             }
         });
     })

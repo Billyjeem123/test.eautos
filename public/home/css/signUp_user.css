@@ -138,6 +138,19 @@ main form input {
     border-radius: 5px;
     border: 1px solid #d5d5d5;
 }
+main form select {
+    width: 100%;
+    padding: 0.7rem;
+    margin: 0.5rem auto;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid #d5d5d5;
+}
+main form select option{
+    padding: 5px;
+    padding-left: 10px;
+}
+
 main form span {
     display: flex;
     justify-content: space-between;

@@ -105,11 +105,16 @@ html {
     min-height: 450px;
     position: relative;
 }
+
 .hero .image {
-    background-color: #f5f5f5;
+    background: linear-gradient(#00000059, #00000059),
+    url(/home/images/people/smiling man.png) no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .hero .image img {
-    width: 100%;
+    width: 60%;
 }
 .hero .card h2 {
     font-size: 30px;
@@ -175,6 +180,54 @@ html {
 }
 
 /* ------------------------------------ */
+.close-modal {
+  position: absolute;
+  top: -2rem;
+  right: 0;
+  color: #000;
+  font-weight: bolder;
+  background-color: #ffffff;
+  padding: 5px 1rem;
+  cursor: pointer;
+}
+.report-modal {
+  width: 100%;
+  background-color: #0000003d;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+.report-modal .bid {
+  width: 500px;
+  min-height: 100px;
+   padding: 10px; 
+  background-color: #ffffff;
+  border-radius: 10px;
+  position: relative;
+}
+.report-form form{
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    flex-direction: column;
+}
+.report-form input, .report-form textarea{
+    width: 100%;
+    padding: 10px 5px;
+    margin: 10px auto;
+}
+.report-form button{
+    padding: 5px 10px;
+    background-color: #394293;
+    color: #fff;
+}
+/* ------------------------------------ */
 main {
     padding: 1rem 0;
 }
@@ -220,7 +273,7 @@ main {
 }
 /* ---------------------------------------- */
 .work-history{
-    padding: 2rem;
+    padding: 2rem 1rem;
 }
 .work-history form{
     width: 98%;
@@ -235,6 +288,61 @@ form select{
     width: 100%;
     outline: none;
     font-weight: bold;
+}
+.work-history .card-group{
+    width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.work-history .card{
+    background-color: #f5f5f5;
+  width: 300px;
+  min-height: 250px;
+  padding: 0;
+  margin: 0.5rem auto;
+  box-shadow: 1px 1px 10px #bdbdbd;
+}
+.work-history .card_img{
+      width: 100%;
+  height: 150px;
+  /* background: url(img/Image.png) no-repeat; */
+  background-position: center !important;
+  background-size: cover !important;
+}
+.work-history .card_text {
+  padding: 1.5rem 10px;
+}
+.work-history .card h5 {
+  color: #333333;
+  font-size: 15px;
+}
+
+.work-history .details ul {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 0;
+}
+.work-history .details ul li {
+  list-style: none;
+  border: 1px solid #394293;
+  color: #394293;
+  font-size: 11px;
+  padding: 1px 3px;
+  border-radius: 5px;
+}
+.work-history .details p {
+  font-size: 12px;
+  color: #333333;
+}
+.work-history h3{
+    font-size: 25px;
+    color: #000;
+    padding: 1rem;
 }
 /* ---------------------------------------- */
 .time {

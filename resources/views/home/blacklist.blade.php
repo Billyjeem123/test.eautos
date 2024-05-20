@@ -73,7 +73,7 @@
                     <h6>Lagos Nig.</h6>
                     <h4>Mercedes Benz</h4>
                     <h6>Deals on Luxury Cars</h6>
-                    <a href=""><span><strong>B</strong>&nbsp; Blessing Lainus</span> <span><i
+                    <a><span><strong>B</strong>&nbsp; Blessing Lainus</span> <span><i
                                 class="fa fa-angle-right"></i></span></a>
                     <div class="rating">
                         <ul>

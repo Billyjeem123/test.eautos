@@ -212,9 +212,7 @@
             }
         });
 
-        // -------------------------------------
-        $height = $(".car_type_nav").height() + $(".navbar").height();
-        $(document).ready(function () {
+      
             // -------------------------------------
             $height = $(".car_type_nav").height() + $(".navbar").height();
             $(window).scroll(function () {

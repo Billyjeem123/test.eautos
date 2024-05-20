@@ -103,7 +103,7 @@ html {
     background-color: #ffffff;
     padding: 1rem;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     gap: 10px;
 }
@@ -523,7 +523,7 @@ footer .socials a:hover {
         min-width: 30%;
         min-height: 200px;
         right: 0;
-        z-index: 999;
+        z-index: 99999;
         background-color: #ffffff;
         padding: 0;
         gap: 0;
@@ -580,7 +580,7 @@ footer .socials a:hover {
     .car_type_nav {
         position: absolute;
         z-index: 9999;
-        top: 3.9rem;
+        top: inherit;
         left: 0;
         width: 200px;
         height: fit-content;
@@ -667,7 +667,7 @@ footer .socials a:hover {
         min-width: 50%;
     }
     .image-nav img {
-        height: 70px;
+        height: 10px;
     }
     .reviews a {
         padding: 10px 15px;
@@ -680,7 +680,7 @@ footer .socials a:hover {
 
 @media screen and (max-width: 460px) {
     .image-nav img {
-        height: 50px;
+        height: 10px;
     }
     main {
         padding: 5px;

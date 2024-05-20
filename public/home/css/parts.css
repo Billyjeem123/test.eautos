@@ -101,7 +101,7 @@ html {
     background-color: #ffffff;
     padding: 1rem;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     gap: 10px;
 }
@@ -419,7 +419,7 @@ footer .socials a:hover {
     .car_type_nav {
         position: absolute;
         z-index: 999;
-        top: 3.9rem;
+        top: 5.5rem;
         left: 0;
         width: 200px;
         height: fit-content;

@@ -33,6 +33,11 @@ Route::get('/refresh-csrf', function() {
     return response()->json(['csrf_token' => csrf_token()]);
 });
 
+Route::get('/multi-select-form', [ProductController::class, 'showForm'])->name('show.form');
+Route::post('/multi-select-form', [ProductController::class, 'handleForm'])->name('handle.form');
+Route::get('/blog', [ProductController::class, 'showBlog'])->name('show.blog');
+Route::get('/blog/{id}', [ProductController::class, 'showBlogById'])->name('show.blog.id');
+
 
 Route::group(['middleware' => ['showNavBar']], function () {
     Route::get('/', [HomeController::class, 'index'])->name('index');

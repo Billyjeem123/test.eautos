@@ -47,7 +47,7 @@
 
 <header class="hero">
     <div class="card_group">
-        <div class="card image">
+        <div class="card image" style="background: linear-gradient(#00000059, #00000059),url(/home/images/kicthen.png) no-repeat;">
             <img src="/home/images/people/smiling man.png" alt="">
         </div>
         <div class="card">
@@ -57,8 +57,10 @@
                 <img src="/home/images/people/smiling man.png" width="" alt="">
                 <div>
                     <p><span><i class="fa fa-map-marker"></i></span>&nbsp;&nbsp; Lagos Nigeria (11 miles)</p>
+                    <p><span><i class="fa fa-calendar"></i></span>&nbsp;&nbsp; Joined {{ $profile->created_at->format('F j, Y') }}</p>
+
                     <p><span><i class="fa fa-envelope"></i></span>&nbsp;&nbsp; {{ $profile->email }}</p>
-                    <p><span><i class="fa fa-phone"></i></span>&nbsp;&nbsp; {{ $profile->phone }}</p>
+                    <p><span><i class="fa fa-phone"></i></span>&nbsp;&nbsp;<a style="color:#000;" href="tel: {{ $profile->phone }}">{{ $profile->phone }}</a></p>
                     <p class="experience"><a href="#">Experience</a>&nbsp;&nbsp; Over {{ $profile->experience }}</p>
                 </div>
             </div><br>
@@ -66,11 +68,33 @@
                 <h5>About Us</h5>
                 <p>{{$profile->about}}</p>
             </div><br>
-            <span class="share"><i class="fa fa-share"></i>&nbsp;&nbsp; <strong>Share</strong></span><br>
+            <!--<span class="share"><i class="fa fa-share"></i>&nbsp;&nbsp; <strong>Share</strong></span><br>-->
+            <span style="display: flex;">
+            <a href="#" class="share" style="color: #000; text-decoration: none;"><i class="fab fa-facebook"></i>&nbsp;&nbsp; <strong></strong></a>
+            <a href="#" class="share"  style="color: #000; text-decoration: none;"><i class="fab fa-instagram"></i>&nbsp;&nbsp; <strong></strong></a>
+            <a href="#" class="share"  style="color: #000; text-decoration: none;"><i class="fab fa-twitter"></i>&nbsp;&nbsp; <strong></strong></a>
+            </span>
+            
             <div class="card_footer">
-                <a href="#">Connect</a><a href="#">Send a Message</a>
+                <a href="#">Connect</a><a href="#" id="report">Report</a>
             </div>
         </div>
+    </div>
+    <div class="report-modal">
+         <div class="bid">
+            <div class="close-modal">X</div>
+            <div class="report-form">
+                <form>
+                  <span class="form_group">
+                    <input type="text" placeholder="Enter Your Name">
+                    <input type="text" placeholder="Phone Number">
+                    <input type="text" placeholder="Email Address">
+                  </span>
+                    <textarea name="" id="" cols="30" rows="5" placeholder="Complain"></textarea>
+                  <button>Send Report</button>
+                </form>
+            </div>
+         </div>
     </div>
 </header>
 <main>
@@ -98,11 +122,76 @@
     <!-- ------------------------------------------------------------ -->
     <div class="work-history">
         <form action="">
-            <select name="" id="">
+            <select name="" id="" disabled>
                 <option value="" selected disabled>Work History</option>
                 <option value="" >.....</option>
             </select>
         </form>
+        <h3>Dealer Product</h3>
+        <div class="card-group">
+      <a href="#" style="color:#000; text-decoration: none;" class="card">
+              <div
+                class="card_img"
+                style="background: url(/images/cars/Rectangle\ 16.png) no-repeat"
+              ></div>
+              <div class="card_text">
+                <h5>2014 Toyota Camry</h5>
+                <div class="details">
+                  <ul>
+                    <li>New</li>
+                    <li>10 Cylinder</li>
+                    <li
+                      style="
+                        background-color: #f9e17a;
+                        border: none;
+                        color: #ffffff;
+                      "
+                    >
+                      Yellow
+                    </li>
+                    <li>Fuel</li>
+                  </ul>
+                  <h5>₦ 930,000</h5>
+                  <p>Lagos Nigeria (11 miles)</p>
+                </div>
+              </div>
+        </a>
+        </div>
+    </div>
+    <!-- ------------------------------------------------------------ -->
+    <!-- ------------------------------------------------------------ -->
+    <div class="work-history">
+        <h3>Featured Cars</h3>
+        <div class="card-group">
+            <a href="#" style="color:#000; text-decoration: none;" class="card">
+              <div
+                class="card_img"
+                style="background: url(/images/cars/Rectangle\ 16.png) no-repeat"
+              ></div>
+              <div class="card_text">
+                <h5>2014 Toyota Camry</h5>
+                <div class="details">
+                  <ul>
+                    <li>New</li>
+                    <li>10 Cylinder</li>
+                    <li
+                      style="
+                        background-color: #f9e17a;
+                        border: none;
+                        color: #ffffff;
+                      "
+                    >
+                      Yellow
+                    </li>
+                    <li>Fuel</li>
+                  </ul>
+                  <h5>₦ 930,000</h5>
+                  <p>Lagos Nigeria (11 miles)</p>
+                </div>
+              </div>
+        </a>
+        
+        </div>
     </div>
     <!-- ------------------------------------------------------------ -->
 
@@ -227,6 +316,20 @@
 
 
 @include('home.includes.footer')
+
+<script>
+        $(document).ready(function () {
+
+
+      $("#report").click(function () {
+        $(".report-modal").css("display", "flex");
+      });
+      $(".close-modal").click(function () {
+        $(".report-modal").css("display", "none");
+      });
+      });
+
+</script>
 </body>
 
 </html>
