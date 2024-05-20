@@ -40,3 +40,30 @@
 
 
 @include('home.includes.footer')
+
+
+<script>
+    function refreshCsrfToken() {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', '/refresh-csrf', true);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                var response = JSON.parse(xhr.responseText);
+                var csrfToken = response.csrf_token;
+                var csrfInputs = document.querySelectorAll('input[name="_token"]');
+                csrfInputs.forEach(function(input) {
+                    input.value = csrfToken;
+                });
+            }
+        };
+        xhr.send();
+    }
+
+    // Refresh CSRF token every 10 minutes (600,000 milliseconds)
+    setInterval(refreshCsrfToken, 600000);
+
+    // Initial call to ensure the CSRF token is up-to-date on page load
+    document.addEventListener('DOMContentLoaded', function() {
+        refreshCsrfToken();
+    });
+</script>

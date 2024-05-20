@@ -29,6 +29,11 @@ use Illuminate\Support\Facades\Route;
 
 ##Home routes
 Route::get('/countdown', [ProductController::class, 'showCountdown']);
+Route::get('/refresh-csrf', function() {
+    return response()->json(['csrf_token' => csrf_token()]);
+});
+
+
 Route::group(['middleware' => ['showNavBar']], function () {
     Route::get('/', [HomeController::class, 'index'])->name('index');
     Route::get('/report', [ReportController::class, 'viewReport'])->name('report.show');

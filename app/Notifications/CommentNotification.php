@@ -51,8 +51,7 @@ class CommentNotification extends Notification
             ->subject('Notification: New Comment on Asset')
             ->greeting('Hello,')
             ->line('A new comment has been posted on Your asset ')
-            ->line('Activity Details: ' . $this->activityDetails['description'])
-            ->action('View Activity', url('/activities/' . $this->activityDetails['id']))
+            ->line( $this->title)
             ->line('Thank you for your attention.')
             ->salutation('Best regards,');
     }
