@@ -88,11 +88,6 @@ class AdminController extends Controller
         // Find the notification by id
         $notification = $user->notifications()->find($id);
 
-        if ($notification) {
-            // Mark the notification as read
-            $notification->markAsRead();
-        }
-
         // Optionally, you can redirect the user back or to another page
         return redirect()->back()->with('success', 'Notification marked as read.');
     }
@@ -200,6 +195,7 @@ class AdminController extends Controller
     public function auctionAll()
     {
         $auctions = Auction::orderBy('id', 'desc')->get();
+
 
         return view('admin.auction-listing', ['auction' => $auctions]);
 

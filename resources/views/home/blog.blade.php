@@ -16,7 +16,7 @@
 
   <header class="hero">
     <div class="card-group">
-        <div class="card">
+        <div class="card" style="background: url(/home/images/cars/landing.jpg);">
 
         </div>
         <div class="card">
@@ -35,45 +35,57 @@
         <h3>Latest News</h3>
         <div class="blog-group">
             <a href="#" class="card">
-                <div class="blog-img"></div>
+                <div class="blog-img" style="background: url(/home/images/people/meeting.png);"></div>
                 <h4>Latest News</h4>
                 <p>Lorem jjwefilqrfrbhbflqervn vyuqoYF</p>
             </a>
             <a href="#" class="card">
-                <div class="blog-img"></div>
+                <div class="blog-img" style="background: url(/home/images/people/worker2.png);"></div>
                 <h4>Latest News</h4>
                 <p>Lorem jjwefilqrfrbhbflqervn vyuqoYF</p>
             </a>
             <a href="#" class="card">
-                <div class="blog-img"></div>
+                <div class="blog-img" style="background: url(/home/images/people/meeting.png);"></div>
                 <h4>Latest News</h4>
                 <p>Lorem jjwefilqrfrbhbflqervn vyuqoYF</p>
             </a>
             <a href="#" class="card">
-                <div class="blog-img"></div>
+                <div class="blog-img" style="background: url(/home/images/people/worker2.png);"></div>
                 <h4>Latest News</h4>
                 <p>Lorem jjwefilqrfrbhbflqervn vyuqoYF</p>
             </a>
             <a href="#" class="card">
-                <div class="blog-img"></div>
+                <div class="blog-img" style="background: url(/home/images/people/meeting.png);"></div>
                 <h4>Latest News</h4>
                 <p>Lorem jjwefilqrfrbhbflqervn vyuqoYF</p>
             </a>
             <a href="#" class="card">
-                <div class="blog-img"></div>
+                <div class="blog-img" style="background: url(/home/images/people/worker2.png);"></div>
                 <h4>Latest News</h4>
                 <p>Lorem jjwefilqrfrbhbflqervn vyuqoYF</p>
             </a>
             <a href="#" class="card">
-                <div class="blog-img"></div>
+                <div class="blog-img" style="background: url(/home/images/people/meeting.png);"></div>
                 <h4>Latest News</h4>
                 <p>Lorem jjwefilqrfrbhbflqervn vyuqoYF</p>
             </a>
             <a href="#" class="card">
-                <div class="blog-img"></div>
+                <div class="blog-img" style="background: url(/home/images/people/worker2.png);"></div>
                 <h4>Latest News</h4>
                 <p>Lorem jjwefilqrfrbhbflqervn vyuqoYF</p>
             </a>
+            <a href="#" class="card">
+                <div class="blog-img" style="background: url(/home/images/people/meeting.png);"></div>
+                <h4>Latest News</h4>
+                <p>Lorem jjwefilqrfrbhbflqervn vyuqoYF</p>
+            </a>
+            <a href="#" class="card">
+                <div class="blog-img" style="background: url(/home/images/people/worker2.png);"></div>
+                <h4>Latest News</h4>
+                <p>Lorem jjwefilqrfrbhbflqervn vyuqoYF</p>
+            </a>
+        
+      
 
         </div>
     </div>
@@ -127,9 +139,12 @@
     </div>
   </footer>
 
-  <script src="../assets/fontawesome/js/all.min.js"></script>
-  <script src="../js/jquery.js"></script>
-  <script src="../js/index.js"></script>
+<script src="/home/assets/fontawesome/js/all.min.js"></script>
+<script src="/home/js/jquery.js"></script>
+<script src="/home/js/index.js"></script>
+ <!-- Add Toastr JavaScript -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 </body>
 
 </html>

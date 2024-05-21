@@ -56,14 +56,14 @@ class PartController extends Controller
         }
     }
 
-
-
     public function getAllParts(){
-
-        $parts =  Part::with('users', 'partcategories')->get();
+        $parts = Part::with('users', 'partcategories')
+            ->orderBy('car_part.id', 'DESC') // Order by id in descending order
+            ->get();
 
         return view('admin.parts.part-listings', compact('parts'));
     }
+
 
 
     public function deletePart($id): \Illuminate\Http\RedirectResponse

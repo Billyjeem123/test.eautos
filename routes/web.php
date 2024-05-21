@@ -161,12 +161,15 @@ Route::prefix('admin')->middleware('auth', 'admin', 'notify')->group(function ()
 
 
      #Property Routes
-
      Route::get('/products', [ProductController::class, 'index'])->name('admin.product');
-     Route::post('/products/create', [ProductController::class, 'create'])->name('admin.product.create');
+     Route::post('/products/creates', [ProductController::class, 'create'])->name('admin.product.create');
      Route::get('/products/all', [ProductController::class, 'indexAll'])->name('admin.product.all');
-     Route::put('/products/activate/{id}', [ProductController::class, 'toggleBlockProduct'])->name('admin.product.activate');
+//     Route::put('/products/activate/{id}', [ProductController::class, 'toggleBlockProduct'])->name('admin.product.activate');
+    Route::post('/decline-product', [ProductController::class, 'decline_product_request'])->name('decline_product_request');
+    Route::post('/approve-product', [ProductController::class, 'approve_product_request'])->name('approve_product_request');
      Route::delete('/products/delete/{id}', [ProductController::class, 'deleteProduct'])->name('admin.product.delete');
+    Route::post('/approve-car-part', [ProductController::class, 'approve_part_request'])->name('approve_part_request');
+    Route::post('/decline-car-part', [ProductController::class, 'decline_part_request'])->name('decline_part_request');
 
 
      #Brands
@@ -175,14 +178,13 @@ Route::prefix('admin')->middleware('auth', 'admin', 'notify')->group(function ()
      Route::delete('/brands/delete/{id}', [BrandController::class, 'deleteBrand'])->name('admin.brand.delete');
 
 
-     Route::get('/vehicle', [ProductController::class, 'index'])->name('admin.vehicle')->middleware('profile.complete');
-     Route::post('/vehicle/create', [ProductController::class, 'store'])->name('admin.vehicle.create');
-     Route::delete('/vehicle/delete/{id}', [ProductController::class, 'deleteVehicle'])->name('admin.vehicle.delete');
+      #uploading_product_routes
+     Route::get('/product/create', [ProductController::class, 'index'])->name('admin.vehicle')->middleware('profile.complete');
+     Route::post('/product/create', [ProductController::class, 'store'])->name('create_product_admin');
+     Route::delete('/product/delete/{id}', [ProductController::class, 'deleteVehicle'])->name('admin.vehicle.delete');
      Route::get('/get-subcategories/{categoryId}', [ProductController::class, 'getSubcategories'])->name('admin.vehicle.getSubcategories');
     Route::get('/get-vehicle/{id}', [ProductController::class, 'showProductRecords'])->name('admin.edit.product');
     Route::put('/update-vehicle/{id}', [ProductController::class, 'updateProduct'])->name('admin.vehicle.update');
-
-
 
      #notification..
      Route::get('/read/{id}', [AdminController::class, 'markAsRead'])->name('mark_As_read');
@@ -241,6 +243,10 @@ Route::prefix('admin')->middleware('auth', 'admin', 'notify')->group(function ()
 
     Route::get('/parts/{id}/approve', [PartController::class, 'approvePart'])->name('parts.approve');
     Route::get('/parts/{id}/unapprove', [PartController::class, 'unapprovePart'])->name('parts.unapprove');
+
+
+
+
     Route::get('/reports/complaints/{id}', [AdminController::class, 'reportComplaint'])->name('admin.complaint.details');
     Route::get('/requests/details/{id}', [AdminController::class, 'careRequests'])->name('admin.requests.details');
     Route::get('/products/details/{id}', [AdminController::class, 'productDetails'])->name('admin.products.details');
@@ -259,6 +265,8 @@ Route::prefix('admin')->middleware('auth', 'admin', 'notify')->group(function ()
     Route::post('/blog', [BlogController::class, 'create_blog'])->name('create_blog_admin');
     Route::delete('/blog/{id}', [BlogController::class, 'delete_blog'])->name('delete_blog_admin');
     Route::get('/blog/{id}', [BlogController::class, 'blog_details'])->name('view_blog_details_admin');
+    Route::post('/update-blog/{id}', [BlogController::class, 'update_blog'])->name('update_blog');
+
 
 
 

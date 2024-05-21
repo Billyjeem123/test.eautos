@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Blog;
 use App\Models\Brand;
 use App\Models\CarPartCategory;
 use App\Models\Category;
@@ -10,6 +11,7 @@ use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class HomeController extends Controller
@@ -26,11 +28,11 @@ class HomeController extends Controller
 
         $products  = Product::with('brand', 'images', 'categories')->where('is_approved', 1)->get();
 
-//                echo "<pre>";
-//          echo json_encode($products, JSON_PRETTY_PRINT);
-//          echo "</pre>";
 
-        return view('home.index', ['brands' => $brands, 'products' => $products, 'getDealers' => $getDealers]);
+        $blogs = Blog::inRandomOrder()->limit(5)->get();
+
+
+        return view('home.index', ['brands' => $brands, 'blogs' => $blogs,  'products' => $products, 'getDealers' => $getDealers]);
     }
 
 
@@ -112,6 +114,17 @@ class HomeController extends Controller
 
         // Save the user to the database
         $user->save();
+
+       $multiple_services =  $request->multiple_selection;
+
+        foreach ($multiple_services as $services) {
+            DB::table('business_services')->insert([
+                'user_id' => $user->id,
+                'bussiness_name' => $services,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        }
 
         // Authenticate and log in the user
         Auth::login($user);

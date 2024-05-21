@@ -25,6 +25,8 @@ class BlogController extends Controller
 
         // Handle the image upload
         $imageLink = $this->uploadBlogImageAndGetLink($request);
+        $role = auth()->user()->role == "admin" ? 1 : 0;
+
 
         // Save blog post data
         $blog = new Blog();
@@ -32,9 +34,34 @@ class BlogController extends Controller
         $blog->desc = $request->description;
         $blog->image = $imageLink;
         $blog->user_id = auth()->user()->id;
+        $blog->is_active = $role;
         $blog->save();
 
         return response()->json(['success' => true, 'message' => 'Blog post uploaded successfully.']);
+    }
+
+
+    public function update_blog(Request $request, $id)
+    {
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'desc' => 'required|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        $blog = Blog::findOrFail($id);
+        $blog->title = $request->title;
+        $blog->desc = $request->desc;
+
+        if ($request->hasFile('image')) {
+            // Handle the image upload
+            $imageLink = $this->uploadBlogImageAndGetLink($request);
+            $blog->image = $imageLink;
+        }
+
+        $blog->save();
+
+        return response()->json(['success' => true, 'message' => 'Blog post updated successfully.']);
     }
 
 

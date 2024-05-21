@@ -7,16 +7,17 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class ReportOffender extends Notification
+class ProductApprovalNotification extends Notification
 {
     use Queueable;
+
+    private mixed $data;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public $data;
     public function __construct($data)
     {
         $this->data = $data;
@@ -30,7 +31,7 @@ class ReportOffender extends Notification
      */
     public function via($notifiable)
     {
-        return ['database', 'mail']; // Send via email and store in database
+        return ['mail', 'database'];
     }
 
     /**
@@ -42,7 +43,7 @@ class ReportOffender extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->subject($this->data['title'])
+            ->line($this->data['title'])
             ->line($this->data['message'])
             ->line('Thank you for using our application!');
     }
@@ -56,8 +57,8 @@ class ReportOffender extends Notification
     public function toArray($notifiable)
     {
         return [
-            'message' => $this->data['title'],
-            'title' => $this->data['message']
+            'title' => $this->data['title'],
+            'message' => $this->data['message']
         ];
     }
 }

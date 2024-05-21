@@ -1,197 +1,738 @@
-@extends('admin.layouts.master')
+https://test.eautos.iccflifeskills.com.ng/<!DOCTYPE html>
+                                          <html lang="en">
 
-<style>
-    body {
-        overflow-y: scroll;
-    }
+                                          <head>
+                                            <meta charset="UTF-8">
+                                            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                                            <title>Home Page</title>
+                                            <link rel="stylesheet" href="/home/css/home.css">
+                                              <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+                                           <!-- Add the slick-theme.css if you want default styling -->
+                                          <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.css"/>
+                                          <!-- Add the slick-theme.css if you want default styling -->
+                                          <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick-theme.css"/>
+                                          </head>
 
-</style>
+                                          <body>
 
 
-@section('page.content')
+                                             @include('home.includes.nav')
+
+                                             @include('home.includes.search')
 
 
-    <!-- Begin Page Content -->
-    <div class="container-fluid">
+                                            <!-- --------------------------------------------------- -->
+                                            <div class="status container">
+                                              <ul>
+                                                <li>
+                                                  <img src="/home/images/ellipses/Ellipse 61.png" width="" alt="">
+                                                  <p>Micheal Ose</p>
+                                                </li>
+                                                <li>
+                                                  <img src="/home/images/ellipses/Ellipse 61-1.png" width="" alt="bbbb">
+                                                  <p>Micheal Ose</p>
+                                                </li>
+                                                <li>
+                                                  <img src="/home/images/ellipses/Ellipse 61-2.png" width="" alt="">
+                                                  <p>Micheal Ose</p>
+                                                </li>
+                                                <li>
+                                                  <img src="/home/images/ellipses/Ellipse 61-3.png" width="" alt="">
+                                                  <p>Micheal Ose</p>
+                                                </li>
+                                                <li>
+                                                  <img src="/home/images/ellipses/Ellipse 61-4.png" width="" alt="">
+                                                  <p>Micheal Ose</p>
+                                                </li>
+                                                <li>
+                                                  <img src="/home/images/ellipses/Ellipse 61-5.png" width="" alt="">
+                                                  <p>Micheal Ose</p>
+                                                </li>
+                                                <li>
+                                                  <img src="/home/images/ellipses/Ellipse 61-6.png" width="" alt="">
+                                                  <p>Micheal Ose</p>
+                                                </li>
+                                                <li>
+                                                  <img src="/home/images/ellipses/Ellipse 61-7.png" width="" alt="">
+                                                  <p>Micheal Ose</p>
+                                                </li>
 
-        <!-- Page Heading -->
-        <h1 class="h3 mb-0 text-gray-800">Hello {{$profile->name}}</h1>
-        <h6 class="h6 mb-4 text-gray-800">Joined  {{$profile->created_at->format('M, Y')}}</h6>
-        <div class="container bg-gray-200 py-4 rounded">
-            <div class="d-flex justify-content-center py-3">
-                <a class="btn rounded-0 px-sm-5 bg-primary" id="profileBtn" href="javascript:void(0)" style="color: #ffffff;">My
-                    Profile</a>
-                <a class="btn rounded-0 px-sm-5" href="javascript:void(0)" id="editProfileBtn" style="color: #000000;">Edit
-                    Profile</a>
-            </div>
-            <h3 class="h4 border-top border-bottom mb-3 py-2">My Profile</h3>
-            <div class=" justify-content-center p-4 bg-white rounded" id="myProfile"
-                 style="display: flex; width: fit-content;">
-                <img src="{{ $profile->image == "" || empty($profile->image) ? "/img/undraw_profile.svg" : $profile->image }}" alt="" width="150px">
+                                              </ul>
+                                            </div>
+                                            <!-- -------------------------------------------------- -->
+                                            <div class="essential container">
+                                              <h3>The world is going <span>e</span> so are we</h3><br>
+                                              <h4>List of essential Group Brands</h4>
+                                              <ul>
+                                                <li>
+                                                  <h3>Lorem</h3>
+                                                  <p>loremloremloremloeremememwjfbljvajh</p>
+                                                  <a href="#">Button</a>
+                                                </li>
+                                              </ul>
 
-                <div class="px-3 font-weight-bold">
-                    <p class="p-0 m-1 h5" style="color: #000000;">{{$profile->name}}</p>
-                    <p class="p-0 m-1 h5" style="color: #000000;">{{$profile->phone}}</p>
-                    <p class="p-0 m-1 h5" style="color: #000000;">Dial Code: 234</p>
-                    <p class="p-0 m-1 h5" style="color: #000000;">{{$profile->email}}</p>
-                </div>
-            </div>
-            <form class="" id="editProfile" style="display: none;"  action="{{route('update.profile')}}" method="POST" enctype="multipart/form-data">
-                @csrf
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <input type="text" class="form-control bg-white" placeholder="First Name" name="name" value="{{$profile->name}}">
+                                                  <div class="center-item-slider">
+                                                   <div class="holder center">your content <br><br><br> ygfwygsdyafgukqvyjsheavcsdjhcvaksdjhcv</div>
+                                                   <div class="holder center">your content <br><br><br> ygfwygsdyafgukqvyjsheavcsdjhcvaksdjhcv</div>
+                                                   <div class="holder center">your content <br><br><br> ygfwygsdyafgukqvyjsheavcsdjhcvaksdjhcv</div>
+                                                   <div class="holder center">your content <br><br><br> ygfwygsdyafgukqvyjsheavcsdjhcvaksdjhcv</div>
+                                                   <div class="holder center">your content <br> ygfwygsdyafgukqvyjsheavcsdjhcvaksdjhcv</div>
+                                                   <div class="holder center">your content <br> ygfwygsdyafgukqvyjsheavcsdjhcvaksdjhcv</div>
+                                                   <div class="holder center">your content</div>
+                                                   <div class="holder center">your content</div>
+                                                   <div class="holder center">your content</div>
+                                                   <div class="holder center">your content</div>
+                                                   <div class="holder center">your content</div>
+                                                 </div>
+
+                                            </div>
+                                            <!-- ------------------------------------------------- -->
+                                            <div class="report_request container">
+                                              <div class="grey"></div>
+                                              <div class="report">
+                                                <span>
+                                                  <h3>Report a car Deal Scam</h3>
+                                                  <p>Lorem ipsum dolor, Corporis aliquid consequatur aspernatur at iure
+                                                    voluptas vero inventore similique officiis quia?</p>
+                                                  <a href="{{route('report.show')}}" >Report</a>
+                                                </span>
+                                              </div>
+                                              <div class="request">
+                                                <span>
+                                                  <h3>Make a Request</h3>
+                                                  <p>Lorem ipsum dolor, Corporis aliquid consequatur aspernatur at iure
+                                                    voluptas vero inventore similique officiis quia?</p>
+                                                  <a href="{{route('request.show')}}" >Request</a>
+                                                </span>
+                                              </div>
+
+                                            </div>
+                                            <!-- ------------------------------------------- -->
+                                            <div class="numbers container">
+                                              <h3>E-Autos in Numbers</h3>
+                                              <ul>
+                                                <li>
+                                                  <p>9,122</p> <small>Sold Cars</small>
+                                                </li>
+                                                <li>
+                                                  <p>1,122,074</p> <small>Ongoing Auction</small>
+                                                </li>
+                                                <li>
+                                                  <p>201,905</p> <small>Registered Car Dealer</small>
+                                                </li>
+                                                <li>
+                                                  <p>201,905</p> <small>Blacklist</small>
+                                                </li>
+                                              </ul>
+                                            </div>
+                                            <!-- -------------------------------------------------- -->
+
+                                            <div class="latest container">
+                                              <h3>Our Latest Products</h3>
+                                              <div class="card_group">
+                                                @foreach ($products as $product)
+                                                <div class="card">
+                                                    <a href="{{route('product.show', $product->id)}}" class="card_link">
+                                                        <div class="card_img" style="background: url('{{ $product->images[0]['image'] }}') no-repeat;"></div>
+                                                    </a>
+                                                    <div class="card_text">
+                                                        <h5>{{ $product->car_name}}</h5>
+                                                        <div class="details">
+                                                            <ul>
+                                                              <li>New</li>
+                                                              <li>{{$product->cylinder}}</li>
+                                                              <li style="background-color: {{ $product->color }}; border: none; color: #ffffff;">{{ $product->color }}</li>
+                                                              <li>Fuel</li>
+                                                            </ul>
+                                                            <h5> ₦ {{ number_format($product->price,2) }}</h5>
+                                                            <p>{{ $product->location }} ({{ $product->mileage }})</p>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                                @endforeach
+                                            </div>
+
+
+
+                                            </div>
+                                            <!-- ----------------------------------------------------- -->
+
+                                            <div class="car_dealers container">
+                                              <h3>Connect with Car Dealers</h3>
+                                              <div class="card_group">
+
+                                                      @foreach($getDealers as $dealer)
+                                                          <div class="card">
+                                                              <a href="{{route('user.profile', $dealer->id)}}">
+                                                                  <div class="card_img" style="background: url('{{ !empty($dealer->image) ? $dealer->image : '/images/profile.svg' }}') no-repeat;"></div>
+                                                              </a>
+                                                              <div class="details">
+                                                                  <h5>{{ $dealer->name}}</h5>
+                                                                  <span><strong>100%</strong> Verified</span>
+                                                                  <p class="progress"><i class="fa fa-check"></i></p>
+                                                              </div>
+                                                          </div>
+                                                      @endforeach
+
+
+
+                                              </div>
+
+                                            </div>
+                                            <!-- ----------------------------------------------------- -->
+
+                                          {{--  <div class="short_video container">--}}
+                                          {{--    <h3><span>Short Videos</span> <a href="javascript:void(0)" >See All</a></h3>--}}
+                                          {{--    <div class="card_group">--}}
+                                          {{--      <div class="card" style="background: linear-gradient(#00000059, #00000059),--}}
+                                          {{--      url(/home/images/cars/Optimized-dima-panyukov-DwxlhTvC16Q-unsplash.jpg) no-repeat;">--}}
+                                          {{--        <span class="control"><i class="fa-solid fa-play"></i></span>--}}
+                                          {{--        <div class="reaction">--}}
+                                          {{--          <span class="love"><i class="fa-regular fa-heart"></i> 203</span>--}}
+                                          {{--          <span class="views">5,345 views</span>--}}
+                                          {{--        </div>--}}
+                                          {{--      </div>--}}
+                                          {{--      <div class="card" style="background: linear-gradient(#00000059, #00000059),--}}
+                                          {{--      url(/home/images/bikes/Optimized-ajin-k-s-GmSBNRB9124-unsplash.jpg) no-repeat;">--}}
+                                          {{--        <span class="control"><i class="fa-solid fa-play"></i></span>--}}
+                                          {{--        <div class="reaction">--}}
+                                          {{--          <span class="love"><i class="fa-regular fa-heart"></i> 203</span>--}}
+                                          {{--          <span class="views">5,345 views</span>--}}
+                                          {{--        </div>--}}
+                                          {{--      </div>--}}
+                                          {{--      <div class="card" style="background: linear-gradient(#00000059, #00000059),--}}
+                                          {{--      url(/home/images/cars/Optimized-dhiva-krishna-YApS6TjKJ9c-unsplash.jpg) no-repeat;">--}}
+                                          {{--        <span class="control"><i class="fa-solid fa-play"></i></span>--}}
+                                          {{--        <div class="reaction">--}}
+                                          {{--          <span class="love"><i class="fa-regular fa-heart"></i> 203</span>--}}
+                                          {{--          <span class="views">5,345 views</span>--}}
+                                          {{--        </div>--}}
+                                          {{--      </div>--}}
+                                          {{--      <div class="card" style="background: linear-gradient(#00000059, #00000059),--}}
+                                          {{--      url(/home/images/bikes/Optimized-sanjeev-nagaraj-caz59CGkQz8-unsplash.jpg) no-repeat;">--}}
+                                          {{--        <span class="control"><i class="fa-solid fa-play"></i></span>--}}
+                                          {{--        <div class="reaction">--}}
+                                          {{--          <span class="love"><i class="fa-regular fa-heart"></i> 203</span>--}}
+                                          {{--          <span class="views">5,345 views</span>--}}
+                                          {{--        </div>--}}
+                                          {{--      </div>--}}
+                                          {{--      <div class="card" style="background: linear-gradient(#00000059, #00000059),--}}
+                                          {{--      url(/home/images/cars/Optimized-kenny-eliason-FcyipqujfGg-unsplash.jpg) no-repeat;">--}}
+                                          {{--        <span class="control"><i class="fa-solid fa-play"></i></span>--}}
+                                          {{--        <div class="reaction">--}}
+                                          {{--          <span class="love"><i class="fa-regular fa-heart"></i> 203</span>--}}
+                                          {{--          <span class="views">5,345 views</span>--}}
+                                          {{--        </div>--}}
+                                          {{--      </div>--}}
+                                          {{--    </div>--}}
+
+                                          {{--  </div>--}}
+
+                                            <!-- ------------------------------------------------------------ -->
+                                            <div class="why">
+                                              <div class="why_content">
+                                                <h2>Why E-Autos</h2>
+                                                <ul class="load">
+                                                  <li></li>
+                                                  <li></li>
+                                                  <li></li>
+                                                  <li></li>
+                                                  <span>Waiting for Content</span>
+                                                </ul>
+                                              </div>
+                                            </div>
+                                            <!-- ----------------------------------------- -->
+
+                                            <div class="meet_dealers">
+                                              <ul class="card_group">
+                                                <li class="card"><a href="{{route('dealers.all')}}">The Dealers</a></li>
+                                                <li class="card">
+                                                  <p>Meet with Different Car Dealers, who will help get your desired property, with little to no agent fee added
+                                                  </p>
+                                                </li>
+                                                <li class="card"><img src="/home/images/Rectangle 247.png" alt=""></li>
+                                              </ul>
+                                            </div>
+                                            <!-- ----------------------------------------------------- -->
+
+                                          {{--  <div class="groups container">--}}
+                                          {{--    <h3><span>Groups you may like</span> <a href="javascript:void(0)" target="_blank">See more</a></h3>--}}
+                                          {{--    <div class="card_group">--}}
+                                          {{--      <div class="card">--}}
+                                          {{--        <div class="card_img" style="background: url(/home/images/people/group\ of\ people.png) no-repeat;"></div>--}}
+                                          {{--        <div class="details">--}}
+                                          {{--          <h5>IT news</h5>--}}
+                                          {{--          <p><span>1 Member</span>&nbsp; &nbsp;&nbsp;<span>0 Posts today</span></p>--}}
+                                          {{--          <a href="#!">Join</a>--}}
+                                          {{--        </div>--}}
+                                          {{--      </div>--}}
+                                          {{--      <div class="card">--}}
+                                          {{--        <div class="card_img" style="background: url(/home/images/people/group\ of\ people.png) no-repeat;"></div>--}}
+                                          {{--        <div class="details">--}}
+                                          {{--          <h5>IT news</h5>--}}
+                                          {{--          <p><span>1 Member</span>&nbsp; &nbsp;&nbsp;<span>0 Posts today</span></p>--}}
+                                          {{--          <a href="#!">Join</a>--}}
+                                          {{--        </div>--}}
+                                          {{--      </div>--}}
+                                          {{--      <div class="card">--}}
+                                          {{--        <div class="card_img" style="background: url(/home/images/people/group\ of\ people.png) no-repeat;"></div>--}}
+                                          {{--        <div class="details">--}}
+                                          {{--          <h5>IT news</h5>--}}
+                                          {{--          <p><span>1 Member</span>&nbsp; &nbsp;&nbsp;<span>0 Posts today</span></p>--}}
+                                          {{--          <a href="#!">Join</a>--}}
+                                          {{--        </div>--}}
+                                          {{--      </div>--}}
+                                          {{--      <div class="card">--}}
+                                          {{--        <div class="card_img" style="background: url(/home/images/people/group\ of\ people.png) no-repeat;"></div>--}}
+                                          {{--        <div class="details">--}}
+                                          {{--          <h5>IT news</h5>--}}
+                                          {{--          <p><span>1 Member</span>&nbsp; &nbsp;&nbsp;<span>0 Posts today</span></p>--}}
+                                          {{--          <a href="#!">Join</a>--}}
+                                          {{--        </div>--}}
+                                          {{--      </div>--}}
+                                          {{--      <div class="card">--}}
+                                          {{--        <div class="card_img" style="background: url(/home/images/people/group\ of\ people.png) no-repeat;"></div>--}}
+                                          {{--        <div class="details">--}}
+                                          {{--          <h5>IT news</h5>--}}
+                                          {{--          <p><span>1 Member</span>&nbsp; &nbsp;&nbsp;<span>0 Posts today</span></p>--}}
+                                          {{--          <a href="#!">Join</a>--}}
+                                          {{--        </div>--}}
+                                          {{--      </div>--}}
+                                          {{--    </div>--}}
+
+                                          {{--  </div>--}}
+
+
+                                            <!-- --------------------------------------------------- -->
+                                            <div class="blog">
+                                                <h3>Blog Posts</h3>
+                                               <div class="blog-group">
+                                                      <a href="#" class="card">
+                                                          <div class="blog-img"></div>
+                                                          <h4>Latest News</h4>
+                                                          <p>Lorem jjwefilqrfrbhbflqervn vyuqoYF</p>
+                                                      </a>
+                                                      <a href="#" class="card">
+                                                          <div class="blog-img"></div>
+                                                          <h4>Latest News</h4>
+                                                          <p>Lorem jjwefilqrfrbhbflqervn vyuqoYF</p>
+                                                      </a>
+                                                      <a href="#" class="card">
+                                                          <div class="blog-img"></div>
+                                                          <h4>Latest News</h4>
+                                                          <p>Lorem jjwefilqrfrbhbflqervn vyuqoYF</p>
+                                                      </a>
+                                                      <a href="#" class="card">
+                                                          <div class="blog-img"></div>
+                                                          <h4>Latest News</h4>
+                                                          <p>Lorem jjwefilqrfrbhbflqervn vyuqoYF</p>
+                                                      </a>
+
+                                                  </div>
+                                            </div>
+                                            @include('home.includes.footer')
+                                            <script src="
+                                          https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js
+                                          "></script>
+                                          <script>
+                                                //Center item Slider
+                                            $('.center-item-slider').slick({
+                                              centerMode: true,
+                                              centerPadding: '60px',
+                                              autoplay: true,
+                                              autoplaySpeed: 4000,
+                                              slidesToShow: 3,
+                                              responsive: [
+                                                {
+                                                  breakpoint: 768,
+                                                  settings: {
+                                                    arrows: false,
+                                                    centerMode: true,
+                                                    centerPadding: '40px',
+                                                    slidesToShow: 3
+                                                  }
+                                                },
+                                                {
+                                                  breakpoint: 480,
+                                                  settings: {
+                                                    arrows: false,
+                                                    centerMode: true,
+                                                    centerPadding: '40px',
+                                                    slidesToShow: 1
+                                                  }
+                                                }
+                                              ]
+                                            });
+                                          </script>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home Page</title>
+  <link rel="stylesheet" href="/home/css/home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+ <!-- Add the slick-theme.css if you want default styling -->
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.css"/>
+<!-- Add the slick-theme.css if you want default styling -->
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick-theme.css"/>
+</head>
+
+<body>
+
+
+   @include('home.includes.nav')
+
+   @include('home.includes.search')
+
+
+  <!-- --------------------------------------------------- -->
+  <div class="status container">
+    <ul>
+      <li>
+        <img src="/home/images/ellipses/Ellipse 61.png" width="" alt="">
+        <p>Micheal Ose</p>
+      </li>
+      <li>
+        <img src="/home/images/ellipses/Ellipse 61-1.png" width="" alt="bbbb">
+        <p>Micheal Ose</p>
+      </li>
+      <li>
+        <img src="/home/images/ellipses/Ellipse 61-2.png" width="" alt="">
+        <p>Micheal Ose</p>
+      </li>
+      <li>
+        <img src="/home/images/ellipses/Ellipse 61-3.png" width="" alt="">
+        <p>Micheal Ose</p>
+      </li>
+      <li>
+        <img src="/home/images/ellipses/Ellipse 61-4.png" width="" alt="">
+        <p>Micheal Ose</p>
+      </li>
+      <li>
+        <img src="/home/images/ellipses/Ellipse 61-5.png" width="" alt="">
+        <p>Micheal Ose</p>
+      </li>
+      <li>
+        <img src="/home/images/ellipses/Ellipse 61-6.png" width="" alt="">
+        <p>Micheal Ose</p>
+      </li>
+      <li>
+        <img src="/home/images/ellipses/Ellipse 61-7.png" width="" alt="">
+        <p>Micheal Ose</p>
+      </li>
+
+    </ul>
+  </div>
+  <!-- -------------------------------------------------- -->
+  <div class="essential container">
+    <h3>The world is going <span>e</span> so are we</h3><br>
+    <h4>List of essential Group Brands</h4>
+    <ul>
+      <li>
+        <h3>Lorem</h3>
+        <p>loremloremloremloeremememwjfbljvajh</p>
+        <a href="#">Button</a>
+      </li>
+    </ul>
+
+        <div class="center-item-slider">
+         <div class="holder center">your content <br><br><br> ygfwygsdyafgukqvyjsheavcsdjhcvaksdjhcv</div>
+         <div class="holder center">your content <br><br><br> ygfwygsdyafgukqvyjsheavcsdjhcvaksdjhcv</div>
+         <div class="holder center">your content <br><br><br> ygfwygsdyafgukqvyjsheavcsdjhcvaksdjhcv</div>
+         <div class="holder center">your content <br><br><br> ygfwygsdyafgukqvyjsheavcsdjhcvaksdjhcv</div>
+         <div class="holder center">your content <br> ygfwygsdyafgukqvyjsheavcsdjhcvaksdjhcv</div>
+         <div class="holder center">your content <br> ygfwygsdyafgukqvyjsheavcsdjhcvaksdjhcv</div>
+         <div class="holder center">your content</div>
+         <div class="holder center">your content</div>
+         <div class="holder center">your content</div>
+         <div class="holder center">your content</div>
+         <div class="holder center">your content</div>
+       </div>
+
+  </div>
+  <!-- ------------------------------------------------- -->
+  <div class="report_request container">
+    <div class="grey"></div>
+    <div class="report">
+      <span>
+        <h3>Report a car Deal Scam</h3>
+        <p>Lorem ipsum dolor, Corporis aliquid consequatur aspernatur at iure
+          voluptas vero inventore similique officiis quia?</p>
+        <a href="{{route('report.show')}}" >Report</a>
+      </span>
+    </div>
+    <div class="request">
+      <span>
+        <h3>Make a Request</h3>
+        <p>Lorem ipsum dolor, Corporis aliquid consequatur aspernatur at iure
+          voluptas vero inventore similique officiis quia?</p>
+        <a href="{{route('request.show')}}" >Request</a>
+      </span>
+    </div>
+
+  </div>
+  <!-- ------------------------------------------- -->
+  <div class="numbers container">
+    <h3>E-Autos in Numbers</h3>
+    <ul>
+      <li>
+        <p>9,122</p> <small>Sold Cars</small>
+      </li>
+      <li>
+        <p>1,122,074</p> <small>Ongoing Auction</small>
+      </li>
+      <li>
+        <p>201,905</p> <small>Registered Car Dealer</small>
+      </li>
+      <li>
+        <p>201,905</p> <small>Blacklist</small>
+      </li>
+    </ul>
+  </div>
+  <!-- -------------------------------------------------- -->
+
+  <div class="latest container">
+    <h3>Our Latest Products</h3>
+    <div class="card_group">
+      @foreach ($products as $product)
+      <div class="card">
+          <a href="{{route('product.show', $product->id)}}" class="card_link">
+              <div class="card_img" style="background: url('{{ $product->images[0]['image'] }}') no-repeat;"></div>
+          </a>
+          <div class="card_text">
+              <h5>{{ $product->car_name}}</h5>
+              <div class="details">
+                  <ul>
+                    <li>New</li>
+                    <li>{{$product->cylinder}}</li>
+                    <li style="background-color: {{ $product->color }}; border: none; color: #ffffff;">{{ $product->color }}</li>
+                    <li>Fuel</li>
+                  </ul>
+                  <h5> ₦ {{ number_format($product->price,2) }}</h5>
+                  <p>{{ $product->location }} ({{ $product->mileage }})</p>
+
+              </div>
+          </div>
+      </div>
+
+
+      @endforeach
+  </div>
+
+
+
+  </div>
+  <!-- ----------------------------------------------------- -->
+
+  <div class="car_dealers container">
+    <h3>Connect with Car Dealers</h3>
+    <div class="card_group">
+
+            @foreach($getDealers as $dealer)
+                <div class="card">
+                    <a href="{{route('user.profile', $dealer->id)}}">
+                        <div class="card_img" style="background: url('{{ !empty($dealer->image) ? $dealer->image : '/images/profile.svg' }}') no-repeat;"></div>
+                    </a>
+                    <div class="details">
+                        <h5>{{ $dealer->name}}</h5>
+                        <span><strong>100%</strong> Verified</span>
+                        <p class="progress"><i class="fa fa-check"></i></p>
                     </div>
-                    <div class="form-group col-md-6">
-                        <input type="email" class="form-control bg-white" placeholder="Email" name="email"  value="{{$profile->email}}">
-                    </div>
                 </div>
-                <div class="form-group">
-                    <input type="text" class="form-control bg-white" placeholder="Business Name" name="business_name" value="{{$profile->business_name}}">
-                </div>
-                <div class="form-group">
-                    <label for="businessImage">Upload Business Image</label>
-                    <input type="file" class="form-control border-0" name="profile_image">
-                </div>
-
-                <h3 class="h4 border-top border-bottom mb-3 py-2">Contact Information</h3>
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <select id="country-code" class="form-control bg-white" name="country">
-                            <option value="">Country Code</option>
-                            <option value="Nigeria" {{ $profile->state == 'Nigeria' ? 'selected' : '' }}>Nigeria</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group col-md-6">
-                        <input type="text" class="form-control bg-white" placeholder="Phone Number" name="phone" value="{{$profile->phone}}">
-                    </div>
-
-                </div>
-
-                <h3 class="h4 border-top border-bottom mb-3 py-2">About Your Organization</h3>
-                <div class="form-group">
-                <textarea name="about" class="form-control textarea bg-white" placeholder="About Your Organization"
-                          id="about-organization" cols="30" rows="5">{{$profile->about}}</textarea>
-                </div>
-                <div class="form-group">
-                <textarea name="organisation_services" class="form-control textarea bg-white"
-                          placeholder="Services Your Organization Provides" id="services" cols="30" rows="5">{{$profile->organisation_services}}</textarea>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <input type="text" class="form-control bg-white" placeholder="Enter Bussiness State" name="business_state"  value="{{$profile->business_state}}" >
-                    </div>
-                    <div class="form-group col-md-6">
-                        <input type="text" class="form-control bg-white" placeholder="Address" name="business_location" value="{{$profile->business_location}}" >
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="input-group">
-                        <input type="text" class="form-control" id="businessCategoryInput" name="businessCategoryInput" placeholder="Business Category">
-                        <div class="input-group-append">
-                            <button class="btn btn-primary" type="button" id="addButton">Add</button>
-                        </div>
-                    </div>
-                </div>
-                <div id="businessCategoryButtons"></div>
+            @endforeach
 
 
 
-                <div class="form-group d-flex justify-content-end">
-                    <button type="submit" class="btn border-primary text-primary m-2 px-sm-4">Cancel</button>
-                    <button type="submit" class="btn btn-primary m-2 px-sm-4">Submit</button>
-                </div>
-            </form>
+    </div>
+
+  </div>
+  <!-- ----------------------------------------------------- -->
+
+{{--  <div class="short_video container">--}}
+{{--    <h3><span>Short Videos</span> <a href="javascript:void(0)" >See All</a></h3>--}}
+{{--    <div class="card_group">--}}
+{{--      <div class="card" style="background: linear-gradient(#00000059, #00000059),--}}
+{{--      url(/home/images/cars/Optimized-dima-panyukov-DwxlhTvC16Q-unsplash.jpg) no-repeat;">--}}
+{{--        <span class="control"><i class="fa-solid fa-play"></i></span>--}}
+{{--        <div class="reaction">--}}
+{{--          <span class="love"><i class="fa-regular fa-heart"></i> 203</span>--}}
+{{--          <span class="views">5,345 views</span>--}}
+{{--        </div>--}}
+{{--      </div>--}}
+{{--      <div class="card" style="background: linear-gradient(#00000059, #00000059),--}}
+{{--      url(/home/images/bikes/Optimized-ajin-k-s-GmSBNRB9124-unsplash.jpg) no-repeat;">--}}
+{{--        <span class="control"><i class="fa-solid fa-play"></i></span>--}}
+{{--        <div class="reaction">--}}
+{{--          <span class="love"><i class="fa-regular fa-heart"></i> 203</span>--}}
+{{--          <span class="views">5,345 views</span>--}}
+{{--        </div>--}}
+{{--      </div>--}}
+{{--      <div class="card" style="background: linear-gradient(#00000059, #00000059),--}}
+{{--      url(/home/images/cars/Optimized-dhiva-krishna-YApS6TjKJ9c-unsplash.jpg) no-repeat;">--}}
+{{--        <span class="control"><i class="fa-solid fa-play"></i></span>--}}
+{{--        <div class="reaction">--}}
+{{--          <span class="love"><i class="fa-regular fa-heart"></i> 203</span>--}}
+{{--          <span class="views">5,345 views</span>--}}
+{{--        </div>--}}
+{{--      </div>--}}
+{{--      <div class="card" style="background: linear-gradient(#00000059, #00000059),--}}
+{{--      url(/home/images/bikes/Optimized-sanjeev-nagaraj-caz59CGkQz8-unsplash.jpg) no-repeat;">--}}
+{{--        <span class="control"><i class="fa-solid fa-play"></i></span>--}}
+{{--        <div class="reaction">--}}
+{{--          <span class="love"><i class="fa-regular fa-heart"></i> 203</span>--}}
+{{--          <span class="views">5,345 views</span>--}}
+{{--        </div>--}}
+{{--      </div>--}}
+{{--      <div class="card" style="background: linear-gradient(#00000059, #00000059),--}}
+{{--      url(/home/images/cars/Optimized-kenny-eliason-FcyipqujfGg-unsplash.jpg) no-repeat;">--}}
+{{--        <span class="control"><i class="fa-solid fa-play"></i></span>--}}
+{{--        <div class="reaction">--}}
+{{--          <span class="love"><i class="fa-regular fa-heart"></i> 203</span>--}}
+{{--          <span class="views">5,345 views</span>--}}
+{{--        </div>--}}
+{{--      </div>--}}
+{{--    </div>--}}
+
+{{--  </div>--}}
+
+  <!-- ------------------------------------------------------------ -->
+  <div class="why">
+    <div class="why_content">
+      <h2>Why E-Autos</h2>
+      <ul class="load">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <span>Waiting for Content</span>
+      </ul>
+    </div>
+  </div>
+  <!-- ----------------------------------------- -->
+
+  <div class="meet_dealers">
+    <ul class="card_group">
+      <li class="card"><a href="{{route('dealers.all')}}">The Dealers</a></li>
+      <li class="card">
+        <p>Meet with Different Car Dealers, who will help get your desired property, with little to no agent fee added
+        </p>
+      </li>
+      <li class="card"><img src="/home/images/Rectangle 247.png" alt=""></li>
+    </ul>
+  </div>
+  <!-- ----------------------------------------------------- -->
+
+{{--  <div class="groups container">--}}
+{{--    <h3><span>Groups you may like</span> <a href="javascript:void(0)" target="_blank">See more</a></h3>--}}
+{{--    <div class="card_group">--}}
+{{--      <div class="card">--}}
+{{--        <div class="card_img" style="background: url(/home/images/people/group\ of\ people.png) no-repeat;"></div>--}}
+{{--        <div class="details">--}}
+{{--          <h5>IT news</h5>--}}
+{{--          <p><span>1 Member</span>&nbsp; &nbsp;&nbsp;<span>0 Posts today</span></p>--}}
+{{--          <a href="#!">Join</a>--}}
+{{--        </div>--}}
+{{--      </div>--}}
+{{--      <div class="card">--}}
+{{--        <div class="card_img" style="background: url(/home/images/people/group\ of\ people.png) no-repeat;"></div>--}}
+{{--        <div class="details">--}}
+{{--          <h5>IT news</h5>--}}
+{{--          <p><span>1 Member</span>&nbsp; &nbsp;&nbsp;<span>0 Posts today</span></p>--}}
+{{--          <a href="#!">Join</a>--}}
+{{--        </div>--}}
+{{--      </div>--}}
+{{--      <div class="card">--}}
+{{--        <div class="card_img" style="background: url(/home/images/people/group\ of\ people.png) no-repeat;"></div>--}}
+{{--        <div class="details">--}}
+{{--          <h5>IT news</h5>--}}
+{{--          <p><span>1 Member</span>&nbsp; &nbsp;&nbsp;<span>0 Posts today</span></p>--}}
+{{--          <a href="#!">Join</a>--}}
+{{--        </div>--}}
+{{--      </div>--}}
+{{--      <div class="card">--}}
+{{--        <div class="card_img" style="background: url(/home/images/people/group\ of\ people.png) no-repeat;"></div>--}}
+{{--        <div class="details">--}}
+{{--          <h5>IT news</h5>--}}
+{{--          <p><span>1 Member</span>&nbsp; &nbsp;&nbsp;<span>0 Posts today</span></p>--}}
+{{--          <a href="#!">Join</a>--}}
+{{--        </div>--}}
+{{--      </div>--}}
+{{--      <div class="card">--}}
+{{--        <div class="card_img" style="background: url(/home/images/people/group\ of\ people.png) no-repeat;"></div>--}}
+{{--        <div class="details">--}}
+{{--          <h5>IT news</h5>--}}
+{{--          <p><span>1 Member</span>&nbsp; &nbsp;&nbsp;<span>0 Posts today</span></p>--}}
+{{--          <a href="#!">Join</a>--}}
+{{--        </div>--}}
+{{--      </div>--}}
+{{--    </div>--}}
+
+{{--  </div>--}}
+
+
+  <!-- --------------------------------------------------- -->
+  <div class="blog">
+      <h3>Blog Posts</h3>
+     <div class="blog-group">
+            <a href="#" class="card">
+                <div class="blog-img"></div>
+                <h4>Latest News</h4>
+                <p>Lorem jjwefilqrfrbhbflqervn vyuqoYF</p>
+            </a>
+            <a href="#" class="card">
+                <div class="blog-img"></div>
+                <h4>Latest News</h4>
+                <p>Lorem jjwefilqrfrbhbflqervn vyuqoYF</p>
+            </a>
+            <a href="#" class="card">
+                <div class="blog-img"></div>
+                <h4>Latest News</h4>
+                <p>Lorem jjwefilqrfrbhbflqervn vyuqoYF</p>
+            </a>
+            <a href="#" class="card">
+                <div class="blog-img"></div>
+                <h4>Latest News</h4>
+                <p>Lorem jjwefilqrfrbhbflqervn vyuqoYF</p>
+            </a>
 
         </div>
-    </div>
-    <!-- /.container-fluid -->
-@endsection
-
-<script src="/vendor/jquery/jquery.min.js"></script>
-<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-<!-- Core plugin JavaScript-->
-<script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
-<!-- Page level plugins -->
-<script src="/vendor/datatables/jquery.dataTables.min.js"></script>
-<script src="/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
-<!-- Page level custom scripts -->
-<script src="/js/demo/datatables-demo.js"></script>
-
-<!-- Custom scripts for all pages-->
-<script src="/js/sb-admin-2.min.js"></script>
+  </div>
+  @include('home.includes.footer')
+  <script src="
+https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js
+"></script>
 <script>
-    $(document).ready(function () {
-        $("#profileBtn").click(function () {
-            $(this).addClass("bg-primary");
-            $(this).css("color", "white");
-            $("#editProfileBtn").css("color", "black");
-            $("#editProfileBtn").removeClass("bg-primary");
-            $("#editProfile").css("display", "none");
-            $("#myProfile").css("display", "flex");
-        });
-        $("#editProfileBtn").click(function () {
-            $(this).addClass("bg-primary");
-            $(this).css("color", "white");
-            $("#profileBtn").removeClass("bg-primary");
-            $("#profileBtn").css("color", "black");
-            $("#myProfile").css("display", "none");
-            $("#editProfile").css("display", "block");
-        });
-    })
-
-
-    document.addEventListener("DOMContentLoaded", function() {
-        var addButton = document.getElementById("addButton");
-        addButton.addEventListener("click", function() {
-            var inputVal = document.getElementById("businessCategoryInput").value.trim();
-            if (inputVal !== '') {
-                var newButton = document.createElement("button");
-                newButton.setAttribute("type", "button");
-                newButton.setAttribute("class", "btn btn-secondary mr-2");
-                newButton.textContent = inputVal;
-
-                // Create delete button
-                var deleteButton = document.createElement("button");
-                deleteButton.setAttribute("type", "button");
-                deleteButton.setAttribute("class", "btn btn-danger ml-2");
-                deleteButton.textContent = "Delete";
-                deleteButton.addEventListener("click", function() {
-                    this.parentNode.remove(); // Remove the parent (the button itself)
-                });
-
-                // Create container for the buttons
-                var buttonContainer = document.createElement("div");
-                buttonContainer.setAttribute("class", "mb-2");
-                buttonContainer.appendChild(newButton);
-                buttonContainer.appendChild(deleteButton);
-
-                var businessCategoryButtons = document.getElementById("businessCategoryButtons");
-                businessCategoryButtons.appendChild(buttonContainer);
-
-                document.getElementById("businessCategoryInput").value = ''; // Clear the input box
-            }
-        });
-
-        var retrieveButton = document.getElementById("retrieveButton");
-        retrieveButton.addEventListener("click", function() {
-            var businessCategoryButtons = document.getElementById("businessCategoryButtons");
-            var buttonContainers = businessCategoryButtons.getElementsByClassName("mb-2");
-            var values = [];
-            for (var i = 0; i < buttonContainers.length; i++) {
-                var button = buttonContainers[i].getElementsByTagName("button")[0];
-                values.push(button.textContent);
-            }
-            console.log(values); // Output the values to console
-            // Now you can send 'values' to your PHP controller via AJAX or any other method
-        });
-    });
-
-
-
-
+      //Center item Slider
+  $('.center-item-slider').slick({
+    centerMode: true,
+    centerPadding: '60px',
+    autoplay: true,
+    autoplaySpeed: 4000,
+    slidesToShow: 3,
+    responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          arrows: false,
+          centerMode: true,
+          centerPadding: '40px',
+          slidesToShow: 3
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          arrows: false,
+          centerMode: true,
+          centerPadding: '40px',
+          slidesToShow: 1
+        }
+      }
+    ]
+  });
 </script>

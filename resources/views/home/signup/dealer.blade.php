@@ -8,11 +8,7 @@
     <link rel="stylesheet" href="/home/css/signUp_user.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
-    <!-- Include Select2 CSS via CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
-    <!-- Include jQuery and Select2 JS via CDN -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/multiple-select@1.7.0/dist/multiple-select.min.css">
 
 </head>
 
@@ -36,15 +32,19 @@
                 <input type="text" name="business_name" placeholder="Business Name">
                 <input type="email" name="email" placeholder="Email">
                 <input type="password" name="pword" placeholder="Password">
-                <select class="form-multi-select" id="frameworks" name="frameworks[]" multiple="multiple">
-                    <option value="0">Angular</option>
-                    <option value="1">Bootstrap</option>
-                    <option value="2">React.js</option>
-                    <option value="3">Vue.js</option>
-                    <optgroup label="backend">
-                        <option value="4">Django</option>
-                        <option value="5">Laravel</option>
-                        <option value="6">Node.js</option>
+
+                <label style="margin: 5px 0; text-align: start;">Select From The Option Below <i class="fa fa-arrow-down"></i></label>
+                <select multiple="multiple" class="multiple-select" name="multiple_selection[]">
+                    <option value="Oil change">Oil Change</option>
+                    <option value="Tire Rotation">Tire Rotation</option>
+                    <option value="Brake Inspection">Brake Inspection</option>
+                    <option value="Battery Check">Battery Check</option>
+                    <option value="Alignment">Alignment</option>
+                    <optgroup label="Advanced Services">
+                        <option value="Engine Diagnostics">Engine Diagnostics</option>
+                        <option value="Transmission Repair">Transmission Repair</option>
+                        <option value="Suspension Repair">Suspension Repair</option>
+                        <option value="Air Conditioning Repair">Air Conditioning Repair</option>
                     </optgroup>
                 </select>
 
@@ -91,12 +91,9 @@
     });
 </script>
 
+<script src="https://unpkg.com/multiple-select@1.7.0/dist/multiple-select.min.js"></script>
 <script>
-    $(document).ready(function() {
-        $('#frameworks').select2({
-            placeholder: "Select frameworks",
-            allowClear: true,
-            width: '100%' // Make sure it fits within the Bootstrap form-control
-        });
-    });
+  $(function() {
+    $('.multiple-select').multipleSelect()
+  })
 </script>

@@ -149,4 +149,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(StolenCar::class, 'user_id');
     }
+
+    public function services()
+    {
+        return $this->belongsToMany(BussinessService::class, 'business_services');
+    }
 }

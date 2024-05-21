@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('complaint');
             $table->string('reporter_name');
             $table->string('is_viewed');
+            $table->string('offender_id');
             $table->string('country');
             $table->unsignedBigInteger('user_id');
             $table->string('reporter_phone');

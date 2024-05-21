@@ -146,9 +146,25 @@ main form select {
     border-radius: 5px;
     border: 1px solid #d5d5d5;
 }
-main form select option{
-    padding: 5px;
-    padding-left: 10px;
+.ms-parent{
+    padding: 5px !important;
+    box-shadow: none !important;
+    margin: 10px 0;
+}
+.ms-parent input{
+    padding: 5px 0 !important;
+}
+.ms-parent label{
+    margin-top: 5px !important;
+}
+.icon-caret{
+    display: none !important;
+}
+.ms-drop{
+    text-align: start !important;
+    width: fit-content !important;
+    padding: 5px !important;
+    font-size: 12px !important;
 }
 
 main form span {
@@ -161,6 +177,7 @@ main form span a {
     color: #394293;
     /* font-weight: bold; */
     font-size: 15px;
+    margin: 5px 0;
 }
 main form button {
     padding: 0.7rem 0;
@@ -312,6 +329,8 @@ footer .socials a:hover {
     .socials {
         justify-content: center !important;
     }
+
+
 }
 /* ---------------------------- */
 
@@ -328,6 +347,8 @@ footer .socials a:hover {
     footer h6 {
         text-align: center;
     }
+
+
 }
 /* ------------------------------------------- */
 
@@ -347,6 +368,7 @@ footer .socials a:hover {
     form a {
         font-size: 12px !important;
     }
+
 }
 /* ------------------------------------------- */
 
@@ -369,4 +391,6 @@ footer .socials a:hover {
     .footer_nav {
         flex-wrap: wrap;
     }
+
+
 }

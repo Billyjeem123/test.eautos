@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('desc');
             $table->string('image');
             $table->string('views');
+            $table->string('is_active');
 
             $table->timestamps();
         });

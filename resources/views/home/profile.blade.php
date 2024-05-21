@@ -39,6 +39,79 @@
             background-color: #0056b3;
         }
 
+
+
+    </style>
+
+    <style>
+        .short-video-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 15px;
+        }
+
+        .short-video-item {
+            background-color: #f5f5f5;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .short-video-item video {
+            width: 100%;
+            height: 350px;
+        }
+
+        .video-stats,
+        .video-info {
+            padding: 10px;
+        }
+
+        .video-stats div {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .video-stats i {
+            margin-right: 5px;
+        }
+
+        .pagination-section {
+            margin-top: 20px;
+            text-align: center;
+            align-content: center;
+        }
+
+        .pagination-section ul.pagination {
+            margin: 0;
+        }
+
+        .pagination-section ul.pagination li.page-item {
+            display: inline-block;
+            margin-right: 5px;
+        }
+
+        .pagination-section ul.pagination li.page-item a.page-link {
+            color: #007bff;
+            text-decoration: none;
+            padding: 5px 10px;
+            border: 1px solid #007bff;
+            border-radius: 3px;
+        }
+
+        .pagination-section ul.pagination li.page-item a.page-link:hover {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .pagination-section ul.pagination li.page-item.active a.page-link {
+            background-color: #007bff;
+            color: #fff;
+            border-color: #007bff;
+        }
+
     </style>
 </head>
 
@@ -58,11 +131,7 @@
                 <div>
                     <p><span><i class="fa fa-map-marker"></i></span>&nbsp;&nbsp; Lagos Nigeria (11 miles)</p>
                     <p><span><i class="fa fa-calendar"></i></span>&nbsp;&nbsp; Joined {{ $profile->created_at->format('F j, Y') }}</p>
-
-                    <p>
-                        <span><i class="fa fa-id-badge"></i></span>&nbsp;&nbsp;
-                        User ID: {{$profile->id}}
-                    </p>
+                    <p><span><i class="fa fa-calendar"></i></span>&nbsp;&nbsp; Reviews {{ $totalReviews }}</p>
 
                     <p><span><i class="fa fa-envelope"></i></span>&nbsp;&nbsp; {{ $profile->email }}</p>
                     <p><span><i class="fa fa-phone"></i></span>&nbsp;&nbsp;<a style="color:#000;" href="tel: {{ $profile->phone }}">{{ $profile->phone }}</a></p>
@@ -81,53 +150,53 @@
             </span>
 
             <div class="card_footer">
-                <a href="#">Connect</a><a href="#" id="report">Report</a>
+                <a id="connect">Connect</a><a id="report">Report</a>
             </div>
         </div>
     </div>
+    <!---------------------------------------------------------------------------->
+    <div class="connect-modal">
+         <div class="bid">
+            <div class="close-modal"><strong><i class="fa-solid fa-xmark"></i></strong></div>
+            <div class="connect-form">
+                <form>
+                  <!--<span class="form_group">-->
+                      <label>Enter Your Name <i class="fa fa-arrow-down"></i></label>
+                      <input type="text" placeholder="Name"><br>
+                      <label>Enter Your E-mail <i class="fa fa-arrow-down"></i></label>
+                    <input type="text" placeholder="E-mail"><br>
+                  <!--</span>-->
+                  <label>Type In Your Message <i class="fa fa-arrow-down"></i></label>
+                    <textarea name="complain" id="" cols="30" rows="5" placeholder="Message"></textarea>
+                  <button>Send</button>
+                </form>
+            </div>
+         </div>
+    </div>
+    <!--------------------------------------------------------------------------->
     <div class="report-modal">
          <div class="bid">
-            <div class="close-modal">X</div>
+            <div class="close-modal"><strong><i class="fa-solid fa-xmark"></i></strong></div>
             <div class="report-form">
-                <div class="container mt-5">
-                    <form action="{{ route('report.create') }}" method="POST">
-                        @csrf
-                        <div class="form-group">
-                            <label for="offender_name">Offender Name</label>
-                            <input type="text" class="form-control" id="offender_name" name="offender_name" placeholder="Offender Name" value="{{ $profile->name }}">
-                        </div>
-                        <div class="form-group">
-                            <label for="business_name">Business Name</label>
-                            <input type="text" class="form-control" id="business_name" name="business_name" placeholder="Business Name" value="{{ $profile->business_name }}">
-                        </div>
-                        <div class="form-group">
-{{--                            <label for="location">Location</label>--}}
-                            <input type="hidden" class="form-control" id="location" name="location" placeholder="Location" value="{{ $profile->business_location }}">
-                        </div>
-                        <div class="form-group">
-                            <input type="hidden" name="name" value="{{ auth()->user()->name ?? '' }}">
-                        </div>
-                        <div class="form-group">
-                            <label for="country">Enter Your Address</label>
-                            <input type="text" class="form-control" id="country" name="country" placeholder="Enter Your Address" >
-                        </div>
-                        <div class="form-group">
-                            <label for="phone_number">Phone Number</label>
-                            <input type="text" class="form-control" id="phone_number" name="phone_number" placeholder="Phone Number" value="{{ auth()->user()->phone ?? '' }}">
-                        </div>
-                        <div class="form-group">
-                            <input type="hidden" name="email" value="{{ auth()->user()->email ?? '' }}">
-                        </div>
+                <form   method="POST" action="{{route('report.create')}}">
+                    @csrf
+                  <strong style="font-size: 18px;">Offenders Info.</strong>
+                  <span style="background: #e6e6e6; width: 100%; padding: 5px;">
+                      <input type="text" readonly placeholder="Offender Name" name="offender_name" value="{{ $profile->name}}">
+                    <input type="text" readonly placeholder="Bussiness Name" name="business_name" value="{{ $profile->business_name}}">
+                       <input type="text" readonly placeholder="Location" name="location" value="{{ $profile->business_location}}">
+                       <input type="hidden" readonly placeholder="Location" name="offender_id" value="{{ $profile->id}}">
+                  </span><br>
 
-                        <div class="form-group">
-                            <label for="country">Enter Your Complaint</label>
-
-                            <textarea name="complain"  class="form-control" id="" cols="30" rows="10"></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>
-                </div>
-
+                       <strong>Input Your Info <i class="fa fa-arrow-down"></i></strong>
+                    <input type="text" placeholder="Enter Your Name" name="name" value="{{auth()->user()->name ?? ""}}">
+                      <input type="text" placeholder="Enter Your Address" name="country">
+                    <input type="text" placeholder="Phone Number"  name="phone_number" value="{{auth()->user()->phone ?? ""}}">
+                       <input type="text" placeholder="Your Email" name="email" value="{{auth()->user()->email ?? ""}}">
+                       <label><strong>Enter Your Message <i class="fa fa-arrow-down"></i></strong></label>
+                    <textarea name="complain" id="" cols="30" rows="5" placeholder="Type in your complaint"></textarea>
+                  <button>Send Report</button>
+                </form>
             </div>
          </div>
     </div>
@@ -163,72 +232,69 @@
             </select>
         </form>
         <h3>Dealer Product</h3>
-        <div class="card-group">
-      <a href="#" style="color:#000; text-decoration: none;" class="card">
-              <div
-                class="card_img"
-                style="background: url(/images/cars/Rectangle\ 16.png) no-repeat"
-              ></div>
-              <div class="card_text">
-                <h5>2014 Toyota Camry</h5>
-                <div class="details">
-                  <ul>
-                    <li>New</li>
-                    <li>10 Cylinder</li>
-                    <li
-                      style="
-                        background-color: #f9e17a;
-                        border: none;
-                        color: #ffffff;
-                      "
-                    >
-                      Yellow
-                    </li>
-                    <li>Fuel</li>
-                  </ul>
-                  <h5>₦ 930,000</h5>
-                  <p>Lagos Nigeria (11 miles)</p>
-                </div>
-              </div>
-        </a>
-        </div>
-    </div>
-    <!-- ------------------------------------------------------------ -->
-    <!-- ------------------------------------------------------------ -->
-    <div class="work-history">
-{{--        <h3>Featured Cars</h3>--}}
-{{--        <div class="card-group">--}}
-{{--            <a href="#" style="color:#000; text-decoration: none;" class="card">--}}
-{{--              <div--}}
-{{--                class="card_img"--}}
-{{--                style="background: url(/images/cars/Rectangle\ 16.png) no-repeat"--}}
-{{--              ></div>--}}
-{{--              <div class="card_text">--}}
-{{--                <h5>2014 Toyota Camry</h5>--}}
-{{--                <div class="details">--}}
-{{--                  <ul>--}}
-{{--                    <li>New</li>--}}
-{{--                    <li>10 Cylinder</li>--}}
-{{--                    <li--}}
-{{--                      style="--}}
-{{--                        background-color: #f9e17a;--}}
-{{--                        border: none;--}}
-{{--                        color: #ffffff;--}}
-{{--                      "--}}
-{{--                    >--}}
-{{--                      Yellow--}}
-{{--                    </li>--}}
-{{--                    <li>Fuel</li>--}}
-{{--                  </ul>--}}
-{{--                  <h5>₦ 930,000</h5>--}}
-{{--                  <p>Lagos Nigeria (11 miles)</p>--}}
-{{--                </div>--}}
-{{--              </div>--}}
-{{--        </a>--}}
 
-{{--        </div>--}}
+        <div class="card-group">
+            @forelse($carsUploaded as $car)
+                <a href="{{route('product.show', $car->id)}}" style="color:#000; text-decoration: none;" class="card">
+                    <div class="card_img"
+                         style="background: url('{{ $car->images[0]['image'] }}') no-repeat;"></div>
+
+                    <div class="card_text">
+                        <h5>{{ $car->title }}</h5>
+                        <div class="details">
+                            <ul>
+                                <li>{{ $car->subcategories->name }}</li>
+                                <li>{{ $car->cylinder }}</li>
+                                <li style="background-color: {{ $car->color }}; border: none; color: #ffffff;">{{ $car->color }}</li>
+                                <li>Fuel</li>
+
+                            </ul>
+                            <h5>₦ {{ number_format($car->price, 2) }}</h5>
+                            <p>{{ $car->location }} ({{ $car->mileage }})</p>
+                        </div>
+                    </div>
+                </a>
+            @empty
+                <p>No cars uploaded yet.</p>
+            @endforelse
+        </div>
+
+
+        <!-- Pagination Section -->
+        <div class="pagination-section">
+            <div class="d-flex justify-content-center">
+                <nav aria-label="Page navigation">
+                    <ul class="pagination justify-content-center flex-wrap">
+                        @if ($carsUploaded->onFirstPage())
+                            <li class="page-item disabled"><span class="page-link">Prev</span></li>
+                        @else
+                            <li class="page-item"><a class="page-link" href="{{ $carsUploaded->previousPageUrl() }}">Prev</a></li>
+                        @endif
+
+                        @foreach ($carsUploaded->getUrlRange(1, $carsUploaded->lastPage()) as $page => $url)
+                            <li class="page-item {{ ($page == $carsUploaded->currentPage()) ? 'active' : '' }}">
+                                <a class="page-link" href="{{ $url }}">{{ $page }}</a>
+                            </li>
+                        @endforeach
+
+                        @if ($carsUploaded->hasMorePages())
+                            <li class="page-item"><a class="page-link" href="{{ $carsUploaded->nextPageUrl() }}">Next</a></li>
+                        @else
+                            <li class="page-item disabled"><span class="page-link">Next</span></li>
+                        @endif
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+
+        </section>
+
+
+
+
     </div>
-    <!-- ------------------------------------------------------------ -->
+
 
     <div class="time container">
         <div class="card_group">
@@ -353,15 +419,25 @@
 @include('home.includes.footer')
 
 <script>
-        $(document).ready(function () {
+    $(document).ready(function () {
 
 
-      $("#report").click(function () {
-        $(".report-modal").css("display", "flex");
-      });
-      $(".close-modal").click(function () {
-        $(".report-modal").css("display", "none");
-      });
+          $("#report").click(function () {
+            $(".report-modal").css("display", "flex");
+            $(".report-modal").css("z-index", "999999");
+          });
+          $(".close-modal").click(function () {
+            $(".report-modal").css("display", "none");
+          });
+        //   ------------------------------
+          $("#connect").click(function () {
+            $(".connect-modal").css("display", "flex");
+            $(".connect-modal").css("z-index", "999999");
+          });
+          $(".close-modal").click(function () {
+            $(".connect-modal").css("display", "none");
+          });
+
       });
 
 </script>

@@ -10,6 +10,13 @@ class Report extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name_of_offender', 'bussines_name', 'is_viewed', 'offernder_location', 'complaint', 'reporter_name', 'user_id',  'country', 'reporter_phone', 'reporter_phone',
+        'name_of_offender', 'bussines_name', 'is_viewed', 'offernder_location', 'complaint', 'reporter_name', 'user_id',  'country', 'reporter_phone', 'reporter_phone', 'offender_id'
     ];
+
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'offender_id');
+    }
+
 }

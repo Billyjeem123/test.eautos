@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Events\ReportEvent;
 use App\Models\Report;
 use App\Models\RequestCar;
+use App\Models\User;
+use App\Notifications\ReportOffender;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -45,12 +47,20 @@ public function store(Request $request)
     $report->reporter_phone = $request->input('phone_number'); #
     $report->reporter_mail = $request->input('email');
     $report->user_id = auth()->user()->id;
+    $report->offender_id = $request->offender_id;
     $report->save();
 
-     $mail = 'billy@gmail.com';
-     $messages = 'You have a new message';
+    $data = [
+        'title' => 'Urgent Vendor Report Notification',
+        'message' => 'An urgent notification has been received from a user regarding a vendor. Please find below the detailed report,  on your dashboard:'
+    ];
 
-    event(new ReportEvent($mail, $messages));
+
+    $admins = User::where('role', 'admin')->get();
+    foreach ($admins as $admin) {
+        $admin->notify(new ReportOffender($data));
+    }
+
 
     // Redirect back with success message
     return redirect()->back()->with('success', 'Your report has been submitted successfully. You will be notified upon any updates.');

@@ -8,9 +8,9 @@
   <link rel="stylesheet" href="/home/css/home.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
  <!-- Add the slick-theme.css if you want default styling -->
-<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.css"/>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.css"/>
 <!-- Add the slick-theme.css if you want default styling -->
-<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick-theme.css"/>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick-theme.css"/>
 </head>
 
 <body>
@@ -63,28 +63,35 @@
   <div class="essential container">
     <h3>The world is going <span>e</span> so are we</h3><br>
     <h4>List of essential Group Brands</h4>
-    <ul>
-      <li>
+    
+    <ul class="center-item-slider">
+      <li class="holder center">
+        <h3>Lorem</h3>
+        <p>loremloremloremloeremememwjfbljvajh</p>
+        <a href="#">Button</a>
+      </li>
+      <li class="holder center">
+        <h3>Lorem</h3>
+        <p>loremloremloremloeremememwjfbljvajh</p>
+        <a href="#">Button</a>
+      </li>
+      <li class="holder center">
+        <h3>Lorem</h3>
+        <p>loremloremloremloeremememwjfbljvajh</p>
+        <a href="#">Button</a>
+      </li>
+      <li class="holder center">
+        <h3>Lorem</h3>
+        <p>loremloremloremloeremememwjfbljvajh</p>
+        <a href="#">Button</a>
+      </li>
+      <li class="holder center">
         <h3>Lorem</h3>
         <p>loremloremloremloeremememwjfbljvajh</p>
         <a href="#">Button</a>
       </li>
     </ul>
-    
-        <div class="center-item-slider">
-         <div class="holder center">your content <br><br><br> ygfwygsdyafgukqvyjsheavcsdjhcvaksdjhcv</div>
-         <div class="holder center">your content <br><br><br> ygfwygsdyafgukqvyjsheavcsdjhcvaksdjhcv</div>
-         <div class="holder center">your content <br><br><br> ygfwygsdyafgukqvyjsheavcsdjhcvaksdjhcv</div>
-         <div class="holder center">your content <br><br><br> ygfwygsdyafgukqvyjsheavcsdjhcvaksdjhcv</div>
-         <div class="holder center">your content <br> ygfwygsdyafgukqvyjsheavcsdjhcvaksdjhcv</div>
-         <div class="holder center">your content <br> ygfwygsdyafgukqvyjsheavcsdjhcvaksdjhcv</div>
-         <div class="holder center">your content</div>
-         <div class="holder center">your content</div>
-         <div class="holder center">your content</div>
-         <div class="holder center">your content</div>
-         <div class="holder center">your content</div>
-       </div>
-  
+
   </div>
   <!-- ------------------------------------------------- -->
   <div class="report_request container">
@@ -150,13 +157,8 @@
               </div>
           </div>
       </div>
-
-
       @endforeach
   </div>
-
-
-
   </div>
   <!-- ----------------------------------------------------- -->
 
@@ -245,7 +247,33 @@
     </div>
   </div>
   <!-- ----------------------------------------- -->
+  <!-- -------------------------------------------------- -->
+<br><br>
+  <div class="latest container">
+    <h3>Featured Products</h3>
+    <div class="card_group">
+      <div class="card">
+          <a href="#" class="card_link">
+              <div class="card_img" style="background: url(/home/images/cars/bmw.png) no-repeat;"></div>
+          </a>
+          <div class="card_text">
+              <h5>Toyota</h5>
+              <div class="details">
+                  <ul>
+                    <li>New</li>
+                    <li>3kg</li>
+                    <li style="background-color: red; border: none; color: #ffffff;">red</li>
+                    <li>Fuel</li>
+                  </ul>
+                  <h5> ₦ 200,000</h5>
+                  <p>Nigeria</p>
 
+              </div>
+          </div>
+      </div>
+  </div>
+  </div>
+  <!-- ----------------------------------------------------- -->
   <div class="meet_dealers">
     <ul class="card_group">
       <li class="card"><a href="{{route('dealers.all')}}">The Dealers</a></li>
@@ -258,81 +286,23 @@
   </div>
   <!-- ----------------------------------------------------- -->
 
-{{--  <div class="groups container">--}}
-{{--    <h3><span>Groups you may like</span> <a href="javascript:void(0)" target="_blank">See more</a></h3>--}}
-{{--    <div class="card_group">--}}
-{{--      <div class="card">--}}
-{{--        <div class="card_img" style="background: url(/home/images/people/group\ of\ people.png) no-repeat;"></div>--}}
-{{--        <div class="details">--}}
-{{--          <h5>IT news</h5>--}}
-{{--          <p><span>1 Member</span>&nbsp; &nbsp;&nbsp;<span>0 Posts today</span></p>--}}
-{{--          <a href="#!">Join</a>--}}
-{{--        </div>--}}
-{{--      </div>--}}
-{{--      <div class="card">--}}
-{{--        <div class="card_img" style="background: url(/home/images/people/group\ of\ people.png) no-repeat;"></div>--}}
-{{--        <div class="details">--}}
-{{--          <h5>IT news</h5>--}}
-{{--          <p><span>1 Member</span>&nbsp; &nbsp;&nbsp;<span>0 Posts today</span></p>--}}
-{{--          <a href="#!">Join</a>--}}
-{{--        </div>--}}
-{{--      </div>--}}
-{{--      <div class="card">--}}
-{{--        <div class="card_img" style="background: url(/home/images/people/group\ of\ people.png) no-repeat;"></div>--}}
-{{--        <div class="details">--}}
-{{--          <h5>IT news</h5>--}}
-{{--          <p><span>1 Member</span>&nbsp; &nbsp;&nbsp;<span>0 Posts today</span></p>--}}
-{{--          <a href="#!">Join</a>--}}
-{{--        </div>--}}
-{{--      </div>--}}
-{{--      <div class="card">--}}
-{{--        <div class="card_img" style="background: url(/home/images/people/group\ of\ people.png) no-repeat;"></div>--}}
-{{--        <div class="details">--}}
-{{--          <h5>IT news</h5>--}}
-{{--          <p><span>1 Member</span>&nbsp; &nbsp;&nbsp;<span>0 Posts today</span></p>--}}
-{{--          <a href="#!">Join</a>--}}
-{{--        </div>--}}
-{{--      </div>--}}
-{{--      <div class="card">--}}
-{{--        <div class="card_img" style="background: url(/home/images/people/group\ of\ people.png) no-repeat;"></div>--}}
-{{--        <div class="details">--}}
-{{--          <h5>IT news</h5>--}}
-{{--          <p><span>1 Member</span>&nbsp; &nbsp;&nbsp;<span>0 Posts today</span></p>--}}
-{{--          <a href="#!">Join</a>--}}
-{{--        </div>--}}
-{{--      </div>--}}
-{{--    </div>--}}
-
-{{--  </div>--}}
+   <div class="blog">
+       <h3>Blog Posts</h3>
+       <div class="blog-group">
+           @forelse ($blogs as $blog)
+               <a href="{{route('show.blog.id', $blog->id)}}" class="card">
+                   <div class="blog-img" style="background: url({{ $blog->image }});"></div>
+                   <h4>LatestNews</h4>
+                   <p>{{ $blog->title }}</p>
+               </a>
+           @empty
+               <p>No blog posts found.</p>
+           @endforelse
+       </div>
+   </div>
 
 
-  <!-- --------------------------------------------------- -->
-  <div class="blog">
-      <h3>Blog Posts</h3>
-     <div class="blog-group">
-            <a href="#" class="card">
-                <div class="blog-img"></div>
-                <h4>Latest News</h4>
-                <p>Lorem jjwefilqrfrbhbflqervn vyuqoYF</p>
-            </a>
-            <a href="#" class="card">
-                <div class="blog-img"></div>
-                <h4>Latest News</h4>
-                <p>Lorem jjwefilqrfrbhbflqervn vyuqoYF</p>
-            </a>
-            <a href="#" class="card">
-                <div class="blog-img"></div>
-                <h4>Latest News</h4>
-                <p>Lorem jjwefilqrfrbhbflqervn vyuqoYF</p>
-            </a>
-            <a href="#" class="card">
-                <div class="blog-img"></div>
-                <h4>Latest News</h4>
-                <p>Lorem jjwefilqrfrbhbflqervn vyuqoYF</p>
-            </a>
-         
-        </div>
-  </div>
+
   @include('home.includes.footer')
   <script src="
 https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js
@@ -344,7 +314,7 @@ https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js
     centerPadding: '60px',
     autoplay: true,
     autoplaySpeed: 4000,
-    slidesToShow: 3,
+    slidesToShow: 2,
     responsive: [
       {
         breakpoint: 768,
@@ -352,7 +322,7 @@ https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js
           arrows: false,
           centerMode: true,
           centerPadding: '40px',
-          slidesToShow: 3
+          slidesToShow: 3,
         }
       },
       {

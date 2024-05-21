@@ -1,3 +1,4 @@
+
 @extends('admin.layouts.master')
 
 
@@ -10,10 +11,10 @@
 
         <!-- Page Heading -->
         <div class="mb-4">
-            <h1 class="h3 text-gray-800">Auction</h1>
+            <h1 class="h3 text-gray-800">Post a Vehicle</h1>
             <span class="py-2 px-4 bg-white text-dark rounded">Sell your car</span>
         </div>
-            <form id="vehicleForm" class="p-3" method="POST" enctype="multipart/form-data" >
+        <form id="vehicleForm" class="p-3" method="POST" enctype="multipart/form-data" >
             @csrf
             <div class="d-flex justify-content-start align-items-center">
                 <h5 class="h5">Property Details</h5>
@@ -25,7 +26,7 @@
             <div class="form-row mb-3">
                 <div class="form-group col-md-6">
                     <select id="category" class="form-control bg-white" name="category_id" required>
-                        <option  selected>Select Category</option>
+                        <option  >Select Category</option>
                         @foreach ($categories as $item)
                             <option value="{{$item->id}}">{{$item->catname}}</option>
 
@@ -39,7 +40,7 @@
 
                 <div class="form-group col-md-6">
                     <select id="subcategory" class="form-control bg-white" name="sub_category_id" required>
-                        <option selected disabled>Sub Category</option>
+                        <option  disabled>Sub Category</option>
                         <!-- Subcategory options will be populated dynamically -->
                     </select>
                 </div>
@@ -186,36 +187,15 @@
                     <input type="text" class="form-control bg-white" placeholder="Area" id="price" name="address" required>
                 </div>
             </div>
-
-
-
-            <h5 class="h5 mb-2">Auction Date</h5>
-
-            <div class="form-row justify-content-between mb-3">
-                <div class="form-group col-md-6">
-                    <input type="text" id="starting_date" name="starting_date" class="form-control bg-white" placeholder="Select starting date"> required
-                </div>
-
-                <div class="form-group col-md-6">
-                    <input type="text" id="ending_date" name="ending_date" class="form-control bg-white" placeholder="Select ending date" required>
-                </div>
-            </div>
-
-
             <h5 class="h5 mb-2">Pricing Details</h5>
             <div class="form-row mb-3">
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-6">
                     <input type="text" class="form-control bg-white" placeholder="Price" id="price" name="price" required>
                 </div>
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-6">
                     <input type="text" class="form-control bg-white" placeholder="Car name" id="price" name="car_name" required>
                 </div>
-                <div class="form-group col-md-4">
-                    <select id="append" class="form-control bg-white">
-                        <option selected>Append To</option>
-                        <option>...</option>
-                    </select>
-                </div>
+
             </div>
             <div class="form-check my-3">
                 <input type="checkbox" class="form-check-input" id="installment" name="installment">
@@ -280,9 +260,6 @@
         });
     </script>
 
-
-
-
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             function submitForm(event) {
@@ -311,7 +288,7 @@
                 submitBtn.innerHTML = 'Processing...';
                 submitBtn.disabled = true;
 
-                fetch("{{ route('admin.auction.create') }}", {
+                fetch("{{ route('create_product_admin') }}", {
                     method: 'POST',
                     headers: {
                         'X-CSRF-TOKEN': document.querySelector('input[name="_token"]').value
@@ -327,7 +304,7 @@
                     .then(data => {
                         if (data.success) {
                             toastr.success('Blog post uploaded successfully.');
-                            // form.reset();
+                            form.reset();
                         } else {
                             toastr.error('An error occurred while uploading the blog post.');
                         }
@@ -349,6 +326,8 @@
     </script>
 
 
+
+
+
+
 @endsection
-
-

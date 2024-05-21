@@ -7,6 +7,7 @@ use App\Events\CommentEvent;
 use App\Events\ReachOut;
 use App\Models\Auction;
 use App\Models\Bid;
+use App\Models\Blog;
 use App\Models\BussinessReview;
 use App\Models\Comment;
 use App\Models\Message;
@@ -21,6 +22,7 @@ use App\Models\SubCategory;
 use App\Models\ValueAsset;
 use App\Models\ValueDocs;
 use App\Notifications\NotifyAuctionOwners;
+use App\Notifications\ProductApprovalNotification;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -41,7 +43,7 @@ class ProductController extends Controller
         $brands = Brand::all();
         $categories = Category::all();
 
-        return view('admin.vehicle', ['brands' => $brands, 'categories' => $categories]);
+        return view('admin.product.index', ['brands' => $brands, 'categories' => $categories]);
     }
 
 
@@ -73,13 +75,6 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-//    $validator = $this->validateRequest($request);
-//
-//
-//    // Check if validation fails
-//    if ($validator->fails()) {
-//        return redirect()->back()->withInput()->withErrors(['error' => $validator->errors()->first()]); // Redirect back with input and error message
-//    }
 
         // Save category
         $product = Product::create([
@@ -115,7 +110,9 @@ class ProductController extends Controller
 
 
         // Return a success response
-        return redirect()->back()->with(['success' => 'Product created successfully']);
+//        return redirect()->back()->with(['success' => 'Product created successfully']);
+        // Return a success response for AJAX
+        return response()->json(['success' => 'Product created successfully']);
     }
 
 
@@ -195,25 +192,92 @@ class ProductController extends Controller
     {
 
 
-        $products = Product::with('brand', 'images', 'categories')->get();
-        // echo "<pre>";
-        // echo json_encode($products, JSON_PRETTY_PRINT);
-        // echo "</pre>";
-        return view('admin.listing', ['products' => $products]);
+        $products = Product::with('brand', 'images', 'categories')
+            ->orderBy('products.id', 'DESC')
+            ->get();
+
+        return view('admin.product.listing', ['products' => $products]);
     }
 
 
-    public function toggleBlockProduct($id): \Illuminate\Http\RedirectResponse
+    public function decline_product_request(Request $request): \Illuminate\Http\RedirectResponse
     {
-        $product = Product::findOrFail($id);
-        $product->is_approved = $product->is_approved ? 0 : 1;
+        $product = Product::findOrFail($request->product_id);
+        $product->is_approved = 2;
         $product->save();
 
-        $status = $product->is_approved ? 'Activated' : 'Deactivated';
-        $message = "Record $status successfully";
+        $product_owner = $product->user;
+        $reason = $request->input('reason');
 
-        return redirect()->back()->with('success', $message);
+        $data = [
+            'title' => 'Product Disapproval',
+            'message' => 'Dear User, we regret to inform you that your product "' . $product->car_name . '" has been disapproved by our team. The reason for this decision is: ' . $reason . '. If you have any questions or need further assistance, please do not hesitate to contact our support team. Thank you for your understanding.'
+
+        ];
+
+        $product_owner->notify(new ProductApprovalNotification($data));
+
+        return redirect()->back()->with('success', 'Product has been disapproved and the owner has been notified.');
     }
+
+
+    public function approve_product_request(Request $request): \Illuminate\Http\RedirectResponse
+    {
+        $product = Product::findOrFail($request->product_id);
+        $product->is_approved = 1;
+        $product->save();
+
+        $product_owner = $product->user;
+        $reason = $request->input('reason');
+        $data = [
+            'title' => 'Product Approval',
+            'message' => 'Dear User, we are pleased to inform you that your product "' . $product->car_name . '" has been approved by our team. We are excited to have your product listed on our platform. If you have any questions or need further assistance, please do not hesitate to contact our support team. Thank you for your contribution and trust in our platform.'
+        ];
+
+
+        $product_owner->notify(new ProductApprovalNotification($data));
+
+            return redirect()->back()->with('success', 'Product has been approved  and the owner has been notified.');
+    }
+
+
+
+
+    public function approve_part_request(Request $request): \Illuminate\Http\RedirectResponse
+    {
+        $product = Part::findOrFail($request->part_id);
+        $product->active = 1;
+        $product->save();
+
+        $product_owner = $product->users;
+        $data = [
+            'title' => 'Product Approval',
+            'message' => 'Dear User, we are pleased to inform you that your Part "' . $product->part_name . '" has been approved by our team. We are excited to have your product listed on our platform. If you have any questions or need further assistance, please do not hesitate to contact our support team. Thank you for your contribution and trust in our platform.'
+        ];
+
+        $product_owner->notify(new ProductApprovalNotification($data));
+
+        return redirect()->back()->with('success', 'Product has been approved  and the owner has been notified.');
+    }
+
+    public function decline_part_request(Request $request): \Illuminate\Http\RedirectResponse
+    {
+        $product = Part::findOrFail($request->part_id);
+        $product->active = 2;
+        $product->save();
+
+        $product_owner = $product->users;
+        $data = [
+            'title' => 'Product Disapproval',
+            'message' => 'Dear User, we regret to inform you that your Part "' . $product->part_name . '" has been disapproved by our team. The reason for this decision is: ' . $request->reason . '. If you have any questions or need further assistance, please do not hesitate to contact our support team. Thank you for your understanding.'
+        ];
+
+        $product_owner->notify(new ProductApprovalNotification($data));
+
+        return redirect()->back()->with('success', 'Product has been declined  and the owner has been notified.');
+    }
+
+
 
     public function deleteProduct($id): \Illuminate\Http\RedirectResponse
     {
@@ -414,7 +478,7 @@ class ProductController extends Controller
 
 
         // Return a success response
-        return redirect()->back()->with(['success' => 'The auction has been successfully uploaded and is now live.']);
+        return response()->json(['success' => 'Auction created successfully']);
 
     }
 
@@ -1013,9 +1077,19 @@ class ProductController extends Controller
      }
 
 
-     public function showBlogById(){
+     public function showBlogById($id){
 
-         return view('home.blog-details');
+         $blog = Blog::with('user')->find($id);
+         $categories = Category::all();
+
+         $unrelatedBlogs = Blog::where('id', '!=', $id)->take(5)->get();
+
+         $otherBlogs = Blog::where('id', '!=', $id)->get();
+
+
+
+
+         return view('home.blog-details', ['blog' => $blog, 'otherBlogs' => $otherBlogs,  'categories' => $categories, 'unrelatedBlogs' => $unrelatedBlogs]);
 
      }
 }

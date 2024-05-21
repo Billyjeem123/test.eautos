@@ -21,7 +21,7 @@
                     <th>Title</th>
                     <th>Views</th>
                     <th>Date Created</th>
-                    <th>Edit</th>
+                    <th>Approval Status</th>
                     <th>View Details</th>
                     <th>Delete</th>
 
@@ -35,7 +35,8 @@
                         <td>{{$blog->title}}</td>
                         <td>{{$blog->views}}</td>
                         <td>{{$blog->created_at->diffForHumans()}}</td>
-                        <td><a class="btn btn-info btn-sm" href="{{ route('admin.products.details', $blog->id) }}">Edit </a></td>
+                        <td>{{ $blog->is_active === 1 ? 'Approved' : ($blog->is_active === 2 ? 'Declined' : 'Pending') }}</td>
+{{--                        <td><a class="btn btn-info btn-sm" href="{{ route('view_blog_details_admin', $blog->id) }}">Edit </a></td>--}}
                         <td><a class="btn btn-info btn-sm" href="{{ route('view_blog_details_admin', $blog->id) }}">View Details</a></td>
                         <form action="{{ route('delete_blog_admin', $blog->id) }}" method="POST">
                             @csrf

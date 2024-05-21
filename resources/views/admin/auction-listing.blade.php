@@ -17,6 +17,7 @@
             <table class="table" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                 <tr>
+                    <th>id</th>
                     <th>Brand</th>
                     <th>Model</th>
                     <th>Color</th>
@@ -33,6 +34,7 @@
                 <tbody>
                 @foreach($auction as $product)
                     <tr>
+                        <td>{{ $loop->iteration }}</td> <!-- Display auto-incremented ID -->
                         <td>{{$product->categories->catname}}</td>
                         <td>{{$product->model}}</td>
                         <td>{{$product->color}}</td>

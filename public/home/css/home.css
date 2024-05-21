@@ -284,19 +284,25 @@ select option {
     text-decoration: none !important;
     color: #000000 !important;
 }
+.blog-group .card:hover{
+    text-decoration: underline !important;
+}
 .blog-img{
-    background:#000;
+    /*background:#000;*/
+         background-position: center important;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
     width:100%;
     height:150px;
     margin-bottom:1rem;
 }
 .blog h4{
     font-size: 18px;
-    padding: 5px 0;
+    padding: 2px 0;
 }
 .blog p{
-    font-size: 18px;
-    padding: 5px 0;
+    font-size: 15px;
+    padding: 2px 0;
 }
 /* ----------------------------------------------------- */
 
@@ -330,21 +336,40 @@ select option {
   text-align: center;
 }
 .essential ul {
+    width: 100%;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   gap: 15px;
   text-align: center;
   list-style: none;
-  overflow-x: scroll;
+  /*overflow-x: scroll;*/
 }
-.essential ul::-webkit-scrollbar {
-  display: none;
-}
+/*.essential ul::-webkit-scrollbar {*/
+/*  display: none;*/
+/*}*/
 .essential li {
+    background: linear-gradient(#00000059, #00000059), url(/home/images/cars/joey-banks-YApiWyp0lqo-unsplash.jpg) no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 400px !important;
+    height: 170px;
   list-style: none;
   padding: 10px 5px;
-  margin: auto;
+  margin: 10px;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: start !important;
+  flex-direction: column;
+  gap: 20px;
+  padding: 1rem;
+  color: #fff;
+}
+.essential li a{
+    text-decoration: none;
+    color: #fff;
+    background: #394293;
+    padding: 5px 10px;
 }
 .essential h4 {
   color: #252525;
@@ -353,6 +378,55 @@ select option {
   color: red;
   font-family: serif;
   font-size: 30px !important;
+}
+.slick-list { 
+    flex: 1;
+}
+.slick-slide.slick-cloned {
+  display: none;
+}
+.slick-prev,
+.slick-next {
+    font-size: 0;
+    position: absolute;
+    bottom: 20px;
+    color: #d5122f;
+    border: 0;
+    background: #a6a6a659 !important;
+    z-index: 1;
+    height: 50px !important;
+    width: 50px !important;
+    
+}
+.slick-prev:hover,
+.slick-next:hover {
+   background: #a6a6a6 !important;
+}
+
+.slick-prev {
+    left: 20px;
+}
+
+.slick-prev:before {
+	  content: "\f104";
+    font: 40px/1 'FontAwesome';
+}
+
+.slick-next {
+    right: 20px;
+    /*text-align: right;*/
+}
+
+.slick-next:before {
+	   content: "\f105";
+     font: 40px/1 'FontAwesome';
+}
+
+.slick-prev:hover:before,
+.slick-next:hover:before {
+    color: #7e7e7e;
+    padding: 10px !important;
+    font-size: 20px !important;
 }
 /* -------------------------------- */
 
@@ -1178,6 +1252,9 @@ footer .socials a:hover {
     flex-direction: column;
     gap: 2rem;
   }
+    .blog-group .card{
+        width: 100%;
+    }
 }
 /* ------------------------------------------- */
 

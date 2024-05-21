@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\BussinessReview;
 use App\Models\BussinessService;
 use App\Models\Product;
+use App\Models\Report;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -118,9 +119,13 @@ public function toggleBlockUsers($id)
         }
 
         // Count the total cars uploaded by the dealer
-        $carsCount = Product::where('user_id', $userid)->count();
+        $carsUploaded = Product::with('subcategories')->where('user_id', $userid)->paginate(6);
+        $carsCount = $carsUploaded->count();
+        $totalReviews = $reviews->count();
+//        $totalReports = Report::where('user_id', $userid)->count();
 
-        return view('home.profile', ['profile' => $profile, 'reviews' => $reviews,  'carsCount' => $carsCount , 'bussiness_service' => $bussiness_service]);
+
+        return view('home.profile', ['profile' => $profile,  'totalReviews' => $totalReviews, 'carsUploaded' => $carsUploaded,  'reviews' => $reviews,  'carsCount' => $carsCount , 'bussiness_service' => $bussiness_service]);
     }
 
 
