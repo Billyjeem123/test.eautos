@@ -59,6 +59,11 @@
                     <p><span><i class="fa fa-map-marker"></i></span>&nbsp;&nbsp; Lagos Nigeria (11 miles)</p>
                     <p><span><i class="fa fa-calendar"></i></span>&nbsp;&nbsp; Joined {{ $profile->created_at->format('F j, Y') }}</p>
 
+                    <p>
+                        <span><i class="fa fa-id-badge"></i></span>&nbsp;&nbsp;
+                        User ID: {{$profile->id}}
+                    </p>
+
                     <p><span><i class="fa fa-envelope"></i></span>&nbsp;&nbsp; {{ $profile->email }}</p>
                     <p><span><i class="fa fa-phone"></i></span>&nbsp;&nbsp;<a style="color:#000;" href="tel: {{ $profile->phone }}">{{ $profile->phone }}</a></p>
                     <p class="experience"><a href="#">Experience</a>&nbsp;&nbsp; Over {{ $profile->experience }}</p>
@@ -74,7 +79,7 @@
             <a href="#" class="share"  style="color: #000; text-decoration: none;"><i class="fab fa-instagram"></i>&nbsp;&nbsp; <strong></strong></a>
             <a href="#" class="share"  style="color: #000; text-decoration: none;"><i class="fab fa-twitter"></i>&nbsp;&nbsp; <strong></strong></a>
             </span>
-            
+
             <div class="card_footer">
                 <a href="#">Connect</a><a href="#" id="report">Report</a>
             </div>
@@ -84,15 +89,45 @@
          <div class="bid">
             <div class="close-modal">X</div>
             <div class="report-form">
-                <form>
-                  <span class="form_group">
-                    <input type="text" placeholder="Enter Your Name">
-                    <input type="text" placeholder="Phone Number">
-                    <input type="text" placeholder="Email Address">
-                  </span>
-                    <textarea name="" id="" cols="30" rows="5" placeholder="Complain"></textarea>
-                  <button>Send Report</button>
-                </form>
+                <div class="container mt-5">
+                    <form action="{{ route('report.create') }}" method="POST">
+                        @csrf
+                        <div class="form-group">
+                            <label for="offender_name">Offender Name</label>
+                            <input type="text" class="form-control" id="offender_name" name="offender_name" placeholder="Offender Name" value="{{ $profile->name }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="business_name">Business Name</label>
+                            <input type="text" class="form-control" id="business_name" name="business_name" placeholder="Business Name" value="{{ $profile->business_name }}">
+                        </div>
+                        <div class="form-group">
+{{--                            <label for="location">Location</label>--}}
+                            <input type="hidden" class="form-control" id="location" name="location" placeholder="Location" value="{{ $profile->business_location }}">
+                        </div>
+                        <div class="form-group">
+                            <input type="hidden" name="name" value="{{ auth()->user()->name ?? '' }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="country">Enter Your Address</label>
+                            <input type="text" class="form-control" id="country" name="country" placeholder="Enter Your Address" >
+                        </div>
+                        <div class="form-group">
+                            <label for="phone_number">Phone Number</label>
+                            <input type="text" class="form-control" id="phone_number" name="phone_number" placeholder="Phone Number" value="{{ auth()->user()->phone ?? '' }}">
+                        </div>
+                        <div class="form-group">
+                            <input type="hidden" name="email" value="{{ auth()->user()->email ?? '' }}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="country">Enter Your Complaint</label>
+
+                            <textarea name="complain"  class="form-control" id="" cols="30" rows="10"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+
             </div>
          </div>
     </div>
@@ -161,37 +196,37 @@
     <!-- ------------------------------------------------------------ -->
     <!-- ------------------------------------------------------------ -->
     <div class="work-history">
-        <h3>Featured Cars</h3>
-        <div class="card-group">
-            <a href="#" style="color:#000; text-decoration: none;" class="card">
-              <div
-                class="card_img"
-                style="background: url(/images/cars/Rectangle\ 16.png) no-repeat"
-              ></div>
-              <div class="card_text">
-                <h5>2014 Toyota Camry</h5>
-                <div class="details">
-                  <ul>
-                    <li>New</li>
-                    <li>10 Cylinder</li>
-                    <li
-                      style="
-                        background-color: #f9e17a;
-                        border: none;
-                        color: #ffffff;
-                      "
-                    >
-                      Yellow
-                    </li>
-                    <li>Fuel</li>
-                  </ul>
-                  <h5>₦ 930,000</h5>
-                  <p>Lagos Nigeria (11 miles)</p>
-                </div>
-              </div>
-        </a>
-        
-        </div>
+{{--        <h3>Featured Cars</h3>--}}
+{{--        <div class="card-group">--}}
+{{--            <a href="#" style="color:#000; text-decoration: none;" class="card">--}}
+{{--              <div--}}
+{{--                class="card_img"--}}
+{{--                style="background: url(/images/cars/Rectangle\ 16.png) no-repeat"--}}
+{{--              ></div>--}}
+{{--              <div class="card_text">--}}
+{{--                <h5>2014 Toyota Camry</h5>--}}
+{{--                <div class="details">--}}
+{{--                  <ul>--}}
+{{--                    <li>New</li>--}}
+{{--                    <li>10 Cylinder</li>--}}
+{{--                    <li--}}
+{{--                      style="--}}
+{{--                        background-color: #f9e17a;--}}
+{{--                        border: none;--}}
+{{--                        color: #ffffff;--}}
+{{--                      "--}}
+{{--                    >--}}
+{{--                      Yellow--}}
+{{--                    </li>--}}
+{{--                    <li>Fuel</li>--}}
+{{--                  </ul>--}}
+{{--                  <h5>₦ 930,000</h5>--}}
+{{--                  <p>Lagos Nigeria (11 miles)</p>--}}
+{{--                </div>--}}
+{{--              </div>--}}
+{{--        </a>--}}
+
+{{--        </div>--}}
     </div>
     <!-- ------------------------------------------------------------ -->
 

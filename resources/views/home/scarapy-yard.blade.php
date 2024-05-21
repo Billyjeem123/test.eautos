@@ -31,7 +31,14 @@
             ipsam ut laboriosam esse pariatur illum exercitationem doloremque totam veniam. Voluptate accusantium dolor,
             tempora cum, numquam similique nesciunt temporibus cupiditate ad voluptatem odio incidunt, quos minima odit
             quibusdam.</p>
-        <a href="#!">Buy And Sell Your Scrape Here</a>
+
+
+        @if(Auth::check())
+            <a href="{{ route('users.parts') }}">Buy And Sell Your Scrap Here</a>
+        @else
+            <a href="{{ route('login') }}">Login to continue</a>
+        @endif
+
     </div>
 </main>
 

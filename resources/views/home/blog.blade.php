@@ -10,25 +10,10 @@
 </head>
 
 <body>
-  <nav class="navbar">
-    <a href="index.html" class="logo">Logo</a>
-    <ul>
-      <li><a href="cars/index.html">Cars</a></li>
-      <li><a href="vans/index.html">Vans</a></li>
-      <li><a href="bikes/index.html">Bikes</a></li>
-      <li><a href="trucks/index.html">Trucks</a></li>
-      <li><a href="farm/index.html">Farm</a></li>
-      <li><a href="plants/index.html">Plant</a></li>
-      <li><a href="carService.html">Car Service</a></li>
-      <li><a href="scrapeyard.html">Scrapyard</a></li>
-    </ul>
-    <span class="nav_form">
-      <a href="signUp.html" target="_blank" class="signUp">Sign Up</a>
-      <a href="login.html" class="login" target="_blank">Login</a>
-    </span>
-    <i class="fa fa-close" id="close_nav"></i>
-    <i class="fa fa-bars" id="open_nav"></i>
-  </nav>
+@include('home.includes.nav')
+
+
+
   <header class="hero">
     <div class="card-group">
         <div class="card">
@@ -89,7 +74,7 @@
                 <h4>Latest News</h4>
                 <p>Lorem jjwefilqrfrbhbflqervn vyuqoYF</p>
             </a>
-         
+
         </div>
     </div>
   </main>
@@ -128,7 +113,7 @@
 
       </div>
       <!-- <div class="card">
-        
+
       </div> -->
       <div class="card">
         <h6>Follow us</h6>

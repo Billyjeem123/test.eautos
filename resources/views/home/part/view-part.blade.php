@@ -7,6 +7,41 @@
     <link rel="stylesheet" href="/home/css/partDetails.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
+
+    <style>
+        .comment-section {
+            margin-top: 20px;
+        }
+
+        .comment-section h4 {
+            margin-bottom: 10px;
+        }
+
+        .comment-section textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            resize: vertical;
+            margin-bottom: 10px;
+        }
+
+        .comment-section button {
+            background-color: #394293;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .comment-section button:hover {
+            background-color: #0056b3;
+        }
+
+    </style>
+
+
 </head>
 
 <body>
@@ -55,7 +90,11 @@
                     <p><span><i class="fa fa-user"></i></span>&nbsp;&nbsp;  {{$part->users->name}} </p>
                     <p><span><i class="fas fa-map-marker-alt"></i></span>&nbsp;&nbsp;  {{$part->location}}</p>
                     <p><span><i class="fa fa-envelope"></i></span>&nbsp;&nbsp; {{$part->users->email}}</p>
-                    <p><span><i class="fa fa-phone"></i></span>&nbsp;&nbsp; {{$part->users->phone}}</p>
+                    <p>
+                        <span><i class="fa fa-phone"></i></span>&nbsp;&nbsp;
+                        <a href="tel:{{ preg_replace('/\s+/', '', $part->users->phone) }}">{{ $part->users->phone }}</a>
+                    </p>
+
                 </div>
             </div>
             <div class="abt">
@@ -89,86 +128,75 @@
     <!-- ----------------------------------------- -->
 
 
-    <div class="other-option">
-        <h3><span>Other {{$part->partcategories->part_category}} Options</span> <a href="#">See more</a></h3>
-        <div class="card-group">
+{{--    <div class="other-option">--}}
+{{--        <h3><span>Other {{$part->partcategories->part_category}} Options</span> <a href="#">See more</a></h3>--}}
+{{--        <div class="card-group">--}}
 
-            <div class="card">
-                <div
-                    class="card-image"
-                    style="background: url(/images/parts/Rectangle\ 17\ \(8\).png)"
-                >
-                    <span><i class="far fa-heart"></i></span>
-                </div>
-                <div class="details">
-                    <h4>Cart Parts</h4>
-                    <p>
-                        <span>₦ 20,000</span>
-                        <span>&dollar; 200,000</span>
-                        <span>&pound; 180,000</span>
-                    </p>
-                    <strong><i class="fa fa-location-dot"></i>&nbsp; Lagos</strong>
-                </div>
-                <div class="card-footer">
-                    <p>
-                        <span><i class="fa fa-check"></i></span> Verified
-                    </p>
-                    <a href="javascript:void(0)">View</a>
-                </div>
-            </div>
-        </div>
-    </div>
+{{--            <div class="card">--}}
+{{--                <div--}}
+{{--                    class="card-image"--}}
+{{--                    style="background: url(/images/parts/Rectangle\ 17\ \(8\).png)"--}}
+{{--                >--}}
+{{--                    <span><i class="far fa-heart"></i></span>--}}
+{{--                </div>--}}
+{{--                <div class="details">--}}
+{{--                    <h4>Cart Parts</h4>--}}
+{{--                    <p>--}}
+{{--                        <span>₦ 20,000</span>--}}
+{{--                        <span>&dollar; 200,000</span>--}}
+{{--                        <span>&pound; 180,000</span>--}}
+{{--                    </p>--}}
+{{--                    <strong><i class="fa fa-location-dot"></i>&nbsp; Lagos</strong>--}}
+{{--                </div>--}}
+{{--                <div class="card-footer">--}}
+{{--                    <p>--}}
+{{--                        <span><i class="fa fa-check"></i></span> Verified--}}
+{{--                    </p>--}}
+{{--                    <a href="javascript:void(0)">View</a>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
 
     <!-- ------------------------------------------- -->
     <!-- ----------------------------------------- -->
     <div class="reviews container">
-      <h3>Reviews</h3>
-      <div class="card_group">
-        <div class="card">
-          <div class="card_header">
-            <strong>B</strong>
-            <small>Blessing Lainus</small>
-          </div>
-          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas nisi natus quasi, alias laboriosam ex?</p>
+        <h3>Reviews</h3>
+        <div class="card_group">
+            @forelse ($reviews as $comment)
+                <div class="card">
+                    <div class="card_header">
+                        <strong>{{ substr($comment->user->name, 0, 1) }}
+                        </strong>
+                        <small>{{$comment->user->name}}</small>
+                    </div>
+                    <p>{{$comment->comment}}</p>
+                </div>
+
+            @empty
+                <div class="card" style="text-align: center;" >
+                    <p>No reviews available at the moment.</p>
+                </div>
+            @endforelse
+
         </div>
-        <div class="card">
-          <div class="card_header">
-            <strong>B</strong>
-            <small>Blessing Lainus</small>
-          </div>
-          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas nisi natus quasi, alias laboriosam ex?</p>
+
+        <!-- Add a textarea for commenting -->
+        <div class="comment-section">
+            <h4>Leave a Review</h4>
+            <form action="{{route('part.comment.review')}}" method="post" >
+                @csrf
+                <input type="hidden" name="part_id" value="{{$part->id}}">
+                <textarea name="comment" id="comment" placeholder="Write your review  here..." rows="4" required></textarea>
+                <button type="submit">Post Comment</button>
+            </form>
+
         </div>
-        <div class="card">
-          <div class="card_header">
-            <strong>B</strong>
-            <small>Blessing Lainus</small>
-          </div>
-          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas nisi natus quasi, alias laboriosam ex?</p>
-        </div>
-        <div class="card">
-          <div class="card_header">
-            <strong>B</strong>
-            <small>Blessing Lainus</small>
-          </div>
-          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas nisi natus quasi, alias laboriosam ex?</p>
-        </div>
-        <div class="card">
-          <div class="card_header">
-            <strong>B</strong>
-            <small>Blessing Lainus</small>
-          </div>
-          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas nisi natus quasi, alias laboriosam ex?</p>
-        </div>
-        <div class="card">
-          <div class="card_header">
-            <strong>B</strong>
-            <small>Blessing Lainus</small>
-          </div>
-          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas nisi natus quasi, alias laboriosam ex?</p>
-        </div>
-      </div>
-      <a href="">Post a Comment</a>
+
     </div>
+
+
+
 
     <!-- ----------------------------------- -->
 </main>

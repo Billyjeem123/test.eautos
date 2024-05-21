@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Events\ManagePartEvent;
 use App\Models\CarPartCategory;
 use App\Models\Part;
+use App\Models\PartReviews;
 use Illuminate\Http\Request;
 use PhpParser\Builder\Function_;
 
@@ -153,9 +154,10 @@ class PartController extends Controller
 
 
         $part = Part::with('partcategories', 'users')->find($id);
-        $parts = Part::with('partcategories', 'users')->get();
 
-        return view('home.part.view-part', compact('part'));
+        $reviews = PartReviews::with('user')->where('part_id', $part->id)->get();
+
+        return view('home.part.view-part', compact('part', 'reviews'));
 
 
     }

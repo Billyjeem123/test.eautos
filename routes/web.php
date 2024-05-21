@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
@@ -96,6 +97,7 @@ Route::group(['middleware' => ['showNavBar']], function () {
 
         Route::post('/post-a-comment', [ProductController::class, 'comment'])->name('post.comment')->middleware('auth');
         Route::post('/post-a-bussiness-review', [ProductController::class, 'bussinessReview'])->name('post.reviews')->middleware('auth');
+        Route::post('/post-a-part-view', [ProductController::class, 'partReview'])->name('part.comment.review')->middleware('auth');
         #scrapy yards...
 
         Route::view('/scrapy-yard', 'home.scarapy-yard')->name('scrapy-yard');
@@ -250,6 +252,15 @@ Route::prefix('admin')->middleware('auth', 'admin', 'notify')->group(function ()
 
     Route::get('/sold/items', [ProductController::class, 'sold_items'])->name('sold.all.admin');
     Route::get('/sold/items/{id}', [ProductController::class, 'sold_items_by_id'])->name('sold_by_id.admin');
+
+
+    Route::get('/blog', [BlogController::class, 'showBlog'])->name('blog_creation_page');
+    Route::get('/blog/all', [BlogController::class, 'getAllBlogs'])->name('get_all_blogs_admin');
+    Route::post('/blog', [BlogController::class, 'create_blog'])->name('create_blog_admin');
+    Route::delete('/blog/{id}', [BlogController::class, 'delete_blog'])->name('delete_blog_admin');
+    Route::get('/blog/{id}', [BlogController::class, 'blog_details'])->name('view_blog_details_admin');
+
+
 
 
     //Paystack Route

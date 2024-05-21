@@ -10,6 +10,8 @@ use App\Models\Bid;
 use App\Models\BussinessReview;
 use App\Models\Comment;
 use App\Models\Message;
+use App\Models\Part;
+use App\Models\PartReviews;
 use App\Models\SoldItems;
 use App\Models\User;
 use App\Models\Brand;
@@ -732,6 +734,49 @@ class ProductController extends Controller
         }
     }
 
+
+
+    public function partReview(Request $request): \Illuminate\Http\RedirectResponse
+    {
+        // Validate the request data
+        $validatedData = $request->validate([
+            'comment' => 'required|string|max:255', // Adjust validation rules as needed
+            'part_id' => 'required'
+        ]);
+
+        try {
+            // Create a new comment using mass assignment
+            $review = PartReviews::create([
+                'user_id' => auth()->user()->id,
+                'comment' => $validatedData['comment'],
+                'part_id' => $validatedData['part_id']
+            ]);
+
+            $part = Part::find($validatedData['part_id']);
+
+            $ownermail = $review->user->email;
+            $name = auth()->user()->name;
+            $urlLink = url('product/view-part/' . $validatedData['part_id']);
+
+            $title = <<<EOT
+                        Dear Valued User,
+                        {$name} dropped a review on your asset part.
+                        Part Name: {$part->part_name}.
+                        View at  $urlLink
+                        EOT;
+
+
+            event(new CommentEvent($ownermail, $title));
+
+            // Return success response
+            return redirect()->back()->with(['success' => 'Review posted successfully']);
+        } catch (\Exception $e) {
+            // Log the error or handle it appropriately
+            // For now, we'll redirect back with an error message
+            return redirect()->back()->with(['error' => 'Failed to post review. Please try again later.']);
+        }
+    }
+
     public function searchProduct(Request $request): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
     {
         // Retrieve inputs from the form
@@ -962,7 +1007,8 @@ class ProductController extends Controller
      public  function showBlog()
      {
 
-         return view('home.blog');
+         $categories = Category::all();
+         return view('home.blog', ['categories' => $categories]);
 
      }
 

@@ -172,6 +172,22 @@
           <span>Message</span></a>
       </li>
 
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities1067"
+               aria-expanded="true" aria-controls="collapseUtilities1067">
+                <i class="fas fa-pencil-alt"></i>
+                <span>Blog</span>
+            </a>
+            <div id="collapseUtilities1067" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Blog News</h6>
+                    <a class="collapse-item" href="{{route('blog_creation_page')}}">Create Blog</a>
+                    <a class="collapse-item" href="{{route('get_all_blogs_admin')}}">Blog Listings</a>
+                    <a class="collapse-item" href="{{route('evaluate.all')}}">Ass</a>
+                </div>
+            </div>
+        </li>
+
 {{--      <li class="nav-item">--}}
 {{--        <a class="nav-link" href="media.html">--}}
 {{--          <i class="fas fa-fw fa-image"></i>--}}

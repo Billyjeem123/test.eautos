@@ -36,13 +36,13 @@ public function store(Request $request)
 
     // Create and save the report
     $report = new Report();
-    $report->name_of_offender = $request->input('offender_name');
-    $report->bussines_name = $request->input('business_name');
+    $report->name_of_offender = $request->input('offender_name'); #
+    $report->bussines_name = $request->input('business_name'); #
     $report->offernder_location = $request->input('location');
-    $report->complaint = $request->input('complain');
-    $report->reporter_name = $request->input('name');
+    $report->complaint = $request->input('complain'); #waiting
+    $report->reporter_name = $request->input('name'); #
     $report->country = $request->input('country');
-    $report->reporter_phone = $request->input('phone_number');
+    $report->reporter_phone = $request->input('phone_number'); #
     $report->reporter_mail = $request->input('email');
     $report->user_id = auth()->user()->id;
     $report->save();
