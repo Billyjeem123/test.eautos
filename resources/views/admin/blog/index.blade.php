@@ -1,6 +1,8 @@
 @extends('admin.layouts.master')
 
+
 @section('page.content')
+
     <!-- Begin Page Content -->
     <div class="container-fluid">
         <div class="mb-4">
@@ -16,7 +18,7 @@
             </div>
             <div class="form-group mb-3">
                 <label for="description">Blog Description</label>
-                <textarea name="description" class="form-control bg-white" id="description" placeholder="Enter Blog Description" cols="30" rows="5" required></textarea>
+                <textarea name="description" class="form-control bg-white editor" id="editor" placeholder="Enter Blog Description" cols="30" rows="5" required></textarea>
             </div>
             <div class="form-group mb-3">
                 <label for="image">Blog Image</label>
@@ -32,10 +34,16 @@
 @endsection
 
 
+
+
 <script>
+
+
     document.addEventListener('DOMContentLoaded', function() {
         function submitForm(event) {
             event.preventDefault();
+
+            CKEDITOR.replace('editor');
 
             var form = document.getElementById('blogForm');
             var formData = new FormData(form);
@@ -61,6 +69,8 @@
             submitBtn.innerHTML = 'Processing...';
             submitBtn.disabled = true;
 
+            formData.set('description', CKEDITOR.instances.editor.getData());
+
             fetch("{{ route('create_blog_admin') }}", {
                 method: 'POST',
                 headers: {
@@ -75,13 +85,16 @@
                     return response.json();
                 })
                 .then(data => {
+                    console.log(data);  // This will log the entire object in the console, which is useful for debugging
+
                     if (data.success) {
                         toastr.success('Blog post uploaded successfully.');
                         form.reset();
                     } else {
-                        toastr.error('An error occurred while uploading the blog post.');
+                        toastr.error(data.message);
                     }
                 })
+
                 .catch(error => {
                     toastr.error('An error occurred: ' + error.message);
                     console.error('Error:', error);

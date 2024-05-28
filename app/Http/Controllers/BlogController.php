@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Blog;
+use App\Models\Group;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class BlogController extends Controller
 {
@@ -15,31 +17,80 @@ class BlogController extends Controller
     }
 
 
-    public function create_blog(Request $request)
+
+    public function showGroup()
     {
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'required|string',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
 
-        // Handle the image upload
-        $imageLink = $this->uploadBlogImageAndGetLink($request);
-        $role = auth()->user()->role == "admin" ? 1 : 0;
-
-
-        // Save blog post data
-        $blog = new Blog();
-        $blog->title = $request->title;
-        $blog->desc = $request->description;
-        $blog->image = $imageLink;
-        $blog->user_id = auth()->user()->id;
-        $blog->is_active = $role;
-        $blog->save();
-
-        return response()->json(['success' => true, 'message' => 'Blog post uploaded successfully.']);
+        return view('admin.group.index');
     }
 
+
+
+    public function create_group(Request $request)
+    {
+        try {
+            // Validate request data
+            $request->validate([
+                'title' => 'required|string|max:255',
+                'description' => 'required|string',
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp,avif|max:2048',
+            ]);
+
+            // Handle the image upload
+            $imageLink = $this->uploadBlogImageAndGetLink($request);
+
+            // Save blog post data
+            $group = new Group();
+            $group->title = $request->title;
+            $group->description = $request->description;
+            $group->image = $imageLink;
+            // $group->is_active = 1;
+            $group->save();
+
+            return response()->json(['success' => true, 'message' => 'Group created successfully.']);
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            // Handle validation errors
+            return response()->json(['success' => false, 'message' => 'Validation failed.', 'errors' => $e->errors()], 422);
+        } catch (\Exception $e) {
+            // Log the error message
+            Log::error('Failed to create group: ' . $e->getMessage());
+
+            // Return error response
+            return response()->json(['success' => false, 'message' => 'Failed to create group.', 'error' => $e->getMessage()], 500);
+        }
+    }
+
+
+
+
+    public function create_blog(Request $request)
+    {
+        try {
+            $request->validate([
+                'title' => 'required|string|max:255',
+                'description' => 'required|string',
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
+
+            // Handle the image upload
+            $imageLink = $this->uploadBlogImageAndGetLink($request);
+            $role = auth()->user()->role == "admin" ? 1 : 0;
+
+            // Save blog post data
+            $blog = new Blog();
+            $blog->title = $request->title;
+            $blog->desc = $request->description;
+            $blog->image = $imageLink;
+            $blog->user_id = auth()->user()->id;
+            $blog->is_active = $role;
+            $blog->save();
+
+            return response()->json(['success' => true, 'message' => 'Blog post uploaded successfully.']);
+        } catch (\Exception $e) {
+            // Log the error or return an appropriate error response
+            return response()->json(['success' => false, 'message' => 'An error occurred while uploading the blog post ' .  $e->getMessage()], 500);
+        }
+    }
 
     public function update_blog(Request $request, $id)
     {
@@ -91,11 +142,25 @@ class BlogController extends Controller
     }
 
 
+    public function getAllGroups()
+    {
+        $groups = Group::orderBy('id', 'desc')->get();
+        return view('admin.group.group-list', ['groups' => $groups]);
+    }
+
 
 
     public function delete_blog($id): \Illuminate\Http\RedirectResponse
     {
         $blog =  Blog::findOrFail($id);
+        $blog->delete();
+        return redirect()->back()->with('success', 'Record deleted successfully');
+    }
+
+
+    public function delete_group($id): \Illuminate\Http\RedirectResponse
+    {
+        $blog =  Group::findOrFail($id);
         $blog->delete();
         return redirect()->back()->with('success', 'Record deleted successfully');
     }

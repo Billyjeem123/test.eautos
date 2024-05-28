@@ -6,6 +6,7 @@ use App\Models\Blog;
 use App\Models\Brand;
 use App\Models\CarPartCategory;
 use App\Models\Category;
+use App\Models\Group;
 use App\Models\Part;
 use App\Models\Product;
 use App\Models\User;
@@ -31,8 +32,10 @@ class HomeController extends Controller
 
         $blogs = Blog::inRandomOrder()->limit(5)->get();
 
+        $groups = Group::inRandomOrder()->limit(10)->get();
 
-        return view('home.index', ['brands' => $brands, 'blogs' => $blogs,  'products' => $products, 'getDealers' => $getDealers]);
+
+        return view('home.index', ['brands' => $brands,  'groups' => $groups,  'blogs' => $blogs,  'products' => $products, 'getDealers' => $getDealers]);
     }
 
 

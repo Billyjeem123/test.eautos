@@ -63,7 +63,7 @@
   <div class="essential container">
     <h3>The world is going <span>e</span> so are we</h3><br>
     <h4>List of essential Group Brands</h4>
-    
+
     <ul class="center-item-slider">
       <li class="holder center">
         <h3>Lorem</h3>
@@ -248,7 +248,12 @@
   </div>
   <!-- ----------------------------------------- -->
   <!-- -------------------------------------------------- -->
-<br><br>
+
+
+
+
+
+   <br><br>
   <div class="latest container">
     <h3>Featured Products</h3>
     <div class="card_group">
@@ -300,6 +305,26 @@
            @endforelse
        </div>
    </div>
+
+
+   <div class="groups container">
+       <h3><span>Groups you may like</span> <a href="groupMembers.html" target="_blank">See more</a></h3>
+       <div class="card_group">
+           @foreach ($groups as $group):
+           <div class="card">
+               <div class="card_img" style="background: url('{{ $group->image }}') no-repeat;"></div>
+               <div class="details">
+                   <h5>{{$group->title}}</h5>
+                   <p><span>1 Member</span>&nbsp; &nbsp;&nbsp;<span>0 Posts today</span></p>
+                   <a href="#!">Join</a>
+               </div>
+
+
+           </div>
+           @endforeach;
+       </div>
+   </div>
+
 
 
 

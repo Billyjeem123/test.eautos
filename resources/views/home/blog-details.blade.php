@@ -7,6 +7,12 @@
   <title>Blod Deatails . {{$blog->title}}</title>
   <link rel="stylesheet" href="/home/css/blog.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        .preserve-whitespace {
+            white-space: pre-wrap; /* Preserve white spaces and line breaks */
+        }
+    </style>
+
 </head>
 
 <body>
@@ -25,13 +31,22 @@
             <h3>Similar Post</h3>
             <ul>
                 @foreach($unrelatedBlogs as $blogss)
-                    <li><a href="">{{$blogss['desc']}}</a></li>
+                    <li>
+                        <a href="#">
+                            {!! nl2br(Str::limit($blogss['desc'], 100))!!}
+                            @if (strlen($blog['desc']) > 100)
+                                <a href="">Read more</a>
+                            @endif
+                        </a>
+                    </li>
+
+
                 @endforeach
             </ul>
         </div>
     </div><br>
     <p>
-        {{$blog->desc}}
+        {!! nl2br($blog->desc) !!}
     </p>
   </header>
   <main>

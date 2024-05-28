@@ -269,6 +269,11 @@ Route::prefix('admin')->middleware('auth', 'admin', 'notify')->group(function ()
 
 
 
+    Route::get('/group', [BlogController::class, 'showGroup'])->name('group_creation_page');
+    Route::post('/group', [BlogController::class, 'create_group'])->name('save_group');
+    Route::get('/group/all', [BlogController::class, 'getAllGroups'])->name('get_all_group_admin');
+    Route::delete('/group/{id}', [BlogController::class, 'delete_group'])->name('delete_group');
+
 
 
     //Paystack Route

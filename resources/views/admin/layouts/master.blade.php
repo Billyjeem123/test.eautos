@@ -129,5 +129,25 @@
 @endif
 
 
+  <!-- Include jQuery from CDN -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!-- Include CKEditor from CDN -->
+  <script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
+  <!-- Include CKEditor jQuery adapter from CDN -->
+  <script src="https://cdn.ckeditor.com/4.16.2/standard/adapters/jquery.js"></script>
+
+
+  <!-- Initialize CKEditor -->
+  <script>
+      $(document).ready(function() {
+          if (typeof $.fn.ckeditor !== 'undefined') {
+              $('#editor').ckeditor();
+              console.error('done');
+          } else {
+              console.error('CKEditor jQuery adapter not loaded correctly.');
+          }
+      });
+  </script>
+
 </body>
 </html>
