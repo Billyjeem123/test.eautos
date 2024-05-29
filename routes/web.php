@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\GroupController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PartController;
 use App\Http\Controllers\PaystackController;
@@ -116,6 +117,11 @@ Route::group(['middleware' => ['showNavBar']], function () {
 //        Route::get('/search/stolen', [StolenCarController::class, 'searchStolen'])->name('search.car.stolen');
 
         Route::view('auction_view', 'home.auction_view')->name('auction_view');
+        Route::view('/groups/members', 'home.groups.members')->name('groups_members');
+
+        Route::get('/groups', [GroupController::class, 'index'])->name('groups');
+        Route::get('/groups/members', [GroupController::class, 'group_activities'])->name('groups.activities');
+
 
 
 
@@ -273,6 +279,7 @@ Route::prefix('admin')->middleware('auth', 'admin', 'notify')->group(function ()
     Route::post('/group', [BlogController::class, 'create_group'])->name('save_group');
     Route::get('/group/all', [BlogController::class, 'getAllGroups'])->name('get_all_group_admin');
     Route::delete('/group/{id}', [BlogController::class, 'delete_group'])->name('delete_group');
+
 
 
 
