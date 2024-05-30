@@ -1,22 +1,12 @@
-<?php
-
-namespace App\Models;
-
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-
 class Group extends Model
 {
-    use HasFactory;
+    // Other model properties and methods
 
-    protected $guarded = [];
-
-
-    public function users()
+    // Assuming a Group has many members and posts
+    public function members()
     {
-        return $this->belongsToMany(User::class);
+        return $this->hasMany(User::class); // Adjust this according to your actual relationships
     }
-
 
     public function posts()
     {
@@ -26,7 +16,7 @@ class Group extends Model
     // Accessor for members_count
     public function getMembersCountAttribute()
     {
-        return $this->users()->count();
+        return $this->members()->count();
     }
 
     // Accessor for posts_today

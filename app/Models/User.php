@@ -154,4 +154,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(BussinessService::class, 'business_services');
     }
+
+    public function groups()
+    {
+        return $this->belongsToMany(Group::class);
+    }
 }

@@ -315,8 +315,8 @@
                <div class="card_img" style="background: url('{{ $group->image }}') no-repeat;"></div>
                <div class="details">
                    <h5>{{$group->title}}</h5>
-                   <p><span>1 Member</span>&nbsp; &nbsp;&nbsp;<span>0 Posts today</span></p>
-                   <a href="#!">Join</a>
+                   <p><span> {{$group->getMembersCountAttribute()}}  Member</span>&nbsp; &nbsp;&nbsp;<span>0 Posts today</span></p>
+                   <a href="{{route('groups', $group->id)}}">Join</a>
                </div>
 
 

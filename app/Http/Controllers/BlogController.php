@@ -44,8 +44,13 @@ class BlogController extends Controller
             $group->title = $request->title;
             $group->description = $request->description;
             $group->image = $imageLink;
-            // $group->is_active = 1;
             $group->save();
+
+            // Attach the user who created the group to the group
+            $user = auth()->user();
+            $group->users()->attach($user->id);
+
+
 
             return response()->json(['success' => true, 'message' => 'Group created successfully.']);
         } catch (\Illuminate\Validation\ValidationException $e) {

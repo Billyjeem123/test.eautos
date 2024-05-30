@@ -4,8 +4,10 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PartController;
 use App\Http\Controllers\PaystackController;
 use App\Http\Controllers\ProductController;
@@ -55,7 +57,12 @@ Route::group(['middleware' => ['showNavBar']], function () {
 
 
 
+    Route::get('/groups/{id}', [GroupController::class, 'index'])->name('groups');
+    Route::get('/groups/members/{group_id}', [GroupController::class, 'group_activities'])->name('groups.activities');
+    Route::post('/groups/post', [GroupController::class, 'create_posts'])->name('create_posts_users');
 
+    Route::post('/posts/{post}/like', [LikeController::class, 'toggle'])->middleware('auth')->name('posts.like');
+    Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
 
 
     #Return interface of signup pages... Authentication routes
@@ -117,10 +124,8 @@ Route::group(['middleware' => ['showNavBar']], function () {
 //        Route::get('/search/stolen', [StolenCarController::class, 'searchStolen'])->name('search.car.stolen');
 
         Route::view('auction_view', 'home.auction_view')->name('auction_view');
-        Route::view('/groups/members', 'home.groups.members')->name('groups_members');
 
-        Route::get('/groups', [GroupController::class, 'index'])->name('groups');
-        Route::get('/groups/members', [GroupController::class, 'group_activities'])->name('groups.activities');
+
 
 
 
