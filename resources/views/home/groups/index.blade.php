@@ -105,8 +105,24 @@
 <main>
     <div class="main_nav">
         <ul>
-            <li><a href="groupsPosts.html">Post</a><a href="groupMembers.html">Members</a></li>
-            <li><a href="{{ route('groups.join', $group->id) }}">Join</a></li>
+            <li><a href="{{ route('groups', $group->id) }}">Post</a><a href="{{ route('groups_members', $group->id) }}">Members</a></li>
+            @auth
+                @php
+                    $isMember = auth()->user()->groups->contains($group->id);
+                @endphp
+                <li>
+                    @if ($isMember)
+                        <a href="javascript:void(0)">Joined</a>
+                    @else
+                        <a href="{{ route('groups.join', $group->id) }}">Join</a>
+                    @endif
+                </li>
+            @else
+{{--                <li>--}}
+{{--                    <a href="javascript:void(0)">Pending</a>--}}
+{{--                </li>--}}
+            @endauth
+
 
         </ul>
     </div>
@@ -340,7 +356,7 @@
         document.getElementById('postForm').submit();
         @else
         // If not logged in, alert the user to log in
-        toastr.error('You need to log in to post a comment.');
+            toastr.error('You need to log in to post an article.');
         return false;
         @endauth
     });

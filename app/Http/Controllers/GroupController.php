@@ -99,6 +99,22 @@ class GroupController extends Controller
     }
 
 
+    public  function  get_group_members($id)
+    {
+
+        // Find the specific group or fail if not found
+        $group = Group::findOrFail($id);
+
+        $members = $group->group_members;
+
+
+        // Fetch other groups excluding the current one
+        $otherGroups = Group::where('id', '!=', $id)->paginate(3);
+
+
+        return view('home.groups.members', compact('group', 'members', 'otherGroups'));
+    }
+
 
 
 }

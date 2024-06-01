@@ -4,221 +4,218 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-CARS</title>
+    <title>Group Members</title>
     <link rel="stylesheet" href="/home/css/groupMembers.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- Add Toastr CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
+
+
+    <style>
+        .short-video-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 15px;
+        }
+
+        .short-video-item {
+            background-color: #f5f5f5;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .short-video-item video {
+            width: 100%;
+            height: 350px;
+        }
+
+        .video-stats,
+        .video-info {
+            padding: 10px;
+        }
+
+        .video-stats div {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .video-stats i {
+            margin-right: 5px;
+        }
+
+        .pagination-section {
+            margin-top: 20px;
+            text-align: center;
+            align-content: center;
+        }
+
+        .pagination-section ul.pagination {
+            margin: 0;
+        }
+
+        .pagination-section ul.pagination li.page-item {
+            display: inline-block;
+            margin-right: 5px;
+        }
+
+        .pagination-section ul.pagination li.page-item a.page-link {
+            color: #007bff;
+            text-decoration: none;
+            padding: 5px 10px;
+            border: 1px solid #007bff;
+            border-radius: 3px;
+        }
+
+        .pagination-section ul.pagination li.page-item a.page-link:hover {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .pagination-section ul.pagination li.page-item.active a.page-link {
+            background-color: #007bff;
+            color: #fff;
+            border-color: #007bff;
+        }
+
+
+
+    </style>
 </head>
 
 <body>
-<nav class="navbar">
-    <a href="index.html" class="logo">Logo</a>
-    <ul>
-        <li><a href="cars/index.html">Cars</a></li>
-        <li><a href="vans/index.html">Vans</a></li>
-        <li><a href="bikes/index.html">Bikes</a></li>
-        <li><a href="trucks/index.html">Trucks</a></li>
-        <li><a href="farm/index.html">Farm</a></li>
-        <li><a href="plants/index.html">Plant</a></li>
-        <li><a href="carService.html">Car Service</a></li>
-        <li><a href="scrapeyard.html">Scrapyard</a></li>
-    </ul>
-    <span class="nav_form">
-      <a href="../signUp.html" target="_blank" class="signUp">Sign Up</a>
-      <a href="login.html" class="login" target="_blank">Login</a>
-    </span>
-    <i class="fa fa-close" id="close_nav"></i>
-    <i class="fa fa-bars" id="open_nav"></i>
-</nav>
+@include('home.includes.nav')
+
+
 <header class="hero">
     <div class="">
         <h3>About Group</h3><br>
-        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugit vitae est nobis voluptatum accusamus officia
-            inventore doloremque modi cum consequatur, quisquam illo at nisi commodi blanditiis natus tenetur totam
-            architecto. Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo magnam molestias ab facere. Error
-            debitis omnis non commodi? Inventore, dolores? Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
-            architecto. Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, nobis?</p>
+        <p>{{$group->description}}</p>
     </div>
 
 </header>
 <main>
     <div class="main_nav">
         <ul>
-            <li><a href="groupsPosts.html">Post</a><a href="groupMembers.html">Members</a></li>
-            <li><a href="groupMembers.html">Join</a></li>
+            <li><a href="{{ route('groups', $group->id) }}">Post</a><a href="{{ route('groups_members', $group->id) }}">Members</a></li>
+
+            @auth
+                @php
+                    $isMember = auth()->user()->groups->contains($group->id);
+                @endphp
+                <li>
+                    @if ($isMember)
+                        <a href="javascript:void(0)">Joined</a>
+                    @else
+                        <a href="{{ route('groups.join', $group->id) }}">Join</a>
+                    @endif
+                </li>
+            @else
+                {{--                <li>--}}
+                {{--                    <a href="javascript:void(0)">Pending</a>--}}
+                {{--                </li>--}}
+            @endauth
+
         </ul>
     </div>
     <section>
         <aside class="aside1">
             <ul>
-                <li>
-                    <div class="image" style="background-image:  url(images/people/worker1.png);"></div>
-                    <div class="details">
-                        <h4>Mally Cleff</h4>
-                        <p>5 Follower</p>
-                        <a href="">Connect</a>
-                    </div>
-                </li>
-                <li>
-                    <div class="image" style="background-image:  url(images/people/worker2.png);"></div>
-                    <div class="details">
-                        <h4>Mally Cleff</h4>
-                        <p>5 Follower</p>
-                        <a href="">Connect</a>
-                    </div>
-                </li>
-                <li>
-                    <div class="image" style="background-image:  url(images/people/worker1.png);"></div>
-                    <div class="details">
-                        <h4>Mally Cleff</h4>
-                        <p>5 Follower</p>
-                        <a href="">Connect</a>
-                    </div>
-                </li>
-                <li>
-                    <div class="image" style="background-image:  url(images/people/worker2.png);"></div>
-                    <div class="details">
-                        <h4>Mally Cleff</h4>
-                        <p>5 Follower</p>
-                        <a href="">Connect</a>
-                    </div>
-                </li>
-                <li>
-                    <div class="image" style="background-image:  url(images/people/worker1.png);"></div>
-                    <div class="details">
-                        <h4>Mally Cleff</h4>
-                        <p>5 Follower</p>
-                        <a href="">Connect</a>
-                    </div>
-                </li>
-                <li>
-                    <div class="image" style="background-image:  url(images/people/worker2.png);"></div>
-                    <div class="details">
-                        <h4>Mally Cleff</h4>
-                        <p>5 Follower</p>
-                        <a href="">Connect</a>
-                    </div>
-                </li>
-                <li>
-                    <div class="image" style="background-image:  url(images/people/worker1.png);"></div>
-                    <div class="details">
-                        <h4>Mally Cleff</h4>
-                        <p>5 Follower</p>
-                        <a href="">Connect</a>
-                    </div>
-                </li>
-                <li>
-                    <div class="image" style="background-image:  url(images/people/worker2.png);"></div>
-                    <div class="details">
-                        <h4>Mally Cleff</h4>
-                        <p>5 Follower</p>
-                        <a href="">Connect</a>
-                    </div>
-                </li>
-
+                @foreach ($members as $user)
+                    <li>
+                        <div class="image" style="background-image: url('{{ $user['image'] ? $user['image'] : 'https://th.bing.com/th/id/OIP.JXInZBqHTGeu5UkUPwcZBAHaHa?pid=ImgDet&w=179&h=179&c=7&dpr=1.3' }}');"></div>
+                        <div class="details">
+                            <h4>{{ $user['name'] }}</h4>
+                            <p>{{ $user['experience'] }}</p>
+                            <a href="">Connect</a>
+                        </div>
+                    </li>
+                @endforeach
             </ul>
         </aside>
         <aside class="aside2">
             <div class="about">
                 <h3>About Group</h3><br>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Recusandae expedita adipisci, saepe delectus
-                    tempore quae. Cupiditate qui ea a provident, dignissimos odio amet hic minima laudantium dolore, rem
-                    quaerat,
-                    necessitatibus nisi! Quae expedita reprehenderit architecto vero dolorum quisquam inventore quidem
-                    consequatur, autem delectus animi praesentium aspernatur sint maiores enim labore?</p>
-                <a href="">Share Group</a>
+                <p>{{$group->description}}</p>
+                <a href="javascript:void(0);" class="btn btn-primary" id="shareGroupButton" data-url="{{ route('groups', ['id' => $group->id]) }}">Share Group</a>
             </div>
             <div class="other_group">
                 <h3>Other Groups</h3><br>
                 <ul>
-                    <li>
-                        <div class="image"></div>
-                        <div class="details">
-                            <h4>IT news</h4>
-                            <p><span>1 member</span> 0 posts today</p>
-                            <a href="">Join</a>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="image"></div>
-                        <div class="details">
-                            <h4>IT news</h4>
-                            <p><span>1 member</span> 0 posts today</p>
-                            <a href="">Join</a>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="image"></div>
-                        <div class="details">
-                            <h4>IT news</h4>
-                            <p><span>1 member</span> 0 posts today</p>
-                            <a href="">Join</a>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="image"></div>
-                        <div class="details">
-                            <h4>IT news</h4>
-                            <p><span>1 member</span> 0 posts today</p>
-                            <a href="">Join</a>
-                        </div>
-                    </li>
+                    @forelse($otherGroups as $otherGroup)
+                        <li>
+                            <div class="image" style="background: url('{{ $otherGroup->image }}') no-repeat;">
+                            </div>
+                            <div class="details">
+                                <h4>{{ $otherGroup->title }}</h4>
+                                <p><span>{{$group->getMembersCountAttribute()}} member</span> 0 posts today</p>
+                                <a href="{{route('groups', $otherGroup->id)}}">View</a>
+                            </div>
+                        </li>
+                    @empty
+                        <p>No other groups found.</p>
+                    @endforelse
                 </ul>
+
             </div>
+            <!-- Pagination Section -->
+
+            @if($otherGroups->count() > 0)
+                <div class="pagination-section">
+                    <div class="d-flex justify-content-center">
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination justify-content-center flex-wrap">
+                                @if ($otherGroups->onFirstPage())
+                                    <li class="page-item disabled"><span class="page-link">Prev</span></li>
+                                @else
+                                    <li class="page-item"><a class="page-link" href="{{ $otherGroups->previousPageUrl() }}">Prev</a></li>
+                                @endif
+
+                                @foreach ($otherGroups->getUrlRange(1, $otherGroups->lastPage()) as $page => $url)
+                                    <li class="page-item {{ ($page == $otherGroups->currentPage()) ? 'active' : '' }}">
+                                        <a class="page-link" href="{{ $url }}">{{ $page }}</a>
+                                    </li>
+                                @endforeach
+
+                                @if ($otherGroups->hasMorePages())
+                                    <li class="page-item"><a class="page-link" href="{{ $otherGroups->nextPageUrl() }}">Next</a></li>
+                                @else
+                                    <li class="page-item disabled"><span class="page-link">Next</span></li>
+                                @endif
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            @endif
         </aside>
     </section>
 </main>
 
 
-<footer>
-    <div class="card_group">
-        <div class="card">
-            <h6>About</h6><br>
-            <p>Lorem ipsum dolor sit amet consectetur. Ullamcorper bibendum diam sapien faucibus. Dolor in nibh malesuada
-                pharetra aenean eu rhoncus. Non tortor sagittis metus vitae nunc. Varius congue faucibus lacus pharetra nisl
-                risus. Bibendum integer fringilla id ante fusce varius eget.</p><br><br>
-            <a href="#!">Learn More</a>
-        </div>
-        <div class="card">
-            <h6>Services</h6>
-            <nav class="footer_nav">
-                <ul class="">
-                    <li><a href="cars/index.html">Cars</a></li>
-                    <li><a href="bikes/index.html">Bikes</a></li>
-                    <li><a href="trucks/index.html">Trucks</a></li>
-                    <li><a href="farm/index.html">Farms</a></li>
-                    <li><a href="plants/index.html">Plants</a></li>
+@include('home.includes.footer')
 
-                    <li><a href="#!">Valuation</a></li>
 
-                    <li><a href="#!">Blacklist</a></li>
-                </ul>
-                <ul class="">
-                    <li><a href="#!">Privacy Police</a></li>
-                    <li><a href="#!">Terms and Conditions</a></li>
-                    <li><a href="#!">FAQs</a></li>
-                    <li><a href="#!">Contact Us</a></li>
-                </ul>
-            </nav>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const shareButton = document.getElementById('shareGroupButton');
 
-        </div>
-        <!-- <div class="card">
+        shareButton.addEventListener('click', function () {
+            const groupUrl = shareButton.getAttribute('data-url');
+            const tempInput = document.createElement('input');
+            document.body.appendChild(tempInput);
+            tempInput.value = groupUrl;
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
 
-        </div> -->
-        <div class="card">
-            <h6>Follow us</h6>
-            <div class="socials">
-                <a href="#!"><i class="fab fa-facebook"></i></a>
-                <a href="#!"><i class="fab fa-square-instagram"></i></a>
-                <a href="#!"><i class="fab fa-linkedin"></i></a>
-                <a href="#!"><i class="fab fa-square-x-twitter"></i></a>
-            </div>
-        </div>
-    </div>
-</footer>
-
-<script src="assets/fontawesome/js/all.min.js"></script>
-<script src="js/jquery.js"></script>
-<script src="js/index.js"></script>
+            // Display success message
+            toastr.success('Link group copied');
+        });
+    });
+</script>
 </body>
 
 </html>
