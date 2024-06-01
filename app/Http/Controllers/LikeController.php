@@ -25,11 +25,16 @@ class LikeController extends Controller
 
         $likesCount = $post->likes()->count();
 
-        return response()->json([
-            'message' => $message,
-            'likes_count' => $likesCount
-        ]);
+        if ($request->expectsJson()) {
+            return response()->json([
+                'message' => $message,
+                'likes_count' => $likesCount
+            ]);
+        }
+
+        return redirect()->back()->with(['success' => $message]);
     }
+
 
 
 }

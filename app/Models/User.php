@@ -155,8 +155,11 @@ class User extends Authenticatable
         return $this->belongsToMany(BussinessService::class, 'business_services');
     }
 
+    /**
+     * The groups that the user belongs to.
+     */
     public function groups()
     {
-        return $this->belongsToMany(Group::class);
+        return $this->belongsToMany(Group::class, 'group_user', 'user_id', 'group_id');
     }
 }

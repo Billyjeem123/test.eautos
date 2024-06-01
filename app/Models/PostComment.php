@@ -9,6 +9,9 @@ class PostComment extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+    protected  $table = 'post_comment';
+
     public function post()
     {
         return $this->belongsTo(Post::class);

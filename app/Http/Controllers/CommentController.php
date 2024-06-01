@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PostComment;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
@@ -13,7 +14,7 @@ class CommentController extends Controller
             'body' => 'required|string',
         ]);
 
-        Comment::create([
+        PostComment::create([
             'post_id' => $request->post_id,
             'user_id' => auth()->id(),
             'body' => $request->body,

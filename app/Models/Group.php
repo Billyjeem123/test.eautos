@@ -17,6 +17,11 @@ class Group extends Model
         return $this->belongsToMany(User::class);
     }
 
+    public function group_members()
+    {
+        return $this->belongsToMany(User::class, 'group_user', 'group_id', 'user_id');
+    }
+
 
     public function posts()
     {
@@ -26,7 +31,7 @@ class Group extends Model
     // Accessor for members_count
     public function getMembersCountAttribute()
     {
-        return $this->users()->count();
+        return $this->group_members()->count();
     }
 
     // Accessor for posts_today

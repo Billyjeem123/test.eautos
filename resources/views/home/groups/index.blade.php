@@ -106,7 +106,8 @@
     <div class="main_nav">
         <ul>
             <li><a href="groupsPosts.html">Post</a><a href="groupMembers.html">Members</a></li>
-            <li><a href="groupMembers.html">Join</a></li>
+            <li><a href="{{ route('groups.join', $group->id) }}">Join</a></li>
+
         </ul>
     </div>
     <section>
@@ -116,17 +117,20 @@
         <aside class="aside1">
             <div class="post_nav">
                 <span class="img" style="background-image: url(/home/images/people/smiling\ man.png);"></span>
-                <form id="postForm">
-                    <input type="hidden" id="group_id" value="{{ $group->id }}">
+                <form id="postForm" action="{{ route('create_posts_users') }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="group_id" id="group_id" value="{{ $group->id }}">
                     <input type="hidden" name="user_id" id="user_id" value="{{ auth()->check() ? auth()->user()->id : '' }}">
+                    <input type="text" id="contents" placeholder="Write Something..." name="contents" required><br>
 
-                    <input type="text" id="contents" placeholder="Write Something..."  name="contents" ><br>
-
-                    <button id="anonymous"><span><i class="fa fa-user-secret"></i></span>&nbsp;Anonymous Post</button>
-                    <button id="post">Post</button>
+                    <button type="button" id="anonymous"><span><i class="fa fa-user-secret"></i></span>&nbsp;Anonymous Post</button>
+                    <button type="submit" id="post">Post</button>
                 </form>
-            </div>
 
+
+
+
+            </div>
 
 
 
@@ -137,23 +141,25 @@
                         <div class="card_header">
                             <p>
                                 <span class="img" style="width: 35px; height: 35px; background-color: #979797; border-radius: 50px;"></span>
-                                <span class="name"><strong>{{$post->user->name}}</strong><br><small>{{ $post->created_at->format('Y-m-d H:i:s') }}</small></span>
+                                <span class="name"><strong>{{ $post->user->name ?? 'Anonymous' }}</strong><br><small>{{ $post->created_at->format('Y-m-d H:i:s') }}</small></span>
                             </p>
                         </div>
                         <div class="card_details">
-                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quasi corrupti consectetur voluptates! Delectus
-                                repudiandae rerum harum labore, in at aperiam consequatur hic adipisci, aut nihil laborum provident
-                                voluptatem asperiores eveniet.</p>
+                            <p>{{ $post->content }}</p>
                         </div>
                         <div class="card_footer">
                             <ul class="list-inline">
                                 <li class="list-inline-item">
-                                    <button class="btn btn-primary like-btn" data-post-id="{{ $post->id }}">
-                                        <i class="far fa-thumbs-up" style="{{ $post->isLikedByUser() ? 'color: #007bff !important;' : '' }}"></i>
-                                        <span> Like</span>
-                                        <span class="like-count">{{ $post->likes_count }}</span>
-                                    </button>
+                                    <form class="like-form"  method="POST" action="{{route('posts.like', $post->id)}}">
+                                        @csrf
+                                        <button type="submit" class="btn btn-primary like-btn" data-post-id="{{ $post->id }}">
+                                            <i class="far fa-thumbs-up" style="{{ $post->isLikedByUser() ? 'color: #007bff !important;' : '' }}"></i>
+                                            <span> Like</span>
+                                            <span class="like-count">{{ $post->likes->count() }}</span>
+                                        </button>
+                                    </form>
                                 </li>
+
 
                                 <li class="list-inline-item">
                                     <button class="btn btn-primary"><i class="far fa-comment"></i><span> Comment</span></button>
@@ -165,73 +171,77 @@
                                     <button class="btn btn-secondary"><small>{{ $post->views }} Views</small></button>
                                 </li>
                             </ul>
-                            <a href="">View more comments</a>
+                            <a href="#">View more comments</a>
                         </div>
                         <!-- ----- -->
+
                         <div class="sub_footer">
-                            <div class="sub_footer_header">
-                                <p>
-                                    <span class="img" style="width: 30px; height: 30px; background-color: #979797; border-radius: 50px;"></span>
-                                    <span class="name"><strong>Joy Thompson</strong><br><small>6:30pm</small></span>
+                            @foreach($post->comments as $comment)
+                                <div class="sub_footer_header">
+                                    <p>
+                                        <span class="img" style="width: 30px; height: 30px; background-color: #979797; border-radius: 50px;"></span>
+                                        <span class="name"><strong>{{ $comment->user->name }}</strong><br><small>{{ $comment->created_at->format('g:i A') }}</small></span>
+                                    </p>
+                                </div>
+                                <p class="sub_footer_comment">
+                                    {{ $comment->body }}
                                 </p>
-                            </div>
-                            <p class="sub_footer_comment">
-                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Earum culpa porro tempora veritatis, facere
-                                laborum omnis. Voluptate nam, laborum iusto, repellat provident repellendus
-                                eaque illum distinctio deserunt.
-                            </p>
+                            @endforeach
 
                             <form action="{{ route('comments.store') }}" method="POST">
                                 @csrf
                                 <span style="width: 35px; height: 35px; background-color: #979797; border-radius: 50px;"></span>
                                 <input type="hidden" name="post_id" value="{{ $post->id }}">
                                 <input type="text" name="body" placeholder="Write Something...">
-                                <button type="submit">Post Comment</button>
+                                <button type="submit">Comment</button>
                             </form>
-
                         </div>
+
                         <!-- ----- -->
                     </div>
                 @empty
                     <p>No posts available.</p>
                 @endforelse
                 <!-- ------------- -->
+                @if($posts->count() > 0)
 
-                <!-- Pagination Section -->
-                <div class="pagination-section">
-                    <div class="d-flex justify-content-center">
-                        <nav aria-label="Page navigation">
-                            <ul class="pagination justify-content-center flex-wrap">
-                                @if ($posts->onFirstPage())
-                                    <li class="page-item disabled"><span class="page-link">Prev</span></li>
-                                @else
-                                    <li class="page-item"><a class="page-link" href="{{ $posts->previousPageUrl() }}">Prev</a></li>
-                                @endif
+                    <!-- Pagination Section -->
+                    <div class="pagination-section">
+                        <div class="d-flex justify-content-center">
+                            <nav aria-label="Page navigation">
+                                <ul class="pagination justify-content-center flex-wrap">
+                                    @if ($posts->onFirstPage())
+                                        <li class="page-item disabled"><span class="page-link">Prev</span></li>
+                                    @else
+                                        <li class="page-item"><a class="page-link" href="{{ $posts->previousPageUrl() }}">Prev</a></li>
+                                    @endif
 
-                                @foreach ($posts->getUrlRange(1, $posts->lastPage()) as $page => $url)
-                                    <li class="page-item {{ ($page == $posts->currentPage()) ? 'active' : '' }}">
-                                        <a class="page-link" href="{{ $url }}">{{ $page }}</a>
-                                    </li>
-                                @endforeach
+                                    @foreach ($posts->getUrlRange(1, $posts->lastPage()) as $page => $url)
+                                        <li class="page-item {{ ($page == $posts->currentPage()) ? 'active' : '' }}">
+                                            <a class="page-link" href="{{ $url }}">{{ $page }}</a>
+                                        </li>
+                                    @endforeach
 
-                                @if ($posts->hasMorePages())
-                                    <li class="page-item"><a class="page-link" href="{{ $posts->nextPageUrl() }}">Next</a></li>
-                                @else
-                                    <li class="page-item disabled"><span class="page-link">Next</span></li>
-                                @endif
-                            </ul>
-                        </nav>
+                                    @if ($posts->hasMorePages())
+                                        <li class="page-item"><a class="page-link" href="{{ $posts->nextPageUrl() }}">Next</a></li>
+                                    @else
+                                        <li class="page-item disabled"><span class="page-link">Next</span></li>
+                                    @endif
+                                </ul>
+                            </nav>
+                        </div>
                     </div>
-                </div>
-
+                @endif
 
             </div>
+
         </aside>
         <aside class="aside2">
             <div class="about">
                 <h3>About Group</h3><br>
                 <p>{{$group->description}}</p>
-                <a href="">Share Group</a>
+                <a href="javascript:void(0);" class="btn btn-primary" id="shareGroupButton" data-url="{{ route('groups', ['id' => $group->id]) }}">Share Group</a>
+
             </div>
             <div class="other_group">
                 <h3>Other Groups</h3><br>
@@ -244,7 +254,7 @@
                             <div class="details">
                                 <h4>{{ $otherGroup->title }}</h4>
                                 <p><span>{{$group->getMembersCountAttribute()}} member</span> 0 posts today</p>
-                                <a href="">Join</a>
+                                <a href="{{route('groups', $otherGroup->id)}}">View</a>
                             </div>
                         </li>
                     @empty
@@ -254,31 +264,37 @@
 
             </div>
             <!-- Pagination Section -->
-            <div class="pagination-section">
-                <div class="d-flex justify-content-center">
-                    <nav aria-label="Page navigation">
-                        <ul class="pagination justify-content-center flex-wrap">
-                            @if ($otherGroups->onFirstPage())
-                                <li class="page-item disabled"><span class="page-link">Prev</span></li>
-                            @else
-                                <li class="page-item"><a class="page-link" href="{{ $otherGroups->previousPageUrl() }}">Prev</a></li>
-                            @endif
 
-                            @foreach ($otherGroups->getUrlRange(1, $otherGroups->lastPage()) as $page => $url)
-                                <li class="page-item {{ ($page == $otherGroups->currentPage()) ? 'active' : '' }}">
-                                    <a class="page-link" href="{{ $url }}">{{ $page }}</a>
-                                </li>
-                            @endforeach
+            @if($otherGroups->count() > 0)
+                <div class="pagination-section">
+                    <div class="d-flex justify-content-center">
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination justify-content-center flex-wrap">
+                                @if ($otherGroups->onFirstPage())
+                                    <li class="page-item disabled"><span class="page-link">Prev</span></li>
+                                @else
+                                    <li class="page-item"><a class="page-link" href="{{ $otherGroups->previousPageUrl() }}">Prev</a></li>
+                                @endif
 
-                            @if ($otherGroups->hasMorePages())
-                                <li class="page-item"><a class="page-link" href="{{ $otherGroups->nextPageUrl() }}">Next</a></li>
-                            @else
-                                <li class="page-item disabled"><span class="page-link">Next</span></li>
-                            @endif
-                        </ul>
-                    </nav>
+                                @foreach ($otherGroups->getUrlRange(1, $otherGroups->lastPage()) as $page => $url)
+                                    <li class="page-item {{ ($page == $otherGroups->currentPage()) ? 'active' : '' }}">
+                                        <a class="page-link" href="{{ $url }}">{{ $page }}</a>
+                                    </li>
+                                @endforeach
+
+                                @if ($otherGroups->hasMorePages())
+                                    <li class="page-item"><a class="page-link" href="{{ $otherGroups->nextPageUrl() }}">Next</a></li>
+                                @else
+                                    <li class="page-item disabled"><span class="page-link">Next</span></li>
+                                @endif
+                            </ul>
+                        </nav>
+                    </div>
                 </div>
-            </div>
+            @endif
+
+
+
         </aside>
     </section>
 </main>
@@ -286,80 +302,21 @@
 
 <!-- jQuery and Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-
 <script>
-    $(document).ready(function() {
-        $('#postForm').on('submit', function(e) {
-            e.preventDefault();
+    document.addEventListener('DOMContentLoaded', function () {
+        const shareButton = document.getElementById('shareGroupButton');
 
-            const contents = $('#contents').val();
-            const groupId = $('#group_id').val();
-            const user_id = $('#user_id').val();
-            const isAnonymous = $('#anonymous').hasClass('active');
+        shareButton.addEventListener('click', function () {
+            const groupUrl = shareButton.getAttribute('data-url');
+            const tempInput = document.createElement('input');
+            document.body.appendChild(tempInput);
+            tempInput.value = groupUrl;
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
 
-
-            $.ajax({
-                url: '{{route('create_posts_users')}}',
-                method: 'POST',
-                data: {
-                    _token: '{{ csrf_token() }}',
-                    contents: contents,
-                    group_id: groupId,
-                    user_id:user_id,
-                    anonymous: isAnonymous
-                },
-                success: function(response) {
-                    alert(response.message);
-                    // Clear form fields
-                    $('#contents').val('');
-                },
-                error: function(xhr) {
-                    alert('Error: ' + xhr.responseJSON.message);
-                }
-            });
-        });
-
-        $('#anonymous').on('click', function() {
-            $(this).toggleClass('active');
-        });
-    });
-</script>
-
-<script>
-    $(document).ready(function() {
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-
-        $('.like-btn').click(function(e) {
-            e.preventDefault();
-
-            let button = $(this);
-            let postId = button.data('post-id');
-            let icon = button.find('i');
-
-            $.ajax({
-                type: 'POST',
-                url: `/posts/${postId}/like`,
-                success: function(response) {
-                    if (response.message.includes('unliked')) {
-                        // Remove color and force reflow
-                        icon.css('color', '');
-                        button.find('.like-count').text(response.likes_count); // Update like count
-                        toastr.success(response.message);
-                    } else {
-                        // Change color to blue and force reflow
-                        icon.css('color', '#007bff');
-                        button.find('.like-count').text(response.likes_count); // Update like count
-                        toastr.success(response.message);
-                    }
-                },
-                error: function(response) {
-                    toastr.error(response.responseJSON.message);
-                }
-            });
+            // Display success message
+            toastr.success('Link group copied');
         });
     });
 </script>
@@ -367,60 +324,27 @@
 
 
 
+<script>
+    document.getElementById('anonymous').addEventListener('click', function() {
+        document.getElementById('user_id').value = '';
+        document.getElementById('postForm').submit();
+    });
+</script>
 
-{{--<script>--}}
-{{--    $(document).ready(function() {--}}
-{{--        $.ajaxSetup({--}}
-{{--            headers: {--}}
-{{--                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')--}}
-{{--            }--}}
-{{--        });--}}
 
-{{--        $('.like-btn').click(function(e) {--}}
-{{--            e.preventDefault();--}}
-
-{{--            let button = $(this);--}}
-{{--            let postId = button.data('post-id');--}}
-
-{{--            $.ajax({--}}
-{{--                type: 'POST',--}}
-{{--                url: `/posts/${postId}/like`,--}}
-{{--                success: function(response) {--}}
-{{--                    button.css('background-color', '#007bff');--}}
-{{--                    button.css('color', 'white');--}}
-{{--                    button.find('.like-count').text(response.likes_count);--}}
-{{--                    toastr.success(response.message);--}}
-{{--                },--}}
-{{--                error: function(response) {--}}
-{{--                    toastr.error(response.responseJSON.message);--}}
-{{--                }--}}
-{{--            });--}}
-{{--        });--}}
-
-{{--        $('.unlike-btn').click(function(e) {--}}
-{{--            e.preventDefault();--}}
-
-{{--            let button = $(this);--}}
-{{--            let postId = button.data('post-id');--}}
-
-{{--            $.ajax({--}}
-{{--                type: 'DELETE',--}}
-{{--                url: `/posts/${postId}/like`,--}}
-{{--                success: function(response) {--}}
-{{--                    let likeButton = $('.like-btn[data-post-id="' + postId + '"]');--}}
-{{--                    likeButton.css('background-color', '');--}}
-{{--                    likeButton.css('color', '');--}}
-{{--                    likeButton.find('.like-count').text(response.likes_count);--}}
-{{--                    toastr.success(response.message);--}}
-{{--                },--}}
-{{--                error: function(response) {--}}
-{{--                    toastr.error(response.responseJSON.message);--}}
-{{--                }--}}
-{{--            });--}}
-{{--        });--}}
-{{--    });--}}
-{{--</script>--}}
-
+<script>
+    document.getElementById('post').addEventListener('click', function() {
+        // Check if the user is logged in using Laravel's authentication system
+        @auth
+        // If logged in, submit the form
+        document.getElementById('postForm').submit();
+        @else
+        // If not logged in, alert the user to log in
+        toastr.error('You need to log in to post a comment.');
+        return false;
+        @endauth
+    });
+</script>
 
 
 

@@ -60,6 +60,8 @@ Route::group(['middleware' => ['showNavBar']], function () {
     Route::get('/groups/{id}', [GroupController::class, 'index'])->name('groups');
     Route::get('/groups/members/{group_id}', [GroupController::class, 'group_activities'])->name('groups.activities');
     Route::post('/groups/post', [GroupController::class, 'create_posts'])->name('create_posts_users');
+    Route::get('/groups/{group}/join', [GroupController::class, 'join'])->middleware('auth')->name('groups.join');
+
 
     Route::post('/posts/{post}/like', [LikeController::class, 'toggle'])->middleware('auth')->name('posts.like');
     Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
