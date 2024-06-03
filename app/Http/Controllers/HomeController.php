@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Blog;
 use App\Models\Brand;
+use App\Models\BussinessServiceList;
 use App\Models\CarPartCategory;
 use App\Models\Category;
 use App\Models\Group;
@@ -70,6 +71,39 @@ class HomeController extends Controller
     }
 
 
+    public function register_dealer(){
+        $services_list = BussinessServiceList::all();
+
+        // Determine the cut-off point for the main services and advanced services
+        $main_services = $services_list->take(5); // Take the first 5 services
+        $advanced_services = $services_list->slice(5); // Take all services starting from the 6th one
+
+        return view('home.signup.dealer', compact('main_services', 'advanced_services'));
+    }
+
+
+    public function register_provider(){
+        $services_list = BussinessServiceList::all();
+
+        // Determine the cut-off point for the main services and advanced services
+        $main_services = $services_list->take(5); // Take the first 5 services
+        $advanced_services = $services_list->slice(5); // Take all services starting from the 6th one
+
+        return view('home.signup.provider', compact('main_services', 'advanced_services'));
+    }
+
+    public function register_buyer(){
+        $services_list = BussinessServiceList::all();
+
+        // Determine the cut-off point for the main services and advanced services
+        $main_services = $services_list->take(5); // Take the first 5 services
+        $advanced_services = $services_list->slice(5); // Take all services starting from the 6th one
+
+        return view('home.signup.user', compact('main_services', 'advanced_services'));
+    }
+
+
+
 
     public function saveDealer(Request $request): \Illuminate\Http\RedirectResponse
     {
@@ -113,6 +147,7 @@ class HomeController extends Controller
         $user->phone = $request->phone;
         $user->password = bcrypt($request->pword); // Hash the password for security
         $user->is_active = 1;
+        $user->business_state = $request->user_location;
         $user->role = 'dealer';
 
         // Save the user to the database
@@ -138,8 +173,6 @@ class HomeController extends Controller
     }
 
 
-
-
     public function saveUser(Request $request): \Illuminate\Http\RedirectResponse
     {
         // Validate the incoming request data
@@ -162,11 +195,25 @@ class HomeController extends Controller
             'phone' => $request->phone,
             'password' => bcrypt($request->pword),
             'is_active' => 1,
+            'business_state' => $request->user_location,
             'role' => 'provider',
         ]);
 
         // Save the user to the database
         $user->save();
+
+        $multiple_services =  $request->multiple_selection;
+
+        foreach ($multiple_services as $services) {
+            DB::table('business_services')->insert([
+                'user_id' => $user->id,
+                'bussiness_name' => $services,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        }
+
+
 
         // Authenticate and log in the user
         Auth::login($user);

@@ -99,6 +99,8 @@ public function toggleBlockUsers($id)
     // Save the user to the database
     $user->save();
 
+//    $user->businessServices()->attach($businessService->id);
+
     // Optionally, you can return a response or redirect to a different page
     return redirect()->back()->with('success', 'User added successfully');
 }
@@ -109,7 +111,8 @@ public function toggleBlockUsers($id)
 
         $profile = User::find($userid);
 
-        $bussiness_service = BussinessService::where('user_id', $userid)->get();
+
+        $bussiness_service =  $profile->businessServiceLists;
 
         $reviews = BussinessReview::with('user')->where('bussiness_id', $userid)->get();
 

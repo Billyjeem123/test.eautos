@@ -223,7 +223,7 @@
         <h3>Our Services</h3>
         <ul>
             @forelse($bussiness_service as $bussiness)
-                <li><i class="fa-regular fa-circle-check"></i>&nbsp;&nbsp; {{$bussiness->bussiness_name}}</li>
+                <li><i class="fa-regular fa-circle-check"></i>&nbsp;&nbsp; {{$bussiness->service_list}}</li>
             @empty
                 <li>No business services available at the moment.</li>
             @endforelse

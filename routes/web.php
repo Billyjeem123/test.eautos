@@ -69,12 +69,14 @@ Route::group(['middleware' => ['showNavBar']], function () {
 
 
     #Return interface of signup pages... Authentication routes
-    Route::view('/register/dealer', 'home.signup.dealer')->name('dealer.register');
-    Route::view('/register/service-provider', 'home.signup.provider')->name('service_provider.register');
-    Route::view('/register/buyer', 'home.signup.user')->name('buyer.register');
+    Route::get('/register/dealer', [HomeController::class, 'register_dealer'])->name('dealer.register');
+    Route::get('/register/service-provider', [HomeController::class, 'register_provider'])->name('service_provider.register');
+    Route::get('/register/buyer', [HomeController::class, 'register_buyer'])->name('buyer.register');
+//    Route::view('/register/buyer', 'home.signup.user')->name('buyer.register');
 
     Route::post('/save-register-dealer', [HomeController::class, 'saveDealer'])->name('save.register.dealer');
     Route::post('/save-register-user', [HomeController::class, 'saveUser'])->name('save.register.user');
+//    Route::post('/save-register-user', [HomeController::class, 'saveUser'])->name('save.register.user');
     Route::post('/save-register-buyer', [HomeController::class, 'saveBuyer'])->name('save.register.buyer');
 
     Route::view('/login', 'home.login')->name('login');

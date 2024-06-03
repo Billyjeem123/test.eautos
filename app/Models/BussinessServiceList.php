@@ -12,4 +12,10 @@ class BussinessServiceList extends Model
     protected  $table = 'bussiness_service_lists';
 
     protected  $guarded = [];
+
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'business_services', 'bussiness_name', 'user_id');
+    }
 }

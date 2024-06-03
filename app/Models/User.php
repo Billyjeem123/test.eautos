@@ -117,13 +117,8 @@ class User extends Authenticatable
 
 
 
-    /**
-     * Get the business services associated with the user.
-     */
-    public function businessServices(): \Illuminate\Database\Eloquent\Relations\HasMany
-    {
-        return $this->hasMany(BussinessService::class);
-    }
+
+
 
 
     /**
@@ -150,10 +145,6 @@ class User extends Authenticatable
         return $this->hasMany(StolenCar::class, 'user_id');
     }
 
-    public function services()
-    {
-        return $this->belongsToMany(BussinessService::class, 'business_services');
-    }
 
     /**
      * The groups that the user belongs to.
@@ -161,5 +152,15 @@ class User extends Authenticatable
     public function groups()
     {
         return $this->belongsToMany(Group::class, 'group_user', 'user_id', 'group_id');
+    }
+
+
+    /**
+     * Get the business services associated with the user.
+     */
+
+    public function businessServiceLists()
+    {
+        return $this->belongsToMany(BussinessServiceList::class, 'business_services', 'user_id', 'bussiness_name');
     }
 }

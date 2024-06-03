@@ -15,16 +15,8 @@ class BussinessService extends Model
 
 
 
-    /**
-     * Get the user that owns the business service.
-     */
-    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
-    {
-        return $this->belongsTo(User::class);
-    }
-
     public function users()
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class, 'business_services');
     }
 }
