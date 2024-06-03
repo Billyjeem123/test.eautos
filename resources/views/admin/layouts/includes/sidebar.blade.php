@@ -33,7 +33,7 @@
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Add New</h6>
             <a class="collapse-item" href="{{route('admin.brands')}}">Brand</a>
-
+              <a class="collapse-item" href="{{route('admin.service')}}">Services</a>
 
           </div>
         </div>

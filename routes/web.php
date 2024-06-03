@@ -192,6 +192,14 @@ Route::prefix('admin')->middleware('auth', 'admin', 'notify')->group(function ()
      Route::delete('/brands/delete/{id}', [BrandController::class, 'deleteBrand'])->name('admin.brand.delete');
 
 
+
+    Route::get('/service', [BrandController::class, 'show_service'])->name('admin.service');
+    Route::post('/service/create', [BrandController::class, 'save_service'])->name('admin.service.create');
+    Route::delete('/service/delete/{id}', [BrandController::class, 'delete_service'])->name('admin.service.delete');
+
+
+
+
       #uploading_product_routes
      Route::get('/product/create', [ProductController::class, 'index'])->name('admin.vehicle')->middleware('profile.complete');
      Route::post('/product/create', [ProductController::class, 'store'])->name('create_product_admin');
