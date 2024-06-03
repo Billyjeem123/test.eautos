@@ -137,7 +137,7 @@ Route::group(['middleware' => ['showNavBar']], function () {
 
         #usserProfile
         Route::get('/user/profile/{userId}', [UserController::class, 'showProfile'])->name('user.profile');
-//        Route::view('/dealers/all', 'home.dealer.index')->name('dealers.all');
+        Route::view('/all/providers', 'home.service-provider.index')->name('provider.all');
         Route::get('/dealers/all', [HomeController::class, 'getAllDealers'])->name('dealers.all');
 
 

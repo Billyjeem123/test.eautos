@@ -1,0 +1,845 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
+    /* font-optical-sizing: auto; */
+}
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+body,
+html {
+    background-color: #ffffff;
+    overflow-x: hidden;
+}
+
+.container {
+    padding: 2rem;
+    background-color: #ffffff;
+}
+/* ---------------------------------------------------- */
+.navbar .active {
+    color: #394293 !important;
+}
+.navbar {
+    width: 100%;
+    background-color: #ffffff;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    position: relative;
+}
+.logo {
+    text-decoration: none;
+    color: #000;
+    padding: 5px 10px;
+    border: 1px solid #000;
+}
+
+.navbar ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.navbar ul li {
+    list-style: none;
+}
+.navbar ul li a {
+    text-decoration: none;
+    color: #000;
+    padding: 5px 10px;
+    transition: 0.3s ease-in-out;
+    font-weight: bold;
+}
+.navbar ul li a:hover {
+    color: #394293;
+    /* font-weight: bold; */
+}
+#open_nav,
+#close_nav {
+    display: none;
+    border: 1px solid #000;
+    padding: 5px 7px;
+    cursor: pointer;
+    font-size: 15px;
+}
+.nav_form {
+    margin-left: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+.signUp,
+.login {
+    text-decoration: none;
+    color: #000;
+    padding: 5px 10px;
+    transition: 0.3s ease-in-out;
+}
+.signUp:hover {
+    background-color: #394293;
+    color: #ffffff;
+}
+.login {
+    border: 1px solid #000;
+    transition: 0.3s ease-in-out;
+}
+.login:hover {
+    background-color: #394293;
+    border: 1px solid #394293;
+    color: #ffffff;
+}
+/* ------------------------------------------------------- */
+
+.hero {
+    width: 100%;
+    min-height: 70vh;
+    background: url(/home/images/parts/black\ speedometer.png) no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+.form_control {
+    width: 100%;
+    padding: 1.5rem 1rem;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+.hero form {
+    width: 60%;
+    min-height: 220px;
+    padding: 3rem 1.5rem;
+    background-color: transparent;
+    /* filter: blur(2px); */
+    margin: auto;
+    text-align: center;
+    border-radius: 20px;
+    border: 2px solid #363636;
+    position: relative;
+}
+.hero form::before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    backdrop-filter: blur(2px);
+    border-radius: 20px;
+}
+.hero form h3 {
+    font-size: 30px;
+    color: #ffffff;
+    z-index: 99;
+    position: absolute;
+    top: 1.5rem;
+    right: 0;
+    left: 0;
+    margin: auto;
+}
+.form_group {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding: 2rem 0;
+}
+.form_card {
+    width: 100%;
+    position: relative;
+}
+.form_card select {
+    appearance: none;
+    background: transparent;
+    color: #ffffff;
+    padding: 10px 0.5rem;
+    width: 100%;
+    outline: none;
+    border: 2px solid #ffffff;
+    border-radius: 5px;
+}
+.form_card select option {
+    color: #000000;
+    font-weight: bold;
+}
+.form_card label {
+    background-color: #ffffff;
+    padding: 2px 3px;
+    font-size: 12px;
+    color: #000000;
+    border-radius: 3px;
+    position: absolute;
+    right: 7px;
+    top: 11.5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.form_card label .fa-angle-down {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+.hero form button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    background-color: #394293;
+    color: #ffffff;
+    font-weight: bolder;
+    padding: 12px 10px;
+    margin: auto;
+    outline: none;
+    border-radius: 5px;
+    border: 2px solid #394293;
+    transition: 0.3s ease-in-out;
+    z-index: 99;
+    position: absolute;
+    bottom: 2rem;
+    left: 0;
+    right: 0;
+}
+.hero form button:hover {
+    background-color: transparent;
+    border: 2px solid #ffffff;
+}
+#category,
+#specialty,
+#location {
+    width: 100%;
+}
+/* ----------------------------------------------------- */
+
+.status {
+    width: 100%;
+}
+.status h3 {
+    /* font-family: Arial, Helvetica, sans-serif !important; */
+    padding-left: 1rem;
+    font-size: 30px;
+}
+.status ul {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    overflow-x: scroll;
+    gap: 15px;
+    text-align: center;
+}
+.status li {
+    list-style: none;
+    margin: auto;
+    padding: 10px 5px;
+}
+.status li img {
+    width: 150px;
+}
+.status ul::-webkit-scrollbar {
+    display: none;
+}
+
+/* ---------------------------------------------- */
+
+.mechanics {
+    width: 100%;
+    padding: 10px 2rem;
+}
+.mechanics h3 {
+    padding: 10px;
+    font-size: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.mechanics h3 a {
+    color: #000;
+    font-size: 18px;
+    text-decoration: none;
+    transition: 0.3s ease-in-out;
+}
+.mechanics h3 a:hover {
+    color: #394293;
+    text-decoration: underline;
+}
+.mechanics .card_group {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* flex-wrap: wrap; */
+    gap: 10px;
+}
+.mechanics .card {
+    background-color: transparent;
+    width: 220px;
+    min-height: 250px;
+    padding: 0;
+    margin: 0.5rem 5px;
+}
+.mechanics .card_img {
+    width: 100%;
+    height: 150px;
+    /* background: url(img/Image.png) no-repeat; */
+    background-position: center !important;
+    background-size: cover !important;
+    position: relative;
+}
+.mechanics .card_img .verify {
+    position: absolute;
+    bottom: 8px;
+    right: 10px;
+    font-size: 11px !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #1cc023;
+    color: #ffffff;
+    width: fit-content;
+    padding: 1px 1.5rem !important;
+    border-radius: 20px;
+}
+.mechanics .verify span {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    left: 0;
+    background-color: #1cc023;
+    /* padding: 5px; */
+    width: 20px;
+    height: 20px;
+    border-radius: 50px;
+}
+.mechanics .card_text {
+    padding: 1rem 0;
+}
+.mechanics .card h5 {
+    color: #202020;
+    font-size: 18px;
+    font-weight: 500;
+}
+.mechanics .card p {
+    font-size: 13px;
+    padding: 5px 0;
+}
+.mechanics .card h6 {
+    color: #000000;
+    font-size: 18px;
+    padding: 2px 0;
+}
+.mechanics .card h6 span:nth-child(2) {
+    color: #7e7e7e;
+    font-size: 15px;
+    font-weight: lighter;
+}
+.ratings .fa-star {
+    color: #000000;
+    font-size: 15px;
+}
+.mechanics .pagination {
+    padding: 1rem;
+}
+.mechanics .pagination ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.mechanics .pagination ul li {
+    list-style: none;
+}
+.mechanics .pagination ul a {
+    text-decoration: none;
+    padding: 5px 8px;
+    border-radius: 5px;
+    border: 1px solid #bdbdbd;
+    color: #000000;
+}
+#prev,
+#next {
+    background-color: #cccccc;
+    color: #ffffff;
+    padding: 5px;
+    border: none;
+}
+.pagination .active {
+    background-color: #f4f4f4dd;
+}
+
+/* ------------------------------------------------ */
+
+/* ---------------------------------------------- */
+
+.vulca {
+    width: 100%;
+    padding: 10px 2rem;
+}
+.vulca h3 {
+    padding: 10px;
+    font-size: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.vulca h3 a {
+    color: #000;
+    font-size: 18px;
+    text-decoration: none;
+    transition: 0.3s ease-in-out;
+}
+.vulca h3 a:hover {
+    color: #394293;
+    text-decoration: underline;
+}
+.vulca .card_group {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* flex-wrap: wrap; */
+    gap: 10px;
+}
+.vulca .card {
+    background-color: transparent;
+    width: 220px;
+    min-height: 250px;
+    padding: 0;
+    margin: 0.5rem 5px;
+}
+.vulca .card_img {
+    width: 100%;
+    height: 150px;
+    /* background: url(img/Image.png) no-repeat; */
+    background-position: center !important;
+    background-size: cover !important;
+    position: relative;
+}
+.vulca .card_img .verify {
+    position: absolute;
+    bottom: 8px;
+    right: 10px;
+    font-size: 11px !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #1cc023;
+    color: #ffffff;
+    width: fit-content;
+    padding: 1px 1.5rem !important;
+    border-radius: 20px;
+}
+.vulca .verify span {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    left: 0;
+    background-color: #1cc023;
+    /* padding: 5px; */
+    width: 20px;
+    height: 20px;
+    border-radius: 50px;
+}
+.vulca .card_text {
+    padding: 1rem 0;
+}
+.vulca .card h5 {
+    color: #202020;
+    font-size: 18px;
+    font-weight: 500;
+}
+.vulca .card p {
+    font-size: 13px;
+    padding: 5px 0;
+}
+.vulca .card h6 {
+    color: #000000;
+    font-size: 18px;
+    padding: 2px 0;
+}
+.vulca .card h6 span:nth-child(2) {
+    color: #7e7e7e;
+    font-size: 15px;
+    font-weight: lighter;
+}
+.ratings .fa-star {
+    color: #000000;
+    font-size: 15px;
+}
+.vulca .pagination {
+    padding: 1rem;
+}
+.vulca .pagination ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.vulca .pagination ul li {
+    list-style: none;
+}
+.vulca .pagination ul a {
+    text-decoration: none;
+    padding: 5px 8px;
+    border-radius: 5px;
+    border: 1px solid #bdbdbd;
+    color: #000000;
+}
+#prev,
+#next {
+    background-color: #cccccc;
+    color: #ffffff;
+    padding: 5px;
+    border: none;
+}
+.pagination .active {
+    background-color: #f4f4f4dd;
+}
+
+/* ------------------------------------------------ */
+
+.car_dealers {
+    width: 100%;
+    padding: 10px 2rem;
+}
+.car_dealers h3 {
+    /* font-family: Arial, Helvetica, sans-serif !important; */
+    padding-left: 1rem;
+    font-size: 30px;
+}
+.car_dealers .card_group {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    /* flex-wrap: wrap; */
+    gap: 10px;
+}
+.car_dealers .card_group::-webkit-scrollbar {
+    display: none;
+}
+.car_dealers .card {
+    width: 180px;
+    min-height: 200px;
+    background-color: #f5f5f5;
+    border-radius: 5px;
+    box-shadow: 1px 1px 10px #bdbdbd;
+    margin: 1rem 5px;
+}
+
+.car_dealers .card h5 {
+    color: #333333;
+    font-size: 15px;
+}
+.car_dealers .card_img {
+    width: 100%;
+    height: 150px;
+    /* background: url(figma_images/cougar\ car.png) no-repeat; */
+    background-position: center !important;
+    background-size: cover !important;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+.car_dealers .details {
+    padding: 1rem 10px;
+    padding-bottom: 1.5rem;
+}
+
+.car_dealers span {
+    font-size: 10px;
+    color: #333333;
+}
+.car_dealers strong {
+    color: #000000;
+    font-weight: 1000;
+}
+.progress {
+    width: 70%;
+    height: 6px;
+    background-color: #1cc023;
+    border-radius: 50px;
+    position: relative;
+}
+.progress .fa-check {
+    position: absolute;
+    top: -5px;
+    right: 0;
+    border-radius: 50px;
+    background-color: #1cc023;
+    color: #fff;
+    font-size: 8px;
+    /* width: 15px;
+    height: 15px; */
+    padding: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/* --------------------------------------- */
+
+footer {
+    width: 100%;
+    padding: 3rem 2rem;
+    background-color: #394293;
+    color: #ffffff;
+}
+footer ul li {
+    list-style: none !important;
+}
+footer .card_group {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-start;
+}
+footer h6 {
+    font-size: 18px;
+}
+footer .card {
+    width: 30%;
+    margin: 0 1rem;
+}
+footer .card:nth-child(2) {
+    width: 40%;
+    margin: 0 1rem;
+    /* background-color: #000024; */
+    padding: 0 3rem;
+}
+footer .card:nth-child(3) {
+    padding: 0 3rem;
+}
+footer .card:nth-child(1) a {
+    background-color: #ffffff;
+    padding: 0.5rem 1rem;
+    color: #394293;
+    text-decoration: none;
+    font-weight: bolder;
+    border-radius: 5px;
+    transition: 0.3s ease-in-out;
+}
+footer .card:nth-child(1) a:hover {
+    background-color: transparent;
+    border: 1px solid #ffffff;
+    color: #ffffff;
+}
+footer .footer_nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: self-start;
+}
+.footer_nav li {
+    margin: 4px 0;
+}
+.footer_nav li a {
+    padding: 4px 0;
+    color: #ffffff;
+    text-decoration: none;
+    transition: 0.2s ease-in-out;
+}
+.footer_nav a:hover {
+    color: #363636;
+    text-decoration: underline;
+}
+footer .socials {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+footer .socials a {
+    color: #ffffff;
+    font-size: 35px;
+    margin: 1rem 5px;
+    transition: 0.3s ease-in-out;
+}
+footer .socials a:hover {
+    filter: drop-shadow(-10px 10px #363636);
+}
+/* ------------------------------------------------- */
+/* ------------------------------------------------- */
+/* ---------------MEDIA QUERY------------------ */
+@media screen and (max-width: 1024px) {
+    .navbar #open_nav {
+        display: flex;
+    }
+    .navbar ul {
+        display: none;
+        flex-direction: column;
+        align-items: start;
+        position: absolute;
+        top: 3.8rem;
+        min-width: 30%;
+        right: 0;
+        z-index: 999;
+        background-color: #ffffff;
+        padding: 0;
+        gap: 0;
+    }
+    .navbar ul li {
+        display: flex;
+        width: 100%;
+    }
+    .navbar ul li a {
+        border-bottom: 1px solid #394293;
+        display: flex;
+        width: 100%;
+        padding: 1rem 0.5rem;
+    }
+    .navbar ul li a:hover {
+        background-color: #394293;
+        color: #ffffff !important;
+        text-align: center;
+        justify-content: center;
+    }
+    /* ----------------------------- */
+    .form_control form {
+        width: 80%;
+    }
+    .form_control form h3 {
+        font-size: 25px;
+    }
+    /* --------------------- */
+    .mechanics .card_group,
+    .vulca .card_group {
+        flex-wrap: wrap;
+        justify-content: flex-start;
+    }
+    .mechanics .card,
+    .vulca .card {
+        width: 250px;
+        margin: auto;
+    }
+
+    /* ------------------------ */
+
+    .car_dealers .card_group {
+        overflow-x: scroll;
+        justify-content: flex-start;
+    }
+    .car_dealers .card {
+        min-width: 180px;
+    }
+    /* ------------------------------ */
+    footer .card_group {
+        flex-wrap: wrap;
+    }
+    footer .card:nth-child(1) {
+        width: 40%;
+        margin-bottom: 1rem;
+    }
+    footer .card:nth-child(2) {
+        width: 50%;
+        margin-bottom: 2rem;
+    }
+    footer .card:nth-child(3) {
+        width: 100%;
+        text-align: center;
+    }
+    .socials {
+        justify-content: center !important;
+    }
+}
+/* ---------------------------- */
+
+@media screen and (max-width: 860px) {
+    .hero .form_control {
+        position: static;
+    }
+    .status li img {
+        width: 100px;
+    }
+}
+/* ---------------------------- */
+
+@media screen and (max-width: 768px) {
+    h3 {
+        font-size: 20px !important;
+    }
+
+    h3 a {
+        font-size: 15px !important;
+    }
+    .form_control form {
+        padding: 2rem 1rem;
+        width: 100%;
+        min-height: 200px;
+    }
+    /* --------------------- */
+    /* --------------------- */
+
+    .mechanics .card,
+    .vulca .card {
+        width: 300px;
+        margin: auto;
+    }
+
+    /* --------------------- */
+
+    footer .card {
+        width: 100% !important;
+    }
+    footer .footer_nav {
+        margin: auto;
+        justify-content: space-between;
+    }
+    footer h6 {
+        text-align: center;
+    }
+}
+/* ------------------------------------------- */
+
+@media screen and (max-width: 560px) {
+    .navbar ul {
+        min-width: 50%;
+    }
+    .form_control form {
+        min-height: 300px;
+    }
+    .hero .form_group {
+        flex-direction: column;
+    }
+    .hero form button {
+        bottom: 1rem;
+        padding: 10px;
+        width: calc(100% - 2rem);
+    }
+    .mechanics .card,
+    .vulca .card {
+        width: 90%;
+    }
+    .car_dealers .card {
+        min-height: 150px;
+    }
+    .car_dealers .card_img {
+        height: 100px;
+    }
+}
+/* ------------------------------------------- */
+
+@media screen and (max-width: 460px) {
+    .hero form h3 {
+        font-size: 18px !important;
+        top: 5px;
+        padding: 10px;
+    }
+
+    footer {
+        padding: 2rem 1rem !important;
+    }
+    .footer_nav {
+        flex-wrap: wrap;
+    }
+}
