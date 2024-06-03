@@ -214,10 +214,17 @@ class HomeController extends Controller
     }
 
 
-    public function getAllDealers()
+    public function getAllDealers(Request $request)
     {
-        // Get all dealers
-        $getDealers = User::where('role', 'dealer')->get();
+        // Get the location from the request
+        $location = $request->input('location');
+
+        // Get dealers based on the location if provided
+        $getDealers = User::where('role', 'dealer')
+            ->when($location, function ($query, $location) {
+                return $query->where('business_state', $location);
+            })
+            ->get();
 
         // Initialize an array to store car counts for each dealer
         $carCounts = [];
@@ -230,15 +237,16 @@ class HomeController extends Controller
             // Store the car count in the array with the dealer's ID as the key
             $carCounts[$dealer->id] = $carCount;
         }
-//        echo "<pre>";
-//          echo json_encode($getDealers, JSON_PRETTY_PRINT);
-//          echo "</pre>";
-        // Pass the dealers and their car counts to the view
+
+        // Pass the dealers, their car counts, and the selected location to the view
         return view('home.dealer.index', [
             'allDealers' => $getDealers,
             'carCounts' => $carCounts,
+            'selectedLocation' => $location,
         ]);
     }
+
+
 
 
     public function searchPart(Request $request)

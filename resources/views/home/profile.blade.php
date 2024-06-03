@@ -132,6 +132,12 @@
                     <p><span><i class="fa fa-map-marker"></i></span>&nbsp;&nbsp; Lagos Nigeria (11 miles)</p>
                     <p><span><i class="fa fa-calendar"></i></span>&nbsp;&nbsp; Joined {{ $profile->created_at->format('F j, Y') }}</p>
                     <p><span><i class="fa fa-calendar"></i></span>&nbsp;&nbsp; Reviews {{ $totalReviews }}</p>
+                    <p><span><i class="fa fa-user"></i></span>&nbsp;&nbsp; UserId  {{ $profile->id }}</p>
+                    @if ($reportsCount > 0)
+                        <p><span><i class="fa fa-exclamation-triangle"></i></span>&nbsp;&nbsp; Reported {{ $reportsCount }} times</p>
+                    @else
+                        <p><span><i class="fa fa-exclamation-triangle"></i></span>&nbsp;&nbsp; Reported 0 times</p>
+                    @endif
 
                     <p><span><i class="fa fa-envelope"></i></span>&nbsp;&nbsp; {{ $profile->email }}</p>
                     <p><span><i class="fa fa-phone"></i></span>&nbsp;&nbsp;<a style="color:#000;" href="tel: {{ $profile->phone }}">{{ $profile->phone }}</a></p>
@@ -260,32 +266,35 @@
         </div>
 
 
-        <!-- Pagination Section -->
-        <div class="pagination-section">
-            <div class="d-flex justify-content-center">
-                <nav aria-label="Page navigation">
-                    <ul class="pagination justify-content-center flex-wrap">
-                        @if ($carsUploaded->onFirstPage())
-                            <li class="page-item disabled"><span class="page-link">Prev</span></li>
-                        @else
-                            <li class="page-item"><a class="page-link" href="{{ $carsUploaded->previousPageUrl() }}">Prev</a></li>
-                        @endif
+          @if($carsUploaded->count() > 0 )
 
-                        @foreach ($carsUploaded->getUrlRange(1, $carsUploaded->lastPage()) as $page => $url)
-                            <li class="page-item {{ ($page == $carsUploaded->currentPage()) ? 'active' : '' }}">
-                                <a class="page-link" href="{{ $url }}">{{ $page }}</a>
-                            </li>
-                        @endforeach
+            <!-- Pagination Section -->
+            <div class="pagination-section">
+                <div class="d-flex justify-content-center">
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination justify-content-center flex-wrap">
+                            @if ($carsUploaded->onFirstPage())
+                                <li class="page-item disabled"><span class="page-link">Prev</span></li>
+                            @else
+                                <li class="page-item"><a class="page-link" href="{{ $carsUploaded->previousPageUrl() }}">Prev</a></li>
+                            @endif
 
-                        @if ($carsUploaded->hasMorePages())
-                            <li class="page-item"><a class="page-link" href="{{ $carsUploaded->nextPageUrl() }}">Next</a></li>
-                        @else
-                            <li class="page-item disabled"><span class="page-link">Next</span></li>
-                        @endif
-                    </ul>
-                </nav>
+                            @foreach ($carsUploaded->getUrlRange(1, $carsUploaded->lastPage()) as $page => $url)
+                                <li class="page-item {{ ($page == $carsUploaded->currentPage()) ? 'active' : '' }}">
+                                    <a class="page-link" href="{{ $url }}">{{ $page }}</a>
+                                </li>
+                            @endforeach
+
+                            @if ($carsUploaded->hasMorePages())
+                                <li class="page-item"><a class="page-link" href="{{ $carsUploaded->nextPageUrl() }}">Next</a></li>
+                            @else
+                                <li class="page-item disabled"><span class="page-link">Next</span></li>
+                            @endif
+                        </ul>
+                    </nav>
+                </div>
             </div>
-        </div>
+          @endif
 
 
         </section>

@@ -32,8 +32,13 @@
                 <input type="text" name="business_name" placeholder="Business Name">
                 <input type="email" name="email" placeholder="Email">
                 <input type="password" name="pword" placeholder="Password">
-
-                <label style="margin: 5px 0; text-align: start;">Select From The Option Below <i class="fa fa-arrow-down"></i></label>
+                <select>
+                    <option disabled selected>Select State</option>
+                    <option value="">Kano</option>
+                    <option value="">Abuja</option>
+                    <option value="">Oyo</option>
+                </select>
+                <label style="margin-top: 5px; text-align: start;">Select From The Option Below <i class="fa fa-arrow-down"></i></label>
                 <select multiple="multiple" class="multiple-select" name="multiple_selection[]">
                     <option value="Oil change">Oil Change</option>
                     <option value="Tire Rotation">Tire Rotation</option>

@@ -7,6 +7,8 @@
     <title>Sign Up</title>
     <link rel="stylesheet" href="/home/css/signUp_user.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://unpkg.com/multiple-select@1.7.0/dist/multiple-select.min.css">
 </head>
 
 <body>
@@ -25,6 +27,27 @@
                 <input type="email" name="email" placeholder="Email">
                 <input type="text" name="phone" placeholder="Phone">
                 <input type="password" name="pword" placeholder="Password">
+                 <select>
+                    <option disabled selected>Select State</option>
+                    <option value="">Kano</option>
+                    <option value="">Abuja</option>
+                    <option value="">Oyo</option>
+                </select>
+                    <label style="margin-top: 5px; text-align: start;">Select From The Option Below <i class="fa fa-arrow-down"></i></label>
+                <select multiple="multiple" class="multiple-select" name="multiple_selection[]">
+                    <option value="Oil change">Oil Change</option>
+                    <option value="Tire Rotation">Tire Rotation</option>
+                    <option value="Brake Inspection">Brake Inspection</option>
+                    <option value="Battery Check">Battery Check</option>
+                    <option value="Alignment">Alignment</option>
+                    <optgroup label="Advanced Services">
+                        <option value="Engine Diagnostics">Engine Diagnostics</option>
+                        <option value="Transmission Repair">Transmission Repair</option>
+                        <option value="Suspension Repair">Suspension Repair</option>
+                        <option value="Air Conditioning Repair">Air Conditioning Repair</option>
+                    </optgroup>
+                </select>
+                
                 <span><a href="{{ route('login') }}" class="f_p">Have an account? Log In</a></span><br>
                 <button id="login" type="submit">Sign Up</button>
             </form>
@@ -64,4 +87,11 @@
     document.addEventListener('DOMContentLoaded', function() {
         refreshCsrfToken();
     });
+</script>
+
+<script src="https://unpkg.com/multiple-select@1.7.0/dist/multiple-select.min.js"></script>
+<script>
+  $(function() {
+    $('.multiple-select').multipleSelect()
+  })
 </script>

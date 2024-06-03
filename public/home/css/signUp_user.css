@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
 * {
     padding: 0;
     margin: 0;
@@ -6,7 +7,6 @@
     font-family: "Inter", sans-serif;
     font-optical-sizing: auto;
 }
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
 body,
 html {
     background-color: #ffffff;
@@ -385,12 +385,21 @@ footer .socials a:hover {
     .form-control form a {
         font-size: 10px !important;
     }
+    
     footer {
         padding: 2rem 1rem !important;
     }
     .footer_nav {
         flex-wrap: wrap;
     }
+    
+    .ms-drop ul>li label {
+    padding-left: 5px !important;
+}
+.ms-drop input[type="radio"], .ms-drop input[type="checkbox"] {
+    margin-left: 3rem !important;
+}
+
 
 
 }

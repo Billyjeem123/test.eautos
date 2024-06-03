@@ -124,8 +124,11 @@ public function toggleBlockUsers($id)
         $totalReviews = $reviews->count();
 //        $totalReports = Report::where('user_id', $userid)->count();
 
+        $reports = Report::where('offender_id', $userid)->count();
 
-        return view('home.profile', ['profile' => $profile,  'totalReviews' => $totalReviews, 'carsUploaded' => $carsUploaded,  'reviews' => $reviews,  'carsCount' => $carsCount , 'bussiness_service' => $bussiness_service]);
+
+
+        return view('home.profile', ['profile' => $profile, 'reportsCount' => $reports,   'totalReviews' => $totalReviews, 'carsUploaded' => $carsUploaded,  'reviews' => $reviews,  'carsCount' => $carsCount , 'bussiness_service' => $bussiness_service]);
     }
 
 

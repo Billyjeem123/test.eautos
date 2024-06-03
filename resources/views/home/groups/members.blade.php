@@ -130,7 +130,7 @@
                         <div class="details">
                             <h4>{{ $user['name'] }}</h4>
                             <p>{{ $user['experience'] }}</p>
-                            <a href="">Connect</a>
+                            <a href="{{route('user.profile', $user->id)}}">Connect</a>
                         </div>
                     </li>
                 @endforeach
