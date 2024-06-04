@@ -316,6 +316,23 @@ class HomeController extends Controller
 
 
 
+    public function service_provider(){
+
+//         $providers =
+        // Fetch all business service lists that have associated users
+        $businessServiceLists = BussinessServiceList::with('users')
+            ->whereHas('users')
+            ->paginate(5); // Adjust the pagination number as needed
+
+//         echo "<pre>";
+//         echo json_encode($businessServiceLists, JSON_PRETTY_PRINT);
+//         echo "</pre>";
+         return view ('home.service-provider.index', compact('businessServiceLists'));
+
+    }
+
+
+
 
 
 }

@@ -94,7 +94,7 @@ Route::group(['middleware' => ['showNavBar']], function () {
     Route::get('/get-product-details/{id}', [ProductController::class, 'getProductDetails'])->name('product.show');
     Route::post('/reach-out', [ProductController::class, 'reachOut'])->name('client.reachout')->middleware('auth');
     Route::get('/get-auction-dates', [ProductController::class, 'getAuctionDates'])->name('getDateDynamically');
-        Route::post('/store-countdown-data', [ProductController::class, 'countdown'])->name('store.countdown.data');
+    Route::post('/store-countdown-data', [ProductController::class, 'countdown'])->name('store.countdown.data');
 
         #value asset
 
@@ -137,8 +137,10 @@ Route::group(['middleware' => ['showNavBar']], function () {
 
         #usserProfile
         Route::get('/user/profile/{userId}', [UserController::class, 'showProfile'])->name('user.profile');
-        Route::view('/all/providers', 'home.service-provider.index')->name('provider.all');
+//        Route::view('/all/providers', 'home.service-provider.index')->name('provider.all');
         Route::get('/dealers/all', [HomeController::class, 'getAllDealers'])->name('dealers.all');
+        Route::get('/all/providers', [HomeController::class, 'service_provider'])->name('provider.all');
+
 
 
 

@@ -129,7 +129,7 @@
             <div class="card_info">
                 <img src="/home/images/people/smiling man.png" width="" alt="">
                 <div>
-                    <p><span><i class="fa fa-map-marker"></i></span>&nbsp;&nbsp; Lagos Nigeria (11 miles)</p>
+                    <p><span><i class="fa fa-map-marker"></i></span>&nbsp;&nbsp;  {{$profile->business_state }} ({{rand(5, 20)}} miles)</p>
                     <p><span><i class="fa fa-calendar"></i></span>&nbsp;&nbsp; Joined {{ $profile->created_at->format('F j, Y') }}</p>
                     <p><span><i class="fa fa-calendar"></i></span>&nbsp;&nbsp; Reviews {{ $totalReviews }}</p>
                     <p><span><i class="fa fa-user"></i></span>&nbsp;&nbsp; UserId  {{ $profile->id }}</p>
@@ -231,12 +231,12 @@
     </div>
     <!-- ------------------------------------------------------------ -->
     <div class="work-history">
-        <form action="">
-            <select name="" id="" disabled>
-                <option value="" selected disabled>Work History</option>
-                <option value="" >.....</option>
-            </select>
-        </form>
+{{--        <form action="">--}}
+{{--            <select name="" id="" disabled>--}}
+{{--                <option value="" selected disabled>Work History</option>--}}
+{{--                <option value="" >.....</option>--}}
+{{--            </select>--}}
+{{--        </form>--}}
         <h3>Dealer Product</h3>
 
         <div class="card-group">

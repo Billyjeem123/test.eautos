@@ -4,9 +4,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-CARS</title>
+    <title>Service Providers</title>
     <link rel="stylesheet" href="/home/css/carService.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <style>
+        .short-video-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 15px;
+        }
+
+        .short-video-item {
+            background-color: #f5f5f5;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .short-video-item video {
+            width: 100%;
+            height: 350px;
+        }
+
+        .video-stats,
+        .video-info {
+            padding: 10px;
+        }
+
+        .video-stats div {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .video-stats i {
+            margin-right: 5px;
+        }
+
+        .pagination-section {
+            margin-top: 20px;
+            text-align: center;
+            align-content: center;
+        }
+
+        .pagination-section ul.pagination {
+            margin: 0;
+        }
+
+        .pagination-section ul.pagination li.page-item {
+            display: inline-block;
+            margin-right: 5px;
+        }
+
+        .pagination-section ul.pagination li.page-item a.page-link {
+            color: #007bff;
+            text-decoration: none;
+            padding: 5px 10px;
+            border: 1px solid #007bff;
+            border-radius: 3px;
+        }
+
+        .pagination-section ul.pagination li.page-item a.page-link:hover {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .pagination-section ul.pagination li.page-item.active a.page-link {
+            background-color: #007bff;
+            color: #fff;
+            border-color: #007bff;
+        }
+
+    </style>
 </head>
 
 <body>
@@ -78,304 +149,72 @@
 </div>
 <!-- -------------------------------------------------- -->
 
-<div class="mechanics container">
-    <h3><span>Popular Mechanics</span> <a href="">View All (22)</a></h3>
-    <div class="card_group">
-        <div class="card">
-            <div class="card_img" style="background: url(/home/images/people/b\ and\ w.png) no-repeat;">
-                <p class="verify"><span><i class="fa fa-check"></i></span> Verified</p>
-            </div>
-            <div class="card_text">
-                <h5>Valton Kiz</h5>
-                <p>Specialized in Car body</p>
-                <h6>Ikeja Lagos</h6>
-                <h6 class="ratings">
-            <span class="star">
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-            </span>
-                    &nbsp;
-                    <span>5 (22)</span>
-                </h6>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card_img" style="background: url(/home/images/people/b\ and\ w.png) no-repeat;">
-                <p class="verify"><span><i class="fa fa-check"></i></span> Verified</p>
-            </div>
-            <div class="card_text">
-                <h5>Valton Kiz</h5>
-                <p>Specialized in Car body</p>
-                <h6>Ikeja Lagos</h6>
-                <h6 class="ratings">
-            <span class="star">
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-            </span>
-                    &nbsp;
-                    <span>5 (22)</span>
-                </h6>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card_img" style="background: url(/home/images/people/b\ and\ w.png) no-repeat;">
-                <p class="verify"><span><i class="fa fa-check"></i></span> Verified</p>
-            </div>
-            <div class="card_text">
-                <h5>Valton Kiz</h5>
-                <p>Specialized in Car body</p>
-                <h6>Ikeja Lagos</h6>
-                <h6 class="ratings">
-            <span class="star">
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-            </span>
-                    &nbsp;
-                    <span>5 (22)</span>
-                </h6>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card_img" style="background: url(/home/images/people/b\ and\ w.png) no-repeat;">
-                <p class="verify"><span><i class="fa fa-check"></i></span> Verified</p>
-            </div>
-            <div class="card_text">
-                <h5>Valton Kiz</h5>
-                <p>Specialized in Car body</p>
-                <h6>Ikeja Lagos</h6>
-                <h6 class="ratings">
-            <span class="star">
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-            </span>
-                    &nbsp;
-                    <span>5 (22)</span>
-                </h6>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card_img" style="background: url(/home/images/people/b\ and\ w.png) no-repeat;">
-                <p class="verify"><span><i class="fa fa-check"></i></span> Verified</p>
-            </div>
-            <div class="card_text">
-                <h5>Valton Kiz</h5>
-                <p>Specialized in Car body</p>
-                <h6>Ikeja Lagos</h6>
-                <h6 class="ratings">
-            <span class="star">
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-            </span>
-                    &nbsp;
-                    <span>5 (22)</span>
-                </h6>
-            </div>
-        </div>
-    </div>
-    <div class="pagination">
-        <ul>
-            <li><a href="" id="prev"><i class="fa fa-angles-left"></i></a></li>
-            <li><a href="" class="active">1</a></li>
-            <li><a href="">2</a></li>
-            <li><a href="">3</a></li>
-            <li><a href="" id="next"><i class="fa fa-angles-right"></i></a></li>
-        </ul>
-    </div>
-</div>
-<!-- ----------------------------------------------------- -->
-<!-- -------------------------------------------------- -->
+@foreach ($businessServiceLists as $service)
+    <div class="mechanics container">
+        <h3><span>Popular {{ $service->service_list }}</span> <a href="">View All ({{ $service->users->count() }})</a></h3>
+        <div class="card_group">
+            @foreach ($service->users as $user)
+                <div class="card">
 
-<div class="vulca container">
-    <h3><span>Popular Vulcanizers</span> <a href="">View All (22)</a></h3>
-    <div class="card_group">
-        <div class="card">
-            <div class="card_img" style="background: url(/home/images/people/worker1.png) no-repeat;">
-                <p class="verify"><span><i class="fa fa-check"></i></span> Verified</p>
-            </div>
-            <div class="card_text">
-                <h5>Valton Kiz</h5>
-                <p>Specialized in Car body</p>
-                <h6>Ikeja Lagos</h6>
-                <h6 class="ratings">
-            <span class="star">
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-            </span>
-                    &nbsp;
-                    <span>5 (22)</span>
-                </h6>
-            </div>
+                    <a href="{{route('user.profile', $user->id )}}">
+                        <div class="card_img" style="background: url(/home/images/people/b\ and\ w.png) no-repeat;">
+                            <p class="verify"><span><i class="fa fa-check"></i></span> Verified</p>
+                        </div>
+                    </a>
+
+
+                    <div class="card_text">
+                        <h5>{{ $user->name }}</h5>
+                        <p>{{ $user->businessServiceLists[0]['service_list'] ?? 'Specialization not provided' }}</p>
+                        <h6>{{ $user->business_state ?? 'Location not provided' }}</h6>
+
+                        <h6 class="ratings">
+    <span class="star">
+        @for ($i = 0; $i < $user->bussiness_reviews->count(); $i++)
+            <i class="fa fa-star"></i>
+        @endfor
+        @for ($i = $user->bussiness_reviews->count(); $i < 5; $i++)
+            <i class="fa fa-star-o"></i>
+        @endfor
+    </span>
+                            &nbsp;
+                            <span> ({{ $user->bussiness_reviews->count() ?? 0 }})</span>
+                        </h6>
+
+                    </div>
+                </div>
+            @endforeach
         </div>
-        <div class="card">
-            <div class="card_img" style="background: url(/home/images/people/worker1.png) no-repeat;">
-                <p class="verify"><span><i class="fa fa-check"></i></span> Verified</p>
-            </div>
-            <div class="card_text">
-                <h5>Valton Kiz</h5>
-                <p>Specialized in Car body</p>
-                <h6>Ikeja Lagos</h6>
-                <h6 class="ratings">
-            <span class="star">
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-            </span>
-                    &nbsp;
-                    <span>5 (22)</span>
-                </h6>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card_img" style="background: url(/home/images/people/worker1.png) no-repeat;">
-                <p class="verify"><span><i class="fa fa-check"></i></span> Verified</p>
-            </div>
-            <div class="card_text">
-                <h5>Valton Kiz</h5>
-                <p>Specialized in Car body</p>
-                <h6>Ikeja Lagos</h6>
-                <h6 class="ratings">
-            <span class="star">
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-            </span>
-                    &nbsp;
-                    <span>5 (22)</span>
-                </h6>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card_img" style="background: url(/home/images/people/worker1.png) no-repeat;">
-                <p class="verify"><span><i class="fa fa-check"></i></span> Verified</p>
-            </div>
-            <div class="card_text">
-                <h5>Valton Kiz</h5>
-                <p>Specialized in Car body</p>
-                <h6>Ikeja Lagos</h6>
-                <h6 class="ratings">
-            <span class="star">
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-            </span>
-                    &nbsp;
-                    <span>5 (22)</span>
-                </h6>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card_img" style="background: url(/home/images/people/worker1.png) no-repeat;">
-                <p class="verify"><span><i class="fa fa-check"></i></span> Verified</p>
-            </div>
-            <div class="card_text">
-                <h5>Valton Kiz</h5>
-                <p>Specialized in Car body</p>
-                <h6>Ikeja Lagos</h6>
-                <h6 class="ratings">
-            <span class="star">
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-            </span>
-                    &nbsp;
-                    <span>5 (22)</span>
-                </h6>
+        <!-- Pagination Section -->
+        <div class="pagination-section">
+            <div class="d-flex justify-content-center">
+                <nav aria-label="Page navigation">
+                    <ul class="pagination justify-content-center flex-wrap">
+                        @if ($businessServiceLists->onFirstPage())
+                            <li class="page-item disabled"><span class="page-link">Prev</span></li>
+                        @else
+                            <li class="page-item"><a class="page-link" href="{{ $businessServiceLists->previousPageUrl() }}">Prev</a></li>
+                        @endif
+
+                        @foreach ($businessServiceLists->getUrlRange(1, $businessServiceLists->lastPage()) as $page => $url)
+                            <li class="page-item {{ ($page == $businessServiceLists->currentPage()) ? 'active' : '' }}">
+                                <a class="page-link" href="{{ $url }}">{{ $page }}</a>
+                            </li>
+                        @endforeach
+
+                        @if ($businessServiceLists->hasMorePages())
+                            <li class="page-item"><a class="page-link" href="{{ $businessServiceLists->nextPageUrl() }}">Next</a></li>
+                        @else
+                            <li class="page-item disabled"><span class="page-link">Next</span></li>
+                        @endif
+                    </ul>
+                </nav>
             </div>
         </div>
     </div>
-    <div class="pagination">
-        <ul>
-            <li><a href="" id="prev"><i class="fa fa-angles-left"></i></a></li>
-            <li><a href="" class="active">1</a></li>
-            <li><a href="">2</a></li>
-            <li><a href="">3</a></li>
-            <li><a href="" id="next"><i class="fa fa-angles-right"></i></a></li>
-        </ul>
-    </div>
-</div>
+@endforeach
 <!-- ----------------------------------------------------- -->
 
-<div class="car_dealers container">
-    <h3>Connect with Car Dealers</h3>
-    <div class="card_group">
-        <div class="card">
-            <div class="card_img"
-                 style="background: url(/home/images/brands/Optimized-alen-kajtezovic-iI9Mf9g_9gY-unsplash.jpg) no-repeat;"></div>
-            <div class="details">
-                <h5>Perillo BMW</h5>
-                <span><strong>100%</strong> Verified</span>
-                <p class="progress"><i class="fa fa-check"></i></p>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card_img"
-                 style="background: url(/home/images/brands/Optimized-clem-onojeghuo-NlaQS1em2Pk-unsplash.jpg) no-repeat;">
-            </div>
-            <div class="details">
-                <h5>Mechino Mottors</h5>
-                <span><strong>100%</strong> Verified</span>
-                <p class="progress"><i class="fa fa-check"></i></p>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card_img"
-                 style="background: url(/home/images/brands/Optimized-ivan-didenko-n6jgA_FbDOE-unsplash.jpg) no-repeat;">
-            </div>
-            <div class="details">
-                <h5>Porsche Downtown</h5>
-                <span><strong>100%</strong> Verified</span>
-                <p class="progress"><i class="fa fa-check"></i></p>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card_img"
-                 style="background: url(/home/images/brands/Optimized-krish-parmar-QsnLLIHwY8Y-unsplash.jpg) no-repeat;">
-            </div>
-            <div class="details">
-                <h5>Perillo BMW</h5>
-                <span><strong>100%</strong> Verified</span>
-                <p class="progress"><i class="fa fa-check"></i></p>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card_img"
-                 style="background: url(/home/images/brands/Optimized-taras-chernus--Y8-NNDqiRM-unsplash.jpg) no-repeat;">
-            </div>
-            <div class="details">
-                <h5>Perillo BMW</h5>
-                <span><strong>100%</strong> Verified</span>
-                <p class="progress"><i class="fa fa-check"></i></p>
-            </div>
-        </div>
-    </div>
-
-</div>
 <!-- ----------------------------------------- -->
 
 @include('home.includes.footer')

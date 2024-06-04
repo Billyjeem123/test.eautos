@@ -134,7 +134,7 @@ class User extends Authenticatable
      */
     public function bussiness_reviews(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasMany(BussinessReview::class, 'user_id');
+        return $this->hasMany(BussinessReview::class, 'bussiness_id');
     }
 
     /**
