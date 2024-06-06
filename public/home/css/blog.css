@@ -142,7 +142,7 @@
 .blog-group{
     width:100%;
     display:flex;
-    justify-content:space-evenly;
+    justify-content:start;
     gap:20px;
     flex-wrap: wrap;
 }
@@ -152,6 +152,7 @@
     /*background:#000;*/
     text-decoration: none !important;
     color: #000000 !important;
+    margin: 1rem;
 }
 .blog-group .card:hover{
     text-decoration: underline !important;
@@ -294,7 +295,7 @@
     }
     .blog-group .card{
         width: 200px;
-        margin: auto;
+        margin: 10px;
     }
     footer .card_group {
       flex-wrap: wrap;
@@ -329,6 +330,9 @@
   @media screen and (max-width: 768px) {
     .hero div {
       width: 70%;
+    }
+     .blog-group .card{
+        margin: 10px auto;
     }
     footer .card {
       width: 100% !important;

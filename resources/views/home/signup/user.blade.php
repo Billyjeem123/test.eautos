@@ -27,6 +27,7 @@
                 <input type="email" name="email" placeholder="Email">
                 <input type="text" name="phone" placeholder="Phone">
                 <input type="password" name="pword" placeholder="Password">
+                <input type="text" name="business_name" placeholder="Business Name">
                 <select  name="user_location">
                     <option disabled selected>Select State</option>
                     <option>Abia</option>

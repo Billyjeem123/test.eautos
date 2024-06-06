@@ -213,7 +213,7 @@ main {
 .live_auction .card_group {
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     flex-wrap: wrap;
     padding: 1rem;
@@ -225,7 +225,8 @@ main {
     width: 280px;
     min-height: 250px;
     padding: 5px 0;
-    margin: 0.5rem auto;
+    margin: 0.5rem 0;
+    margin-right: auto;
     box-shadow: 1px 1px 8px #bdbdbd;
 }
 .live_auction .card .time {
@@ -444,7 +445,7 @@ main {
 .upcoming .card_group {
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     flex-wrap: wrap;
     padding: 1rem;
@@ -456,7 +457,8 @@ main {
     width: 280px;
     min-height: 250px;
     padding: 5px 0;
-    margin: 0.5rem auto;
+    margin: 0.5rem;
+    margin-right: auto;
     box-shadow: 1px 1px 8px #bdbdbd;
 }
 .upcoming .card .time {
@@ -613,7 +615,7 @@ main {
 .groups .card_group {
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     /* flex-wrap: wrap; */
     padding: 1rem 0;

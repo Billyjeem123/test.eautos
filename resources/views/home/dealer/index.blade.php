@@ -90,6 +90,10 @@
             </form>
         </div>
         <!-- ---- -->
+
+         @if($allDealers->count() == 0)
+             <p>No records found</p>
+         @endif
         <div class="card right">
             <ul>
                 @foreach($allDealers as $dealer)

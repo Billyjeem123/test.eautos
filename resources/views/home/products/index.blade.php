@@ -39,10 +39,10 @@
             <a href="{{ route('stolen') }}"
                class="{{ request()->routeIs('stolen') ? 'active' : '' }}">Stolen {{ Str::singular($categoryName) }}</a>
         </li>
-        <li>
-            <a href="{{ route('blacklist') }}"
-               class="{{ request()->routeIs('blacklist') ? 'active' : '' }}">BlackList</a>
-        </li>
+{{--        <li>--}}
+{{--            <a href="{{ route('blacklist') }}"--}}
+{{--               class="{{ request()->routeIs('blacklist') ? 'active' : '' }}">BlackList</a>--}}
+{{--        </li>--}}
     </ul>
 </div>
 @include('home.includes.search')

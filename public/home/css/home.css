@@ -320,7 +320,7 @@ select option {
 }
 .status li {
   list-style: none;
-  margin: auto;
+  margin-right: auto;
   padding: 10px 5px;
 }
 .status li img {
@@ -349,7 +349,9 @@ select option {
 /*  display: none;*/
 /*}*/
 .essential li {
-    background: linear-gradient(#00000059, #00000059), url(/home/images/cars/joey-banks-YApiWyp0lqo-unsplash.jpg) no-repeat;
+    /*background: linear-gradient(#00000059, #00000059), url(/home/images/cars/joey-banks-YApiWyp0lqo-unsplash.jpg) no-repeat;*/
+    background: linear-gradient(43deg, rgba(2,0,36,1) 16%, rgba(20,20,152,1) 40%, rgba(16,16,156,1) 65%, rgba(2,0,36,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#020024",endColorstr="#020024",GradientType=1);
     background-position: center;
     background-size: cover;
     width: 400px !important;
@@ -584,17 +586,18 @@ select option {
 .latest .card_group {
   width: 100%;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: start;
   align-items: center;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 20px;
 }
 .latest .card {
   background-color: #f5f5f5;
-  width: 300px;
+  width: 280px;
   min-height: 250px;
   padding: 0;
-  margin: 0.5rem auto;
+  margin: 0.5rem 0;
+  margin-right: auto;
   box-shadow: 1px 1px 10px #bdbdbd;
 }
 .latest .card_img {
@@ -645,7 +648,7 @@ select option {
 .car_dealers .card_group {
   width: 100%;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: start;
   align-items: center;
   gap: 10px;
 }
@@ -911,7 +914,7 @@ select option {
 .groups .card_group {
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: start;
   align-items: center;
   /* flex-wrap: wrap; */
   gap: 10px;
@@ -1132,6 +1135,16 @@ footer .socials a:hover {
 /* ---------------------------- */
 
 @media screen and (max-width: 860px) {
+    .essential li{
+        width: 300px !important;
+    }
+    .essential li p{
+        font-size: 13px;
+    }
+    
+    .latest .card{
+        margin: 10px auto !important;
+    }
   .report_request {
     flex-direction: column;
   }

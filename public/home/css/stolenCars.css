@@ -266,7 +266,7 @@ html {
 .stolen .card_group {
     width: 100%;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: start;
     align-items: center;
     flex-wrap: wrap;
     gap: 10px;
@@ -275,7 +275,8 @@ html {
     width: 300px;
     min-height: 250px;
     padding: 0;
-    margin: 0.5rem auto;
+    margin: 0.5rem 0;
+    margin-right: auto;
 }
 .stolen .card_img {
     width: 100%;
@@ -585,6 +586,7 @@ footer .socials a:hover {
         width: 100%;
         display: flex !important;
     }
+  
 }
 
 @media screen and (max-width: 860px) {

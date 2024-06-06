@@ -377,7 +377,7 @@ aside .see_all:hover {
 .latest .card_group {
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: start;
     align-items: center;
     flex-wrap: wrap;
     /* gap: 0px; */
@@ -388,6 +388,7 @@ aside .see_all:hover {
     min-height: 250px;
     padding: 0;
     margin: 0.5rem 5px;
+    margin-right: auto;
     box-shadow: 1px 1px 8px #bdbdbd;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
@@ -505,7 +506,7 @@ aside .see_all:hover {
 .car_dealers .card_group {
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: start;
     align-items: center;
     /* flex-wrap: wrap; */
     gap: 10px;

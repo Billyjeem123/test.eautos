@@ -76,7 +76,6 @@ Route::group(['middleware' => ['showNavBar']], function () {
 
     Route::post('/save-register-dealer', [HomeController::class, 'saveDealer'])->name('save.register.dealer');
     Route::post('/save-register-user', [HomeController::class, 'saveUser'])->name('save.register.user');
-//    Route::post('/save-register-user', [HomeController::class, 'saveUser'])->name('save.register.user');
     Route::post('/save-register-buyer', [HomeController::class, 'saveBuyer'])->name('save.register.buyer');
 
     Route::view('/login', 'home.login')->name('login');
@@ -140,7 +139,7 @@ Route::group(['middleware' => ['showNavBar']], function () {
 //        Route::view('/all/providers', 'home.service-provider.index')->name('provider.all');
         Route::get('/dealers/all', [HomeController::class, 'getAllDealers'])->name('dealers.all');
         Route::get('/all/providers', [HomeController::class, 'service_provider'])->name('provider.all');
-
+        Route::get('/all/providers/search', [HomeController::class, 'service_provider_search'])->name('service_provider_search');
 
 
 
@@ -300,7 +299,9 @@ Route::prefix('admin')->middleware('auth', 'admin', 'notify')->group(function ()
     Route::get('/group/all', [BlogController::class, 'getAllGroups'])->name('get_all_group_admin');
     Route::delete('/group/{id}', [BlogController::class, 'delete_group'])->name('delete_group');
 
-
+// routes/web.php
+    Route::post('/toggle-featured', [ProductController::class, 'toggleFeatured'])->name('toggle_featured');
+    Route::post('/toggle-featured/user', [ProductController::class, 'featureUser'])->name('toggle_featured_user');
 
 
     //Paystack Route

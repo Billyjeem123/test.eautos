@@ -191,7 +191,7 @@ html {
 }
 .auto_part .card_group {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     flex-wrap: wrap;
     gap: 10px;
@@ -206,6 +206,7 @@ html {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-right: auto;
 }
 .auto_part .card a {
     text-decoration: none;

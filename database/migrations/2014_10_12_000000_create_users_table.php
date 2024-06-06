@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
              $table->string('role');
+             $table->integer('is_featured')->default(0);
              $table->string('image');
              $table->longText('about');
             $table->string('state');

@@ -132,7 +132,7 @@
 
         <aside class="aside1">
             <div class="post_nav">
-                <span class="img" style="background-image: url(/home/images/people/smiling\ man.png);"></span>
+                <span class="img" style="background-image: url('https://cdn.pixabay.com/photo/2018/11/13/21/43/avatar-3814049_1280.png');"></span>
                 <form id="postForm" action="{{ route('create_posts_users') }}" method="POST">
                     @csrf
                     <input type="hidden" name="group_id" id="group_id" value="{{ $group->id }}">

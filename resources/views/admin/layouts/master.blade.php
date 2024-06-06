@@ -130,11 +130,16 @@
 
 
   <!-- Include jQuery from CDN -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://cdn.datatables.net/1.11.6/js/jquery.dataTables.min.js"></script>
+
+
+
   <!-- Include CKEditor from CDN -->
   <script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
   <!-- Include CKEditor jQuery adapter from CDN -->
   <script src="https://cdn.ckeditor.com/4.16.2/standard/adapters/jquery.js"></script>
+
 
 
   <!-- Initialize CKEditor -->
@@ -148,6 +153,14 @@
           }
       });
   </script>
+
+  <script>
+      $(document).ready(function() {
+          $('#dataTable').DataTable();
+      });
+  </script>
+
+
 
 </body>
 </html>

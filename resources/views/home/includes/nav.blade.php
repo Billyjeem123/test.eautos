@@ -200,8 +200,8 @@
 
 
 
-        <li><a href="javascript:void(0)">Car Service</a></li>
-      <li><a href="{{route('scrapy-yard')}}">Scrapyard</a></li>
+{{--        <li><a href="javascript:void(0)">Car Service</a></li>--}}
+{{--      <li><a href="{{route('scrapy-yard')}}">Scrapyard</a></li>--}}
             <li>
                 <a href="{{ route('value.vehicle') }}" class="{{ request()->routeIs('value.vehicle') ? 'active' : '' }}">Value Asset</a>
             </li>
@@ -211,8 +211,17 @@
             </li>
 
             <li>
+                <a href="{{ route('provider.all') }}" class="{{ request()->routeIs('provider.all') ? 'active' : '' }}">Service Providers</a>
+            </li>
+
+
+            <li>
                 <a href="{{ route('show.blog') }}" class="{{ request()->routeIs('show.blog') ? 'active' : '' }}">Blog News</a>
             </li>
+
+
+
+
 
     </ul>
 

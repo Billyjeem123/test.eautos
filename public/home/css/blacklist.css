@@ -249,7 +249,7 @@ html {
 .blacklist .card_group {
     width: 100%;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: start;
     align-items: center;
     flex-wrap: wrap;
     gap: 10px;
@@ -258,7 +258,8 @@ html {
     width: 280px;
     min-height: 250px;
     padding: 0;
-    margin: 0.5rem auto;
+    margin: 0.5rem;
+    margin-right: auto;
 }
 .blacklist .card_img {
     width: 100%;
@@ -362,7 +363,7 @@ html {
 .groups .card_group {
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: start;
     align-items: center;
     /* flex-wrap: wrap; */
     padding: 1rem 0;

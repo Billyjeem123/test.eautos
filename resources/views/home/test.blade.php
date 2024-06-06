@@ -345,3 +345,75 @@
 </body>
 
 </html>
+
+
+
+
+public function saveDealer(Request $request): \Illuminate\Http\RedirectResponse
+{
+// Validate the incoming request data
+
+$messages  =  [
+'name.required' => 'First name is required.',
+'name.string' => 'First name must be a string.',
+'name.max' => 'First name may not be greater than :max characters.',
+'email.required' => 'Email is required.',
+'email.email' => 'Invalid email format.',
+'email.unique' => 'Email already exists.',
+'pword.required' => 'Password is required.',
+'pword.string' => 'Password must be a string.',
+'pword.min' => 'Password must be at least :min characters long.',
+'business_name' => 'Business name is required',
+'phone.required' => 'Phone is required.',
+'user_location.required' => "Location is required"
+];
+
+$validator = Validator::make($request->all(), [
+'name' => 'required|string|max:255',
+'phone' => 'required|string|max:255',
+'email' => 'required|email|unique:users,email',
+'user_location' => 'required',
+'business_name' => 'required|unique:users,business_name',
+'pword' => 'required|string|min:6', // Adjust the minimum password length as needed
+], $messages);
+
+// Check if validation fails
+if ($validator->fails()) {
+return redirect()->back()->withInput()->withErrors(['error' => $validator->errors()->first()]); // Redirect back with input and error message
+// return redirect()->back()->with(['error' => 'Category created successfully']);
+}
+
+
+// Create a new user instance and populate it with the validated data
+$user = new User();
+$user->name = $request->name;
+$user->business_name = $request->business_name;
+$user->experience = $request->experience;
+$user->email = $request->email;
+$user->phone = $request->phone;
+$user->password = bcrypt($request->pword); // Hash the password for security
+$user->is_active = 1;
+$user->business_state = $request->user_location;
+$user->role = 'dealer';
+
+// Save the user to the database
+$user->save();
+
+$multiple_services =  $request->multiple_selection;
+
+foreach ($multiple_services as $services) {
+DB::table('business_services')->insert([
+'user_id' => $user->id,
+'bussiness_name' => $services,
+'created_at' => now(),
+'updated_at' => now(),
+]);
+}
+
+// Authenticate and log in the user
+Auth::login($user);
+
+// Optionally, you can return a response or redirect to a different page
+return redirect()->route('index')->with('success', 'Registration successful');
+
+}

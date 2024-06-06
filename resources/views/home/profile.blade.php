@@ -121,13 +121,13 @@
 <header class="hero">
     <div class="card_group">
         <div class="card image" style="background: linear-gradient(#00000059, #00000059),url(/home/images/kicthen.png) no-repeat;">
-            <img src="/home/images/people/smiling man.png" alt="">
+            <img src="https://cdn.pixabay.com/photo/2018/11/13/21/43/avatar-3814049_1280.png" alt="">
         </div>
         <div class="card">
             <h2>{{ $profile->name }} - {{ $carsCount }} Cars</h2><br>
 
             <div class="card_info">
-                <img src="/home/images/people/smiling man.png" width="" alt="">
+                <img src="https://cdn.pixabay.com/photo/2018/11/13/21/43/avatar-3814049_1280.png" width="" alt="">
                 <div>
                     <p><span><i class="fa fa-map-marker"></i></span>&nbsp;&nbsp;  {{$profile->business_state }} ({{rand(5, 20)}} miles)</p>
                     <p><span><i class="fa fa-calendar"></i></span>&nbsp;&nbsp; Joined {{ $profile->created_at->format('F j, Y') }}</p>
