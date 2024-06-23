@@ -12,19 +12,19 @@
         <h1 class="h3 mb-4 text-gray-800">Listing</h1>
         <div class="">
 
-        </div>
         <div class="table-responsive bg-gray-100 p-2 py-4">
             <table class="table" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                 <tr>
                     <th>id</th>
                     <th>Category</th>
-                    <th>Model</th>
+{{--                    <th>Model</th>--}}
                     <th>Price</th>
                     <th>Views</th>
                     <th>Report Staus</th>
                     <th>Active</th>
                     <th>Approval Status</th>
+                    <th>Feature product</th>
                     <th>Disapprove</th>
                     <th>Date Created</th>
                     <th>View Info</th>
@@ -38,7 +38,7 @@
                     <tr>
                         <td>{{ $loop->iteration }}</td> <!-- Display auto-incremented ID -->
                         <td>{{$product->categories->catname}}</td>
-                        <td>{{$product->model}}</td>
+{{--                        <td>{{$product->model}}</td>--}}
                         <td>₦{{ number_format($product->price, 2) }}</td>
                         <td>{{$product->views}}</td>
                         <td><p>{{$product->is_viewed === 0 ? "Pending" : "Seen"}}</p></td>
@@ -52,6 +52,16 @@
                                 </button>
                             </td>
                         </form>
+                        <td>
+                            <form action="{{ route('toggle_featured') }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                <button type="submit" class="btn btn-info btn-sm">
+                                    {{ $product->is_featured ? 'Unfeature Product' : 'Feature Product' }}
+                                </button>
+                            </form>
+                        </td>
+
 
                         <form id="declineForm" method="POST">
                             @csrf
@@ -77,7 +87,8 @@
                 </tbody>
             </table>
         </div>
-    </div>
+    </div>   </div>
+
     <!-- /.container-fluid -->
 
 

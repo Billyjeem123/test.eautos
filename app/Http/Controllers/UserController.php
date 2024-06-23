@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Models\Report;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
@@ -155,45 +156,44 @@ public function toggleBlockUsers($id)
 
     public function updateProfile(Request $request)
     {
-        $user = auth()->user();
+        try {
+            $user = auth()->user();
 
-        // Update user profile fields
-        $user->fill($request->only([
-            'name',
-            'email',
-            'bussiness_name',
-            'country',
-            'phone',
-            'about',
-            'business_location',
-            'business_state',
-            'organisation_services'
+            // Update user profile fields
+            $user->fill($request->only([
+                'name',
+                'email',
+                'business_name',
+                'country',
+                'phone',
+                'about',
+                'business_state',
+            ]));
 
-        ]));
-
-        // Check if a new profile image is uploaded
-        if ($request->hasFile('profile_image')) {
-            $user->image = $this->uploadProfileImageAndGetLink($request);
-        }
-
-        // Save the user's profile
-        $user->save();
-
-        // Update or create business services
-        $businessServicesData = $request->input('businessCategoryWords');
-        if ($businessServicesData && is_array($businessServicesData)) {
-            foreach ($businessServicesData as $service) {
-                if (!empty($service)) { // Check if the service is not empty
-                    BussinessService::create([
-                        'user_id' => $user->id,
-                        'bussiness_name' => $service
-                    ]);
-                }
+            // Check if a new profile image is uploaded
+            if ($request->hasFile('profile_image')) {
+                $user->image = $this->uploadProfileImageAndGetLink($request);
             }
-        }
 
-        return redirect()->back()->with('success', 'Profile updated successfully');
+            // Save the user's profile
+            $user->save();
+
+            return redirect()->back()->with('success', 'Profile updated successfully');
+        } catch (\Exception $e) {
+            // Log the error for debugging purposes
+            Log::error('Profile update failed: ' . $e->getMessage(), ['exception' => $e]);
+
+            // Return with an error message
+            return redirect()->back()->with('error', 'An error occurred while updating the profile. Please try again.');
+        }
     }
+
+
+
+//
+
+
+
 
 
 
@@ -205,13 +205,16 @@ public function toggleBlockUsers($id)
             $file = $request->file('profile_image');
             $fileName = time() . '_' . $file->getClientOriginalName(); // Generate a unique name for the file
             $filePath = $file->storeAs('public/uploads', $fileName);
-            $fileUrl = asset('storage/uploads/' . $filePath);
+
+            // Correct the URL generation
+            $fileUrl = asset('storage/uploads/' . $fileName);
             return $fileUrl;
         } else {
             // Handle case where no file was uploaded
             return null;
         }
     }
+
 
 
 

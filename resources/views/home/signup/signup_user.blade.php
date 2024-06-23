@@ -5,9 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up</title>
+    <link rel="icon" type="image/x-icon" href="/home/images/logo2.png">
     <link rel="stylesheet" href="/home/css/signUp_user.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    
+
     <link rel="stylesheet" href="https://unpkg.com/multiple-select@1.7.0/dist/multiple-select.min.css">
 </head>
 
@@ -26,7 +27,8 @@
                 <input type="text" name="name" placeholder="Name">
                 <input type="email" name="email" placeholder="Email">
                 <input type="password" name="pword" placeholder="Password">
-                
+                <input type="text" name="business_name" placeholder="Business Name">
+
                 <label style="margin: 5px 0; text-align: start;">Select From The Option Below <i class="fa fa-arrow-down"></i></label>
                 <select multiple="multiple" class="multiple-select" name="multiple_selection[]">
                     <option value="Oil change">Oil Change</option>
@@ -41,7 +43,7 @@
                         <option value="Air Conditioning Repair">Air Conditioning Repair</option>
                     </optgroup>
                 </select>
-                
+
                 <span><a href="{{ route('login') }}" class="f_p">Have an account? Log In</a></span><br>
                 <button id="login" type="submit">Sign Up</button>
             </form>

@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Group Activities</title>
+    <link rel="icon" type="image/x-icon" href="/home/images/logo2.png">
     <link rel="stylesheet" href="/home/css/groupsPosts.css">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -132,7 +133,7 @@
 
         <aside class="aside1">
             <div class="post_nav">
-                <span class="img" style="background-image: url(/home/images/people/smiling\ man.png);"></span>
+                <span class="img" style="background-image: url('https://cdn.pixabay.com/photo/2018/11/13/21/43/avatar-3814049_1280.png');"></span>
                 <form id="postForm" action="{{ route('create_posts_users') }}" method="POST">
                     @csrf
                     <input type="hidden" name="group_id" id="group_id" value="{{ $group->id }}">

@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View Auction</title>
+    <link rel="icon" type="image/x-icon" href="/home/images/logo2.png">
     <link rel="stylesheet" href="viewAuction.css">
     <link rel="stylesheet" href="../assets/fontawesome/css/all.min.css">
     <link rel="stylesheet" href="../assets/slick-1.8.1/slick/slick.css">
@@ -48,6 +49,7 @@
 </div>
 
 <header class="hero">
+    <!--<a id="backButton"><i class="fa fa-angle-left"></i> - Go back</a>-->
     <div class="card_group">
         <div class="card">
             <div class="image-wrapper">
@@ -304,6 +306,10 @@
                 $(".hero").css("padding-top", "5rem");
             }
         });
+          //-------------------------------------------
+         $("#backButton").click(function() {
+    history.go(-1);
+  });
     })
 </script>
 </body>

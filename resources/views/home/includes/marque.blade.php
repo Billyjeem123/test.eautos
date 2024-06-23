@@ -1,7 +1,7 @@
 <marquee
     onmouseover="stop()"
     onmouseout="start()"
-    scrollamount="20"
+    scrollamount="8"
     class="marquee"
     style="display: flex; background-color: #3b3838; padding: 5px"
 >

@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Value Asset</title>
+    <link rel="icon" type="image/x-icon" href="/home/images/logo2.png">
     <link rel="stylesheet" href="/home/css/value.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
@@ -41,6 +42,7 @@
 </div>
 <header class="hero">
     <h1>Get Your <span>Values Worth</span></h1>
+    <a id="backButton"><i class="fa fa-angle-left"></i> - Go back</a>
 </header>
 <!-- ---------------------------- -->
 <main>
@@ -107,20 +109,20 @@
             </div>
             <div class="form-control">
                 <label for="model">Model</label>
-                <input type="text" name="model" placeholder="Enter Model" class="form-group" style="width: 300px; border-radius: 5px" required value="{{ old('model') }}">
+                <input type="text" name="model" placeholder="Enter Model" class="form-group" style="width: 400px; border-radius: 5px" required value="{{ old('model') }}">
 
             </div>
             <div class="form-control">
                 <label for="color">Color</label>
-                <input type="text" name="color"  placeholder="Enter Car Color" class="form-group" style="width: 300px;border-radius: 5px" required>
+                <input type="text" name="color"  placeholder="Enter Car Color" class="form-group" style="width: 400px;border-radius: 5px" required>
             </div>
             <div class="form-control">
                 <label for="color">Mileage</label>
-                <input type="text" name="mileage"  placeholder="Enter Mileage" class="form-group" style="width: 300px;border-radius: 5px" required>
+                <input type="text" name="mileage"  placeholder="Enter Mileage" class="form-group" style="width: 400px;border-radius: 5px" required>
             </div>
             <div class="form-control">
                 <label for="color">Engine Type</label>
-                <input type="text" name="engine_type"  placeholder="Enter Type" class="form-group" style="width: 300px;border-radius: 5px" required>
+                <input type="text" name="engine_type"  placeholder="Enter Type" class="form-group" style="width: 400px;border-radius: 5px" required>
             </div>
         </div>
         <h3>More of Car Image</h3>
@@ -189,6 +191,10 @@
                 $("header").css("padding-top", "5rem");
             }
         });
+        //--------------------------------------------------
+         $("#backButton").click(function() {
+    history.go(-1);
+  });
     });
 </script>
 </body>

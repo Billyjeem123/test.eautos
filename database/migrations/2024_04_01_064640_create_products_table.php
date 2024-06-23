@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('color');
             $table->string('address');
             $table->string('is_viewed');
+            $table->string('is_featured');
 
             $table->string('location');
             $table->decimal('price', 10, 2);

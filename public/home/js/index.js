@@ -30,7 +30,7 @@ $(document).ready(function () {
       });
     } else {
       $(".navbar").css({
-        position: "static",
+        position: "relative",
         "z-index": "99999",
       });
     }

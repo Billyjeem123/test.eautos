@@ -73,9 +73,10 @@ class ProductController extends Controller
     }
 
 
+
+
     public function store(Request $request)
     {
-
         // Save category
         $product = Product::create([
             'category_id' => $request->category_id,
@@ -1068,16 +1069,24 @@ class ProductController extends Controller
         return redirect()->back()->with('success', 'Form submitted successfully!');
     }
 
-     public  function showBlog()
-     {
+    public function showBlog()
+    {
+        $categories = Category::all();
+        $allBlogs = Blog::where('is_active', '1')->paginate(10);
+        $featuredBlog = Blog::where('is_active', '1')->orderBy('created_at', 'desc')->first();
+        $unrelatedBlogs = Blog::where('id', '!=', '1')->take(5)->get();
 
-         $categories = Category::all();
-         return view('home.blog', ['categories' => $categories]);
+        return view('home.blog', [
+            'categories' => $categories,
+            'allBlogs' => $allBlogs,
+            'featuredBlog' => $featuredBlog,
+            'unrelatedBlogs' => $unrelatedBlogs,
+        ]);
+    }
 
-     }
 
 
-     public function showBlogById($id){
+    public function showBlogById($id){
 
          $blog = Blog::with('user')->find($id);
          $categories = Category::all();
@@ -1092,4 +1101,54 @@ class ProductController extends Controller
          return view('home.blog-details', ['blog' => $blog, 'otherBlogs' => $otherBlogs,  'categories' => $categories, 'unrelatedBlogs' => $unrelatedBlogs]);
 
      }
+
+
+    public function featureUser(Request $request)
+    {
+        // Validate request
+        $request->validate([
+            'user_id' => 'required|exists:users,id',
+        ]);
+
+        // Find the user
+        $user = User::findOrFail($request->user_id);
+
+        // Toggle the 'is_featured' attribute
+        if ($user->is_featured === 0 || $user->is_featured === null) {
+            $user->is_featured = 1;
+            $message = 'User has been featured on website homepage';
+        } else {
+            $user->is_featured = 0;
+            $message = 'User has been unfeatured from website homepage';
+        }
+
+        // Save the changes
+        $user->save();
+
+        // Redirect back or return a response as needed
+        return redirect()->back()->with('success', $message);
+    }
+
+
+
+    public function toggleFeatured(Request $request)
+    {
+        // Validate request
+        $request->validate([
+            'product_id' => 'required|exists:products,id',
+        ]);
+
+        // Find the product
+        $product = Product::findOrFail($request->product_id);
+
+        // Toggle the 'is_featured' attribute
+        $product->is_featured = !$product->is_featured;
+
+        // Save the changes
+        $product->save();
+
+        // Redirect back or return a response as needed
+        return redirect()->back()->with('success', 'Product featured status toggled successfully.');
+    }
+
 }

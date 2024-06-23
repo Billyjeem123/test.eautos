@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Car Parts</title>
+    <link rel="icon" type="image/x-icon" href="/home/images/logo2.png">
     <link rel="stylesheet" href="/home/css/viewParts.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
@@ -49,6 +50,7 @@
             </button>
         </form>
     </div>
+    <a id="backButton"><i class="fa fa-angle-left"></i> - Go back</a>
 </header>
 <main>
     <ul class="part-nav">
@@ -238,6 +240,10 @@
                 $("header").css("padding-top", "4rem");
             }
         });
+              //-------------------------------------------
+         $("#backButton").click(function() {
+    history.go(-1);
+  });
     });
 </script>
 

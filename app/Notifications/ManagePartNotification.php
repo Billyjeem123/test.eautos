@@ -10,7 +10,6 @@ use Illuminate\Notifications\Notification;
 class ManagePartNotification extends Notification
 {
     use Queueable;
-
     private mixed $email;
     private mixed $title;
 

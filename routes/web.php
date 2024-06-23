@@ -31,6 +31,15 @@ use Illuminate\Support\Facades\Route;
 //     return view('');
 // });
 
+ Route::get('/contact', function () {
+     return view('home.contact');
+ });
+
+Route::get('/about', function () {
+    return view('home.about');
+});
+
+
 ##Home routes
 Route::get('/countdown', [ProductController::class, 'showCountdown']);
 Route::get('/refresh-csrf', function() {
@@ -41,9 +50,10 @@ Route::get('/multi-select-form', [ProductController::class, 'showForm'])->name('
 Route::post('/multi-select-form', [ProductController::class, 'handleForm'])->name('handle.form');
 Route::get('/blog', [ProductController::class, 'showBlog'])->name('show.blog');
 Route::get('/blog/{id}', [ProductController::class, 'showBlogById'])->name('show.blog.id');
-
+Route::post('/update-profile/user', [UserController::class, 'updateProfile'])->name('update.profile.user');
 
 Route::group(['middleware' => ['showNavBar']], function () {
+    Route::get('/', [HomeController::class, 'index'])->name('index');
     Route::get('/', [HomeController::class, 'index'])->name('index');
     Route::get('/report', [ReportController::class, 'viewReport'])->name('report.show');
     Route::post('/report/user', [ReportController::class, 'store'])->name('report.create')->middleware('auth');
@@ -76,7 +86,6 @@ Route::group(['middleware' => ['showNavBar']], function () {
 
     Route::post('/save-register-dealer', [HomeController::class, 'saveDealer'])->name('save.register.dealer');
     Route::post('/save-register-user', [HomeController::class, 'saveUser'])->name('save.register.user');
-//    Route::post('/save-register-user', [HomeController::class, 'saveUser'])->name('save.register.user');
     Route::post('/save-register-buyer', [HomeController::class, 'saveBuyer'])->name('save.register.buyer');
 
     Route::view('/login', 'home.login')->name('login');
@@ -140,7 +149,7 @@ Route::group(['middleware' => ['showNavBar']], function () {
 //        Route::view('/all/providers', 'home.service-provider.index')->name('provider.all');
         Route::get('/dealers/all', [HomeController::class, 'getAllDealers'])->name('dealers.all');
         Route::get('/all/providers', [HomeController::class, 'service_provider'])->name('provider.all');
-
+        Route::get('/all/providers/search', [HomeController::class, 'service_provider_search'])->name('service_provider_search');
 
 
 
@@ -259,6 +268,7 @@ Route::prefix('admin')->middleware('auth', 'admin', 'notify')->group(function ()
     Route::get('/evaluate-all', [AdminController::class, 'getEvaluations'])->name('evaluate.all');
 
     Route::post('/update-profile', [UserController::class, 'updateProfile'])->name('update.profile');
+
     Route::get('/part', [PartController::class, 'createParts'])->name('admin.parts');
     Route::post('/part', [\App\Http\Controllers\PartController::class, 'store'])->name('savePart');
     Route::get('/get-part', [\App\Http\Controllers\PartController::class, 'getAllParts'])->name('admin.parts.all');
@@ -300,7 +310,9 @@ Route::prefix('admin')->middleware('auth', 'admin', 'notify')->group(function ()
     Route::get('/group/all', [BlogController::class, 'getAllGroups'])->name('get_all_group_admin');
     Route::delete('/group/{id}', [BlogController::class, 'delete_group'])->name('delete_group');
 
-
+// routes/web.php
+    Route::post('/toggle-featured', [ProductController::class, 'toggleFeatured'])->name('toggle_featured');
+    Route::post('/toggle-featured/user', [ProductController::class, 'featureUser'])->name('toggle_featured_user');
 
 
     //Paystack Route

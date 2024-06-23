@@ -1,0 +1,8 @@
+[04-Apr-2024 17:31:27 UTC] PHP Fatal error:  Trait "App\Http\Controllers\App\Models\Product" not found in /home/iccflife/public_html/test.eautos.iccflifeskills.com.ng/app/Http/Controllers/ProductController.php on line 15
+[22-Apr-2024 01:01:52 UTC] PHP Fatal error:  Cannot redeclare App\Models\User::$bussiness_name in /home/iccflife/public_html/test.eautos.iccflifeskills.com.ng/app/Models/User.php on line 39
+[22-Apr-2024 01:59:42 UTC] PHP Fatal error:  Trait "App\Http\Controllers\App\Models\User" not found in /home/iccflife/public_html/test.eautos.iccflifeskills.com.ng/app/Http/Controllers/UserController.php on line 10
+[21-May-2024 11:41:16 UTC] Auction ID: 7
+[21-May-2024 11:41:16 UTC] Auction ID: 5
+[21-May-2024 11:41:16 UTC] Auction ID: 4
+[21-May-2024 11:41:16 UTC] Auction ID: 3
+[21-May-2024 11:41:16 UTC] Auction ID: 2

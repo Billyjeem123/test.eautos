@@ -1,7 +1,7 @@
 <marquee
     onmouseover="stop()"
     onmouseout="start()"
-    scrollamount="20"
+    scrollamount="8"
     class="marquee"
     style="display: flex; background-color: #3b3838; padding: 5px"
 >
@@ -181,7 +181,9 @@
 </marquee>
 
 <nav class="navbar">
-    <a href="{{route('index')}}" class="logo">Logo</a>
+    <a href="{{route('index')}}" class="logo"><img src="/home/images/logo2.png" alt="logo" width="30px" />
+    <h1>E-AUTOS</h1>
+    </a>
     <ul>
         @foreach($categories as $category)
             @if($category->subcategories->count() > 0)
@@ -200,8 +202,8 @@
 
 
 
-        <li><a href="javascript:void(0)">Car Service</a></li>
-      <li><a href="{{route('scrapy-yard')}}">Scrapyard</a></li>
+{{--        <li><a href="javascript:void(0)">Car Service</a></li>--}}
+{{--      <li><a href="{{route('scrapy-yard')}}">Scrapyard</a></li>--}}
             <li>
                 <a href="{{ route('value.vehicle') }}" class="{{ request()->routeIs('value.vehicle') ? 'active' : '' }}">Value Asset</a>
             </li>
@@ -211,8 +213,17 @@
             </li>
 
             <li>
+                <a href="{{ route('provider.all') }}" class="{{ request()->routeIs('provider.all') ? 'active' : '' }}">Service Providers</a>
+            </li>
+
+
+            <li>
                 <a href="{{ route('show.blog') }}" class="{{ request()->routeIs('show.blog') ? 'active' : '' }}">Blog News</a>
             </li>
+
+
+
+
 
     </ul>
 

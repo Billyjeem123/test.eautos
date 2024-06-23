@@ -5,11 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Service Providers</title>
-    <link rel="icon" type="image/x-icon" href="/home/images/logo2.png">
     <link rel="stylesheet" href="/home/css/carService.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
     <style>
+        .no-records {
+            text-align: center;
+            margin: 20px;
+            color: #ff0000; /* Example color for visibility */
+        }
+
         .short-video-container {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -86,7 +91,7 @@
 <header class="hero">
 
     <div class="form_control">
-        <form action="{{ route('service_provider_search') }}" method="GET">
+        <form action="{{ route('provider.all') }}" method="GET">
             <h3>Search For Car Service Providers</h3>
             <div class="form_group">
                 <div class="form_card">
@@ -148,111 +153,49 @@
 
     </div>
 </header>
-<!-- --------------------------------------------------- -->
-<div class="status container">
-    <h3>Service Providers</h3>
-    <ul>
-        <li>
-            <img src="/home/images/ellipses/Ellipse 61.png" width="" alt="">
-            <p>Mechanics</p>
-        </li>
-        <li>
-            <img src="/home/images/ellipses/Ellipse 61-1.png" width="" alt="">
-            <p>Car Engineers</p>
-        </li>
-        <li>
-            <img src="/home/images/ellipses/Ellipse 61-2.png" width="" alt="">
-            <p>Electricians</p>
-        </li>
-        <li>
-            <img src="/home/images/ellipses/Ellipse 61-3.png" width="" alt="">
-            <p>Vulcanizers</p>
-        </li>
-        <li>
-            <img src="/home/images/ellipses/Ellipse 61-4.png" width="" alt="">
-            <p>Panel Beaters</p>
-        </li>
 
-    </ul>
-</div>
 <!-- -------------------------------------------------- -->
 
-@if($businessServiceLists->count() == 0)
-    <div style="text-align: center;">
-        <p>No records found</p>
+@if ($noRecordsFound)
+    <div class="no-records">
+        <h1>No records found</h1>
     </div>
-@endif
-
-<br> <br>
-
-
-@foreach ($businessServiceLists as $service)
-    <div class="mechanics container">
-        <h3><span>Popular {{ $service->service_list }}</span> <a href="">View All ({{ $service->users->count() }})</a></h3>
-        <div class="card_group">
-            @foreach ($service->users as $user)
-                <div class="card">
-
-                    <a href="{{route('user.profile', $user->id )}}">
-                        <div class="card_img" style="background: url('{{ !empty($user->image) ? $user->image : 'https://cdn.pixabay.com/photo/2018/11/13/21/43/avatar-3814049_1280.png' }}') no-repeat;">
-                            <p class="verify"><span><i class="fa fa-check"></i></span> Verified</p>
+@else
+    @foreach ($businessServiceLists as $service)
+        <div class="mechanics container">
+            <h3><span>Popular {{ $service->service_list }}</span> <a href="">View All ({{ $service->users->count() }})</a></h3>
+            <div class="card_group">
+                @foreach ($service->users as $user)
+                    <div class="card">
+                        <a href="{{ route('user.profile', $user->id) }}">
+                            <div class="card_img" style="background: url('{{ !empty($user->image) ? $user->image : 'https://cdn.pixabay.com/photo/2018/11/13/21/43/avatar-3814049_1280.png' }}') no-repeat;">
+                                <p class="verify"><span><i class="fa fa-check"></i></span> Verified</p>
+                            </div>
+                        </a>
+                        <div class="card_text">
+                            <h5>{{ $user->name }}</h5>
+                            <p>{{ $user->businessServiceLists[0]['service_list'] ?? 'Specialization not provided' }}</p>
+                            <h6>{{ $user->business_state ?? 'Location not provided' }}</h6>
+                            <h6 class="ratings">
+                                <span class="star">
+                                    @for ($i = 0; $i < $user->bussiness_reviews->count(); $i++)
+                                        <i class="fa fa-star"></i>
+                                    @endfor
+                                    @for ($i = $user->bussiness_reviews->count(); $i < 5; $i++)
+                                        <i class="fa fa-star-o"></i>
+                                    @endfor
+                                </span>
+                                &nbsp;
+                                <span>({{ $user->bussiness_reviews->count() ?? 0 }})</span>
+                            </h6>
                         </div>
-                    </a>
-
-
-                    <div class="card_text">
-                        <h5>{{ $user->name }}</h5>
-                        <p>{{ $user->businessServiceLists[0]['service_list'] ?? 'Specialization not provided' }}</p>
-                        <h6>{{ $user->business_state ?? 'Location not provided' }}</h6>
-
-                        <h6 class="ratings">
-    <span class="star">
-        @for ($i = 0; $i < $user->bussiness_reviews->count(); $i++)
-            <i class="fa fa-star"></i>
-        @endfor
-        @for ($i = $user->bussiness_reviews->count(); $i < 5; $i++)
-            <i class="fa fa-star-o"></i>
-        @endfor
-    </span>
-                            &nbsp;
-                            <span> ({{ $user->bussiness_reviews->count() ?? 0 }})</span>
-                        </h6>
-
                     </div>
-                </div>
-            @endforeach
-        </div>
-        <!-- Pagination Section -->
-        <div class="pagination-section">
-            <div class="d-flex justify-content-center">
-                <nav aria-label="Page navigation">
-                    <ul class="pagination justify-content-center flex-wrap">
-                        @if ($businessServiceLists->onFirstPage())
-                            <li class="page-item disabled"><span class="page-link">Prev</span></li>
-                        @else
-                            <li class="page-item"><a class="page-link" href="{{ $businessServiceLists->previousPageUrl() }}">Prev</a></li>
-                        @endif
-
-                        @foreach ($businessServiceLists->getUrlRange(1, $businessServiceLists->lastPage()) as $page => $url)
-                            <li class="page-item {{ ($page == $businessServiceLists->currentPage()) ? 'active' : '' }}">
-                                <a class="page-link" href="{{ $url }}">{{ $page }}</a>
-                            </li>
-                        @endforeach
-
-                        @if ($businessServiceLists->hasMorePages())
-                            <li class="page-item"><a class="page-link" href="{{ $businessServiceLists->nextPageUrl() }}">Next</a></li>
-                        @else
-                            <li class="page-item disabled"><span class="page-link">Next</span></li>
-                        @endif
-                    </ul>
-                </nav>
+                @endforeach
             </div>
         </div>
-    </div>
-@endforeach
-<!-- ----------------------------------------------------- -->
+    @endforeach
+@endif
 
-<!-- ----------------------------------------- -->
 
 @include('home.includes.footer')
 </body>

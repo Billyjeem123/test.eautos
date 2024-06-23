@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up</title>
+    <link rel="icon" type="image/x-icon" href="/home/images/logo2.png">
     <link rel="stylesheet" href="/home/css/signUp_user.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
@@ -27,6 +28,7 @@
                 <input type="email" name="email" placeholder="Email">
                 <input type="text" name="phone" placeholder="Phone">
                 <input type="password" name="pword" placeholder="Password">
+                <input type="text" name="business_name" placeholder="Business Name">
                 <select  name="user_location">
                     <option disabled selected>Select State</option>
                     <option>Abia</option>

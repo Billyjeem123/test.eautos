@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stolen Cars</title>
+    <link rel="icon" type="image/x-icon" href="/home/images/logo2.png">
     <link rel="stylesheet" href="/home/css/stolenCars.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
@@ -43,6 +44,7 @@
 
 
 <header class="hero">
+    
     <div class="form_control">
         <form action="{{ route('stolen') }}" method="GET">
             <h3>Search For Stolen Cars</h3>
@@ -114,6 +116,7 @@
         </form>
 
     </div>
+    <a id="backButton"><i class="fa fa-angle-left"></i> - Go back</a>
 </header>
 <main>
 
@@ -188,6 +191,10 @@
                 $(".hero").css("padding-top", "5rem");
             }
         });
+                  //-------------------------------------------
+         $("#backButton").click(function() {
+    history.go(-1);
+  });
     });
 
 </script>

@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Blod Deatails . {{$blog->title}}</title>
+  <link rel="icon" type="image/x-icon" href="/home/images/logo2.png">
   <link rel="stylesheet" href="/home/css/blog.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
@@ -24,7 +25,7 @@
       <small><em>Posted by: {{$blog->user->name}} <br> Date posted: {{$blog->created_at->diffForHumans()}}</em></small>
       <br><br>
     <div class="card-group">
-        <div class="card" style="background: url('{{ $blog->image }}');">
+        <div class="card" style="background: url('{{ $blog->image }}'); background-position: center important; background-size: cover !important; background-repeat: no-repeat !important;">
 
         </div>
         <div class="card">
@@ -35,7 +36,7 @@
                         <a href="#">
                             {!! nl2br(Str::limit($blogss['desc'], 100))!!}
                             @if (strlen($blog['desc']) > 100)
-                                <a href="">Read more</a>
+                                <a href="{{route('show.blog.id', $blogss->id)}}">Read more</a>
                             @endif
                         </a>
                     </li>
@@ -55,7 +56,7 @@
         <div class="blog-group">
             @forelse ($otherBlogs as $blog)
                 <a href="{{route('show.blog.id', $blog->id)}}" class="card">
-                    <div class="blog-img" style="background: url({{ $blog->image }});"></div>
+                    <div class="blog-img" style="background: url({{ $blog->image }}); background-position: center important; background-size: cover !important; background-repeat: no-repeat !important;"></div>
                     <h4>LatestNews</h4>
                     <p>{{ $blog->title }}</p>
                 </a>

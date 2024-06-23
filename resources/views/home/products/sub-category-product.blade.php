@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Products</title>
+    <link rel="icon" type="image/x-icon" href="/home/images/logo2.png">
     <link rel="stylesheet" href="/home/css/cars.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
@@ -112,7 +113,7 @@
                                 <ul>
                                     <li>{{ $sub_category_name }}</li>
                                     <li>{{ $product->cylinder }}</li>
-                                    <li style="background-color: {{ $product->color }}; border: none; color: #ffffff;">{{ $product->color }}</li>
+                                    <li style="background-color: {{ $product->color }}; border: 1px solid; color: #000;">{{ $product->color }}</li>
                                     <li>Fuel</li>
                                 </ul>
                                 <h5>₦ {{ number_format($product->price, 2) }}</h5>

@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Auction  Cars</title>
+    <link rel="icon" type="image/x-icon" href="/home/images/logo2.png">
     <link rel="stylesheet" href="/home/css/allAuction.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
@@ -54,6 +55,7 @@
         </form>
 
     </div>
+    <a id="backButton"><i class="fa fa-angle-left"></i> - Go back</a>
 </header>
 <main>
     <div class="live_auction">
@@ -96,7 +98,7 @@
                             <ul>
                                 <li>New</li>
                                 <li>{{$auction->cylinder ?? "10 Cylinder"}}</li>
-                                <li style="background-color: blue; border: none; color: #ffffff;">{{$auction->color}}</li>
+                                <li style="background-color: blue; border: 1px solid; color: #000;">{{$auction->color}}</li>
                                 <li>Fuel</li>
                             </ul>
                         </div>
@@ -183,7 +185,7 @@
 {{--                            <ul>--}}
 {{--                                <li>New</li>--}}
 {{--                                <li>{{$auction->cylinder ?? "10 Cylinder"}}</li>--}}
-{{--                                <li style="background-color: blue; border: none; color: #ffffff;">{{$auction->color}}</li>--}}
+{{--                                <li style="background-color: blue; border: 1px solid; color: #000;">{{$auction->color}}</li>--}}
 {{--                                <li>Fuel</li>--}}
 {{--                            </ul>--}}
 {{--                        </div>--}}
@@ -305,6 +307,10 @@
                 $(".hero").css("padding-top", "5rem");
             }
         });
+        //-------------------------------------------
+         $("#backButton").click(function() {
+    history.go(-1);
+  });
     });
 
 </script>

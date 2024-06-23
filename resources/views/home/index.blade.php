@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Home Page</title>
+  <link rel="icon" type="image/x-icon" href="/home/images/logo2.png">
   <link rel="stylesheet" href="/home/css/home.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
  <!-- Add the slick-theme.css if you want default styling -->
@@ -95,7 +96,7 @@
   </div>
   <!-- ------------------------------------------------- -->
   <div class="report_request container">
-    <div class="grey"></div>
+    <!--<div class="grey"></div>-->
     <div class="report">
       <span>
         <h3>Report a car Deal Scam</h3>
@@ -107,31 +108,30 @@
     <div class="request">
       <span>
         <h3>Make a Request</h3>
-        <p>Lorem ipsum dolor, Corporis aliquid consequatur aspernatur at iure
-          voluptas vero inventore similique officiis quia?</p>
+        <p>Here at e-autos, we want to make your car buying experience as smooth and efficient as possible. Utilize this form to let us know what kind of car you're looking for, and we'll use our resources to find the perfect match!</p>
         <a href="{{route('request.show')}}" >Request</a>
       </span>
     </div>
 
   </div>
   <!-- ------------------------------------------- -->
-  <div class="numbers container">
-    <h3>E-Autos in Numbers</h3>
-    <ul>
-      <li>
-        <p>9,122</p> <small>Sold Cars</small>
-      </li>
-      <li>
-        <p>1,122,074</p> <small>Ongoing Auction</small>
-      </li>
-      <li>
-        <p>201,905</p> <small>Registered Car Dealer</small>
-      </li>
-      <li>
-        <p>201,905</p> <small>Blacklist</small>
-      </li>
-    </ul>
-  </div>
+   <div class="numbers container">
+       <h3>E-Autos in Numbers</h3>
+       <ul id="numberList">
+           <li>
+               <p id="soldCars">9,122</p> <small>Sold Cars</small>
+           </li>
+           <li>
+               <p id="ongoingAuction">1,122,074</p> <small>Ongoing Auction</small>
+           </li>
+           <li>
+               <p id="registeredDealer">201,905</p> <small>Registered Car Dealer</small>
+           </li>
+           <li>
+               <p id="blacklist">201,905</p> <small>Blacklist</small>
+           </li>
+       </ul>
+   </div>
   <!-- -------------------------------------------------- -->
 
   <div class="latest container">
@@ -148,7 +148,7 @@
                   <ul>
                     <li>New</li>
                     <li>{{$product->cylinder}}</li>
-                    <li style="background-color: {{ $product->color }}; border: none; color: #ffffff;">{{ $product->color }}</li>
+                    <li style="background-color: {{ $product->color }}; border: 1px solid; color: #000;">{{ $product->color }}</li>
                     <li>Fuel</li>
                   </ul>
                   <h5> ₦ {{ number_format($product->price,2) }}</h5>
@@ -163,7 +163,14 @@
   <!-- ----------------------------------------------------- -->
 
   <div class="car_dealers container">
-    <h3>Connect with Car Dealers</h3>
+
+      @if($getDealers->count() === 0)
+          <!-- Hide the section if no service providers are available -->
+      @else
+          <h3>Connect with Car Dealers</h3>
+      @endif
+
+
     <div class="card_group">
 
             @foreach($getDealers as $dealer)
@@ -185,6 +192,37 @@
 
   </div>
   <!-- ----------------------------------------------------- -->
+
+
+
+
+   <div class="car_dealers container">
+           @if($featuredProvider->count() === 0)
+               <!-- Hide the section if no service providers are available -->
+           @else
+               <h3>Connect with Service providers</h3>
+           @endif
+
+           <div class="card_group">
+
+           @foreach($featuredProvider as $dealer)
+               <div class="card">
+                   <a href="{{route('user.profile', $dealer->id)}}">
+                       <div class="card_img" style="background: url('{{ !empty($dealer->image) ? $dealer->image : 'https://cdn.pixabay.com/photo/2018/11/13/21/43/avatar-3814049_1280.png' }}') no-repeat;"></div>
+                   </a>
+                   <div class="details">
+                       <h5>{{ $dealer->name}}</h5>
+                       <span><strong>100%</strong> Verified</span>
+                       <p class="progress"><i class="fa fa-check"></i></p>
+                   </div>
+               </div>
+           @endforeach
+
+
+
+       </div>
+
+   </div>
 
 {{--  <div class="short_video container">--}}
 {{--    <h3><span>Short Videos</span> <a href="javascript:void(0)" >See All</a></h3>--}}
@@ -251,33 +289,33 @@
 
 
 
-
-
    <br><br>
-  <div class="latest container">
-    <h3>Featured Products</h3>
-    <div class="card_group">
-      <div class="card">
-          <a href="#" class="card_link">
-              <div class="card_img" style="background: url(/home/images/cars/bmw.png) no-repeat;"></div>
-          </a>
-          <div class="card_text">
-              <h5>Toyota</h5>
-              <div class="details">
-                  <ul>
-                    <li>New</li>
-                    <li>3kg</li>
-                    <li style="background-color: red; border: none; color: #ffffff;">red</li>
-                    <li>Fuel</li>
-                  </ul>
-                  <h5> ₦ 200,000</h5>
-                  <p>Nigeria</p>
+   <div class="latest container">
+       <h3>Featured Product</h3>
+       <div class="card_group">
+           @foreach ($featuredProducts as $product)
+               <div class="card">
+                   <a href="{{route('user.profile', $product->user_id)}}" class="card_link">
+                       <div class="card_img" style="background: url('{{ $product->images[0]['image'] }}') no-repeat;"></div>
+                   </a>
+                   <div class="card_text">
+                       <h5>{{ $product->car_name}}</h5>
+                       <div class="details">
+                           <ul>
+                               <li>New</li>
+                               <li>{{$product->cylinder}}</li>
+                               <li style="background-color: {{ $product->color }}; border: none; color: #ffffff;">{{ $product->color }}</li>
+                               <li>Fuel</li>
+                           </ul>
+                           <h5> ₦ {{ number_format($product->price,2) }}</h5>
+                           <p>{{ $product->location }} ({{ $product->mileage }})</p>
 
-              </div>
-          </div>
-      </div>
-  </div>
-  </div>
+                       </div>
+                   </div>
+               </div>
+           @endforeach
+       </div>
+   </div>
   <!-- ----------------------------------------------------- -->
   <div class="meet_dealers">
     <ul class="card_group">
@@ -290,6 +328,11 @@
     </ul>
   </div>
   <!-- ----------------------------------------------------- -->
+
+
+
+
+
 
    <div class="blog">
        <h3>Blog Posts</h3>
@@ -308,7 +351,8 @@
 
 
    <div class="groups container">
-       <h3><span>Groups you may like</span> <a href="groupMembers.html" target="_blank">See more</a></h3>
+{{--       <a href="{{route('groups')}}" target="_blank">See more</a>--}}
+       <h3><span>Groups you may like</span></h3>
        <div class="card_group">
            @foreach ($groups as $group):
            <div class="card">
@@ -362,3 +406,72 @@ https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js
     ]
   });
 </script>
+
+
+   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+   <script>
+       $(document).ready(function() {
+           $(window).scroll(function() {
+               // Check if the number list is visible in the viewport
+               if ($('#numberList').visible(true)) {
+                   // Increment numbers with animation
+                   $('#soldCars').prop('Counter', 0).animate({
+                       Counter: 9122
+                   }, {
+                       duration: 2000,
+                       easing: 'swing',
+                       step: function(now) {
+                           $(this).text(Math.ceil(now).toLocaleString());
+                       }
+                   });
+
+                   $('#ongoingAuction').prop('Counter', 0).animate({
+                       Counter: 1122074
+                   }, {
+                       duration: 2000,
+                       easing: 'swing',
+                       step: function(now) {
+                           $(this).text(Math.ceil(now).toLocaleString());
+                       }
+                   });
+
+                   $('#registeredDealer').prop('Counter', 0).animate({
+                       Counter: 201905
+                   }, {
+                       duration: 2000,
+                       easing: 'swing',
+                       step: function(now) {
+                           $(this).text(Math.ceil(now).toLocaleString());
+                       }
+                   });
+
+                   $('#blacklist').prop('Counter', 0).animate({
+                       Counter: 201905
+                   }, {
+                       duration: 2000,
+                       easing: 'swing',
+                       step: function(now) {
+                           $(this).text(Math.ceil(now).toLocaleString());
+                       }
+                   });
+
+                   // Unbind scroll event to prevent animation on subsequent scrolls
+                   $(window).off('scroll');
+               }
+           });
+       });
+
+       // Custom function to check if an element is visible in the viewport
+       $.fn.visible = function(partial) {
+           var $t = $(this),
+               $w = $(window),
+               viewTop = $w.scrollTop(),
+               viewBottom = viewTop + $w.height(),
+               _top = $t.offset().top,
+               _bottom = _top + $t.height(),
+               compareTop = partial === true ? _bottom : _top,
+               compareBottom = partial === true ? _top : _bottom;
+
+           return ((compareBottom <= viewBottom) && (compareTop >= viewTop));
+       };
+   </script>

@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dealers</title>
+    <link rel="icon" type="image/x-icon" href="/home/images/logo2.png">
     <link rel="stylesheet" href="/home/css/dealers.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
@@ -90,6 +91,10 @@
             </form>
         </div>
         <!-- ---- -->
+
+         @if($allDealers->count() == 0)
+             <p>No records found</p>
+         @endif
         <div class="card right">
             <ul>
                 @foreach($allDealers as $dealer)

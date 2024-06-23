@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Auction;
 use App\Models\Blog;
 use App\Models\Brand;
 use App\Models\BussinessServiceList;
@@ -15,6 +16,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use PHPUnit\Util\Blacklist;
 
 class HomeController extends Controller
 {
@@ -28,15 +30,27 @@ class HomeController extends Controller
         $getDealers = User::where('role', 'dealer')->take(5)->select('name', 'image', 'id')->get();
 
 
-        $products  = Product::with('brand', 'images', 'categories')->where('is_approved', 1)->get();
+        $products  = Product::with('brand', 'images', 'categories')->where('is_approved', 1)->take(8)->get();
 
 
         $blogs = Blog::inRandomOrder()->limit(5)->get();
 
         $groups = Group::inRandomOrder()->limit(10)->get();
 
+        $featuredProducts = Product::where('is_featured', 1)
+            ->with('brand', 'images', 'categories') // Eager load relationships
+            ->take(4) // Limit the number of results to 5
+            ->get(); // Execute the query and retrieve the results
 
-        return view('home.index', ['brands' => $brands,  'groups' => $groups,  'blogs' => $blogs,  'products' => $products, 'getDealers' => $getDealers]);
+//        $product_count = $products->count();
+//        $auction_count = Auction::all()->count();
+//        $users  =User::all()->count();
+//        'users' => $users, 'auction_count' => $auction_count, 'product_count' => $product_count,
+
+        $featuredProvider = User::where('is_featured', 1)->take(5)->select('name', 'image', 'id')->take(4)->get();
+
+
+        return view('home.index', ['brands' => $brands, 'featuredProvider' => $featuredProvider,   'featuredProducts' => $featuredProducts,  'groups' => $groups,  'blogs' => $blogs,  'products' => $products, 'getDealers' => $getDealers]);
     }
 
 
@@ -121,12 +135,14 @@ class HomeController extends Controller
             'pword.min' => 'Password must be at least :min characters long.',
             'business_name' => 'Business name is required',
             'phone.required' => 'Phone is required.',
+            'user_location.required' => "Location is required"
         ];
 
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'phone' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
+            'user_location' => 'required',
             'business_name' => 'required|unique:users,business_name',
             'pword' => 'required|string|min:6', // Adjust the minimum password length as needed
         ], $messages);
@@ -180,6 +196,7 @@ class HomeController extends Controller
             'name' => 'required|string|max:255',
             'phone' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
+            'business_name' => 'Business name is required',
             'pword' => 'required|string|min:6', // Adjust the minimum password length as needed
         ]);
 
@@ -195,7 +212,7 @@ class HomeController extends Controller
             'phone' => $request->phone,
             'password' => bcrypt($request->pword),
             'is_active' => 1,
-            'business_state' => $request->user_location,
+            'business_state' => $request->business_state,
             'role' => 'provider',
         ]);
 
@@ -273,6 +290,11 @@ class HomeController extends Controller
             })
             ->get();
 
+//        $getDealers = User::when($location, function ($query, $location) {
+//                return $query->where('business_state', $location);
+//            })
+//            ->get();
+
         // Initialize an array to store car counts for each dealer
         $carCounts = [];
 
@@ -327,9 +349,76 @@ class HomeController extends Controller
 //         echo "<pre>";
 //         echo json_encode($businessServiceLists, JSON_PRETTY_PRINT);
 //         echo "</pre>";
-         return view ('home.service-provider.index', compact('businessServiceLists'));
+        $services  = BussinessServiceList::all();
+         return view ('home.service-provider.index', compact('businessServiceLists', 'services'));
 
     }
+
+
+
+    public function service_provider_search(Request $request) {
+        // Get search parameters from the request
+        $location = $request->input('location');
+        $serviceId = $request->input('category');
+
+        // Query for service providers
+        $query = BussinessServiceList::query();
+
+        // Apply filters if they exist
+        if ($location) {
+            $query->whereHas('users', function ($q) use ($location) {
+                $q->where('business_state', $location);
+            });
+        }
+
+        if ($serviceId) {
+            $query->whereHas('users.businessServiceLists', function ($q) use ($serviceId) {
+                $q->where('bussiness_name', $serviceId);
+            });
+        }
+
+        // Fetch all business service lists that have associated users
+        $businessServiceLists = $query->paginate(5); // Paginate main result set
+
+        // Check if any results found
+        $noRecordsFound = $businessServiceLists->isEmpty();
+
+        $services  = BussinessServiceList::all();
+        return view('home.service-provider.search', compact('businessServiceLists', 'services', 'noRecordsFound'));
+    }
+
+
+
+//    public function service_provider(Request $request) {
+//        // Get search parameters from the request
+//        $location = $request->input('location');
+//        $serviceId = $request->input('category');
+//
+//        // Query for service providers
+//        $query = BussinessServiceList::with('users');
+//
+//        // Apply filters if they exist
+//        if ($location) {
+//            $query->whereHas('users', function ($q) use ($location) {
+//                $q->where('business_state', $location);
+//            });
+//        }
+//
+//        if ($serviceId) {
+//            $query->whereHas('users.businessServiceLists', function ($q) use ($serviceId) {
+//                $q->where('bussiness_name', $serviceId);
+//            });
+//        }
+//
+//        // Fetch all business service lists that have associated users
+//        $businessServiceLists = $query->paginate(5); // Adjust the pagination number as needed
+//
+//        // Fetch all business service lists for the dropdown
+//        $services = BussinessServiceList::all();
+//
+//        return view('home.service-provider.index', compact('businessServiceLists', 'services'));
+//    }
+
 
 
 

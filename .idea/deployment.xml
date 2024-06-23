@@ -9,6 +9,10 @@
           <mappings>
             <mapping deploy="/public_html/test.eautos.iccflifeskills.com.ng" local="$PROJECT_DIR$" web="/" />
           </mappings>
+          <excludedPaths>
+            <excludedPath local="true" path="vendor" />
+            <excludedPath path="vendor" />
+          </excludedPaths>
         </serverdata>
       </paths>
     </serverData>

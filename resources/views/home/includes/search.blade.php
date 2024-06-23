@@ -4,7 +4,7 @@
         <form action="{{ route('search') }}" method="GET">
             <div class="form_control">
                 <div class="select_wrapper">
-                    <label for="brand"><i class="fa fa-angle-down"></i></label>
+                    <label for="brand"></label>
                     <select id="brand" class="form-control bg-white" name="brand_id">
                         <option selected>Select Brand</option>
                         @foreach ($brands as $brand)
@@ -14,7 +14,7 @@
                 </div>
 
                 <div class="select_wrapper">
-                    <label for="model"><i class="fa fa-angle-down"></i></label>
+                    <label for="model"></label>
                     <select name="category_id" id="model">
                         <option selected>Select Category</option>
                         @foreach ($categories as $category)
@@ -24,7 +24,7 @@
                 </div>
 
                 <div class="select_wrapper">
-                    <label for="year"><i class="fa fa-angle-down"></i></label>
+                    <label for="year"></label>
                     <select name="year" id="year">
                         <option value="" selected disabled>Enter Year</option>
                         @for ($year = 2000; $year <= 2024; $year++)
@@ -36,14 +36,14 @@
 
             <div class="form_control">
                 <div class="min-max">
-                    <label for="min" class="for_min"><i class="fa fa-angle-down"></i><span><small>Minimum price</small><strong>No Min</strong></span></label>
+                    <label for="min" class="for_min"><span><small>Minimum price</small><strong>No Min</strong></span></label>
                     <select name="min_price" id="min">
                         <option value="">No Min</option>
                         @for ($price = 1000000; $price <= 5000000; $price += 1000000)
                             <option value="{{ $price }}">₦ {{ number_format($price) }}</option>
                         @endfor
                     </select>
-                    <label for="max" class="for_max"><span><small>Maximum price</small><strong>No Max</strong></span><i class="fa fa-angle-down"></i></label>
+                    <label for="max" class="for_max"><span><small>Maximum price</small><strong>No Max</strong></span></label>
                     <select name="max_price" id="max">
                         @for ($price = 10000000; $price <= 50000000; $price += 10000000)
                             <option value="{{ $price }}">₦ {{ number_format($price) }}</option>
