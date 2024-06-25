@@ -31,13 +31,7 @@ use Illuminate\Support\Facades\Route;
 //     return view('');
 // });
 
- Route::get('/contact', function () {
-     return view('home.contact');
- });
 
-Route::get('/about', function () {
-    return view('home.about');
-});
 
 
 ##Home routes
@@ -53,6 +47,17 @@ Route::get('/blog/{id}', [ProductController::class, 'showBlogById'])->name('show
 Route::post('/update-profile/user', [UserController::class, 'updateProfile'])->name('update.profile.user');
 
 Route::group(['middleware' => ['showNavBar']], function () {
+
+
+    Route::get('/contact', function () {
+        return view('home.contact');
+    });
+
+    Route::get('/about', function () {
+        return view('home.about');
+    });
+
+
     Route::get('/', [HomeController::class, 'index'])->name('index');
     Route::get('/', [HomeController::class, 'index'])->name('index');
     Route::get('/report', [ReportController::class, 'viewReport'])->name('report.show');

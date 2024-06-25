@@ -142,10 +142,10 @@ private function validateRequest(Request $request)
         $report->user_name = auth()->user()->name;
         $report->save();
 
-        $mail = 'billy@gmail.com';
-        $messages = 'You have a new car request';
-
-        event(new ReportEvent($mail, $messages));
+//        $mail = 'billy@gmail.com';
+//        $messages = 'You have a new car request';
+//
+//        event(new ReportEvent($mail, $messages));
 
         // Redirect back with success message
         return redirect()->back()->with('success', 'Your request has been submitted successfully. You will be notified upon any updates.');
