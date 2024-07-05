@@ -37,10 +37,9 @@
 
           </ul>
         <ul class="">
-          <li><a href="#!">Privacy Police</a></li>
-          <li><a href="#!">Terms and Conditions</a></li>
-          <li><a href="#!">FAQs</a></li>
-          <li><a href="#!">Contact Us</a></li>
+          <li><a href="{{route('privacy')}}">Privacy Police</a></li>
+          <li><a href="{{route('terms_condition')}}">Terms and Conditions</a></li>
+          <li><a href="{{route('contact')}}">Contact Us</a></li>
         </ul>
       </nav>
 

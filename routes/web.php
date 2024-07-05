@@ -51,17 +51,31 @@ Route::group(['middleware' => ['showNavBar']], function () {
 
     Route::get('/contact', function () {
         return view('home.contact');
-    });
+    })->name('contact');
 
     Route::get('/about', function () {
         return view('home.about');
     });
 
 
+    Route::get('/privacy', function () {
+        return view('home.privacypolicy');
+    })->name('privacy');
+
+
+    Route::get('/terms', function () {
+        return view('home.terms_condition');
+    })->name('terms_condition');
+
+
+
+
     Route::get('/', [HomeController::class, 'index'])->name('index');
     Route::get('/', [HomeController::class, 'index'])->name('index');
     Route::get('/report', [ReportController::class, 'viewReport'])->name('report.show');
-    Route::post('/report/user', [ReportController::class, 'store'])->name('report.create')->middleware('auth');
+    Route::post('/report/user', [ReportController::class, 'store'])->name('report.save_report')->middleware('auth');
+    Route::post('/report/user/save', [ReportController::class, 'save_report'])->name('report.save')->middleware('auth');
+    Route::get('/suggest-emails', [ReportController::class, 'checkEmail'])->name('suggest.emails');
 
 
     #request car

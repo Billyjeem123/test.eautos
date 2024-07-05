@@ -26,6 +26,62 @@ class ReportController extends Controller
 
 
 
+
+
+    public function save_report(Request $request)
+    {
+
+        $user = User::where('email', $request->business_name);
+        $report = new Report();
+        $report->name_of_offender = $request->input('offender_name'); #
+        $report->bussines_name = $request->input('business_name'); #
+        $report->offernder_location = $request->input('location');
+        $report->complaint = $request->input('complain'); #waiting
+        $report->reporter_name = $request->input('name'); #
+        $report->country = $request->input('country');
+        $report->reporter_phone = $request->input('phone_number'); #
+        $report->reporter_mail = $request->input('email');
+        $report->user_id = auth()->user()->id;
+        $report->offender_id = $user->id;
+        $report->save();
+
+        $data = [
+            'title' => 'Urgent Vendor Report Notification',
+            'message' => 'An urgent notification has been received from a user regarding a vendor. Please find below the detailed report,  on your dashboard:'
+        ];
+
+
+        $admins = User::where('role', 'admin')->get();
+        foreach ($admins as $admin) {
+            $admin->notify(new ReportOffender($data));
+        }
+
+
+        // Redirect back with success message
+        return redirect()->back()->with('success', 'Your report has been submitted successfully. You will be notified upon any updates.');
+
+    }
+
+
+    public function checkEmail(Request $request)
+    {
+        $email = $request->input('email');
+
+        // Check if the email exists in your database
+        $business = User::where('email', $email)->first();
+
+        if ($business) {
+            // Email exists, fetch the corresponding business name
+            $business_name = $business->email; // Assuming 'name' is the column for business name
+            return response()->json(['exists' => true, 'business_name' => $business_name]);
+        } else {
+            // Email does not exist
+            return response()->json(['exists' => false]);
+        }
+    }
+
+
+
 public function store(Request $request)
 {
     // Validate the incoming request data
@@ -74,7 +130,7 @@ private function validateRequest(Request $request)
     $rules = [
         'offender_name' => 'required|string|max:255',
         'business_name' => 'required|string|max:255',
-        'location' => 'required|string|max:255',
+        'location' => 'nullable|string|max:255',
         'complain' => 'required|string',
         'name' => 'required|string|max:255',
         'country' => 'required|string|max:255',

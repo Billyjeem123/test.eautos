@@ -23,12 +23,6 @@
         @endforeach
 
 
-
-{{--        <li>--}}
-{{--            <a href="{{ route('sell') }}" class="{{ request()->routeIs('sell') ? 'active' : '' }}">Sell A {{ Str::singular($categoryName) }}</a>--}}
-{{--        </li>--}}
-
-
         <li><a href="{{route('value.vehicle')}}">Value My {{ Str::singular($categoryName) }}</a></li>
         <li>
             <a href="{{ route('get.auction.cars') }}" class="{{ request()->routeIs('get.auction.cars') ? 'active' : '' }}">Auction</a>

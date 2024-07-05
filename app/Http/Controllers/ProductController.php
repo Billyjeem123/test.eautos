@@ -195,7 +195,7 @@ class ProductController extends Controller
 
         $products = Product::with('brand', 'images', 'categories')
             ->orderBy('products.id', 'DESC')
-            ->get();
+            ->paginate(10);
 
         return view('admin.product.listing', ['products' => $products]);
     }

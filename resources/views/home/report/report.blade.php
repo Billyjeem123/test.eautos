@@ -19,11 +19,12 @@
     <div class="form-control">
       <h2>REPORT FORM</h2>
       <div>
-        <form action="{{ route('report.create') }}" method="POST">
+        <form action="{{ route('report.save') }}" method="POST">
             @csrf
             <input type="text" name="offender_name" placeholder="Name of Offender">
             <span class="form_group">
-                <input type="text" name="business_name" placeholder="Business">
+                <input type="text"  id="business_email"  name="business_name" placeholder="Business Email">
+                <p id="emailMessage" class="error"></p>
                 <input type="text" name="location" placeholder="Location">
             </span>
             <textarea name="complain" cols="30" rows="5" placeholder="Complain"></textarea>
@@ -49,3 +50,47 @@
   </main>
 
   @include('home.includes.footer')
+
+    <!-- Include jQuery (if not already included) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+    <script>
+        $(document).ready(function() {
+
+            // Function to check email existence
+            function checkEmailExists() {
+                var input = $('#business_email').val();
+
+                if (input.length >= 3) {
+                    $.ajax({
+                        url: "{{ route('suggest.emails') }}",
+                        method: 'GET',
+                        data: { email: input },
+                        success: function(response) {
+                            if (response.exists) {
+                                // Email found, set the value of business_name input
+                                $('input[name="business_name"]').val(response.business_name);
+                                $('#emailMessage').removeClass('error').text('');
+                            } else {
+                                // Email not found
+                                $('input[name="business_name"]').val('');
+                                toastr.error('Email not found.');
+
+                            }
+                        }
+                    });
+                } else {
+                    // Clear suggestions if input length is less than 3
+                    $('#emailMessage').removeClass('error').text('');
+                }
+            }
+
+            // Trigger email check when user switches input fields
+            $('#business_email').on('blur', function() {
+                checkEmailExists();
+            });
+        });
+    </script>
+
+

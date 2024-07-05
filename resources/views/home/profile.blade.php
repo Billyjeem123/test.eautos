@@ -185,13 +185,14 @@
          <div class="bid">
             <div class="close-modal"><strong><i class="fa-solid fa-xmark"></i></strong></div>
             <div class="report-form">
-                <form   method="POST" action="{{route('report.create')}}">
+                <form   method="POST" action="{{route('report.save_report')}}">
                     @csrf
                   <strong style="font-size: 18px;">Offenders Info.</strong>
                   <span style="background: #e6e6e6; width: 100%; padding: 5px;">
                       <input type="text" readonly placeholder="Offender Name" name="offender_name" value="{{ $profile->name}}">
                     <input type="text" readonly placeholder="Bussiness Name" name="business_name" value="{{ $profile->business_name}}">
-                       <input type="text" readonly placeholder="Location" name="location" value="{{ $profile->business_location}}">
+                       <input type="text" readonly placeholder="Location" name="location" value="{{ $profile->business_location ?? "stat" }}">
+
                        <input type="hidden" readonly placeholder="Location" name="offender_id" value="{{ $profile->id}}">
                   </span><br>
 
