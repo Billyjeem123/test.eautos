@@ -197,6 +197,8 @@ class ProductController extends Controller
             ->orderBy('products.id', 'DESC')
             ->paginate(10);
 
+
+
         return view('admin.product.listing', ['products' => $products]);
     }
 

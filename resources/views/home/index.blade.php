@@ -23,43 +23,43 @@
 
 
   <!-- --------------------------------------------------- -->
-  <div class="status container">
-    <ul>
-      <li>
-        <img src="/home/images/ellipses/Ellipse 61.png" width="" alt="">
-        <p>Micheal Ose</p>
-      </li>
-      <li>
-        <img src="/home/images/ellipses/Ellipse 61-1.png" width="" alt="">
-        <p>Micheal Ose</p>
-      </li>
-      <li>
-        <img src="/home/images/ellipses/Ellipse 61-2.png" width="" alt="">
-        <p>Micheal Ose</p>
-      </li>
-      <li>
-        <img src="/home/images/ellipses/Ellipse 61-3.png" width="" alt="">
-        <p>Micheal Ose</p>
-      </li>
-      <li>
-        <img src="/home/images/ellipses/Ellipse 61-4.png" width="" alt="">
-        <p>Micheal Ose</p>
-      </li>
-      <li>
-        <img src="/home/images/ellipses/Ellipse 61-5.png" width="" alt="">
-        <p>Micheal Ose</p>
-      </li>
-      <li>
-        <img src="/home/images/ellipses/Ellipse 61-6.png" width="" alt="">
-        <p>Micheal Ose</p>
-      </li>
-      <li>
-        <img src="/home/images/ellipses/Ellipse 61-7.png" width="" alt="">
-        <p>Micheal Ose</p>
-      </li>
+{{--  <div class="status container">--}}
+{{--    <ul>--}}
+{{--      <li>--}}
+{{--        <img src="/home/images/ellipses/Ellipse 61.png" width="" alt="">--}}
+{{--        <p>Micheal Ose</p>--}}
+{{--      </li>--}}
+{{--      <li>--}}
+{{--        <img src="/home/images/ellipses/Ellipse 61-1.png" width="" alt="">--}}
+{{--        <p>Micheal Ose</p>--}}
+{{--      </li>--}}
+{{--      <li>--}}
+{{--        <img src="/home/images/ellipses/Ellipse 61-2.png" width="" alt="">--}}
+{{--        <p>Micheal Ose</p>--}}
+{{--      </li>--}}
+{{--      <li>--}}
+{{--        <img src="/home/images/ellipses/Ellipse 61-3.png" width="" alt="">--}}
+{{--        <p>Micheal Ose</p>--}}
+{{--      </li>--}}
+{{--      <li>--}}
+{{--        <img src="/home/images/ellipses/Ellipse 61-4.png" width="" alt="">--}}
+{{--        <p>Micheal Ose</p>--}}
+{{--      </li>--}}
+{{--      <li>--}}
+{{--        <img src="/home/images/ellipses/Ellipse 61-5.png" width="" alt="">--}}
+{{--        <p>Micheal Ose</p>--}}
+{{--      </li>--}}
+{{--      <li>--}}
+{{--        <img src="/home/images/ellipses/Ellipse 61-6.png" width="" alt="">--}}
+{{--        <p>Micheal Ose</p>--}}
+{{--      </li>--}}
+{{--      <li>--}}
+{{--        <img src="/home/images/ellipses/Ellipse 61-7.png" width="" alt="">--}}
+{{--        <p>Micheal Ose</p>--}}
+{{--      </li>--}}
 
-    </ul>
-  </div>
+{{--    </ul>--}}
+{{--  </div>--}}
   <!-- -------------------------------------------------- -->
   <div class="essential container">
     <h3>The world is going <span>e</span> so are we</h3><br>
@@ -119,13 +119,13 @@
        <h3>E-Autos in Numbers</h3>
        <ul id="numberList">
            <li>
-               <p id="soldCars">9,122</p> <small>Sold Cars</small>
+               <p id="soldCars"></p> <small>Available Cars</small>
            </li>
            <li>
-               <p id="ongoingAuction">1,122,074</p> <small>Ongoing Auction</small>
+               <p id="ongoingAuction">{{ $product_count }}</p> <small>Ongoing Auction</small>
            </li>
            <li>
-               <p id="registeredDealer">201,905</p> <small>Registered Car Dealer</small>
+               <p id="registeredDealer"></p> <small>Registered Car Dealer</small>
            </li>
            <li>
                <p id="blacklist">201,905</p> <small>Blacklist</small>
@@ -272,18 +272,18 @@
 {{--  </div>--}}
 
   <!-- ------------------------------------------------------------ -->
-  <div class="why">
-    <div class="why_content">
-      <h2>Why E-Autos</h2>
-      <ul class="load">
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <span>Waiting for Content</span>
-      </ul>
-    </div>
-  </div>
+{{--  <div class="why">--}}
+{{--    <div class="why_content">--}}
+{{--      <h2>Why E-Autos</h2>--}}
+{{--      <ul class="load">--}}
+{{--        <li></li>--}}
+{{--        <li></li>--}}
+{{--        <li></li>--}}
+{{--        <li></li>--}}
+{{--        <span>Waiting for Content</span>--}}
+{{--      </ul>--}}
+{{--    </div>--}}
+{{--  </div>--}}
   <!-- ----------------------------------------- -->
   <!-- -------------------------------------------------- -->
 
@@ -411,12 +411,15 @@ https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js
    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
    <script>
        $(document).ready(function() {
+           const productCount = @json($product_count);
+           const  auction_count = @json($auction_count);
+           const  dealers = @json($dealers);
            $(window).scroll(function() {
                // Check if the number list is visible in the viewport
                if ($('#numberList').visible(true)) {
                    // Increment numbers with animation
                    $('#soldCars').prop('Counter', 0).animate({
-                       Counter: 9122
+                       Counter: productCount
                    }, {
                        duration: 2000,
                        easing: 'swing',
@@ -426,7 +429,8 @@ https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js
                    });
 
                    $('#ongoingAuction').prop('Counter', 0).animate({
-                       Counter: 1122074
+
+                       Counter: auction_count
                    }, {
                        duration: 2000,
                        easing: 'swing',
@@ -436,7 +440,7 @@ https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js
                    });
 
                    $('#registeredDealer').prop('Counter', 0).animate({
-                       Counter: 201905
+                       Counter: dealers
                    }, {
                        duration: 2000,
                        easing: 'swing',

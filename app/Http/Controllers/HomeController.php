@@ -29,6 +29,8 @@ class HomeController extends Controller
 
         $getDealers = User::where('role', 'dealer')->take(5)->select('name', 'image', 'id')->get();
 
+        $getDealersCount = User::where('role', 'dealer')->count();
+
 
         $products  = Product::with('brand', 'images', 'categories')->where('is_approved', 1)->take(8)->get();
 
@@ -42,15 +44,14 @@ class HomeController extends Controller
             ->take(4) // Limit the number of results to 5
             ->get(); // Execute the query and retrieve the results
 
-//        $product_count = $products->count();
-//        $auction_count = Auction::all()->count();
-//        $users  =User::all()->count();
-//        'users' => $users, 'auction_count' => $auction_count, 'product_count' => $product_count,
+        $allProducts  = $products->count() ?? 0;
+
+        $auction_count = Auction::all()->count() ?? 0;
 
         $featuredProvider = User::where('is_featured', 1)->take(5)->select('name', 'image', 'id')->take(4)->get();
 
 
-        return view('home.index', ['brands' => $brands, 'featuredProvider' => $featuredProvider,   'featuredProducts' => $featuredProducts,  'groups' => $groups,  'blogs' => $blogs,  'products' => $products, 'getDealers' => $getDealers]);
+        return view('home.index', ['brands' => $brands, 'auction_count' => $auction_count, 'dealers' => $getDealersCount,  'product_count' => $allProducts,  'featuredProvider' => $featuredProvider,   'featuredProducts' => $featuredProducts,  'groups' => $groups,  'blogs' => $blogs,  'products' => $products, 'getDealers' => $getDealers]);
     }
 
 
