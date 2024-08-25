@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('users')->middleware( 'userNotify', 'auth', 'strictlyUsers')->group(function () {
 
     Route::get('/index', [Dashboard::class, 'index'])->name('user.index');
+    Route::get('/verify', [Dashboard::class, 'verify'])->name('user.verify');
     Route::get('/product-create', [Dashboard::class, 'product_create'])->middleware('userProfileCompleted')->name('user.product.index');
     Route::post('/save-user-product', [Dashboard::class, 'product_save'])->name('user.product.save');
     Route::delete('/product/delete/{id}', [Dashboard::class, 'delete_product'])->name('users.product.delete');

@@ -628,6 +628,7 @@ class ComposerStaticInitfe33f98a750b8c5a51b30c78bd3fab21
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Models\\ValueAsset' => __DIR__ . '/../..' . '/app/Models/ValueAsset.php',
         'App\\Models\\ValueDocs' => __DIR__ . '/../..' . '/app/Models/ValueDocs.php',
+        'App\\Models\\Verification' => __DIR__ . '/../..' . '/app/Models/Verification.php',
         'App\\Notifications\\AlertAdminOfActivities' => __DIR__ . '/../..' . '/app/Notifications/AlertAdminOfActivities.php',
         'App\\Notifications\\CommentNotification' => __DIR__ . '/../..' . '/app/Notifications/CommentNotification.php',
         'App\\Notifications\\ManagePartNotification' => __DIR__ . '/../..' . '/app/Notifications/ManagePartNotification.php',

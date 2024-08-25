@@ -53,6 +53,16 @@ class Dashboard extends Controller
     }
 
 
+
+    public function verify(){
+
+
+        return view('users.verify');
+    }
+
+
+
+
     public  function product_save(Request $request){
 
 

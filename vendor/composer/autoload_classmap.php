@@ -79,6 +79,7 @@ return array(
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',
     'App\\Models\\ValueAsset' => $baseDir . '/app/Models/ValueAsset.php',
     'App\\Models\\ValueDocs' => $baseDir . '/app/Models/ValueDocs.php',
+    'App\\Models\\Verification' => $baseDir . '/app/Models/Verification.php',
     'App\\Notifications\\AlertAdminOfActivities' => $baseDir . '/app/Notifications/AlertAdminOfActivities.php',
     'App\\Notifications\\CommentNotification' => $baseDir . '/app/Notifications/CommentNotification.php',
     'App\\Notifications\\ManagePartNotification' => $baseDir . '/app/Notifications/ManagePartNotification.php',
