@@ -10,11 +10,10 @@
 
         <!-- Page Heading -->
         <div class="mb-4">
-            <h1 class="h3 text-gray-800">Post a Vehicle</h1>
-            <span class="py-2 px-4 bg-white text-dark rounded">Sell your car</span>
+            <h1 class="h3 text-gray-800">Request Verification</h1>
         </div>
 
-        <form class="p-4" action="" method="POST" enctype="multipart/form-data">
+        <form class="p-4" action="{{route('user.verify.store')}}" method="POST" enctype="multipart/form-data">
             @csrf
             <!-- Informative Note -->
             <div class="alert alert-info" role="alert">

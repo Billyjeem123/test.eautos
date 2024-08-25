@@ -149,4 +149,10 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(BussinessServiceList::class, 'business_services', 'user_id', 'bussiness_name');
     }
+
+    public function verification()
+    {
+        return $this->hasOne(Verification::class);
+    }
+
 }

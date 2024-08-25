@@ -105,6 +105,13 @@
           <span>Message</span></a>
       </li>
 
+
+        <li class="nav-item">
+            <a class="nav-link" href="{{route('user.verify')}}">
+                <i class="fas fa-fw fa-file"></i>
+                <span>Request Verification</span></a>
+        </li>
+
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities108"
                aria-expanded="true" aria-controls="collapseUtilities108">

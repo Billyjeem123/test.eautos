@@ -11,6 +11,9 @@ use App\Models\Report;
 use App\Models\RequestCar;
 use App\Models\User;
 use App\Models\ValueAsset;
+use App\Models\Verification;
+use App\Notifications\UserVerified;
+use App\Notifications\UserVerifiedFailed;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Notifications\DatabaseNotification;
@@ -63,7 +66,43 @@ class AdminController extends Controller
             return redirect()->back()->withErrors(['email' => 'Invalid credentials'])->withInput($request->only('email'))
                 ->with('error', 'Invalid credentials'); // Add a flash message to be displayed in the view
         }
+
+
+
     }
+
+    public function approve(Verification $verification): \Illuminate\Http\RedirectResponse
+    {
+        // Update the verification status to 'approved'
+        $verification->status = 'approved';
+        $verification->save();
+
+        // Notify the user that their verification was approved
+        $verification->user->notify(new UserVerified());
+
+        return redirect()->back()->with('success', 'Verification approved successfully and the user has been notified.');
+    }
+
+    public function reject(Request $request, Verification $verification): \Illuminate\Http\RedirectResponse
+    {
+        // Validate the reason
+        $data = $request->validate([
+            'reason' => 'required|string|max:255',
+        ]);
+
+        // Update the verification status to 'rejected' and store the reason
+        $verification->status = 'rejected';
+        $verification->reason_failed = $data['reason'];
+        $verification->save();
+
+        // Notify the user that their verification was rejected
+        $verification->user->notify(new UserVerifiedFailed($data['reason']));
+
+        return redirect()->back()->with('success', 'Verification rejected successfully.');
+    }
+
+
+
 
 
     public function logout()
@@ -72,6 +111,12 @@ class AdminController extends Controller
 
     return redirect()->route('admin.login');
 }
+
+    public function showVerifications()
+    {
+        $users = User::whereHas('verification')->with('verification')->get();
+        return view('admin.verifications', compact('users'));
+    }
 
 
 

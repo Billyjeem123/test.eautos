@@ -192,6 +192,10 @@ Route::prefix('admin')->middleware('auth', 'admin', 'notify')->group(function ()
     Route::put('/category/update/{id}', [CategoryController::class, 'update'])->name('admin.category.update');
     Route::delete('/category/delete/{id}', [CategoryController::class, 'delete'])->name('admin.category.delete');
     Route::get('/post-a-product', [CategoryController::class, 'postProduct'])->name('post.product');
+    Route::get('/verifications', [AdminController::class, 'showVerifications'])->name('admin.verifications');
+    Route::put('/admin/verifications/approve/{verification}', [AdminController::class, 'approve'])->name('admin.verifications.approve');
+    Route::put('/admin/verifications/reject/{verification}', [AdminController::class, 'reject'])->name('admin.verifications.reject');
+
 
     #Subcategory Routes
 

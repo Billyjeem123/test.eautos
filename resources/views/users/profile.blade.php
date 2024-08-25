@@ -17,6 +17,7 @@
         <!-- Page Heading -->
         <h1 class="h3 mb-0 text-gray-800">Hello {{$profile->name}}</h1>
         <h6 class="h6 mb-4 text-gray-800">Joined  {{$profile->created_at->format('M, Y')}}</h6>
+        <h6 class="h6 mb-4 text-gray-800">Verification status : {{$status}}  </h6>
         <div class="container bg-gray-200 py-4 rounded">
             <div class="d-flex justify-content-center py-3">
                 <a class="btn rounded-0 px-sm-5 bg-primary" id="profileBtn" href="javascript:void(0)" style="color: #ffffff;">My
@@ -34,6 +35,7 @@
                     <p class="p-0 m-1 h5" style="color: #000000;">{{$profile->phone}}</p>
                     <p class="p-0 m-1 h5" style="color: #000000;">Dial Code: 234</p>
                     <p class="p-0 m-1 h5" style="color: #000000;">{{$profile->email}}</p>
+                    <p class="p-0 m-1 h5" style="color: #000000;">Verification status : {{$status}} </p>
                 </div>
             </div>
             <form class="" id="editProfile" style="display: none;"  action="{{route('update.profile.user')}}" method="POST" enctype="multipart/form-data">

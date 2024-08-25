@@ -172,6 +172,16 @@
           <span>Message</span></a>
       </li>
 
+
+        <li class="nav-item">
+            <a class="nav-link" href="{{route('admin.verifications')}}">
+                <i class="fas fa-fw fa-envelope"></i>
+                <span>Verifications</span></a>
+        </li>
+
+
+
+
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities1067"
                aria-expanded="true" aria-controls="collapseUtilities1067">

@@ -18,6 +18,7 @@ use App\Models\StolenCar;
 use App\Models\SubCategory;
 use App\Models\User;
 use App\Models\ValueAsset;
+use App\Models\Verification;
 use App\Notifications\AlertAdminOfActivities;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -182,7 +183,10 @@ class Dashboard extends Controller
 
         $profile  = User::find($profileid);
 
-        return view('users.profile', ['profile' => $profile]);
+        $status = Verification::where('user_id', $profileid)->value('status') ?? "pending";
+
+
+        return view('users.profile', ['profile' => $profile, 'status' => $status]);
     }
 
 
