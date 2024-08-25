@@ -115,12 +115,15 @@
                             </div>
                         </div>
                         <div class="card_footer">
-                            <h6>Compare</h6>
+                            <!--<h6>Compare</h6>-->
+                            <!--<a href="#" style="padding: 8px 20px;-->
+                            <!--background: #d3d3d3; text-decoration: none;-->
+                            <!--color: #000; border-radius: 5px; font-size: 13px; font-weight: bold;">Compare</a>-->
                             <span>
-                <i class="fa-regular fa-heart"></i>
+                <!--<i class="fa-regular fa-heart"></i>-->
 {{--                <i class="fa fa-share"></i>--}}
 
-            </span>
+                           </span>
                         </div>
                     </div>
                 @empty

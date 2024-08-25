@@ -4,13 +4,11 @@
   <div class="card_group">
     <div class="card">
       <h6>About</h6><br>
-      <p>Lorem ipsum dolor sit amet consectetur. Ullamcorper bibendum diam sapien faucibus. Dolor in nibh malesuada
-        pharetra aenean eu rhoncus. Non tortor sagittis metus vitae nunc. Varius congue faucibus lacus pharetra nisl
-        risus. Bibendum integer fringilla id ante fusce varius eget.</p><br><br>
+      <p>E-Autos is your one-stop shop. We pride ourselves on offering a vast selection, competitive prices, and exceptional customer service to ensure you find exactly what you need.</p><br><br>
       <a href="#!">Learn More</a>
     </div>
     <div class="card">
-      <h6>Services</h6>
+      <h6>Services</h6><br>
       <nav class="footer_nav">
           <ul>
               @foreach($categories as $category)
@@ -28,7 +26,8 @@
                   <li><a href="javascript:void(0)">Car Service</a></li>
                   <li><a href="{{route('scrapy-yard')}}">Scrapyard</a></li>
                   <li>
-                      <a href="{{ route('value.vehicle') }}" class="{{ request()->routeIs('value.vehicle') ? 'active' : '' }}">Value Asset</a>
+                      <a href="{{ route('value.vehicle') }}">Value Asset</a>
+                      <!--<a href="{{ route('value.vehicle') }}" class="{{ request()->routeIs('value.vehicle') ? 'active' : '' }}">Value Asset</a>-->
                   </li>
 
                   <li>
@@ -37,6 +36,7 @@
 
           </ul>
         <ul class="">
+          <li><a href="#!">About Us</a></li>
           <li><a href="{{route('privacy')}}">Privacy Police</a></li>
           <li><a href="{{route('terms_condition')}}">Terms and Conditions</a></li>
           <li><a href="{{route('contact')}}">Contact Us</a></li>

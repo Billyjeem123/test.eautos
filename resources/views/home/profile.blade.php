@@ -125,14 +125,29 @@
             <img src="https://cdn.pixabay.com/photo/2018/11/13/21/43/avatar-3814049_1280.png" alt="">
         </div>
         <div class="card">
-            <h2>{{ $profile->name }} - {{ $carsCount }} Cars</h2><br>
+            <h2 style="display: flex; justify-content: start;
+            align-items: center; gap: 3px;">
+                {{ $profile->name }} - {{ $carsCount }} Cars 
+                <span style="font-size: 13px; background: #f2f2f2; 
+                border-radius: 10px; padding: 4px 8px; display: flex; 
+                justify-content: start; align-items: center; width: fit-content;">
+                    Verified
+                    <img src="https://img.icons8.com/?size=48&id=98A4yZTt9abw&format=png" width="20px" />
+                </span>
+                <!--    <span style="font-size: 13px; background: #f2f2f2; -->
+                <!--border-radius: 10px; padding: 4px 8px; display: flex; -->
+                <!--justify-content: start; align-items: center; width: fit-content;">-->
+                <!--    Not-verified-->
+                <!--    <img src="https://img.icons8.com/?size=48&id=13742&format=png" width="20px" />-->
+                <!--</span>-->
+            </h2><br>
 
             <div class="card_info">
                 <img src="https://cdn.pixabay.com/photo/2018/11/13/21/43/avatar-3814049_1280.png" width="" alt="">
                 <div>
-                    <p><span><i class="fa fa-map-marker"></i></span>&nbsp;&nbsp;  {{$profile->business_state }} ({{rand(5, 20)}} miles)</p>
-                    <p><span><i class="fa fa-calendar"></i></span>&nbsp;&nbsp; Joined {{ $profile->created_at->format('F j, Y') }}</p>
-                    <p><span><i class="fa fa-calendar"></i></span>&nbsp;&nbsp; Reviews {{ $totalReviews }}</p>
+                    <p><span><i class="fa fa-map-marker-alt"></i></span>&nbsp;&nbsp;  {{$profile->business_state }} ({{rand(5, 20)}} miles)</p>
+                    <p><span><i class="fa fa-user-plus"></i></span>&nbsp;&nbsp; Joined {{ $profile->created_at->format('F j, Y') }}</p>
+                    <p><span><i class="fa fa-magnifying-glass"></i></span>&nbsp;&nbsp; Reviews {{ $totalReviews }}</p>
                     <p><span><i class="fa fa-user"></i></span>&nbsp;&nbsp; UserId  {{ $profile->id }}</p>
                     @if ($reportsCount > 0)
                         <p><span><i class="fa fa-exclamation-triangle"></i></span>&nbsp;&nbsp; Reported {{ $reportsCount }} times</p>
@@ -140,9 +155,9 @@
                         <p><span><i class="fa fa-exclamation-triangle"></i></span>&nbsp;&nbsp; Reported 0 times</p>
                     @endif
 
-                    <p><span><i class="fa fa-envelope"></i></span>&nbsp;&nbsp; {{ $profile->email }}</p>
-                    <p><span><i class="fa fa-phone"></i></span>&nbsp;&nbsp;<a style="color:#000;" href="tel: {{ $profile->phone }}">{{ $profile->phone }}</a></p>
-                    <p class="experience"><a href="#">Experience</a>&nbsp;&nbsp; Over {{ $profile->experience }}</p>
+                    <p><span><i class="fa fa-envelope"></i></span>&nbsp;&nbsp;<a href="mailto:{{ $profile->email }}">{{ $profile->email }}</a></p>
+                    <p><span><i class="fa fa-phone"></i></span>&nbsp;&nbsp;<a style="" href="tel: {{ $profile->phone }}">{{ $profile->phone }}</a></p>
+                    <p class="experience"><a>Experience</a>&nbsp;&nbsp; Over {{ $profile->experience }}</p>
                 </div>
             </div><br>
             <div class="abt">
@@ -150,14 +165,15 @@
                 <p>{{$profile->about}}</p>
             </div><br>
             <!--<span class="share"><i class="fa fa-share"></i>&nbsp;&nbsp; <strong>Share</strong></span><br>-->
-            <span style="display: flex;">
+            <span style="display: flex; gap: 3px;">
             <a href="#" class="share" style="color: #000; text-decoration: none;"><i class="fab fa-facebook"></i>&nbsp;&nbsp; <strong></strong></a>
             <a href="#" class="share"  style="color: #000; text-decoration: none;"><i class="fab fa-instagram"></i>&nbsp;&nbsp; <strong></strong></a>
             <a href="#" class="share"  style="color: #000; text-decoration: none;"><i class="fab fa-twitter"></i>&nbsp;&nbsp; <strong></strong></a>
+            <a href="https://wa.me/{{ $profile->phone }}" class="share"  style="color: #000; text-decoration: none;"><i class="fab fa-whatsapp"></i>&nbsp;&nbsp; <strong></strong></a>
             </span>
 
             <div class="card_footer">
-                <a id="connect">Connect</a><a id="report">Report</a>
+                <a id="connect" style="cursor: pointer;">Connect</a><a style="cursor: pointer;" id="report">Report</a>
             </div>
         </div>
     </div>
@@ -309,6 +325,15 @@
 
     <div class="time container">
         <div class="card_group">
+             <div class="card" style="display: flex; 
+            justify-content: center; align-items: center;">
+                <!--<img src="/home/images/map2.png" alt="">-->
+            <!--<a href="#">See Directions</a>-->
+                <div style="text-align: center;">
+                    <p style="font-size: 18px; display: block;"><i class="fa fa-map-marker-alt"></i> Office Address</p>
+                    <h2>Lorem Ipsum</h2>
+                </div>
+            </div>
             <div class="card">
                 <h4>Opening Hours</h4>
                 <p><span>Monday</span><span>10:00 - 15:00</span></p>
@@ -317,10 +342,6 @@
                 <p><span>Thursday</span><span>10:00 - 15:00</span></p>
                 <p><span>Friday</span><span>10:00 - 15:00</span></p>
                 <p><span>Saturday</span><span>10:00 - 15:00</span></p>
-            </div>
-            <div class="card img">
-                <img src="/home/images/map2.png" alt="">
-                <a href="">See Directions</a>
             </div>
         </div>
     </div>

@@ -10,6 +10,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
     <style>
+    .status ul li a{
+        text-decoration: none;
+        color: inherit;
+    }
         .short-video-container {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -60,22 +64,22 @@
         }
 
         .pagination-section ul.pagination li.page-item a.page-link {
-            color: #007bff;
+            color: #000000;
             text-decoration: none;
             padding: 5px 10px;
-            border: 1px solid #007bff;
+            border: 1px solid #000000;
             border-radius: 3px;
         }
 
         .pagination-section ul.pagination li.page-item a.page-link:hover {
-            background-color: #007bff;
+            background-color: #000000;
             color: #fff;
         }
 
         .pagination-section ul.pagination li.page-item.active a.page-link {
-            background-color: #007bff;
+            background-color: #000000;
             color: #fff;
-            border-color: #007bff;
+            border-color: #000000;
         }
 
     </style>
@@ -153,24 +157,34 @@
     <h3>Service Providers</h3>
     <ul>
         <li>
-            <img src="/home/images/ellipses/Ellipse 61.png" width="" alt="">
-            <p>Mechanics</p>
+            <a href="#">
+                <img src="/home/images/ellipses/Ellipse 61.png" width="" alt="">
+                <p>Mechanics</p>
+            </a>
         </li>
         <li>
-            <img src="/home/images/ellipses/Ellipse 61-1.png" width="" alt="">
-            <p>Car Engineers</p>
+            <a href="#">
+                <img src="/home/images/ellipses/Ellipse 61-1.png" width="" alt="">
+                <p>Car Engineers</p>
+            </a>
         </li>
         <li>
-            <img src="/home/images/ellipses/Ellipse 61-2.png" width="" alt="">
+            <a href="#">
+                  <img src="/home/images/ellipses/Ellipse 61-2.png" width="" alt="">
             <p>Electricians</p>
+            </a>
         </li>
         <li>
-            <img src="/home/images/ellipses/Ellipse 61-3.png" width="" alt="">
+            <a href="#">
+                <img src="/home/images/ellipses/Ellipse 61-3.png" width="" alt="">
             <p>Vulcanizers</p>
+            </a>
         </li>
         <li>
-            <img src="/home/images/ellipses/Ellipse 61-4.png" width="" alt="">
+            <a href="#">
+                <img src="/home/images/ellipses/Ellipse 61-4.png" width="" alt="">
             <p>Panel Beaters</p>
+            </a>
         </li>
 
     </ul>
@@ -195,7 +209,8 @@
 
                     <a href="{{route('user.profile', $user->id )}}">
                         <div class="card_img" style="background: url('{{ !empty($user->image) ? $user->image : 'https://cdn.pixabay.com/photo/2018/11/13/21/43/avatar-3814049_1280.png' }}') no-repeat;">
-                            <p class="verify"><span><i class="fa fa-check"></i></span> Verified</p>
+                            <!--<p class="verify"><span><i class="fa fa-check"></i></span> Verified</p>-->
+                                <span style="display: block; text-align: end;"><img src="https://img.icons8.com/?size=48&id=98A4yZTt9abw&format=png" width="30px" /></span>
                         </div>
                     </a>
 

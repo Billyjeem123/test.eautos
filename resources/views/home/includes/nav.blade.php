@@ -1,3 +1,12 @@
+<style>
+    @media screen and (min-width: 2000px) {
+  body{
+      width: 1700px;
+      margin: auto;
+      border: 1px solid #000;
+  }
+}
+</style>
 <marquee
     onmouseover="stop()"
     onmouseout="start()"
@@ -40,7 +49,7 @@
                 width="20px"
                 alt=""
             />&nbsp;<span style="color: #ffffff">NGN</span>
-            <span style="color: #ff0303">1.00</span>
+            <span style="color: #ff0303">1,628.26</span>
         </li>
         <!-- -------------------------------- -->
         <li
@@ -67,7 +76,7 @@
                 width="20px"
                 alt=""
             />&nbsp;<span style="color: #ffffff">NGN</span>
-            <span style="color: #ff0303">1.00</span>
+            <span style="color: #ff0303">18.02</span>
         </li>
         <!-- -------------------------------- -->
         <li
@@ -94,7 +103,7 @@
                 width="20px"
                 alt=""
             />&nbsp;<span style="color: #ffffff">NGN</span>
-            <span style="color: #ff0303">1.00</span>
+            <span style="color: #ff0303">207.09</span>
         </li>
         <!-- -------------------------------- -->
         <li
@@ -121,7 +130,7 @@
                 width="20px"
                 alt=""
             />&nbsp;<span style="color: #ffffff">NGN</span>
-            <span style="color: #ff0303">1.00</span>
+            <span style="color: #ff0303">82.52</span>
         </li>
         <!-- -------------------------------- -->
         <li
@@ -148,7 +157,7 @@
                 width="20px"
                 alt=""
             />&nbsp;<span style="color: #ffffff">NGN</span>
-            <span style="color: #ff0303">1.00</span>
+            <span style="color: #ff0303">9.5781</span>
         </li>
         <!-- -------------------------------- -->
         <li
@@ -175,7 +184,7 @@
                 width="20px"
                 alt=""
             />&nbsp;<span style="color: #ffffff">NGN</span>
-            <span style="color: #ff0303">1.00</span>
+            <span style="color: #ff0303">97.41</span>
         </li>
     </ul>
 </marquee>

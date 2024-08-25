@@ -77,14 +77,39 @@
     </ul>
 </div>
 <header class="hero">
+    <style>
+        .image-wrapper .main-image{
+            width: 85%;
+            height: auto; 
+            object-fit: cover;
+        }
+        .image-nav .nav-image{
+            width: 100%;
+            height: auto; 
+            object-fit: cover;
+        }
+        
+        @media (max-width:768px){
+        .image-wrapper .main-image{
+            width: 100%;
+            height: auto; 
+            object-fit: cover;
+        }
+         .image-nav .nav-image{
+            width: 50%;
+            height: auto; 
+            object-fit: cover;
+        }
+        }
+    </style>
     <div class="image-wrapper">
         <!-- Main image -->
-        <img src="{{ $products->images[0]['image'] }}" class="main-image" style="width: 100%; height: auto; object-fit: cover;" alt="">
+        <img src="{{ $products->images[0]['image'] }}" class="main-image" alt="">
 
         <!-- Image navigation -->
         <div class="image-nav">
             @foreach($products->images as $image)
-                <img src="{{ $image['image'] }}" class="nav-image" style="width: 100%; height: auto; object-fit: cover;" alt="">
+                <img src="{{ $image['image'] }}" class="nav-image" alt="">
             @endforeach
         </div>
     </div>
@@ -101,7 +126,7 @@
                 <span style="font-weight: bold; font-size: 18px; color: #394293;">₦ {{ number_format($products->price,2) }}</span>
             </p>
         </div>
-        <a href=''>Car Page</a>
+        <a href="#">Compare</a>
     </div>
     <!-- --------------------------------------------------- -->
     <section>
@@ -109,7 +134,7 @@
             <ul>
                 <h3>Vehicle Details</h3>
                 <hr>
-                <li><strong>Property Type</strong> <span>{{$categoryName}}</span></li>
+                <li><strong>Vehicle Type</strong> <span>{{$categoryName}}</span></li>
                 <hr>
                 <li><strong>Essential Verified</strong> <span>Yes</span></li>
                 <hr>
@@ -117,7 +142,7 @@
                 <hr>
                 {{--                <li><strong>Car ID</strong> <span>EP3456</span></li>--}}
                 <li>
-                    <strong>Car Document</strong>
+                    <strong>Valid Documents</strong>
                     <span>{{ $products->car_docs == 1 ? "YES" : "NO" }}</span>
                 </li>
 
@@ -136,7 +161,7 @@
                 <hr>
                 <li><strong>Number of Views</strong> <span>{{$products->views}}</span></li>
                 <hr>
-                <li><strong>Car Receipt</strong> <span>{{ $products->car_receipt == 1 ? "YES" : "NO" }}</span></li>
+                <li><strong>Receipt</strong> <span>{{ $products->car_receipt == 1 ? "YES" : "NO" }}</span></li>
                 <hr>
                 <li><strong>Mileage</strong> <span>{{$products->mileage}}</span></li>
             </ul>
@@ -148,14 +173,51 @@
         </aside>
         <aside class="aside2">
             <div class="card_group">
-                <div class="card"></div>
-                <div class="card">
+                <!--<div class="card"></div>-->
+                <div class="">
                     <h3>{{$products->bussiness_name ?? "E Autos Automobile"}}</h3>
-
                 </div>
             </div>
-            <p><i class="fa fa-phone"></i>&nbsp; <span>{{$products->user->phone}}</span></p><br>
-            <p><i class="fa fa-envelope"></i>&nbsp; <span>{{$products->user->email}}</span></p>
+            <div>
+                <a href="#" style="flex-wrap:wrap; gap:10px;">
+                    <span><i class="fa fa-user"></i></span>
+                    View Dealer Profile<br>
+                    <span style="font-size: 13px; background: #f2f2f2; 
+                border-radius: 10px; padding: 4px 8px; display: flex; 
+                justify-content: start; align-items: center; width: fit-content;">
+                    Verified
+                    <img src="https://img.icons8.com/?size=48&id=98A4yZTt9abw&format=png" width="20px" />
+                </span>
+                <!--    <span style="font-size: 13px; background: #f2f2f2; -->
+                <!--border-radius: 10px; padding: 4px 8px; display: flex; -->
+                <!--justify-content: start; align-items: center; width: fit-content;">-->
+                <!--    Not-verified-->
+                <!--    <img src="https://img.icons8.com/?size=48&id=13742&format=png" width="20px" />-->
+                <!--</span>-->
+                </a>
+            </div>
+            <p><span><i class="fa fa-map-marker-alt"></i></span>&nbsp;&nbsp; {{$products->location . ' ' . $products->address}}</p><br>
+            <p><span><i class="fa fa-road"></i></span>&nbsp;&nbsp; 10 Miles Away</p><br>
+            <p><span><i class="fa fa-phone"></i></span>&nbsp;&nbsp;
+            <a style="margin:0; text-decoration: none; padding: 0 !important; border:none !important; display:inline-flex !important; font-weight:500; text-decoration:underline;" 
+            href="tel: {{$products->user->phone}}">{{$products->user->phone}}</a></p><br>
+             <p><span><i class="fa fa-envelope"></i></span>&nbsp;&nbsp;
+             <a style="margin:0; text-decoration: none; padding: 0 !important; border: none !important; display: inline-flex !important; font-weight:500; text-decoration:underline;" 
+             href="mailto:{{$products->user->email}}">{{$products->user->email}}</a></p>
+              <span style="display: flex; gap: 3px; justify-content: start !important; align-items: center; width: fit-content;">
+            <a href="#" class="share" 
+            style="color: #000; text-decoration:none; padding:0 !important; border:none !important; font-size: 20px;">
+                <i class="fab fa-facebook"></i>&nbsp;&nbsp; <strong></strong></a>
+            <a href="#" class="share" 
+            style="color: #000; text-decoration:none; padding:0 !important; border:none !important; font-size: 20px;">
+                <i class="fab fa-instagram"></i>&nbsp;&nbsp; <strong></strong></a>
+            <a href="#" class="share"
+            style="color: #000; text-decoration:none; padding:0 !important; border:none !important; font-size: 20px;">
+                <i class="fab fa-twitter"></i>&nbsp;&nbsp; <strong></strong></a>
+            <a href="https://wa.me/{{$products->user->phone}}" class="share"
+            style="color: #000; text-decoration:none; padding:0 !important; border:none !important; font-size: 20px;">
+                <i class="fab fa-whatsapp"></i>&nbsp;&nbsp; <strong></strong></a>
+            </span>
             <a>To Schedule Meeting &nbsp; <i class="fa fa-arrow-down"></i></a>
 
             <form id="contactForm" action="{{ route('client.reachout') }}" method="POST">
@@ -251,7 +313,7 @@
     <!-- --------------------------------------------------- -->
     <!-- ----------------------------------------- -->
     <div class="similar container">
-        <h3><span>Similar {{$categoryName}}</span> <a href="">See more</a></h3><br>
+        <h3><span>Similar {{$categoryName}}</span></h3><br>
         <div class="card_group">
 
             <div class="card_group">
@@ -269,20 +331,20 @@
                                 <ul>
                                     <li>{{$product->subcategories->name}}</li>
                                     <li>{{$product->cylinder}}</li>
-                                    <li style="background-color: {{ $product->color }}; border: none; color: #ffffff;">{{ $product->color }}</li>
+                                    <li style="background-color: {{ $product->color }}; border: none; color: grey;">{{ $product->color }}</li>
                                     <li>Fuel</li>
                                 </ul>
                                 <h5> ₦ {{ number_format($product->price,2) }}</h5>
                                 <p>{{ $product->location }} ({{ $product->mileage }})</p>
                             </div>
                         </div>
-                        <div class="card_footer">
-                            <h6>Compare</h6>
-                            <span>
-                <i class="fa-regular fa-heart"></i>
-                <i class="fa fa-share"></i>
-              </span>
-                        </div>
+              <!--          <div class="card_footer">-->
+              <!--              <h6>Compare</h6>-->
+              <!--              <span>-->
+              <!--  <i class="fa-regular fa-heart"></i>-->
+              <!--  <i class="fa fa-share"></i>-->
+              <!--</span>-->
+              <!--          </div>-->
                     </div>
                 @endforeach
 

@@ -55,7 +55,7 @@
 <main>
     <ul class="part-nav">
             @forelse ($partCategories as $partcategory)
-                <li><a href="">{{ $partcategory->part_category }}</a></li>
+                <li><a>{{ $partcategory->part_category }}</a></li>
             @empty
                 <!-- This will be displayed if $partcategories is empty -->
                 <p>Category not available at the moment</p>
@@ -85,7 +85,7 @@
 
         </aside>
         <aside class="aside2">
-            <h3><span>Car Part</span> <a href="#">See more</a></h3>
+            <h3><span>Parts</span> <a href="#">See more</a></h3>
             <div class="card-group">
 
                @foreach($parts as $part)

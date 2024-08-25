@@ -4,98 +4,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us</title>
+    <title>Privacy Policy</title>
     <link rel="icon" type="image/x-icon" href="/home/images/logo2.png">
     <link rel="stylesheet" href="/home/css/privacy.css">
     <!--<link rel="stylesheet" href="/home/css/scrapy-yard.css">-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
-<style>
-    @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
-    *{
-        padding: 0;
-        margin: 0;
-        box-sizing: border-box;
-        font-family: "Inter", sans-serif;
-    }
-    .hero{
-        width: 100%;
-        min-height: 60vh;
-        background: url(https://images.unsplash.com/photo-1563906267088-b029e7101114?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YWJvdXQlMjB1c3xlbnwwfHwwfHx8MA%3D%3D) no-repeat;
-        background-position: center;
-        background-size: cover;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    .hero h1{
-        color: #fff;
-    }
-    main{
-        padding: 1rem;
-    }
-    main div{
-        padding: 10px;
-    }
-    main h2{
-        text-align: center;
-    }
-    .about div{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 10px;
-    }
-    .about p{
-        width: 45%;
-        display: block;
-    }
-    .img{
-        display: block;
-        width: 45%;
-        height: 150px;
-        background: url(https://images.unsplash.com/photo-1455849318743-b2233052fcff?q=80&w=1469&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D) no-repeat;
-        background-position: center;
-        background-size: cover;
-    }
-</style>
+
 <body>
 @include('home.includes.nav')
 <header class="hero">
     <div class="">
-        <h1>About E-Autos</h1>
+        <h1>Privacy Policy</h1>
     </div>
-
 </header>
 <main>
-    <div class="about">
+    <div>
+        <h3>Privacy policy</h3><br>
+        <p>We respect your privacy and are committed to protecting your personal information. This privacy policy explains how we collect, use, and disclose personal information from our website.</p>
+    </div>
+    <div>
+        <h3>Information We Collect</h3><br>
+        <p>Contact information (name, email, phone number).</p>
+        <p>Vehicle information (make, model, year, VIN).</p>
+        <p>Location information (city, state).</p>
+        <p>Login information (username, password).</p>
+    </div>
+    <div>
+        <h3>How We Use Your Information</h3><br>
+        <p>To respond to your inquiries and requests.</p>
+        <p>To process transactions and facilitate vehicle sales.</p>
+        <p>To improve our website and services.</p>
+    </div>
+    <div>
+        <h3>How We Share Your Information</h3><br>
+        <p>With third-party vendors and service providers (e.g. payment processors, advertising platforms).</p>
+        <p>With vehicle manufacturers and dealerships (for warranty and recall purposes).</p>
+        <p>With law enforcement and regulatory agencies (as required by law).</p>
+    </div>
+    <div>
+        <h3>Data and Security</h3><br>
+        <p>We use industry-standard encryption and security measures to protect your personal information.</p>
+        <p>We comply with all applicable data protection regulations and laws.</p>
+    </div>
+    <div>
+        <h3>Cookie Policy</h3><br>
+        <p>We use cookies to improve your browsing experience and personalize our services.</p>
+    </div>
+    <div>
+        <h3>Terms and Condition</h3><br>
+        <p>By using our website, you agree to our terms and conditions.</p>
+        <p>We reserve the right to modify our terms and conditions at any time.</p>
+    </div>
+    <div>
+        <h3>Disclaimer</h3><br>
+        <p>We make no warranties or representations as to the accuracy or completeness of our website content.</p>
+        <p>We are not responsible for any errors or omissions in our website content.</p>
+    </div>
+     <div class="contact">
+        <h3>Contact Us</h3><br>
+        <p>If you have any questions or concerns about our privacy policy or terms and conditions, please contact us at:</p>
         <div>
-            <p><strong style="text-align: center; font-size: 20px; width: 100%; display: flex; justify-content: center; margin: 10px 0">About Us <br></strong>
-                Welcome to E-Autos, your ultimate destination for all things automotive. Whether you're in the market for a car, bike, truck, or any vehicle-related parts
-                and accessories, E-Autos is your one-stop shop. We pride ourselves on offering a vast selection, competitive prices, and exceptional customer service to ensure
-                you find exactly what you need.</p>
-            <!--<img src="https://images.unsplash.com/photo-1455849318743-b2233052fcff?q=80&w=1469&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" width="50%" style="border: 1px solid #000;" />-->
-            <span class="img"></span>
+            <ul>
+                <li><span>Phone Number:</span> <span>07000555666</span></li>
+                <li><span>Email:</span> <span>info@essential.ng</span></li>
+            </ul>
         </div>
     </div>
-    <div class="">
-        <h2>Who We Are</h2><br>
-        <p>E-Autos is a team of passionate automotive enthusiasts, experienced professionals, and dedicated customer service representatives.
-            Our collective expertise spans decades in the automotive industry, from vehicle sales to parts and service. We are committed to providing a
-            seamless and satisfying shopping experience for our customers.</p>
-    </div>
-    <div class="">
-        <h2>Our Mission</h2><br>
-        <p>Our mission at E-Autos is to simplify your search for vehicles and vehicle parts by providing a comprehensive, user-friendly platform.
-            We aim to be the go-to resource for automotive needs, ensuring our customers have access to the best products and information available.
-            We strive to create a community where automotive enthusiasts and everyday drivers alike can find everything they need under one roof.</p>
-    </div>
-    <div class="">
-        <h2>What We Offer</h2><br>
-        <ul>
-            <li><strong>Wide Range of Vehicles: </strong>From compact cars and family SUVs to powerful motorcycles and heavy-duty trucks,
-                we offer an extensive inventory to suit all preferences and budgets. Our selection features new and pre-owned vehicles from trusted manufacturers,
-                ensuring quality and reliability.</li>
-        </ul>
-    </div>
 </main>
+@include('home.includes.footer')

@@ -47,7 +47,7 @@
 <!-- ---------------------------- -->
 <main>
     <div class="main-nav">
-        <h3>Select Car Type</h3>
+        <h3>Select Asset Type</h3>
         <ul>
             <li style="margin-bottom: 5px;margin-right: 5px;">
                 <input type="radio" id="new" name="car_type" value="New" style="margin-right: 5px;" required>
@@ -93,7 +93,7 @@
             <label for="file">Choose a file</label>
             <input type="file"  name="images[]" multiple id="file" />
         </div>
-        <h3>Car Information</h3>
+        <h3>Asset Information</h3>
         <div class="form-group">
             <div class="form-control">
                 <label for="brand">Brand</label>

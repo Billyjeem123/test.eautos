@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class Reachout extends Notification
+class ReachOut extends Notification
 {
     use Queueable;
 
@@ -16,10 +16,13 @@ class Reachout extends Notification
      *
      * @return void
      */
-    public function __construct()
+    public mixed $receiverMail;
+
+    public function __construct($receiverMail)
     {
-        //
+        $this->receiverMail  = $receiverMail;
     }
+
 
     /**
      * Get the notification's delivery channels.
@@ -36,30 +39,19 @@ class Reachout extends Notification
      * Get the mail representation of the notification.
      *
      * @param  mixed  $notifiable
-     * @return \Illuminate\Notifications\Messages\MailMessage
+     * @return MailMessage
      */
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+            ->subject('New Interest on Your Asset')
+            ->greeting('Dear Esteemed User,')
+            ->line( 'Congratulations! You have received a new notification regarding your asset. Please log in to your dashboard to view the details.')
+            ->line('You can view all the necessary details and records in your dashboard.');
     }
 
     /**
      * Get the array representation of the notification.
-     *
-     * @param  mixed  $notifiable
-     * @return array
-     */
-    public function toArray($notifiable)
-    {
-        return [
-            //
-        ];
-    }
-}
-on of the notification.
      *
      * @param  mixed  $notifiable
      * @return array

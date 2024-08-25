@@ -60,9 +60,7 @@
 <main>
     <div class="live_auction">
         <h3>Live Auction</h3><br>
-        <p class="welcome_message">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Assumenda vero aliquam
-            tempore at vitae alias enim
-            animi deleniti ducimus dicta.</p><br>
+        <p class="welcome_message">Get ready for our exclusive car auction! Discover a curated lineup of sleek sports cars, rugged SUVs, and more. Place your live bids now and drive home your dream ride today!</p><br>
         <div class="card_group">
 
             @forelse ($auctions as $auction)

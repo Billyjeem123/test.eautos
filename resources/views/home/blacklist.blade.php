@@ -45,7 +45,7 @@
     <div class="card_group">
         <div class="card blacklisted">
             <div class="text">
-                <h2><span>Blacklisted</span><br> Car Dealers on E-Autos</h2><br>
+                <h2><span>Blacklisted</span><br> Dealers on E-Autos</h2><br>
                 <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cum tempora, ducimus quidem quaerat numquam omnis
                     repudiandae, corrupti obcaecati ipsa fugiat unde perferendis officia est sit consequatur cupiditate, vero
                     distinctio a voluptas doloremque doloribus. Tempora quo nobis repudiandae alias fugiat eveniet?</p>
@@ -67,7 +67,7 @@
 
     <!-- ---------------------------------- -->
     <div class="blacklist container">
-        <h3>Blacklisted Car Dealers</h3>
+        <h3>Blacklisted Dealers</h3>
         <div class="card_group">
             <div class="card">
                 <div class="card_img" style="background: url(/home/images/people/meeting.png) no-repeat;"></div>
@@ -159,7 +159,7 @@
             </div>
         </div>
         <br>
-        <h3>Blacklisted Car Sellers</h3>
+        <h3>Blacklisted Sellers</h3>
         <div class="card_group">
             <div class="card">
                 <div class="card_img" style="background: url(/home/images/people/meeting.png) no-repeat;"></div>
@@ -251,7 +251,7 @@
             </div>
         </div>
         <br>
-        <h3>Blacklisted Car Buyers</h3>
+        <h3>Blacklisted Buyers</h3>
         <div class="card_group">
             <div class="card">
                 <div class="card_img" style="background: url(/home/images/people/meeting.png) no-repeat;"></div>

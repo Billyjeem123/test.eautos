@@ -67,29 +67,68 @@
 
     <ul class="center-item-slider">
       <li class="holder center">
-        <h3>Lorem</h3>
-        <p>loremloremloremloeremememwjfbljvajh</p>
-        <a href="#">Button</a>
+          <span class="holder-img">
+              <img width="100%" src="https://img.freepik.com/free-vector/gradient-breaking-news-logo-design_23-2151180705.jpg?t=st=1724154467~exp=1724158067~hmac=e395008a049d09f676de709d527f58c2d9e7530fe2a1a4fca95c40f170e5c103&w=826" />
+          </span>
+        <h3>E-News</h3>
+        <p>Stay informed with instant access to breaking news and updates from around the globe, tailored to your interests and preferences.</p>
+        <a href="http://essentialnews.ng/">Visit</a>
       </li>
       <li class="holder center">
-        <h3>Lorem</h3>
-        <p>loremloremloremloeremememwjfbljvajh</p>
-        <a href="#">Button</a>
+              <span class="holder-img">
+              <img width="100%" src="https://img.freepik.com/free-vector/cartoon-hall-interior-with-staircase-medieval-royal-castle_88138-1314.jpg?t=st=1724156413~exp=1724160013~hmac=ae2c94f17efad2f3302931f92940b159cc29789a4ba4e9c8a40d2ca6d58b4346&w=826" />
+          </span>
+        <h3>E-Venue</h3>
+        <p>Discover and book the perfect virtual venue for your next online event or gathering, ensuring a seamless and memorable experience.</p>
+        <a href="http://evenue.ng/">Visit</a>
       </li>
       <li class="holder center">
-        <h3>Lorem</h3>
-        <p>loremloremloremloeremememwjfbljvajh</p>
-        <a href="#">Button</a>
+          <span class="holder-img">
+              <img width="100%" src="https://img.freepik.com/free-vector/family-buy-rent-house-from-real-estate-agent-vector-flat-illustration-man-realtor-gives-key-couple-with-kid-landscape-with-building-salesman-customers_107791-11166.jpg?t=st=1724156095~exp=1724159695~hmac=4067b9924789ffda176747651346977f851ee42d547479aecb7e2976c3c457a1&w=900" />
+          </span>
+        <h3>E-Properties</h3>
+        <p>Explore a diverse range of properties available for sale or rent online, making it easy to find your dream home or investment opportunity.</p>
+        <a href="https://eproperties.ng/">Visit</a>
       </li>
       <li class="holder center">
-        <h3>Lorem</h3>
-        <p>loremloremloremloeremememwjfbljvajh</p>
-        <a href="#">Button</a>
+          <span class="holder-img">
+              <img width="100%" src="https://img.freepik.com/free-vector/hotel-staff-concept-illustration_114360-12968.jpg?t=st=1724155983~exp=1724159583~hmac=071a287d4c85396010f170729fd021bbedd7c131da885a7c0858af2c314652c0&w=826" />
+          </span>
+        <h3>E-Bnb</h3>
+        <p>Experience unique stays and accommodations through a curated selection of ebnb hotels, offering comfort and convenience wherever you travel.</p>
+        <a href="https://ebnbhotel.com/">Visit</a>
       </li>
       <li class="holder center">
-        <h3>Lorem</h3>
-        <p>loremloremloremloeremememwjfbljvajh</p>
-        <a href="#">Button</a>
+           <span class="holder-img">
+              <img width="100%" src="https://img.freepik.com/free-vector/man-having-online-job-interview_52683-43379.jpg?t=st=1724155896~exp=1724159496~hmac=c573e31a2eb0ac1f5c28e61b349e60632f4f460f22bb69ba5a960bef623b69d2&w=740" />
+          </span>
+        <h3>E-Jobs</h3>
+        <p>Find your next career opportunity with ease through a comprehensive platform connecting job seekers and employers seamlessly.</p>
+        <a href="https://ebnbhotel.com/">Visit</a>
+      </li>
+      <li class="holder center">
+          <span class="holder-img">
+              <img width="100%" src="https://img.freepik.com/free-vector/character-illustration-business-people_53876-66202.jpg?t=st=1724155798~exp=1724159398~hmac=e7bfb212ac198bbbba85dadab46d1007032d8df89d194f0657dfec9f087238e9&w=740" />
+          </span>
+        <h3>E-Companion</h3>
+        <p>Connect with like-minded individuals or professionals for companionship, collaboration, or shared interests in a safe and supportive online environment.</p>
+        <a href="#!">Visit</a>
+      </li>
+      <li class="holder center">
+           <span class="holder-img">
+              <img width="100%" src="https://img.freepik.com/free-vector/successful-purchase-concept-illustration_114360-1088.jpg?t=st=1724156480~exp=1724160080~hmac=07d29204b7c5eebda522cd6f0cc17b789222019eecfc1bbd4a549cf33ee4322c&w=740" />
+          </span>
+        <h3>E-Direct</h3>
+        <p>Simplify your shopping experience with direct access to products and services from manufacturers or service providers, ensuring quality and reliability.</p>
+        <a href="https://edirect.ng/">Visit</a>
+      </li>
+      <li class="holder center">
+          <span class="holder-img">
+              <img width="100%" src="https://img.freepik.com/free-vector/people-standing-holding-bags-near-shop-front_1262-21283.jpg?t=st=1724155628~exp=1724159228~hmac=c55e57e8c3d485cd4534d959ccdc993dee9fc76ea5b6a4a83bda5e0409ae505b&w=826" />
+          </span>
+        <h3>E-Stores</h3>
+        <p>Browse and shop from a variety of online stores offering everything from fashion and electronics to specialty goods, all in one convenient marketplace.</p>
+        <a href="http://estores.ng/">Visit</a>
       </li>
     </ul>
 
@@ -100,8 +139,11 @@
     <div class="report">
       <span>
         <h3>Report a car Deal Scam</h3>
-        <p>Lorem ipsum dolor, Corporis aliquid consequatur aspernatur at iure
-          voluptas vero inventore similique officiis quia?</p>
+        <p>Have you been the victim of a car deal scam? Unfortunately, it happens more often than
+            we'd like. If you believe you've been scammed, Gather Evidence including all the
+            documents. Keep all paperwork related to the car deal, including receipts, contracts,
+            advertisements, and emails. Write down everything you remember about the scam.
+        </p>
         <a href="{{route('report.show')}}" >Report</a>
       </span>
     </div>
@@ -127,9 +169,9 @@
            <li>
                <p id="registeredDealer"></p> <small>Registered Car Dealer</small>
            </li>
-           <li>
-               <p id="blacklist">201,905</p> <small>Blacklist</small>
-           </li>
+{{--           <li>--}}
+{{--               <p id="blacklist">201,905</p> <small>Blacklist</small>--}}
+{{--           </li>--}}
        </ul>
    </div>
   <!-- -------------------------------------------------- -->

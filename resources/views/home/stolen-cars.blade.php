@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stolen Cars</title>
+    <title>Stolen Vehicles</title>
     <link rel="icon" type="image/x-icon" href="/home/images/logo2.png">
     <link rel="stylesheet" href="/home/css/stolenCars.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -47,7 +47,7 @@
     
     <div class="form_control">
         <form action="{{ route('stolen') }}" method="GET">
-            <h3>Search For Stolen Cars</h3>
+            <h3>Search For Stolen Vehicle</h3>
 {{--            @csrf--}}
             <div class="form_group">
                 <div class="form_card">
@@ -122,7 +122,7 @@
 
     <!-- ---------------------------------- -->
     <div class="stolen container">
-        <h3>Stolen Cars</h3>
+        <h3>Stolen Vehicle</h3>
         <div class="card_group">
             @forelse($stolencars as $car)
                 <div class="card">

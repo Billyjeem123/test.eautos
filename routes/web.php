@@ -76,6 +76,8 @@ Route::group(['middleware' => ['showNavBar']], function () {
     Route::post('/report/user', [ReportController::class, 'store'])->name('report.save_report')->middleware('auth');
     Route::post('/report/user/save', [ReportController::class, 'save_report'])->name('report.save')->middleware('auth');
     Route::get('/suggest-emails', [ReportController::class, 'checkEmail'])->name('suggest.emails');
+     Route::view('/compare', 'home.compare.compare')->name('compare');
+      Route::view('/provider', 'home.compare.provider')->name('provider');
 
 
     #request car

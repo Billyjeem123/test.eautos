@@ -16,9 +16,7 @@
     <div class="card_group">
         <div class="card">
             <h3>Connect With Dealers</h3><br>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut, deserunt nam porro voluptatibus quis harum ex
-                vero nisi officia nostrum inventore earum debitis nulla fugit corrupti error expedita magni similique? Lorem
-                ipsum dolor sit, amet consectetur adipisicing elit. Iure, dolore?</p>
+            <p>You can connect with various car dealers available and reach out to them.</p>
         </div>
         <div class="card">
             <img src="/images/ellipses/red hand.png" alt="">

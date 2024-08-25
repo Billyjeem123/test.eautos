@@ -36,14 +36,14 @@
 
             <div class="form_control">
                 <div class="min-max">
-                    <label for="min" class="for_min"><span><small>Minimum price</small><strong>No Min</strong></span></label>
+                    <label for="min" class="for_min"><span><small>Minimum price</small><strong>No Min₦</strong></span></label>
                     <select name="min_price" id="min">
-                        <option value="">No Min</option>
+                        <option value="" disabled selected>No Min</option>
                         @for ($price = 1000000; $price <= 5000000; $price += 1000000)
-                            <option value="{{ $price }}">₦ {{ number_format($price) }}</option>
+                            <option style="display: flex; flex-direction: row-reverse;" value="{{ $price }}"> {{ number_format($price) }}</option>
                         @endfor
                     </select>
-                    <label for="max" class="for_max"><span><small>Maximum price</small><strong>No Max</strong></span></label>
+                    <label for="max" class="for_max"><span><small>Maximum price</small><strong>No Max₦</strong></span></label>
                     <select name="max_price" id="max">
                         @for ($price = 10000000; $price <= 50000000; $price += 10000000)
                             <option value="{{ $price }}">₦ {{ number_format($price) }}</option>

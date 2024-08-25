@@ -199,7 +199,6 @@ public function toggleBlockUsers($id)
 
 
 
-
     public function uploadProfileImageAndGetLink($request): ?string
     {
         if ($request->hasFile('profile_image')) {

@@ -71,6 +71,7 @@
                             if (response.exists) {
                                 // Email found, set the value of business_name input
                                 $('input[name="business_name"]').val(response.business_name);
+                                toastr.success('User Found.');
                                 $('#emailMessage').removeClass('error').text('');
                             } else {
                                 // Email not found

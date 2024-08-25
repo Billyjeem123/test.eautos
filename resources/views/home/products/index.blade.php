@@ -134,20 +134,20 @@
                                 <ul>
                                     <li>{{ $product->subcategories->name }}</li>
                                     <li>{{ $product->cylinder }}</li>
-                                    <li style="background-color: {{ $product->color }}; border: 1px solid; color: #000;">{{ $product->color }}</li>
+                                    <li style="background-color: {{ $product->color }}; border: 1px solid; color: grey;">{{ $product->color }}</li>
                                     <li>Fuel</li>
                                 </ul>
                                 <h5>₦ {{ number_format($product->price, 2) }}</h5>
                                 <p>{{ $product->location }} ({{ $product->mileage }})</p>
                             </div>
                         </div>
-                        <div class="card_footer">
-                            <h6>Compare</h6>
-                            <span>
-                <i class="fa-regular fa-heart"></i>
-{{--                <i class="fa fa-share"></i>--}}
-            </span>
-                        </div>
+<!--                        <div class="card_footer">-->
+<!--                            <h6>Compare</h6>-->
+<!--                            <span>-->
+<!--                <i class="fa-regular fa-heart"></i>-->
+<!--{{--                <i class="fa fa-share"></i>--}}-->
+<!--            </span>-->
+<!--                        </div>-->
                     </div>
                 @empty
                     <p>No records available at the moment.</p>
