@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('reviewer_id');
             $table->unsignedBigInteger('bussiness_id');
-            $table->string('reviews');
+            $table->longText('reviews');
             $table->timestamps();
         });
     }

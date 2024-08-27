@@ -230,6 +230,10 @@
                 <a href="{{ route('show.blog') }}" class="{{ request()->routeIs('show.blog') ? 'active' : '' }}">Blog News</a>
             </li>
 
+            <li>
+                <a href="{{ route('compare') }}" class="{{ request()->routeIs('compare') ? 'active' : '' }}">Compare Cars</a>
+            </li>
+
 
 
 

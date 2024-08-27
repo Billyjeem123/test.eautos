@@ -743,7 +743,7 @@ class ProductController extends Controller
     {
         // Validate the request data
         $validatedData = $request->validate([
-            'comment' => 'required|string|max:255', // Adjust validation rules as needed
+            'comment' => 'required|string', // Adjust validation rules as needed
             'post_id' => 'required'
         ]);
 
@@ -777,7 +777,7 @@ class ProductController extends Controller
     {
         // Validate the request data
         $validatedData = $request->validate([
-            'reviews' => 'required|string|max:255', // Adjust validation rules as needed
+            'reviews' => 'required|string', // Adjust validation rules as needed
             'bussiness_id' => 'required'
         ]);
 

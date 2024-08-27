@@ -27,7 +27,7 @@ class ReportController extends Controller
 
     public function comparePage(){
 
-        $products  = Product::with('brand', 'images', 'categories')->where('is_approved', 1)->paginate(5);
+        $products  = Product::with('brand', 'images', 'categories')->where('is_approved', 1)->get();
         return view('home.compare.compare', ['products' => $products]);
 
     }
