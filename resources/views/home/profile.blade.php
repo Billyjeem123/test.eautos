@@ -127,13 +127,18 @@
         <div class="card">
             <h2 style="display: flex; justify-content: start;
             align-items: center; gap: 3px;">
-                {{ $profile->name }} - {{ $carsCount }} Cars 
-                <span style="font-size: 13px; background: #f2f2f2; 
-                border-radius: 10px; padding: 4px 8px; display: flex; 
-                justify-content: start; align-items: center; width: fit-content;">
-                    Verified
-                    <img src="https://img.icons8.com/?size=48&id=98A4yZTt9abw&format=png" width="20px" />
-                </span>
+                {{ $profile->name }} - {{ $carsCount }} Cars
+
+
+                @if($verification_status === 'approved')
+                    <span style="font-size: 13px; background: #f2f2f2;
+                     border-radius: 10px; padding: 4px 8px; display: flex;
+                        justify-content: start; align-items: center; width: fit-content;">
+                          Verified
+                            <img src="https://img.icons8.com/?size=48&id=98A4yZTt9abw&format=png" width="20px" />
+                        </span>
+                        @endif
+
                 <!--    <span style="font-size: 13px; background: #f2f2f2; -->
                 <!--border-radius: 10px; padding: 4px 8px; display: flex; -->
                 <!--justify-content: start; align-items: center; width: fit-content;">-->
@@ -325,13 +330,13 @@
 
     <div class="time container">
         <div class="card_group">
-             <div class="card" style="display: flex; 
+             <div class="card" style="display: flex;
             justify-content: center; align-items: center;">
                 <!--<img src="/home/images/map2.png" alt="">-->
             <!--<a href="#">See Directions</a>-->
                 <div style="text-align: center;">
                     <p style="font-size: 18px; display: block;"><i class="fa fa-map-marker-alt"></i> Office Address</p>
-                    <h2>Lorem Ipsum</h2>
+                    <h2>{{$profile->business_state}}</h2>
                 </div>
             </div>
             <div class="card">

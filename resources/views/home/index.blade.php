@@ -222,8 +222,12 @@
                     </a>
                     <div class="details">
                         <h5>{{ $dealer->name}}</h5>
-                        <span><strong>100%</strong> Verified</span>
-                        <p class="progress"><i class="fa fa-check"></i></p>
+                        @if($dealer->verification && $dealer->verification->status === "approved")
+                            <span><strong>100%</strong> Verified</span>
+                            <p class="progress"><i class="fa fa-check"></i></p>
+                        @else
+
+                        @endif
                     </div>
                 </div>
             @endforeach
@@ -254,8 +258,15 @@
                    </a>
                    <div class="details">
                        <h5>{{ $dealer->name}}</h5>
-                       <span><strong>100%</strong> Verified</span>
-                       <p class="progress"><i class="fa fa-check"></i></p>
+                       @if($dealer->verification && $dealer->verification->status === "approved")
+                           <span><strong>100%</strong> Verified</span>
+                           <p class="progress"><i class="fa fa-check"></i></p>
+                       @else
+                           <!-- Content to show if not verified -->
+                           <span><strong>Unverified</strong></span>
+                           <p class="progress"><i class="fa fa-times"></i></p>
+                       @endif
+
                    </div>
                </div>
            @endforeach

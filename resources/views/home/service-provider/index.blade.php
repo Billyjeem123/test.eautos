@@ -209,8 +209,17 @@
 
                     <a href="{{route('user.profile', $user->id )}}">
                         <div class="card_img" style="background: url('{{ !empty($user->image) ? $user->image : 'https://cdn.pixabay.com/photo/2018/11/13/21/43/avatar-3814049_1280.png' }}') no-repeat;">
-                            <!--<p class="verify"><span><i class="fa fa-check"></i></span> Verified</p>-->
-                                <span style="display: block; text-align: end;"><img src="https://img.icons8.com/?size=48&id=98A4yZTt9abw&format=png" width="30px" /></span>
+                            @if($user->verification && $user->verification->status === "approved")
+                                <!-- Display verified badge -->
+                                <span style="display: block; text-align: end;">
+                <img src="https://img.icons8.com/?size=48&id=98A4yZTt9abw&format=png" width="30px" />
+            </span>
+                            @else
+                                <!-- Not verified or not applied -->
+{{--                                <img src="https://media.istockphoto.com/id/690444380/vector/seal-ribbon-with-check-mark-vector-isolated.jpg?s=1024x1024&w=is&k=20&c=Zjo24Oh8QhFOp3eVbApUOU9OncBoDJ_xlA1NGe8IKdM=" width="30px" alt="Unverified Badge" />--}}
+{{--                                <p>Not Verified</p>--}}
+                            @endif
+
                         </div>
                     </a>
 

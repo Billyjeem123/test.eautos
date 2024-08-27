@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\ReportEvent;
+use App\Models\Product;
 use App\Models\Report;
 use App\Models\RequestCar;
 use App\Models\User;
@@ -21,6 +22,13 @@ class ReportController extends Controller
 
     public function viewRequest(){
         return view('home.report.request');
+
+    }
+
+    public function comparePage(){
+
+        $products  = Product::with('brand', 'images', 'categories')->where('is_approved', 1)->paginate(5);
+        return view('home.compare.compare', ['products' => $products]);
 
     }
 

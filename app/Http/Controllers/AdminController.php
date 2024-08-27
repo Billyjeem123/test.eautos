@@ -114,7 +114,7 @@ class AdminController extends Controller
 
     public function showVerifications()
     {
-        $users = User::whereHas('verification')->with('verification')->get();
+        $users = User::whereHas('verification')->with('verification')->lastest()->get();
         return view('admin.verifications', compact('users'));
     }
 

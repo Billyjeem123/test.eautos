@@ -110,7 +110,8 @@ public function toggleBlockUsers($id)
     {
         // Find the user profile
 
-        $profile = User::find($userid);
+//        $profile = User::find($userid);
+        $profile = User::with('verification')->find($userid);
 
 
         $bussiness_service =  $profile->businessServiceLists;
@@ -129,10 +130,11 @@ public function toggleBlockUsers($id)
 //        $totalReports = Report::where('user_id', $userid)->count();
 
         $reports = Report::where('offender_id', $userid)->count();
+        $verificationStatus = $profile->verification->status ?? 'pending';
 
 
 
-        return view('home.profile', ['profile' => $profile, 'reportsCount' => $reports,   'totalReviews' => $totalReviews, 'carsUploaded' => $carsUploaded,  'reviews' => $reviews,  'carsCount' => $carsCount , 'bussiness_service' => $bussiness_service]);
+        return view('home.profile', ['profile' => $profile, 'verification_status' => $verificationStatus,  'reportsCount' => $reports,   'totalReviews' => $totalReviews, 'carsUploaded' => $carsUploaded,  'reviews' => $reviews,  'carsCount' => $carsCount , 'bussiness_service' => $bussiness_service]);
     }
 
 

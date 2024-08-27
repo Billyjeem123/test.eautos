@@ -393,7 +393,7 @@ class ProductController extends Controller
     {
         try {
             // Retrieve the product by its ID along with its images and user
-            $products = Product::with('images', 'user')->findOrFail($productId);
+            $products = Product::with('images', 'user.verification')->findOrFail($productId);
 
             // Retrieve the category of the product and its name
             $category = Category::findOrFail($products->category_id);
@@ -416,9 +416,12 @@ class ProductController extends Controller
 
             $comments = Comment::with('user')->where('post_id', $products->id)->get();
 
+            // Get the verification status of the user associated with the product
+            $verificationStatus = $products->user->verification->status ?? null;
+
 
             // Return the data to your view or do something else with it
-            return view('home.products.details', compact('categoryName', 'comments', 'similarProducts', 'products', 'subcategories', 'sub_category_name', 'category'));
+            return view('home.products.details', compact('categoryName', 'comments', 'similarProducts', 'products', 'subcategories', 'sub_category_name', 'category', 'verificationStatus'));
         } catch (ModelNotFoundException $e) {
             // Handle the case where the product or subcategory is not found
             abort(404); // Return a 404 response

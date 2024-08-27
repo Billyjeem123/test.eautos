@@ -80,24 +80,24 @@
     <style>
         .image-wrapper .main-image{
             width: 85%;
-            height: auto; 
+            height: auto;
             object-fit: cover;
         }
         .image-nav .nav-image{
             width: 100%;
-            height: auto; 
+            height: auto;
             object-fit: cover;
         }
-        
+
         @media (max-width:768px){
         .image-wrapper .main-image{
             width: 100%;
-            height: auto; 
+            height: auto;
             object-fit: cover;
         }
          .image-nav .nav-image{
             width: 50%;
-            height: auto; 
+            height: auto;
             object-fit: cover;
         }
         }
@@ -126,7 +126,7 @@
                 <span style="font-weight: bold; font-size: 18px; color: #394293;">₦ {{ number_format($products->price,2) }}</span>
             </p>
         </div>
-        <a href="#">Compare</a>
+        <a href="{{route('compare')}}">Compare</a>
     </div>
     <!-- --------------------------------------------------- -->
     <section>
@@ -182,12 +182,14 @@
                 <a href="#" style="flex-wrap:wrap; gap:10px;">
                     <span><i class="fa fa-user"></i></span>
                     View Dealer Profile<br>
-                    <span style="font-size: 13px; background: #f2f2f2; 
-                border-radius: 10px; padding: 4px 8px; display: flex; 
+                    @if($verificationStatus === 'approved')
+                    <span style="font-size: 13px; background: #f2f2f2;
+                border-radius: 10px; padding: 4px 8px; display: flex;
                 justify-content: start; align-items: center; width: fit-content;">
                     Verified
                     <img src="https://img.icons8.com/?size=48&id=98A4yZTt9abw&format=png" width="20px" />
                 </span>
+                    @endif
                 <!--    <span style="font-size: 13px; background: #f2f2f2; -->
                 <!--border-radius: 10px; padding: 4px 8px; display: flex; -->
                 <!--justify-content: start; align-items: center; width: fit-content;">-->
@@ -199,16 +201,16 @@
             <p><span><i class="fa fa-map-marker-alt"></i></span>&nbsp;&nbsp; {{$products->location . ' ' . $products->address}}</p><br>
             <p><span><i class="fa fa-road"></i></span>&nbsp;&nbsp; 10 Miles Away</p><br>
             <p><span><i class="fa fa-phone"></i></span>&nbsp;&nbsp;
-            <a style="margin:0; text-decoration: none; padding: 0 !important; border:none !important; display:inline-flex !important; font-weight:500; text-decoration:underline;" 
+            <a style="margin:0; text-decoration: none; padding: 0 !important; border:none !important; display:inline-flex !important; font-weight:500; text-decoration:underline;"
             href="tel: {{$products->user->phone}}">{{$products->user->phone}}</a></p><br>
              <p><span><i class="fa fa-envelope"></i></span>&nbsp;&nbsp;
-             <a style="margin:0; text-decoration: none; padding: 0 !important; border: none !important; display: inline-flex !important; font-weight:500; text-decoration:underline;" 
+             <a style="margin:0; text-decoration: none; padding: 0 !important; border: none !important; display: inline-flex !important; font-weight:500; text-decoration:underline;"
              href="mailto:{{$products->user->email}}">{{$products->user->email}}</a></p>
               <span style="display: flex; gap: 3px; justify-content: start !important; align-items: center; width: fit-content;">
-            <a href="#" class="share" 
+            <a href="#" class="share"
             style="color: #000; text-decoration:none; padding:0 !important; border:none !important; font-size: 20px;">
                 <i class="fab fa-facebook"></i>&nbsp;&nbsp; <strong></strong></a>
-            <a href="#" class="share" 
+            <a href="#" class="share"
             style="color: #000; text-decoration:none; padding:0 !important; border:none !important; font-size: 20px;">
                 <i class="fab fa-instagram"></i>&nbsp;&nbsp; <strong></strong></a>
             <a href="#" class="share"

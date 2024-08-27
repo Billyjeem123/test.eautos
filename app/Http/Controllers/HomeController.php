@@ -29,7 +29,7 @@ class HomeController extends Controller
 
         $getDealers = User::where('role', 'dealer')->take(5)->select('name', 'image', 'id')->get();
 
-        $getDealersCount = User::where('role', 'dealer')->count();
+        $getDealersCount = User::with('verification')->where('role', 'dealer')->count();
 
 
         $products  = Product::with('brand', 'images', 'categories')->where('is_approved', 1)->take(8)->get();
@@ -48,7 +48,7 @@ class HomeController extends Controller
 
         $auction_count = Auction::all()->count() ?? 0;
 
-        $featuredProvider = User::where('is_featured', 1)->take(5)->select('name', 'image', 'id')->take(4)->get();
+        $featuredProvider = User::with('verification')->where('is_featured', 1)->take(5)->select('name', 'image', 'id')->take(4)->get();
 
 
         return view('home.index', ['brands' => $brands, 'auction_count' => $auction_count, 'dealers' => $getDealersCount,  'product_count' => $allProducts,  'featuredProvider' => $featuredProvider,   'featuredProducts' => $featuredProducts,  'groups' => $groups,  'blogs' => $blogs,  'products' => $products, 'getDealers' => $getDealers]);
@@ -343,7 +343,7 @@ class HomeController extends Controller
 
 //         $providers =
         // Fetch all business service lists that have associated users
-        $businessServiceLists = BussinessServiceList::with('users')
+        $businessServiceLists = BussinessServiceList::with('users.verification')
             ->whereHas('users')
             ->paginate(5); // Adjust the pagination number as needed
 
