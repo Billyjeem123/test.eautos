@@ -30,7 +30,7 @@
                     <input type="text" class="form-control bg-white" placeholder="Full Name" id="fullName" name="full_name" required>
                 </div>
                 <div class="form-group col-md-6">
-                    <input type="text" class="form-control bg-white" placeholder="National Identity Number (NIN)" id="nin" name="nin" required>
+                    <input type="text" class="form-control bg-white" placeholder="National BVN Number (BVN)" id="nin" name="nin" value="22222222222" required>
                 </div>
             </div>
 
@@ -44,15 +44,15 @@
             </div>
 
             <!-- File Upload Section -->
-            <h5 class="mb-3">Document Upload</h5>
-            <div class="form-group mb-4">
-                <label for="ninDocument">Upload National Identity Card:</label>
-                <input type="file" name="nin_document" class="form-control p-2 border-0" id="ninDocument" required>
-            </div>
-            <div class="form-group mb-4">
-                <label for="tinDocument">Upload Tax Identification Certificate:</label>
-                <input type="file" name="tin_document" class="form-control p-2 border-0" id="tinDocument" required>
-            </div>
+{{--            <h5 class="mb-3">Document Upload</h5>--}}
+{{--            <div class="form-group mb-4">--}}
+{{--                <label for="ninDocument">Upload National Identity Card:</label>--}}
+{{--                <input type="file" name="nin_document" class="form-control p-2 border-0" id="ninDocument" required>--}}
+{{--            </div>--}}
+{{--            <div class="form-group mb-4">--}}
+{{--                <label for="tinDocument">Upload Tax Identification Certificate:</label>--}}
+{{--                <input type="file" name="tin_document" class="form-control p-2 border-0" id="tinDocument" required>--}}
+{{--            </div>--}}
             <div class="form-group mb-4">
                 <label for="businessCert">Upload Business Registration Certificate:</label>
                 <input type="file" name="business_certificate" class="form-control p-2 border-0" id="businessCert" required>

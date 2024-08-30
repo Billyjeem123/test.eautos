@@ -12,7 +12,6 @@
           <excludedPaths>
             <excludedPath local="true" path="vendor" />
             <excludedPath path="/public_html/test.eautos.iccflifeskills.com.ng/vendor" />
-            <excludedPath path="/public_html/test.eautos.iccflifeskills.com.ng/storage" />
             <excludedPath path="/public_html/test.eautos.iccflifeskills.com.ng/tests" />
             <excludedPath path="/public_html/test.eautos.iccflifeskills.com.ng/node_modules" />
           </excludedPaths>
