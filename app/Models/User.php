@@ -151,8 +151,13 @@ class User extends Authenticatable
     }
 
     public function verification()
+{
+    return $this->hasOne(Verification::class);
+}
+
+    public function bvnData()
     {
-        return $this->hasOne(Verification::class);
+        return $this->hasOne(BvnData::class);
     }
 
 }

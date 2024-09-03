@@ -25,7 +25,8 @@
                     <th>Verification Status</th>
                     <th>Date Requested</th>
                     <th>Approve</th>
-                    <th>Reject</th>
+                    <th>Nin Details</th>
+{{--                    <th>Reject</th>--}}
                 </tr>
                 </thead>
                 <tbody>
@@ -47,13 +48,23 @@
                                 </form>
                             @endif
                         </td>
+
                         <td>
-                            @if($user->verification->status == 'pending')
-                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#rejectModal{{$user->id}}">
-                                    Reject
-                                </button>
-                            @endif
+                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#rejectModalBvn{{$user->id}}">
+                                View
+                            </button>
                         </td>
+
+{{--                        <td>--}}
+{{--                            @if($user->verification->status == 'pending')--}}
+{{--                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#rejectModal{{$user->id}}">--}}
+{{--                                    Reject--}}
+{{--                                </button>--}}
+{{--                            @endif--}}
+{{--                        </td>--}}
+
+
+
                     </tr>
                 @endforeach
                 </tbody>
@@ -90,6 +101,54 @@
                 </div>
             </div>
         @endforeach
+
+
+
+
+
+
+
+
+        <!-- Reject Modal Template -->
+        @foreach($users as $user)
+            <div class="modal fade" id="rejectModalBvn{{$user->id}}" tabindex="-1" role="dialog" aria-labelledby="rejectModalLabel{{$user->id}}" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <form action="{{ route('admin.verifications.reject', $user->verification->id) }}" method="POST">
+                            @csrf
+                            @method('PUT')
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="rejectModalLabel{{$user->id}}">Reject Verification Request</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="reason">Reason for Rejection</label>
+                                    <textarea class="form-control" id="reason" name="reason" rows="4" required></textarea>
+                                </div>
+
+                                <!-- BVN Data Display -->
+                                <h5>BVN Details</h5>
+                                <p><strong>Full Name:</strong> {{$user->bvnData->first_name}} {{$user->bvnData->middle_name}} {{$user->bvnData->last_name}}</p>
+                                <p><strong>BVN:</strong> {{$user->bvnData->bvn}}</p>
+                                <p><strong>Date of Birth:</strong> {{$user->bvnData->date_of_birth}}</p>
+                                <p><strong>Phone Number 1:</strong> {{$user->bvnData->phone_number1}}</p>
+                                <p><strong>Phone Number 2:</strong> {{$user->bvnData->phone_number2}}</p>
+                                <p><strong>Gender:</strong> {{$user->bvnData->gender}}</p>
+                                <img src="{{$user->bvnData->image}}" alt="BVN Image" width="100" height="100">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-danger">Reject</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+
 
     </div>
     <!-- /.container-fluid -->
