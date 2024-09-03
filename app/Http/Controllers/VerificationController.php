@@ -29,6 +29,11 @@ class VerificationController extends Controller
             'description' => 'nullable|string',
         ]);
 
+        $nin = $request->input('nin');
+        if (!empty($nin) && strlen($nin) !== 11) {
+            return redirect()->back()->withErrors(['error' => 'NIN must be exactly 11 digits.']);
+        }
+
         if (Verification::where('user_id', Auth::id())->exists()) {
             return redirect()->back()->with('error', 'Verification request already sent. You cannot resend.');
         }
