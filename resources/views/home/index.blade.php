@@ -263,8 +263,8 @@
                            <p class="progress"><i class="fa fa-check"></i></p>
                        @else
                            <!-- Content to show if not verified -->
-                           <span><strong>Unverified</strong></span>
-                           <p class="progress"><i class="fa fa-times"></i></p>
+{{--                           <span><strong>Unverified</strong></span>--}}
+{{--                           <p class="progress"><i class="fa fa-times"></i></p>--}}
                        @endif
 
                    </div>

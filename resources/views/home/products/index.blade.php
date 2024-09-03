@@ -181,8 +181,8 @@
                     <div class="card_img" style="background: url('{{ !empty($dealer->image) ? $dealer->image : '/images/profile.svg' }}') no-repeat;"></div>
                     <div class="details">
                         <h5>{{ $dealer->name}}</h5>
-                        <span><strong>100%</strong> Verified</span>
-                        <p class="progress"><i class="fa fa-check"></i></p>
+{{--                        <span><strong>100%</strong> Verified</span>--}}
+{{--                        <p class="progress"><i class="fa fa-check"></i></p>--}}
                     </div>
                 </div>
             @endforeach
