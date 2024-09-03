@@ -30,7 +30,7 @@
                     <input type="text" class="form-control bg-white" placeholder="Full Name" id="fullName" name="full_name" required>
                 </div>
                 <div class="form-group col-md-6">
-                    <input type="text" class="form-control bg-white" placeholder="National BVN Number (BVN)" id="nin" name="nin" value="22222222222" required>
+                    <input type="text" class="form-control bg-white" placeholder="National BVN Number (BVN)" id="nin" name="nin"  required>
                 </div>
             </div>
 
